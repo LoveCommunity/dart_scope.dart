@@ -1,11 +1,8 @@
 
-import 'package:test/test.dart';
 
-import 'package:scopes/scopes.dart';
+import 'observables/observables_test.dart' as observalbes_test;
 
 void main() {
 
-  test('main', () {
-    expect(scope, 'scope');
-  });
+  observalbes_test.main();
 }
