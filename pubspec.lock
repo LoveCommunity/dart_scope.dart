@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
+  disposal:
+    dependency: "direct main"
+    description:
+      name: disposal
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0-alpha.1"
   file:
     dependency: transitive
     description:
