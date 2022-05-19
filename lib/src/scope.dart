@@ -1,0 +1,2 @@
+
+const scope = 'scope';

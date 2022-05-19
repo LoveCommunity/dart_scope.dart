@@ -1,0 +1,13 @@
+name: scopes
+version: 0.1.0-alpha.1
+homepage: https://github.com/LoveCommunity/scopes.dart
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  meta: ^1.3.0
+  typedef_foundation: ^0.1.0
+
+dev_dependencies:
+  test: ^1.17.12
