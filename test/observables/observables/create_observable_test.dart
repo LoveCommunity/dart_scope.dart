@@ -1,56 +1,54 @@
 
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
+
 import '../../toolbox/async_toolbox.dart';
+import '../../toolbox/observable_tester.dart';
 
 void main() {
 
   test('create observable sync', () {
     
-    final List<String> invokes = [];
-
     final observable = Observable<String>((onData) {
       onData('a');
       return Disposable.empty;
     });
 
-    final OnData<String> onData = (data) {
-      invokes.add(data);
-    };
-    
-    expect(invokes, []);
-    final observation = observable.observe(onData);
-    expect(invokes, [
+    final tester = ObservableTester(
+      observable,
+    );
+
+    expect(tester.recorded, []);
+    tester.startObserve();
+    expect(tester.recorded, [
       'a',
     ]);
 
-    observation.dispose();
+    tester.stopObserve();
 
   });
 
   test('create observable async', () async {
-
-    final List<String> invokes = [];
 
     final observable = Observable<String>((onData) {
       Future<void>(() => onData('a'));
       return Disposable.empty;
     });
 
-    final OnData<String> onData = (data) {
-      invokes.add(data);
-    };
+    final tester = ObservableTester(
+      observable,
+    );
 
-    expect(invokes, []);
-    final observation = observable.observe(onData);
-    expect(invokes, []);
+    expect(tester.recorded, []);
+    tester.startObserve();
+    expect(tester.recorded, []);
 
     await delayed(30);
-    expect(invokes, [
+    expect(tester.recorded, [
       'a',
     ]);
 
-    observation.dispose();
+    tester.stopObserve();
 
   });
 
@@ -73,28 +71,24 @@ void main() {
 
   test('create observable not recieve data after disposed', () async {
 
-    final List<String> invokes = [];
-
     final observable = Observable<String>((onData) {
       onData('a');
       Future<void>(() => onData('b'));
       return Disposable.empty;
     });
     
-    final OnData<String> onData = (data) {
-      invokes.add(data);
-    };
+    final tester = ObservableTester(
+      observable,
+    )..startObserve();
 
-    final observation = observable.observe(onData);
-
-    expect(invokes, [
+    expect(tester.recorded, [
       'a',
     ]);
     
-    observation.dispose();
+    tester.stopObserve();
 
     await delayed(30);
-    expect(invokes, [
+    expect(tester.recorded, [
       'a',
     ]);
     

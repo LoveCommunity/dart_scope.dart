@@ -2,11 +2,11 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
+import '../../toolbox/observable_tester.dart';
+
 void main() {
 
   test('cast observable success', () {
-
-    final List<Object> invokes = [];
 
     final observable = Observable<String>((onData) {
       onData('a');
@@ -15,17 +15,17 @@ void main() {
 
     final castObservable = observable.cast<Object>();
 
-    final OnData<Object> onData = (data) {
-      invokes.add(data);
-    };
+    final tester = ObservableTester(
+      castObservable,
+    );
 
-    expect(invokes, []);
-    final observation = castObservable.observe(onData);
-    expect(invokes, [
+    expect(tester.recorded, []);
+    tester.startObserve();
+    expect(tester.recorded, [
       'a',
     ]);
 
-    observation.dispose();
+    tester.stopObserve();
   });
 
   test('cast observable failure', () {
