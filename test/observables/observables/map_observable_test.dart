@@ -1,7 +1,6 @@
 
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
-import 'package:disposal/disposal.dart';
 
 void main() {
 
