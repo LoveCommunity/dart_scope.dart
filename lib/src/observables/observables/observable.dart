@@ -4,6 +4,7 @@ import 'package:disposal/disposal.dart';
 import '../observers/observer.dart';
 import 'create_observable.dart';
 import 'cast_observable.dart';
+import 'combine_observable.dart';
 import 'map_observable.dart';
 
 typedef Observe<T> = Disposable Function(OnData<T> onData);
@@ -15,6 +16,11 @@ abstract class Observable<T> {
   const factory Observable(
     Observe<T> observe
   ) = CreateObservable;
+
+  const factory Observable.combine({
+    required List<Observable<Object?>> children,
+    required T Function(List<Object?> items) combiner,
+  }) = CombineObservable;
 }
 
 
