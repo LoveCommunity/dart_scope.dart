@@ -151,13 +151,13 @@ void main() {
 
     final observable1 = Observable<Object?>((onData) {
       return Disposable(() {
-        invokes.add('disposeA');
+        invokes.add('dispose1');
       });
     });
 
     final observable2 = Observable<Object?>((onData) {
       return Disposable(() {
-        invokes.add('disposeB');
+        invokes.add('dispose2');
       });
     });
 
@@ -174,8 +174,8 @@ void main() {
     expect(invokes, []);
     observation.dispose();
     expect(invokes, [
-      'disposeB',
-      'disposeA',
+      'dispose2',
+      'dispose1',
     ]);
 
   });
@@ -186,13 +186,13 @@ void main() {
 
     final observable1 = Observable<String>((onData) {
       return Disposable(() {
-        invokes.add('disposeA');
+        invokes.add('dispose1');
       });
     });
 
     final observable2 = Observable<String>((onData) {
       return Disposable(() {
-        invokes.add('disposeB');
+        invokes.add('dispose2');
       });
     });
 
@@ -207,8 +207,8 @@ void main() {
     expect(invokes, []);
     observation.dispose();
     expect(invokes, [
-      'disposeB',
-      'disposeA',
+      'dispose2',
+      'dispose1',
     ]);
 
   });
