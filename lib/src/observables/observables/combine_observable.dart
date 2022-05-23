@@ -50,3 +50,29 @@ class CombineObservable<R> implements Observable<R> {
     );
   }
 }
+
+@internal
+class CombineObservable2<T1, T2, R> implements Observable<R> {
+
+  CombineObservable2({
+    required Observable<T1> child1,
+    required Observable<T2> child2,
+    required R Function(T1, T2) combiner,
+  }): _proxy = Observable<R>.combine(
+        children: [
+          child1.cast<Object?>(),
+          child2.cast<Object?>(),
+        ],
+        combiner: (items) => combiner(
+          items[0] as T1,
+          items[1] as T2,
+        ),
+      );
+
+  final Observable<R> _proxy;
+
+  @override
+  Disposable observe(OnData<R> onData) {
+    return _proxy.observe(onData);
+  }
+}
