@@ -7,20 +7,20 @@ void main() {
 
   test('combine observable emit if all children emitted', () async {
 
-    final observableA = Observable<Object?>((onData) {
-      onData('a1');
+    final observable1 = Observable<Object?>((onData) {
+      onData('1a');
       return Disposable.empty;
     });
 
-    final observableB = Observable<Object?>((onData) {
-      Future(() => onData('b1'));
+    final observable2 = Observable<Object?>((onData) {
+      Future(() => onData('2a'));
       return Disposable.empty;
     });
 
     final combineObservable = Observable<String>.combine(
       children: [
-        observableA,
-        observableB,
+        observable1,
+        observable2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
@@ -32,7 +32,7 @@ void main() {
     expect(tester.recorded, []);
     await Future(() {});
     expect(tester.recorded, [
-      'a1|b1',
+      '1a|2a',
     ]);
 
     tester.stopObserve();
@@ -41,21 +41,21 @@ void main() {
 
   test('combine observable emit latest combined value when a child emit', () async {
 
-    final observableA = Observable<Object?>((onData) {
-      onData('a1');
+    final observable1 = Observable<Object?>((onData) {
+      onData('1a');
       return Disposable.empty;
     });
 
-    final observableB = Observable<Object?>((onData) {
-      onData('b1');
-      Future(() => onData('b2'));
+    final observable2 = Observable<Object?>((onData) {
+      onData('2a');
+      Future(() => onData('2b'));
       return Disposable.empty;
     });
 
     final combineObservable = Observable.combine(
       children: [
-        observableA,
-        observableB,
+        observable1,
+        observable2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
@@ -65,12 +65,12 @@ void main() {
     )..startObserve();
 
     expect(tester.recorded, [
-      'a1|b1',
+      '1a|2a',
     ]);
     await Future(() {});
     expect(tester.recorded, [
-      'a1|b1',
-      'a1|b2',
+      '1a|2a',
+      '1a|2b',
     ]);
 
     tester.stopObserve();
@@ -81,13 +81,13 @@ void main() {
 
     final List<String> invokes = [];
 
-    final observableA = Observable<Object?>((onData) {
+    final observable1 = Observable<Object?>((onData) {
       return Disposable(() {
         invokes.add('disposeA');
       });
     });
 
-    final observableB = Observable<Object?>((onData) {
+    final observable2 = Observable<Object?>((onData) {
       return Disposable(() {
         invokes.add('disposeB');
       });
@@ -95,8 +95,8 @@ void main() {
 
     final combineObservable = Observable.combine(
       children: [
-        observableA,
-        observableB,
+        observable1,
+        observable2,
       ],
       combiner: (items) => '',
     );
@@ -114,21 +114,21 @@ void main() {
 
   test('combine observable will not emit data after observation disposed', () async {
 
-    final observableA = Observable<Object?>((onData) {
-      onData('a1');
+    final observable1 = Observable<Object?>((onData) {
+      onData('1a');
       return Disposable.empty;
     });
 
-    final observableB = Observable<Object?>((onData) {
-      onData('b1');
-      Future(() => onData('b2'));
+    final observable2 = Observable<Object?>((onData) {
+      onData('2a');
+      Future(() => onData('2b'));
       return Disposable.empty;
     });
 
     final combineObservable = Observable.combine(
       children: [
-        observableA,
-        observableB,
+        observable1,
+        observable2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
@@ -140,11 +140,11 @@ void main() {
     tester.stopObserve();
 
     expect(tester.recorded, [
-      'a1|b1',
+      '1a|2a',
     ]); 
     await Future(() {});
     expect(tester.recorded, [
-      'a1|b1',
+      '1a|2a',
     ]);
 
   });
