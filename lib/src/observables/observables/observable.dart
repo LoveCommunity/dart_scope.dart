@@ -21,6 +21,16 @@ abstract class Observable<T> {
     required List<Observable<Object?>> children,
     required T Function(List<Object?> items) combiner,
   }) = CombineObservable;
+
+  static Observable<R> combine2<T1, T2, R>({
+    required Observable<T1> child1,
+    required Observable<T2> child2,
+    required R Function(T1, T2) combiner,
+  }) => CombineObservable2(
+    child1: child1,
+    child2: child2,
+    combiner: combiner,
+  );
 }
 
 
