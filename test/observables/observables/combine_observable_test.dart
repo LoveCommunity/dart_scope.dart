@@ -2,7 +2,11 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 import '../../toolbox/observable_tester.dart';
+import '../../test_gen/combine_observable_test.dart';
 
+part 'combine_observable_test.g.dart';
+
+@combineObservableTest
 void main() {
 
   test('combine observable emit if all children emitted', () async {
