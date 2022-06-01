@@ -11,15 +11,15 @@ String testerStopObserve() {
   ''';
 }
 
-String expectTesterRecorded(Iterable<String> expects) {
-  return expect('tester.recorded', expects);
+String expectTesterRecorded(List<String> expects) {
+  return expectList('tester.recorded', expects);
 }
 
-String expectInvokes(Iterable<String> expects) {
-  return expect('invokes', expects);
+String expectInvokesList(List<String> expects) {
+  return expectList('invokes', expects);
 }
 
-String expect(String name, Iterable<String> expects) {
+String expectList(String name, List<String> expects) {
   return '''
     expect($name, [
       ${expects.join(',\n')}

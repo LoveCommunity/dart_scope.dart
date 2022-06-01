@@ -11,9 +11,9 @@ String testDisposeObservation(int? number) {
       ${observables(isList, count, _observable)}
       ${combineObservable(number)}
       ${_startObserve()}
-      ${expectInvokes([])}
+      ${expectInvokesList([])}
       ${_stopObserve()}
-      ${expectInvokes(_expects(count))}
+      ${expectInvokesList(_expects(count))}
     });
   ''';
 }
