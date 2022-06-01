@@ -3,11 +3,11 @@ import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
 String testEmitLatestCombinedValue(int? number) {
-  final count = number ?? 2;
   final isList = number == null;
+  final count = number ?? 2;
   return '''
     test('combine observable${isList ? '' : '$number'} emit latest combined value when a child emit', () async {
-      ${_observables(count, isList)}
+      ${observables(isList, count, _observable)}
       ${combineObservable(number)}
       ${combineObservableTester()}
       ${testerStartObserve()}
@@ -17,14 +17,6 @@ String testEmitLatestCombinedValue(int? number) {
       ${testerStopObserve()}
     });
   ''';
-}
-
-String _observables(int count, bool isList) {
-  return join(
-    count,
-    (n) => _observable(isList, n == count, n),
-    '\n'
-  );
 }
 
 String _observable(bool isList, bool isLast, int n) {
