@@ -6,4 +6,70 @@ part of 'combine_observable_test.dart';
 // CombineObservableTestGenerator
 // **************************************************************************
 
-void _main() {}
+void _main() {
+  test('combine observable emit if all children emitted', () async {
+    final observable1 = Observable<Object?>((onData) {
+      onData('1a');
+      return Disposable.empty;
+    });
+
+    final observable2 = Observable<Object?>((onData) {
+      Future(() => onData('2a'));
+      return Disposable.empty;
+    });
+
+    final combineObservable = Observable<String>.combine(
+      children: [
+        observable1,
+        observable2,
+      ],
+      combiner: (items) => '${items[0]}|${items[1]}',
+    );
+
+    final tester = ObservableTester(
+      combineObservable,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, []);
+
+    await Future(() {});
+
+    expect(tester.recorded, ['1a|2a']);
+
+    tester.stopObserve();
+  });
+
+  test('combine observable2 emit if all children emitted', () async {
+    final observable1 = Observable<String>((onData) {
+      onData('1a');
+      return Disposable.empty;
+    });
+
+    final observable2 = Observable<String>((onData) {
+      Future(() => onData('2a'));
+      return Disposable.empty;
+    });
+
+    final combineObservable = Observable.combine2<String, String, String>(
+      child1: observable1,
+      child2: observable2,
+      combiner: (it1, it2) => '$it1|$it2',
+    );
+
+    final tester = ObservableTester(
+      combineObservable,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, []);
+
+    await Future(() {});
+
+    expect(tester.recorded, ['1a|2a']);
+
+    tester.stopObserve();
+  });
+}
