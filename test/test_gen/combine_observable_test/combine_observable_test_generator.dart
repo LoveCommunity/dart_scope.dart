@@ -4,6 +4,7 @@ import 'package:source_gen/source_gen.dart';
 
 import 'combine_observable_test.dart';
 import 'test_cases/test_emit_if_all_children_emitted.dart';
+import 'test_cases/test_emit_latest_combined_value.dart';
 
 class CombineObservableTestGenerator extends GeneratorForAnnotation<CombineObservableTest> {
 
@@ -21,6 +22,7 @@ String _main() {
 }
 
 const _tests = [
+  testEmitLatestCombinedValue,
   testEmitIfAllChildrenEmitted,
 ];
 
