@@ -12,15 +12,19 @@ String testerStopObserve() {
 }
 
 String expectTesterRecorded(Iterable<String> expects) {
-  return expects.isEmpty
-    ? '''
-      expect(tester.recorded, []);
-    '''
-    : '''
-      expect(tester.recorded, [
-        ${expects.join(',\n')}
-      ]);
-    ''';
+  return expect('tester.recorded', expects);
+}
+
+String expectInvokes(Iterable<String> expects) {
+  return expect('invokes', expects);
+}
+
+String expect(String name, Iterable<String> expects) {
+  return '''
+    expect($name, [
+      ${expects.join(',\n')}
+    ]);
+  '''; 
 }
 
 String awaitEmptyFuture() {
