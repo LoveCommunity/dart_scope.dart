@@ -22,8 +22,8 @@ String _main() {
 }
 
 const _tests = [
-  testEmitLatestCombinedValue,
   testEmitIfAllChildrenEmitted,
+  testEmitLatestCombinedValue,
 ];
 
 const _numbers = [null, 2];
