@@ -29,11 +29,12 @@ List<String> _expects1(int count) {
 }
 
 List<String> _expects2(int count) {
+  bool isLast(int n) => n == count;
   return [
     joinAllA(count), // '1a|2a'
     join(                                     // '1a|2b'
       count,
-      (n) => '${n}${n != count ? 'a' : 'b'}',
+      (n) => '${n}${!isLast(n) ? 'a' : 'b'}',
       '|'
     ).boxed()
   ];

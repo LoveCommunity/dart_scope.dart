@@ -35,5 +35,5 @@ String _observable(bool isList, bool isLast, int n) {
 }
 
 List<String> _expects(int count) => [
-  join(count, (n) => '${n}a', '|').boxed(), // '1a|2a'
+  joinAllA(count), // '1a|2a'
 ];
