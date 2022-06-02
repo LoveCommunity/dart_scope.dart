@@ -1,15 +1,14 @@
 
 import '../../shared/codes.dart';
 
-String observables(
+Iterable<String> observables(
   bool isList,
   int count, 
   String Function(bool isList, bool isLast, int n) observable
 ) {
-  return join(
+  return generateN(
     count,
     (n) => observable(isList, n == count, n),
-    '\n'
   );
 }
 

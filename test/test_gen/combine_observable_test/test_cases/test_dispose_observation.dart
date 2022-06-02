@@ -7,13 +7,15 @@ String testDisposeObservation(int? number) {
   final count = number ?? 2;
   return '''
     test('combine observable${isList ? '' : '$number'} dispose observation will dispose all children observations', () {
-      ${_invokes()}
-      ${observables(isList, count, _observable)}
-      ${combineObservable(number)}
-      ${_startObserve()}
-      ${expectInvokesList([])}
-      ${_stopObserve()}
-      ${expectInvokesList(_expects(count))}
+      ${[
+        _invokes(),
+        ...observables(isList, count, _observable),
+        combineObservable(number),
+        _startObserve(),
+        expectInvokesList([]),
+        _stopObserve(),
+        expectInvokesList(_expects(count)),
+      ].join('\n')}
     });
   ''';
 }

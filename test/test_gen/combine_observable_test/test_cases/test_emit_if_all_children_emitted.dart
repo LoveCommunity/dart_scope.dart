@@ -7,14 +7,16 @@ String testEmitIfAllChildrenEmitted(int? number) {
   final count = number ?? 2;
   return '''
     test('combine observable${isList ? '' : '$number'} emit if all children emitted', () async {
-      ${observables(isList, count, _observable)}
-      ${combineObservable(number)}
-      ${combineObservableTester()}
-      ${testerStartObserve()}
-      ${expectTesterRecorded([])}
-      ${awaitEmptyFuture()}
-      ${expectTesterRecorded(_expects(count))}
-      ${testerStopObserve()}
+      ${[
+        ...observables(isList, count, _observable),
+        combineObservable(number),
+        combineObservableTester(),
+        testerStartObserve(),
+        expectTesterRecorded([]),
+        awaitEmptyFuture(),
+        expectTesterRecorded(_expects(count)),
+        testerStopObserve(),
+      ].join('\n')}
     });
   ''';
 }
