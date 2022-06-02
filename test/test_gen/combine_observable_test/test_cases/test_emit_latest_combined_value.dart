@@ -22,13 +22,13 @@ String testEmitLatestCombinedValue(int? number) {
 
 List<String> _expects1(int count) {
   return [
-    join(count, (n) => '${n}a', '|').boxed(), // '1a|2a'
+    joinAllA(count), // '1a|2a'
   ];
 }
 
 List<String> _expects2(int count) {
   return [
-    join(count, (n) => '${n}a', '|').boxed(), // '1a|2a'
+    joinAllA(count), // '1a|2a'
     join(                                     // '1a|2b'
       count,
       (n) => '${n}${n != count ? 'a' : 'b'}',

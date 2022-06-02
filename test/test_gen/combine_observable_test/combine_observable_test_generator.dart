@@ -6,6 +6,7 @@ import 'combine_observable_test.dart';
 import 'test_cases/test_dispose_observation.dart';
 import 'test_cases/test_emit_if_all_children_emitted.dart';
 import 'test_cases/test_emit_latest_combined_value.dart';
+import 'test_cases/test_not_emit_after_observation_disposed.dart';
 
 class CombineObservableTestGenerator extends GeneratorForAnnotation<CombineObservableTest> {
 
@@ -26,6 +27,7 @@ const _tests = [
   testEmitIfAllChildrenEmitted,
   testEmitLatestCombinedValue,
   testDisposeObservation,
+  testNotEmitAfterObservationDispose,
 ];
 
 const _numbers = [null, 2];

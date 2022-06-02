@@ -65,3 +65,12 @@ String combineObservableTester() {
     );
   ''';
 }
+
+/// '1a|2a'
+String joinAllA(int count) {
+  return join(
+    count, 
+    (n) => '${n}a', 
+    '|'
+  ).boxed(); 
+}
