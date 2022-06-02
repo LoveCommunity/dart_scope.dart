@@ -30,4 +30,4 @@ const _tests = [
   testNotEmitAfterObservationDispose,
 ];
 
-const _numbers = [null, 2];
+const _numbers = [null, 2, 3];
