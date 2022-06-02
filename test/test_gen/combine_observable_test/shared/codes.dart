@@ -13,6 +13,18 @@ String observables(
   );
 }
 
+String sampleObservable(bool isList, bool isLast, int n) {
+  return '''
+    final observable$n = Observable<${isList ? 'Object?' : 'String'}>((onData) {
+       ${[
+        "onData('${n}a');",
+        if (isLast) "Future(() => onData('${n}b'));"
+       ].join('\n')}
+      return Disposable.empty;
+    });
+  ''';
+}
+
 String combineObservable(int? number) {
   if (number == null) {
     return '''

@@ -7,7 +7,7 @@ String testEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
     test('combine observable${isList ? '' : '$number'} emit latest combined value when a child emit', () async {
-      ${observables(isList, count, _observable)}
+      ${observables(isList, count, sampleObservable)}
       ${combineObservable(number)}
       ${combineObservableTester()}
       ${testerStartObserve()}
@@ -19,17 +19,6 @@ String testEmitLatestCombinedValue(int? number) {
   ''';
 }
 
-String _observable(bool isList, bool isLast, int n) {
-  return '''
-    final observable$n = Observable<${isList ? 'Object?' : 'String'}>((onData) {
-       ${[
-        "onData('${n}a');",
-        if (isLast) "Future(() => onData('${n}b'));"
-       ].join('\n')}
-      return Disposable.empty;
-    });
-  ''';
-}
 
 List<String> _expects1(int count) {
   return [
