@@ -76,3 +76,32 @@ class CombineObservable2<T1, T2, R> implements Observable<R> {
     return _proxy.observe(onData);
   }
 }
+
+@internal
+class CombineObservable3<T1, T2, T3, R> implements Observable<R> {
+
+  CombineObservable3({
+    required Observable<T1> child1,
+    required Observable<T2> child2,
+    required Observable<T3> child3,
+    required R Function(T1, T2, T3) combiner,
+  }): _proxy = Observable<R>.combine(
+        children: [
+          child1.cast<Object?>(),
+          child2.cast<Object?>(),
+          child3.cast<Object?>(),
+        ],
+        combiner: (items) => combiner(
+          items[0] as T1,
+          items[1] as T2,
+          items[2] as T3,
+        ),
+      );
+
+  final Observable<R> _proxy;
+
+  @override
+  Disposable observe(OnData<R> onData) {
+    return _proxy.observe(onData);
+  }
+}

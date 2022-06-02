@@ -73,6 +73,45 @@ void _main() {
     tester.stopObserve();
   });
 
+  test('combine observable3 emit if all children emitted', () async {
+    final observable1 = Observable<String>((onData) {
+      onData('1a');
+      return Disposable.empty;
+    });
+
+    final observable2 = Observable<String>((onData) {
+      onData('2a');
+      return Disposable.empty;
+    });
+
+    final observable3 = Observable<String>((onData) {
+      Future(() => onData('3a'));
+      return Disposable.empty;
+    });
+
+    final combineObservable =
+        Observable.combine3<String, String, String, String>(
+      child1: observable1,
+      child2: observable2,
+      child3: observable3,
+      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+    );
+
+    final tester = ObservableTester(
+      combineObservable,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, []);
+
+    await Future(() {});
+
+    expect(tester.recorded, ['1a|2a|3a']);
+
+    tester.stopObserve();
+  });
+
   test('combine observable emit latest combined value when a child emit',
       () async {
     final observable1 = Observable<Object?>((onData) {
@@ -143,6 +182,47 @@ void _main() {
     tester.stopObserve();
   });
 
+  test('combine observable3 emit latest combined value when a child emit',
+      () async {
+    final observable1 = Observable<String>((onData) {
+      onData('1a');
+      return Disposable.empty;
+    });
+
+    final observable2 = Observable<String>((onData) {
+      onData('2a');
+      return Disposable.empty;
+    });
+
+    final observable3 = Observable<String>((onData) {
+      onData('3a');
+      Future(() => onData('3b'));
+      return Disposable.empty;
+    });
+
+    final combineObservable =
+        Observable.combine3<String, String, String, String>(
+      child1: observable1,
+      child2: observable2,
+      child3: observable3,
+      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+    );
+
+    final tester = ObservableTester(
+      combineObservable,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, ['1a|2a|3a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, ['1a|2a|3a', '1a|2a|3b']);
+
+    tester.stopObserve();
+  });
+
   test(
       'combine observable dispose observation will dispose all children observations',
       () {
@@ -207,6 +287,46 @@ void _main() {
     observation.dispose();
 
     expect(invokes, ['dispose2', 'dispose1']);
+  });
+
+  test(
+      'combine observable3 dispose observation will dispose all children observations',
+      () {
+    final List<String> invokes = [];
+
+    final observable1 = Observable<String>((onData) {
+      return Disposable(() {
+        invokes.add('dispose1');
+      });
+    });
+
+    final observable2 = Observable<String>((onData) {
+      return Disposable(() {
+        invokes.add('dispose2');
+      });
+    });
+
+    final observable3 = Observable<String>((onData) {
+      return Disposable(() {
+        invokes.add('dispose3');
+      });
+    });
+
+    final combineObservable =
+        Observable.combine3<String, String, String, String>(
+      child1: observable1,
+      child2: observable2,
+      child3: observable3,
+      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+    );
+
+    final observation = combineObservable.observe((data) {});
+
+    expect(invokes, []);
+
+    observation.dispose();
+
+    expect(invokes, ['dispose3', 'dispose2', 'dispose1']);
   });
 
   test('combine observable will not emit data after observation disposed',
@@ -277,5 +397,46 @@ void _main() {
     await Future(() {});
 
     expect(tester.recorded, ['1a|2a']);
+  });
+
+  test('combine observable3 will not emit data after observation disposed',
+      () async {
+    final observable1 = Observable<String>((onData) {
+      onData('1a');
+      return Disposable.empty;
+    });
+
+    final observable2 = Observable<String>((onData) {
+      onData('2a');
+      return Disposable.empty;
+    });
+
+    final observable3 = Observable<String>((onData) {
+      onData('3a');
+      Future(() => onData('3b'));
+      return Disposable.empty;
+    });
+
+    final combineObservable =
+        Observable.combine3<String, String, String, String>(
+      child1: observable1,
+      child2: observable2,
+      child3: observable3,
+      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+    );
+
+    final tester = ObservableTester(
+      combineObservable,
+    );
+
+    tester.startObserve();
+
+    tester.stopObserve();
+
+    expect(tester.recorded, ['1a|2a|3a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, ['1a|2a|3a']);
   });
 }

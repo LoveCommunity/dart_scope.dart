@@ -31,6 +31,18 @@ abstract class Observable<T> {
     child2: child2,
     combiner: combiner,
   );
+
+  static Observable<R> combine3<T1, T2, T3, R>({
+    required Observable<T1> child1,
+    required Observable<T2> child2,
+    required Observable<T3> child3,
+    required R Function(T1, T2, T3) combiner,
+  }) => CombineObservable3(
+    child1: child1,
+    child2: child2,
+    child3: child3,
+    combiner: combiner,
+  );
 }
 
 
