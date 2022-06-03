@@ -6,6 +6,7 @@ import 'create_observable.dart';
 import 'cast_observable.dart';
 import 'combine_observable.dart';
 import 'map_observable.dart';
+import 'where_observable.dart';
 
 typedef Observe<T> = Disposable Function(OnData<T> onData);
 
@@ -51,6 +52,13 @@ extension ObservableX<T> on Observable<T> {
   Observable<R> map<R>(R Function(T) convert) {
     return MapObservable<T, R>(
       convert: convert,
+      child: this,
+    );
+  }
+
+  Observable<T> where(bool Function(T) test) {
+    return WhereObservable<T>(
+      test: test,
       child: this,
     );
   }
