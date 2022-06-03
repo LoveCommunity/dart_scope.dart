@@ -1,10 +1,12 @@
 
 import 'package:disposal/disposal.dart';
+import 'package:typedef_equals/typedef_equals.dart';
 
 import '../observers/observer.dart';
 import 'create_observable.dart';
 import 'cast_observable.dart';
 import 'combine_observable.dart';
+import 'distinct_observable.dart';
 import 'map_observable.dart';
 import 'where_observable.dart';
 
@@ -65,6 +67,13 @@ extension ObservableX<T> on Observable<T> {
 
   Observable<R> cast<R>() {
     return CastObservable<T, R>(
+      child: this,
+    );
+  }
+
+  Observable<T> distinct([Equals<T>? equals]) {
+    return DistinctObservable<T>(
+      equals: equals,
       child: this,
     );
   }
