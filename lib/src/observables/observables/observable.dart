@@ -77,4 +77,11 @@ extension ObservableX<T> on Observable<T> {
       child: this,
     );
   }
+
+  Observable<R> distinctMap<R>(
+    R Function(T) convert, {
+    Equals<R>? equals,
+  }) => map(convert)
+    .distinct(equals);
+
 }
