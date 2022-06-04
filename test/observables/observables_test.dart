@@ -6,6 +6,7 @@ import 'observables/map_observable_test.dart' as map_observable_test;
 import 'observables/distinct_observable_test.dart' as distinct_observable_test;
 import 'observables/distinct_map_observable_test.dart' as distinct_map_observable_test;
 import 'observables/proxy_observable_test.dart' as proxy_observable_test;
+import 'observables/skip_observable_test.dart' as skip_observable_test;
 import 'observables/where_observable_test.dart' as where_observable_test;
 import 'observers/observer_test.dart' as observer_test;
 
@@ -18,6 +19,7 @@ void main() {
   distinct_map_observable_test.main();
   map_observable_test.main();
   proxy_observable_test.main();
+  skip_observable_test.main();
   where_observable_test.main();
   observer_test.main();
 }

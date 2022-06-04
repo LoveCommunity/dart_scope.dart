@@ -1,0 +1,38 @@
+
+import 'package:test/test.dart';
+import 'package:scopes/scopes.dart';
+import '../../toolbox/observable_tester.dart';
+
+void main()  {
+
+  test('skip observale', () {
+    
+    final observable = Observable<String>((onData) {
+      onData('a');
+      onData('b');
+      onData('c');
+      onData('d');
+      onData('e');
+      onData('f');
+      return Disposable.empty;
+    });
+
+    final skipObservable = observable.skip(3);
+
+    final tester = ObservableTester(
+      skipObservable,
+    );
+
+    expect(tester.recorded, []);
+    tester.startObserve();
+    expect(tester.recorded, [
+      'd',
+      'e',
+      'f',
+    ]);
+
+    tester.stopObserve();
+
+  });
+
+}
