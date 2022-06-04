@@ -8,6 +8,7 @@ import 'cast_observable.dart';
 import 'combine_observable.dart';
 import 'distinct_observable.dart';
 import 'map_observable.dart';
+import 'skip_observable.dart';
 import 'where_observable.dart';
 
 typedef Observe<T> = Disposable Function(OnData<T> onData);
@@ -84,4 +85,10 @@ extension ObservableX<T> on Observable<T> {
   }) => map(convert)
     .distinct(equals);
 
+  Observable<T> skip(int n) {
+    return SkipObservable(
+      n: n,
+      child: this,
+    );
+  }
 }
