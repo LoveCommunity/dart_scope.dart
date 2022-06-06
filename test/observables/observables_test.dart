@@ -9,6 +9,7 @@ import 'observables/proxy_observable_test.dart' as proxy_observable_test;
 import 'observables/skip_observable_test.dart' as skip_observable_test;
 import 'observables/where_observable_test.dart' as where_observable_test;
 import 'observers/observer_test.dart' as observer_test;
+import 'subjects/publish_subject_test.dart' as publish_subject_test;
 import 'subjects/subject_test.dart' as subject_test;
 
 
@@ -23,5 +24,6 @@ void main() {
   skip_observable_test.main();
   where_observable_test.main();
   observer_test.main();
+  publish_subject_test.main();
   subject_test.main();
 }
