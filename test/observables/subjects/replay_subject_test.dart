@@ -8,7 +8,7 @@ void main() {
 
   test('replay subject replay all data when emit times is less than buffer size', () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
 
     final tester = ObservableTester(
       subject,
@@ -32,7 +32,7 @@ void main() {
 
   test('replay subject replay all data when emit times is equals to buffer size', () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
 
     final tester = ObservableTester(
       subject,
@@ -58,7 +58,7 @@ void main() {
 
   test("replay subject replay buffer size's data when emit times is more than buffer size", () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
 
     final tester = ObservableTester(
       subject,
@@ -83,9 +83,35 @@ void main() {
 
   });
 
+  test("replay subject with single element buffer", () {
+
+    final subject = ReplaySubject<String>(bufferSize: 1);
+
+    final tester = ObservableTester(
+      subject,
+    );
+
+    subject.onData('a');
+    subject.onData('b');
+    subject.onData('c');
+    subject.onData('d');
+
+    expect(tester.recorded, []);
+    tester.startObserve();
+    expect(tester.recorded, [
+      'd',
+    ]);
+
+
+    tester.stopObserve();
+
+    subject.dispose();
+
+  });
+
   test('replay subject forward data after observed', () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
 
     final tester = ObservableTester(
       subject,
@@ -112,7 +138,7 @@ void main() {
 
   test("replay subject won't forward data after observation is disposed", () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
 
     final tester = ObservableTester(
       subject,
@@ -137,7 +163,7 @@ void main() {
 
   test("replay subject won't forward data after subject is disposed", () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
 
     final tester = ObservableTester(
       subject,
@@ -162,7 +188,7 @@ void main() {
 
   test('replay subject throws error when been observed after subject is disposed', () {
 
-    final subject = ReplaySubject(bufferSize: 3);
+    final subject = ReplaySubject<String>(bufferSize: 3);
     subject.dispose();
     
     expect(
