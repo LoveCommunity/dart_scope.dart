@@ -10,6 +10,7 @@ import 'observables/skip_observable_test.dart' as skip_observable_test;
 import 'observables/where_observable_test.dart' as where_observable_test;
 import 'observers/observer_test.dart' as observer_test;
 import 'subjects/publish_subject_test.dart' as publish_subject_test;
+import 'subjects/replay_subject_test.dart' as replay_subject_test;
 import 'subjects/subject_test.dart' as subject_test;
 import 'subjects/value_subject_test.dart' as value_subject_test;
 
@@ -26,6 +27,7 @@ void main() {
   where_observable_test.main();
   observer_test.main();
   publish_subject_test.main();
+  replay_subject_test.main();
   subject_test.main();
   value_subject_test.main();
 }
