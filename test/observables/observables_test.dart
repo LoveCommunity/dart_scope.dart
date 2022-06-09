@@ -3,6 +3,7 @@ import 'observables/create_observable_test.dart' as create_observable_test;
 import 'observables/cast_observable_test.dart' as cast_observable_test;
 import 'observables/combine_observable_test.dart' as combine_observable_test;
 import 'observables/map_observable_test.dart' as map_observable_test;
+import 'observables/multicast_observable_test.dart' as multicast_observable_test;
 import 'observables/distinct_observable_test.dart' as distinct_observable_test;
 import 'observables/distinct_map_observable_test.dart' as distinct_map_observable_test;
 import 'observables/proxy_observable_test.dart' as proxy_observable_test;
@@ -22,6 +23,7 @@ void main() {
   distinct_observable_test.main();
   distinct_map_observable_test.main();
   map_observable_test.main();
+  multicast_observable_test.main();
   proxy_observable_test.main();
   skip_observable_test.main();
   where_observable_test.main();
