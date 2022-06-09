@@ -3,11 +3,13 @@ import 'package:disposal/disposal.dart';
 import 'package:typedef_equals/typedef_equals.dart';
 
 import '../observers/observer.dart';
+import '../subjects/subject.dart';
 import 'create_observable.dart';
 import 'cast_observable.dart';
 import 'combine_observable.dart';
 import 'distinct_observable.dart';
 import 'map_observable.dart';
+import 'multicast_observable.dart';
 import 'skip_observable.dart';
 import 'where_observable.dart';
 
@@ -91,4 +93,14 @@ extension ObservableX<T> on Observable<T> {
       child: this,
     );
   }
+
+  Observable<T> multicast({
+    Subject<T> Function()? createSubject,
+  }) {
+    return MulticastObservable<T>(
+      createSubject: createSubject,
+      child: this,
+    );
+  }
+
 }
