@@ -1,6 +1,7 @@
 
 export 'package:disposal/disposal.dart' show Disposable;
 export 'drivers/driver.dart';
+export 'drivers/observable_as_driver_x.dart';
 export 'observables/observable.dart';
 export 'observables/proxy_observable.dart';
 export 'observers/observer.dart';
