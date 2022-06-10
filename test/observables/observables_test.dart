@@ -1,4 +1,5 @@
 
+import 'drivers/from_driver_test.dart' as from_driver_test;
 import 'observables/create_observable_test.dart' as create_observable_test;
 import 'observables/cast_observable_test.dart' as cast_observable_test;
 import 'observables/combine_observable_test.dart' as combine_observable_test;
@@ -18,6 +19,7 @@ import 'subjects/value_subject_test.dart' as value_subject_test;
 
 
 void main() {
+  from_driver_test.main();
   create_observable_test.main();
   cast_observable_test.main();
   combine_observable_test.main();
