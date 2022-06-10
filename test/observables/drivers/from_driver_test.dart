@@ -15,6 +15,18 @@ void main() {
     expect(driver.observable, observable);
 
   });
+
+  test("observable as driver's observable is identical to origin observable", () {
+
+    final observable = Observable<String>((onData) {
+      return Disposable.empty;
+    });
+
+    final driver = observable.asDriver();
+
+    expect(driver.observable, observable);
+
+  });
   
   test("driver drive cause observable observe", () {
 
