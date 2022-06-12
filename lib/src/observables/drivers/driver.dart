@@ -3,6 +3,7 @@ import 'package:disposal/disposal.dart';
 
 import '../observers/observer.dart';
 import '../observables/observable.dart';
+import 'observable_as_driver_x.dart';
 
 class Driver<T> {
 
@@ -21,5 +22,10 @@ class Driver<T> {
 
 extension DriverX<T> on Driver<T> {
 
+  Driver<R> map<R>(R Function(T) convert) {
+    return observable
+      .map(convert)
+      .asDriver();
+  }
 
 }
