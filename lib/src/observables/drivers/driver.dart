@@ -18,3 +18,8 @@ class Driver<T> {
     return observable.observe(onData);
   }
 }
+
+extension DriverX<T> on Driver<T> {
+
+
+}
