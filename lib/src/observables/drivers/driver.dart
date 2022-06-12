@@ -6,6 +6,10 @@ import '../observables/observable.dart';
 
 class Driver<T> {
 
+  Driver(
+    Observe<T> drive
+  ): this.from(Observable(drive));
+
   const Driver.from(this.observable);
 
   final Observable<T> observable;
