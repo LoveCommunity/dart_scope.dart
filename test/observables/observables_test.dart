@@ -1,4 +1,5 @@
 
+import 'drivers/cast_driver_test.dart' as cast_driver_test;
 import 'drivers/from_driver_test.dart' as from_driver_test;
 import 'drivers/create_driver_test.dart' as create_driver_test;
 import 'drivers/map_driver_test.dart' as map_driver_test;
@@ -21,6 +22,7 @@ import 'subjects/value_subject_test.dart' as value_subject_test;
 
 
 void main() {
+  cast_driver_test.main();
   create_driver_test.main();
   from_driver_test.main();
   map_driver_test.main();

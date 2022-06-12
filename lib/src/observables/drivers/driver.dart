@@ -28,4 +28,9 @@ extension DriverX<T> on Driver<T> {
       .asDriver();
   }
 
+  Driver<R> cast<R>() {
+    return observable
+      .cast<R>()
+      .asDriver();
+  }
 }
