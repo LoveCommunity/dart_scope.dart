@@ -4,6 +4,7 @@ import 'drivers/from_driver_test.dart' as from_driver_test;
 import 'drivers/create_driver_test.dart' as create_driver_test;
 import 'drivers/distinct_driver_test.dart' as distinct_driver_test;
 import 'drivers/map_driver_test.dart' as map_driver_test;
+import 'drivers/select_driver_test.dart' as select_driver_test;
 import 'observables/create_observable_test.dart' as create_observable_test;
 import 'observables/cast_observable_test.dart' as cast_observable_test;
 import 'observables/combine_observable_test.dart' as combine_observable_test;
@@ -28,6 +29,7 @@ void main() {
   distinct_driver_test.main();
   from_driver_test.main();
   map_driver_test.main();
+  select_driver_test.main();
   create_observable_test.main();
   cast_observable_test.main();
   combine_observable_test.main();
