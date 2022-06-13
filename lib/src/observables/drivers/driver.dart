@@ -40,4 +40,16 @@ extension DriverX<T> on Driver<T> {
       .distinct(equals)
       .asDriver();
   }
+
+  Driver<R> select<R>(
+    R Function(T) convert, {
+    Equals<R>? equals,
+  }) {
+    return observable
+      .distinctMap<R>(
+        convert,
+        equals: equals,
+      )
+      .asDriver();
+  }
 }
