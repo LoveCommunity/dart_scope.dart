@@ -1,5 +1,6 @@
 
 import 'package:disposal/disposal.dart';
+import 'package:typedef_equals/typedef_equals.dart';
 
 import '../observers/observer.dart';
 import '../observables/observable.dart';
@@ -31,6 +32,12 @@ extension DriverX<T> on Driver<T> {
   Driver<R> cast<R>() {
     return observable
       .cast<R>()
+      .asDriver();
+  }
+
+  Driver<T> distinct([Equals<T>? equals]) {
+    return observable
+      .distinct(equals)
       .asDriver();
   }
 }
