@@ -59,4 +59,14 @@ extension DriverX<T> on Driver<T> {
       .asDriver();
   }
 
+  Observable<T> skip(int n) {
+    return observable
+      .skip(n);
+  }
+
+  Observable<T> skipFirst() {
+    return observable
+      .skip(1);
+  }
+
 }
