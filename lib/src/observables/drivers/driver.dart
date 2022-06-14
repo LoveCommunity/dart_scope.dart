@@ -52,4 +52,11 @@ extension DriverX<T> on Driver<T> {
       )
       .asDriver();
   }
+
+  Driver<T> cache() {
+    return observable
+      .multicastReplay(1)
+      .asDriver();
+  }
+
 }
