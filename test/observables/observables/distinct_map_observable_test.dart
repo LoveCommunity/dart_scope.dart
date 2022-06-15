@@ -15,11 +15,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinctMapObservable = observable
+    final distinctMap = observable
       .distinctMap((it) => '1$it');
 
     final tester = ObservableTester(
-      distinctMapObservable,
+      distinctMap,
     );
 
     expect(tester.recorded, []);
@@ -43,14 +43,14 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinctMapObservable = observable
+    final distinctMap = observable
       .distinctMap<String>(
         (it) => '1$it',
         equals: (it1, it2) => it1.length == it2.length,
       );
 
     final tester = ObservableTester(
-      distinctMapObservable,
+      distinctMap,
     );
 
     expect(tester.recorded, []);

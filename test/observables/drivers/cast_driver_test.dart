@@ -13,10 +13,10 @@ void main() {
       return Disposable.empty;
     });
 
-    final castDriver = driver.cast<Object>();
+    final cast = driver.cast<Object>();
 
     final tester = DriverTester(
-      castDriver,
+      cast,
     );
 
     expect(tester.recorded, []);
@@ -37,11 +37,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final castDriver = driver.cast<int>();
+    final cast = driver.cast<int>();
 
     expect(
       () {
-        castDriver.drive((data) {});
+        cast.drive((data) {});
       },
       throwsA(
         isA<TypeError>()

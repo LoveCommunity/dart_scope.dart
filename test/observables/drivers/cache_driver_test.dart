@@ -16,12 +16,12 @@ void main() {
       return Disposable.empty;
     });
 
-    final cacheDriver = driver.cache();
+    final cache = driver.cache();
 
     expect(invokes, 0);
-    final observation1 = cacheDriver.drive((data) {});
+    final observation1 = cache.drive((data) {});
     expect(invokes, 1);
-    final observation2 = cacheDriver.drive((data) {});
+    final observation2 = cache.drive((data) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -40,10 +40,10 @@ void main() {
       });
     });
 
-    final cacheDriver = driver.cache();
+    final cache = driver.cache();
 
-    final observation1 = cacheDriver.drive((data) {});
-    final observation2 = cacheDriver.drive((data) {});
+    final observation1 = cache.drive((data) {});
+    final observation2 = cache.drive((data) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -61,14 +61,14 @@ void main() {
       return Disposable.empty;
     });
 
-    final cacheDriver = driver.cache();
+    final cache = driver.cache();
 
     final tester1 = DriverTester(
-      cacheDriver,
+      cache,
     ); 
 
     final tester2 = DriverTester(
-      cacheDriver,
+      cache,
     ); 
 
 
@@ -105,13 +105,13 @@ void main() {
       return Disposable.empty;
     });
 
-    final cacheDriver = driver.cache();
+    final cache = driver.cache();
 
     final tester = DriverTester(
-      cacheDriver,
+      cache,
     );
 
-    final observation  = cacheDriver.drive((data) {});
+    final observation  = cache.drive((data) {});
 
     expect(tester.recorded, []);
     tester.startDrive();

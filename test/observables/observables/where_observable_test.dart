@@ -14,11 +14,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final whereObservable = observable
+    final where = observable
       .where((it) => it != 'b');
 
     final tester = ObservableTester(
-      whereObservable,
+      where,
     );
 
     expect(tester.recorded, []);

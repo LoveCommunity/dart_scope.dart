@@ -13,10 +13,10 @@ void main() {
       return Disposable.empty;
     }); 
 
-    final castObservable = observable.cast<Object>();
+    final cast = observable.cast<Object>();
 
     final tester = ObservableTester(
-      castObservable,
+      cast,
     );
 
     expect(tester.recorded, []);
@@ -35,11 +35,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final castObservable = observable.cast<int>();
+    final cast = observable.cast<int>();
 
     expect(
       () {
-        castObservable.observe((data) {});
+        cast.observe((data) {});
       },
       throwsA(
         isA<TypeError>()
