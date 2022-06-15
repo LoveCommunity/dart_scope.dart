@@ -6,7 +6,7 @@ import '../../toolbox/driver_tester.dart';
 
 void main() {
 
-  test('`Driver.default` common', () {
+  test('`Driver.defaultConstructor` common', () {
 
     final driver = Driver<String>((onData) {
       onData('a');
@@ -27,7 +27,7 @@ void main() {
 
   });
 
-  test('`Driver.default` observation dispose', () {
+  test('`Driver.defaultConstructor` observation dispose', () {
 
     int invokes = 0;
 
@@ -45,7 +45,7 @@ void main() {
     expect(invokes, 1);
   });
 
-  test('`Driver.default` not receive data after disposed', () async {
+  test('`Driver.defaultConstructor` not receive data after disposed', () async {
 
     final driver = Driver<String>((onData) {
       onData('a');

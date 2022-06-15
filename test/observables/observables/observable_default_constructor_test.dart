@@ -7,7 +7,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('`Observable.default` sync', () {
+  test('`Observable.defaultConstructor` sync', () {
     
     final observable = Observable<String>((onData) {
       onData('a');
@@ -28,7 +28,7 @@ void main() {
 
   });
 
-  test('`Observable.default` async', () async {
+  test('`Observable.defaultConstructor` async', () async {
 
     final observable = Observable<String>((onData) {
       Future<void>(() => onData('a'));
@@ -52,7 +52,7 @@ void main() {
 
   });
 
-  test('`Observable.default` observation dispose', () {
+  test('`Observable.defaultConstructor` observation dispose', () {
 
     int invoked = 0;
 
@@ -69,7 +69,7 @@ void main() {
     expect(invoked, 1);
   });
 
-  test('`Observable.default` not receive data after disposed', () async {
+  test('`Observable.defaultConstructor` not receive data after disposed', () async {
 
     final observable = Observable<String>((onData) {
       onData('a');
