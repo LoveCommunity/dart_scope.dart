@@ -5,6 +5,7 @@ import 'package:typedef_equals/typedef_equals.dart';
 import '../observers/observer.dart';
 import '../observables/observable.dart';
 import 'observable_as_driver_x.dart';
+import 'driver_first.dart';
 
 class Driver<T> {
 
@@ -69,4 +70,7 @@ extension DriverX<T> on Driver<T> {
       .skip(1);
   }
 
+  T get first {
+    return driverFirst(this);
+  }
 }
