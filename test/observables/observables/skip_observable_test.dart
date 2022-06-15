@@ -5,7 +5,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main()  {
 
-  test('skip observale', () {
+  test('`observable.skip`', () {
     
     final observable = Observable<String>((onData) {
       onData('a');

@@ -5,7 +5,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
   
-  test('proxy observable observe', () {
+  test('`ProxyObservable` observe', () {
 
     final observable = Observable<String>((onData) {
       onData('a');
@@ -28,7 +28,7 @@ void main() {
 
   });
 
-  test('proxy observable observation dispose', () {
+  test('`ProxyObservable` observation dispose', () {
 
     int invokes = 0;
 

@@ -6,7 +6,7 @@ import 'package:scopes/scopes.dart';
 
 void main() {
 
-  test('observer function invokes', () {
+  test('`Observer.default` function invokes', () {
     
     final List<String> invokes = [];
 

@@ -5,7 +5,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('distinct map observable default equals', () {
+  test('`observable.distinctMap` default equals', () {
 
     final observable = Observable<String>((onData) {
       onData('a');
@@ -33,7 +33,7 @@ void main() {
 
   });
 
-  test('distinct map observable custom equals', () {
+  test('`observable.distinctMap` custom equals', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

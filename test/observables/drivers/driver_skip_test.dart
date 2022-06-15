@@ -6,7 +6,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('driver skip', () {
+  test('`driver.skip`', () {
 
     final driver = Driver<String>((onData) {
       onData('a');
@@ -35,7 +35,7 @@ void main() {
     tester.stopObserve();
   });
 
-  test('driver skip first', () {
+  test('`driver.skipFirst`', () {
 
     final driver = Driver<String>((onData) {
       onData('a');

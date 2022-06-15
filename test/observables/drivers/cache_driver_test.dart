@@ -6,7 +6,7 @@ import '../../toolbox/driver_tester.dart';
 
 void main() {
 
-  test('cache driver connect when observers increase to one', () {
+  test('`driver.cache` connect when observers increase to one', () {
 
     int invokes = 0;
 
@@ -29,7 +29,7 @@ void main() {
 
   });
 
-  test('cache driver disconnect when observers decrease to zero', () {
+  test('`driver.cache` disconnect when observers decrease to zero', () {
 
     int invokes = 0;
 
@@ -53,7 +53,7 @@ void main() {
 
   });
 
-  test('cache driver forward data to observers', () async {
+  test('`driver.cache` forward data to observers', () async {
 
     final driver = Driver<String>((onData) {
       onData('a');
@@ -96,7 +96,7 @@ void main() {
 
   });
 
-  test('cache driver replay data to observers', () {
+  test('`driver.cache` replay data to observers', () {
 
     final driver = Driver<String>((onData) {
       onData('a');

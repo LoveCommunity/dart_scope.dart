@@ -6,7 +6,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('value subject initial value', () {
+  test('`ValueSubject` initial value', () {
 
     final subject = ValueSubject<String>('a');
 
@@ -16,7 +16,7 @@ void main() {
 
   });
 
-  test('value subject replay initial value', () {
+  test('`ValueSubject` replay initial value', () {
 
     final subject = ValueSubject<String>('a');
 
@@ -36,7 +36,7 @@ void main() {
 
   });
 
-  test('value subject update value by call `onData`', () {
+  test('`ValueSubject` update value by call `onData`', () {
 
     final subject = ValueSubject<String>('a');
     
@@ -48,7 +48,7 @@ void main() {
 
   });
 
-  test('value subject updata value by call `set value`', () {
+  test('`ValueSubject` updata value by call `set value`', () {
 
     final subject = ValueSubject<String>('a');
 
@@ -60,7 +60,7 @@ void main() {
 
   });
 
-  test('value subject forward data by call `onData`', () {
+  test('`ValueSubject` forward data by call `onData`', () {
 
     final subject = ValueSubject<String>('a');
 
@@ -84,7 +84,7 @@ void main() {
 
   });
 
-  test('value subject forward data by call `set value`', () {
+  test('`ValueSubject` forward data by call `set value`', () {
 
     final subject = ValueSubject<String>('a');
 
@@ -108,7 +108,7 @@ void main() {
 
   });
 
-  test('value subject replay current value', () {
+  test('`ValueSubject` replay current value', () {
 
     final subject = ValueSubject<String>('a');
 
@@ -129,7 +129,7 @@ void main() {
 
   });
 
-  test("value subject won't forward data after observation disposed", () {
+  test("`ValueSubject` won't forward data after observation disposed", () {
 
     final subject = ValueSubject<String>('a');
 
@@ -152,7 +152,7 @@ void main() {
 
   });
 
-  test("value subject won't forward data after subject is disposed", () {
+  test("`ValueSubject` won't forward data after subject is disposed", () {
 
     final subject = ValueSubject<String>('a');
 
@@ -176,7 +176,7 @@ void main() {
 
   });
 
-  test('value subject throws error when been observed after it is disposed', () {
+  test('`ValueSubject` throws error when been observed after it is disposed', () {
     
     final subject = ValueSubject<String>('a');
 

@@ -6,7 +6,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('cast observable success', () {
+  test('`observable.cast` success', () {
 
     final observable = Observable<String>((onData) {
       onData('a');
@@ -28,7 +28,7 @@ void main() {
     tester.stopObserve();
   });
 
-  test('cast observable failure', () {
+  test('`observable.cast` failure', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

@@ -4,7 +4,7 @@ import 'package:scopes/scopes.dart';
 
 void main() {
 
-  test("from driver's observable is identical to observable passed in", () {
+  test("`Driver.from`'s observable is identical to observable passed in", () {
 
     final observable = Observable<String>((onData) {
       return Disposable.empty;
@@ -16,7 +16,7 @@ void main() {
 
   });
 
-  test("observable as driver's observable is identical to origin observable", () {
+  test("`observable.asDriver`'s observable is identical to origin observable", () {
 
     final observable = Observable<String>((onData) {
       return Disposable.empty;
@@ -28,7 +28,7 @@ void main() {
 
   });
   
-  test("driver drive cause observable observe", () {
+  test("`driver.drive` cause observable observe", () {
 
     int invokes = 0;
 
@@ -46,7 +46,7 @@ void main() {
     observation.dispose();
   });
 
-  test("driver dispose cause observable dispose", () {
+  test("driver's observation dispose cause observable's observation dispose", () {
 
     int invokes = 0;
 
