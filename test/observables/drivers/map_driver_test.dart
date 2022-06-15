@@ -6,7 +6,7 @@ import '../../toolbox/driver_tester.dart';
 
 void main() {
 
-  test('map driver', () {
+  test('`driver.map`', () {
 
     final driver = Driver<String>((onData) {
       onData('a');

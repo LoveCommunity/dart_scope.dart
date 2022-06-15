@@ -5,7 +5,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('multicast observable connect when observers increase to one', () {
+  test('`observable.multicast` connect when observers increase to one', () {
 
     int invokes = 0;
 
@@ -27,7 +27,7 @@ void main() {
 
   });
 
-  test('multicast observable disconnect when observers decrease to zero', () {
+  test('`observable.multicast` disconnect when observers decrease to zero', () {
 
     int invokes = 0;
 
@@ -50,7 +50,7 @@ void main() {
 
   });
 
-  test('multicast observable forward data to observers', () async {
+  test('`observable.multicast` forward data to observers', () async {
 
     final observable = Observable<String>((onData) {
       Future(() => onData('a'));
@@ -86,7 +86,7 @@ void main() {
   });
 
 
-  test('multicast observable connect when observers increase to one, using custom subject', () {
+  test('`observable.multicast` connect when observers increase to one, using custom subject', () {
 
     int invokes = 0;
 
@@ -118,7 +118,7 @@ void main() {
 
   });
 
-  test('multicast observable disconnect when observers decrease to zero, using custom subject', () {
+  test('`observable.multicast` disconnect when observers decrease to zero, using custom subject', () {
 
     int invokes = 0;
 
@@ -152,7 +152,7 @@ void main() {
 
   });
 
-  test('multicast observable dispose subject when observers decrease to zero, using custom subject', () {
+  test('`observable.multicast` dispose subject when observers decrease to zero, using custom subject', () {
 
     late final _MockSubject<String> subject;
 
@@ -179,7 +179,7 @@ void main() {
 
   });
   
-  test('multicast observable forward data to observers, using custom subject', () async {
+  test('`observable.multicast` forward data to observers, using custom subject', () async {
     
     late final _MockSubject<String> subject;
 

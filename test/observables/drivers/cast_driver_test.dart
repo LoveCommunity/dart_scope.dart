@@ -6,7 +6,7 @@ import '../../toolbox/driver_tester.dart';
 
 void main() {
 
-  test('cast driver success', () {
+  test('`driver.cast` success', () {
 
     final driver = Driver<String>((onData) {
       onData('a');
@@ -30,7 +30,7 @@ void main() {
   });
 
 
-  test('cast driver failure', () {
+  test('`driver.cast` failure', () {
 
     final driver = Driver<String>((onData) {
       onData('a');

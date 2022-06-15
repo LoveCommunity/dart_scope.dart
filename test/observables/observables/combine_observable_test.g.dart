@@ -7,7 +7,7 @@ part of 'combine_observable_test.dart';
 // **************************************************************************
 
 void _main() {
-  test('combine observable emit if all children emitted', () async {
+  test('`Observable.combine` emit if all children emitted', () async {
     final observable1 = Observable<Object?>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -41,7 +41,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('combine observable2 emit if all children emitted', () async {
+  test('`Observable.combine2` emit if all children emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -73,7 +73,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('combine observable3 emit if all children emitted', () async {
+  test('`Observable.combine3` emit if all children emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -112,7 +112,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('combine observable emit latest combined value when a child emit',
+  test('`Observable.combine` emit latest combined value when a child emit',
       () async {
     final observable1 = Observable<Object?>((onData) {
       onData('1a');
@@ -148,7 +148,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('combine observable2 emit latest combined value when a child emit',
+  test('`Observable.combine2` emit latest combined value when a child emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -182,7 +182,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('combine observable3 emit latest combined value when a child emit',
+  test('`Observable.combine3` emit latest combined value when a child emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -224,7 +224,7 @@ void _main() {
   });
 
   test(
-      'combine observable dispose observation will dispose all children observations',
+      '`Observable.combine` dispose observation will dispose all children observations',
       () {
     final List<String> invokes = [];
 
@@ -258,7 +258,7 @@ void _main() {
   });
 
   test(
-      'combine observable2 dispose observation will dispose all children observations',
+      '`Observable.combine2` dispose observation will dispose all children observations',
       () {
     final List<String> invokes = [];
 
@@ -290,7 +290,7 @@ void _main() {
   });
 
   test(
-      'combine observable3 dispose observation will dispose all children observations',
+      '`Observable.combine3` dispose observation will dispose all children observations',
       () {
     final List<String> invokes = [];
 
@@ -329,7 +329,7 @@ void _main() {
     expect(invokes, ['dispose3', 'dispose2', 'dispose1']);
   });
 
-  test('combine observable will not emit data after observation disposed',
+  test('`Observable.combine` will not emit data after observation disposed',
       () async {
     final observable1 = Observable<Object?>((onData) {
       onData('1a');
@@ -365,7 +365,7 @@ void _main() {
     expect(tester.recorded, ['1a|2a']);
   });
 
-  test('combine observable2 will not emit data after observation disposed',
+  test('`Observable.combine2` will not emit data after observation disposed',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -399,7 +399,7 @@ void _main() {
     expect(tester.recorded, ['1a|2a']);
   });
 
-  test('combine observable3 will not emit data after observation disposed',
+  test('`Observable.combine3` will not emit data after observation disposed',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');

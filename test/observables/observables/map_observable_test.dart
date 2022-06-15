@@ -5,7 +5,7 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('map observable', () {
+  test('`observable.map`', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

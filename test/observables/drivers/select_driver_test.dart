@@ -6,7 +6,7 @@ import '../../toolbox/driver_tester.dart';
 
 void main() {
   
-  test('select driver default equals', () {
+  test('`driver.select` default equals', () {
 
     final driver = Driver<String>((onData) {
       onData('a');
@@ -34,7 +34,7 @@ void main() {
 
   });
 
-  test('select driver custom equals', () {
+  test('`driver.select` custom equals', () {
 
     final driver = Driver<String>((onData) {
       onData('a');

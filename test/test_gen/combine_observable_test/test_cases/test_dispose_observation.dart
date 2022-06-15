@@ -6,7 +6,7 @@ String testDisposeObservation(int? number) {
   final isList = number == null;
   final count = number ?? 2;
   return '''
-    test('combine observable${isList ? '' : '$number'} dispose observation will dispose all children observations', () {
+    test('`Observable.combine${isList ? '' : '$number'}` dispose observation will dispose all children observations', () {
       ${[
         _invokes(),
         ...observables(isList, count, _observable),
