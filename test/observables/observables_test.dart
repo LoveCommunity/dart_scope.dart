@@ -3,6 +3,7 @@ import 'drivers/driver_cache_test.dart' as driver_cache_test;
 import 'drivers/driver_cast_test.dart' as driver_cast_test;
 import 'drivers/driver_default_constructor_test.dart' as driver_default_constructor_test;
 import 'drivers/driver_distinct_test.dart' as driver_distinct_test;
+import 'drivers/driver_first_test.dart' as driver_first_test;
 import 'drivers/driver_from_test.dart' as driver_from_test;
 import 'drivers/driver_map_test.dart' as driver_map_test;
 import 'drivers/driver_select_test.dart' as driver_select_test;
@@ -30,6 +31,7 @@ void main() {
   driver_cast_test.main();
   driver_default_constructor_test.main();
   driver_distinct_test.main();
+  driver_first_test.main();
   driver_from_test.main();
   driver_map_test.main();
   driver_select_test.main();
