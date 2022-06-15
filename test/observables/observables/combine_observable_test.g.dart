@@ -18,7 +18,7 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable = Observable<String>.combine(
+    final combine = Observable<String>.combine(
       children: [
         observable1,
         observable2,
@@ -27,7 +27,7 @@ void _main() {
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -52,14 +52,14 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable = Observable.combine2<String, String, String>(
+    final combine = Observable.combine2<String, String, String>(
       child1: observable1,
       child2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -89,8 +89,7 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable =
-        Observable.combine3<String, String, String, String>(
+    final combine = Observable.combine3<String, String, String, String>(
       child1: observable1,
       child2: observable2,
       child3: observable3,
@@ -98,7 +97,7 @@ void _main() {
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -125,7 +124,7 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable = Observable<String>.combine(
+    final combine = Observable<String>.combine(
       children: [
         observable1,
         observable2,
@@ -134,7 +133,7 @@ void _main() {
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -161,14 +160,14 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable = Observable.combine2<String, String, String>(
+    final combine = Observable.combine2<String, String, String>(
       child1: observable1,
       child2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -200,8 +199,7 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable =
-        Observable.combine3<String, String, String, String>(
+    final combine = Observable.combine3<String, String, String, String>(
       child1: observable1,
       child2: observable2,
       child3: observable3,
@@ -209,7 +207,7 @@ void _main() {
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -240,7 +238,7 @@ void _main() {
       });
     });
 
-    final combineObservable = Observable<String>.combine(
+    final combine = Observable<String>.combine(
       children: [
         observable1,
         observable2,
@@ -248,7 +246,7 @@ void _main() {
       combiner: (items) => '${items[0]}|${items[1]}',
     );
 
-    final observation = combineObservable.observe((data) {});
+    final observation = combine.observe((data) {});
 
     expect(invokes, []);
 
@@ -274,13 +272,13 @@ void _main() {
       });
     });
 
-    final combineObservable = Observable.combine2<String, String, String>(
+    final combine = Observable.combine2<String, String, String>(
       child1: observable1,
       child2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
-    final observation = combineObservable.observe((data) {});
+    final observation = combine.observe((data) {});
 
     expect(invokes, []);
 
@@ -312,15 +310,14 @@ void _main() {
       });
     });
 
-    final combineObservable =
-        Observable.combine3<String, String, String, String>(
+    final combine = Observable.combine3<String, String, String, String>(
       child1: observable1,
       child2: observable2,
       child3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final observation = combineObservable.observe((data) {});
+    final observation = combine.observe((data) {});
 
     expect(invokes, []);
 
@@ -342,7 +339,7 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable = Observable<String>.combine(
+    final combine = Observable<String>.combine(
       children: [
         observable1,
         observable2,
@@ -351,7 +348,7 @@ void _main() {
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -378,14 +375,14 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable = Observable.combine2<String, String, String>(
+    final combine = Observable.combine2<String, String, String>(
       child1: observable1,
       child2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();
@@ -417,8 +414,7 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combineObservable =
-        Observable.combine3<String, String, String, String>(
+    final combine = Observable.combine3<String, String, String, String>(
       child1: observable1,
       child2: observable2,
       child3: observable3,
@@ -426,7 +422,7 @@ void _main() {
     );
 
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
 
     tester.startObserve();

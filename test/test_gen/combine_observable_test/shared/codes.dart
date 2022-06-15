@@ -27,7 +27,7 @@ String sampleObservable(bool isList, bool isLast, int n) {
 String combineObservable(int? number) {
   if (number == null) {
     return '''
-      final combineObservable = Observable<String>.combine(
+      final combine = Observable<String>.combine(
         children: [
           observable1,
           observable2,
@@ -49,7 +49,7 @@ String combineObservable(int? number) {
       return join(number, (n) => '\$it$n', '|');
     }
     return '''
-      final combineObservable = Observable.combine$number<${types()}>(
+      final combine = Observable.combine$number<${types()}>(
         ${children()}
         combiner: (${combinerParameters()}) => '${combinerBody()}',
       );
@@ -60,7 +60,7 @@ String combineObservable(int? number) {
 String combineObservableTester() {
   return '''
     final tester = ObservableTester(
-      combineObservable,
+      combine,
     );
   ''';
 }

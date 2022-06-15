@@ -17,10 +17,10 @@ void main()  {
       return Disposable.empty;
     });
 
-    final skipObservable = observable.skip(3);
+    final skip = observable.skip(3);
 
     final tester = ObservableTester(
-      skipObservable,
+      skip,
     );
 
     expect(tester.recorded, []);

@@ -14,11 +14,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final mapObservable = observable
+    final map = observable
       .map<int>((data) => data.length);
 
     final tester = ObservableTester(
-      mapObservable,
+      map,
     )..startObserve();
     
     expect(tester.recorded, [

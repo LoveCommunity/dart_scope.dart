@@ -18,10 +18,10 @@ void main() {
       return Disposable.empty;
     });
 
-    final skipObservable = driver.skip(3);
+    final skip = driver.skip(3);
 
     final tester = ObservableTester(
-      skipObservable
+      skip
     );
 
     expect(tester.recorded, []);
@@ -44,10 +44,10 @@ void main() {
       return Disposable.empty;
     });
 
-    final skipObservable = driver.skipFirst();
+    final skip = driver.skipFirst();
 
     final tester = ObservableTester(
-      skipObservable
+      skip
     );
 
     expect(tester.recorded, []);

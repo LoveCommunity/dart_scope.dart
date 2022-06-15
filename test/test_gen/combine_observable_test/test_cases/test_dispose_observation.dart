@@ -38,7 +38,7 @@ String _observable(bool isList, bool isLast, int n) {
 
 String _startObserve() {
   return '''
-    final observation = combineObservable.observe((data) {});
+    final observation = combine.observe((data) {});
   ''';
 }
 

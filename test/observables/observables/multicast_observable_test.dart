@@ -14,12 +14,12 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable.multicast();
+    final multicast = observable.multicast();
 
     expect(invokes, 0);
-    final observation1 = multicastObservable.observe((data) {});
+    final observation1 = multicast.observe((data) {});
     expect(invokes, 1);
-    final observation2 = multicastObservable.observe((data) {});
+    final observation2 = multicast.observe((data) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -37,10 +37,10 @@ void main() {
       });
     });
 
-    final multicastObservable = observable.multicast();
+    final multicast = observable.multicast();
 
-    final observation1 = multicastObservable.observe((data) {});
-    final observation2 = multicastObservable.observe((data) {});
+    final observation1 = multicast.observe((data) {});
+    final observation2 = multicast.observe((data) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -57,14 +57,14 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable.multicast();
+    final multicast = observable.multicast();
 
     final tester1 = ObservableTester(
-      multicastObservable,
+      multicast,
     );
 
     final tester2 = ObservableTester(
-      multicastObservable,
+      multicast,
     );
     
     tester1.startObserve();
@@ -97,7 +97,7 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable
+    final multicast = observable
       .multicast(
         createSubject: () {
           subject = _MockSubject();
@@ -106,10 +106,10 @@ void main() {
       );
     
     expect(invokes, 0);
-    final observation1 = multicastObservable.observe((data) {});
+    final observation1 = multicast.observe((data) {});
     expect(invokes, 1);
     expect(subject.observeInvokes, 1);
-    final observation2 = multicastObservable.observe((data) {});
+    final observation2 = multicast.observe((data) {});
     expect(invokes, 1);
     expect(subject.observeInvokes, 2);
 
@@ -130,7 +130,7 @@ void main() {
       });
     });
 
-    final multicastObservable = observable
+    final multicast = observable
       .multicast(
         createSubject: () {
           subject = _MockSubject();
@@ -138,8 +138,8 @@ void main() {
         },
       );
     
-    final observation1 = multicastObservable.observe((data) {});
-    final observation2 = multicastObservable.observe((data) {});
+    final observation1 = multicast.observe((data) {});
+    final observation2 = multicast.observe((data) {});
 
     expect(invokes, 0);
     expect(subject.observationDisposeInvokes, 0);
@@ -160,7 +160,7 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable
+    final multicast = observable
       .multicast(
         createSubject: () {
           subject = _MockSubject();
@@ -168,8 +168,8 @@ void main() {
         },
       );
     
-    final observation1 = multicastObservable.observe((data) {});
-    final observation2 = multicastObservable.observe((data) {});
+    final observation1 = multicast.observe((data) {});
+    final observation2 = multicast.observe((data) {});
 
     expect(subject.disposeInvokes, 0);
     observation1.dispose();
@@ -188,7 +188,7 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable
+    final multicast = observable
       .multicast(
         createSubject: () {
           subject = _MockSubject();
@@ -196,7 +196,7 @@ void main() {
         },
       );
 
-    final observation = multicastObservable.observe((data) {});
+    final observation = multicast.observe((data) {});
 
     expect(subject.recorded, []);
     await Future(() {});

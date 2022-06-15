@@ -14,12 +14,12 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable.multicastReplay(3);
+    final multicastReplay = observable.multicastReplay(3);
 
     expect(invokes, 0);
-    final observation1 = multicastObservable.observe((data) {});
+    final observation1 = multicastReplay.observe((data) {});
     expect(invokes, 1);
-    final observation2 = multicastObservable.observe((data) {});
+    final observation2 = multicastReplay.observe((data) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -37,10 +37,10 @@ void main() {
       });
     });
 
-    final multicastObservable = observable.multicastReplay(3);
+    final multicastReplay = observable.multicastReplay(3);
 
-    final observation1 = multicastObservable.observe((data) {});
-    final observation2 = multicastObservable.observe((data) {});
+    final observation1 = multicastReplay.observe((data) {});
+    final observation2 = multicastReplay.observe((data) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -57,14 +57,14 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable.multicastReplay(3);
+    final multicastReplay = observable.multicastReplay(3);
 
     final tester1 = ObservableTester(
-      multicastObservable,
+      multicastReplay,
     );
 
     final tester2 = ObservableTester(
-      multicastObservable,
+      multicastReplay,
     );
     
     tester1.startObserve();
@@ -97,13 +97,13 @@ void main() {
       return Disposable.empty;
     });
 
-    final multicastObservable = observable.multicastReplay(3);
+    final multicastReplay = observable.multicastReplay(3);
 
     final tester = ObservableTester(
-      multicastObservable,
+      multicastReplay,
     );
 
-    final observation = multicastObservable.observe((data) {});
+    final observation = multicastReplay.observe((data) {});
 
     expect(tester.recorded, []);
     tester.startObserve();

@@ -69,7 +69,7 @@ void main() {
     expect(invoked, 1);
   });
 
-  test('`Observable.default` not recieve data after disposed', () async {
+  test('`Observable.default` not receive data after disposed', () async {
 
     final observable = Observable<String>((onData) {
       onData('a');

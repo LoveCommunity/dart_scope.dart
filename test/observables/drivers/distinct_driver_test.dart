@@ -17,10 +17,10 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinctDriver = driver.distinct();
+    final distinct = driver.distinct();
 
     final tester = DriverTester(
-      distinctDriver,
+      distinct,
     );
 
     expect(tester.recorded, []);
@@ -44,11 +44,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinctDriver = driver
+    final distinct = driver
       .distinct((it1, it2) => it1.length == it2.length);
 
     final tester = DriverTester(
-      distinctDriver,
+      distinct,
     );
 
     expect(tester.recorded, []);

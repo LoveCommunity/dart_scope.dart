@@ -16,11 +16,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final selectDriver = driver
+    final select = driver
       .select((it) => '1$it');
 
     final tester = DriverTester(
-      selectDriver,
+      select,
     );
 
     expect(tester.recorded, []);
@@ -44,14 +44,14 @@ void main() {
       return Disposable.empty;
     });
 
-    final selectDriver = driver
+    final select = driver
       .select<String>(
         (it) => '1$it',
         equals: (it1, it2) => it1.length == it2.length,
       );
 
     final tester = DriverTester(
-      selectDriver,
+      select,
     );
 
     expect(tester.recorded, []);

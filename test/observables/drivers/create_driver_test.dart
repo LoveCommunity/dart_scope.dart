@@ -45,7 +45,7 @@ void main() {
     expect(invokes, 1);
   });
 
-  test('`Driver.default` not recieve data after disposed', () async {
+  test('`Driver.default` not receive data after disposed', () async {
 
     final driver = Driver<String>((onData) {
       onData('a');

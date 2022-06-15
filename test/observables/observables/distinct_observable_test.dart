@@ -15,10 +15,10 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinctObservable = observable.distinct();
+    final distinct = observable.distinct();
 
     final tester = ObservableTester(
-      distinctObservable,
+      distinct,
     );
 
     expect(tester.recorded, []);
@@ -41,11 +41,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinctObservable = observable
+    final distinct = observable
       .distinct((it1, it2) => it1.length == it2.length);
 
     final tester = ObservableTester(
-      distinctObservable
+      distinct
     );
 
     expect(tester.recorded, []);

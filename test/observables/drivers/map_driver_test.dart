@@ -15,11 +15,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final mapDriver = driver
+    final map = driver
       .map<int>((data) => data.length);
 
     final tester = DriverTester(
-      mapDriver,
+      map,
     );
 
     expect(tester.recorded, []);
