@@ -9,8 +9,8 @@ String testEmitLatestCombinedValue(int? number) {
     test('`Observable.combine${isList ? '' : '$number'}` emit latest combined value when a child emit', () async {
       ${[
         ...observables(isList, count, sampleObservable),
-        combineObservable(number),
-        combineObservableTester(),
+        observableCombine(number),
+        observableTester(),
         testerStartObserve(),
         expectTesterRecorded(_expects1(count)),
         awaitEmptyFuture(),
