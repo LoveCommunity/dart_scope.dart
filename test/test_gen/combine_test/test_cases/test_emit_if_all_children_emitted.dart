@@ -6,7 +6,7 @@ String testEmitIfAllChildrenEmitted(int? number) {
   final isList = number == null;
   final count = number ?? 2;
   return '''
-    test('`Observable.combine${isList ? '' : '$number'}` emit if all children emitted', () async {
+    test('${observableCombineTestHeader(number)} emit if all children emitted', () async {
       ${[
         ...observables(isList, count, _observable),
         observableCombine(number),

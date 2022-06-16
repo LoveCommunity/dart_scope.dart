@@ -1,6 +1,10 @@
 
 import '../../shared/codes.dart';
 
+String observableCombineTestHeader(int? number) {
+  return '`Observable.combine${number == null ? '' : '$number'}`';
+}
+
 Iterable<String> observables(
   bool isList,
   int count, 
