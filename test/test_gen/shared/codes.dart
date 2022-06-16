@@ -1,4 +1,14 @@
 
+String testAll({
+  required List<String Function(int?)> tests,
+  required List<int?> numbers,
+}) {
+  final allTests = tests
+    .expand((test) => numbers.map(test))
+    .join('\n');
+  return 'void _main() {$allTests}';
+}
+
 String testerStartObserve() {
   return'''
     tester.startObserve();
