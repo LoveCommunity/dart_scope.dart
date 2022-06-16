@@ -3,7 +3,7 @@
 part of 'observable_combine_test.dart';
 
 // **************************************************************************
-// CombineObservableTestGenerator
+// ObservableCombineTestGenerator
 // **************************************************************************
 
 void _main() {
