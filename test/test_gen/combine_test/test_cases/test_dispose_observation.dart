@@ -10,7 +10,7 @@ String testDisposeObservation(int? number) {
       ${[
         _invokes(),
         ...observables(isList, count, _observable),
-        combineObservable(number),
+        observableCombine(number),
         _startObserve(),
         expectInvokesList([]),
         _stopObserve(),

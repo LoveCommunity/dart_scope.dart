@@ -9,8 +9,8 @@ String testNotEmitAfterObservationDispose(int? number) {
     test('`Observable.combine${isList ? '' : '$number'}` will not emit data after observation disposed', () async {
       ${[
         ...observables(isList, count, sampleObservable),
-        combineObservable(number),
-        combineObservableTester(),
+        observableCombine(number),
+        observableTester(),
         testerStartObserve(),
         testerStopObserve(),
         expectTesterRecorded(_expects(count)),

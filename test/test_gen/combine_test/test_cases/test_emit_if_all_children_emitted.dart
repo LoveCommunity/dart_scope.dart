@@ -9,8 +9,8 @@ String testEmitIfAllChildrenEmitted(int? number) {
     test('`Observable.combine${isList ? '' : '$number'}` emit if all children emitted', () async {
       ${[
         ...observables(isList, count, _observable),
-        combineObservable(number),
-        combineObservableTester(),
+        observableCombine(number),
+        observableTester(),
         testerStartObserve(),
         expectTesterRecorded([]),
         awaitEmptyFuture(),

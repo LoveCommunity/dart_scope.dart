@@ -24,7 +24,7 @@ String sampleObservable(bool isList, bool isLast, int n) {
   ''';
 }
 
-String combineObservable(int? number) {
+String observableCombine(int? number) {
   if (number == null) {
     return '''
       final combine = Observable<String>.combine(
@@ -57,7 +57,7 @@ String combineObservable(int? number) {
   }
 }
 
-String combineObservableTester() {
+String observableTester() {
   return '''
     final tester = ObservableTester(
       combine,
