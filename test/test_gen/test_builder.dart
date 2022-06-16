@@ -7,7 +7,7 @@ import 'combine_test/observable_combine_test_generator.dart';
 Builder testBuilder(BuilderOptions options) {
   return SharedPartBuilder(
     [
-      CombineObservableTestGenerator(),
+      ObservableCombineTestGenerator(),
     ],
     'test_builder',
   );
