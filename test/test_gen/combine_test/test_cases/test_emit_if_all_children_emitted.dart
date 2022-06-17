@@ -2,7 +2,7 @@
 import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
-String testEmitIfAllChildrenEmitted(int? number) {
+String testObservableCombineEmitIfAllChildrenEmitted(int? number) {
   final isList = number == null;
   final count = number ?? 2;
   return '''

@@ -15,10 +15,10 @@ class ObservableCombineTestGenerator extends GeneratorForAnnotation<ObservableCo
   String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     return testAll(
       tests: [
-        testEmitIfAllChildrenEmitted,
-        testEmitLatestCombinedValue,
-        testDisposeObservation,
-        testNotEmitAfterObservationDispose,
+        testObservableCombineEmitIfAllChildrenEmitted,
+        testObservableCombineEmitLatestCombinedValue,
+        testObservableCombineDisposeObservation,
+        testObservableCombineNotEmitAfterObservationDispose,
       ],
       numbers: [null, 2, 3],
     );
