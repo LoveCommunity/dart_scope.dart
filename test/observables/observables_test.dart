@@ -1,6 +1,7 @@
 
 import 'drivers/driver_cache_test.dart' as driver_cache_test;
 import 'drivers/driver_cast_test.dart' as driver_cast_test;
+import 'drivers/driver_combine_test.dart' as driver_combine_test;
 import 'drivers/driver_default_constructor_test.dart' as driver_default_constructor_test;
 import 'drivers/driver_distinct_test.dart' as driver_distinct_test;
 import 'drivers/driver_first_test.dart' as driver_first_test;
@@ -29,6 +30,7 @@ import 'subjects/value_subject_test.dart' as value_subject_test;
 void main() {
   driver_cache_test.main();
   driver_cast_test.main();
+  driver_combine_test.main();
   driver_default_constructor_test.main();
   driver_distinct_test.main();
   driver_first_test.main();

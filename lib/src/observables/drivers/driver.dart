@@ -13,6 +13,16 @@ class Driver<T> {
     Observe<T> drive
   ): this.from(Observable(drive));
 
+  factory Driver.combine({
+    required List<Driver<Object?>> children,
+    required T Function(List<Object?> items) combiner,
+  }) => Observable<T>.combine(
+    children: children
+      .map((driver) => driver.observable)
+      .toList(),
+    combiner: combiner,
+  ).asDriver();
+
   const Driver.from(this.observable);
 
   final Observable<T> observable;
