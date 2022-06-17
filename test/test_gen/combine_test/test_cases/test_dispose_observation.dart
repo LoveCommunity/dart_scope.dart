@@ -2,7 +2,7 @@
 import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
-String testDisposeObservation(int? number) {
+String testObservableCombineDisposeObservation(int? number) {
   final isList = number == null;
   final count = number ?? 2;
   return '''

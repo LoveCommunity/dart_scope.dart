@@ -2,7 +2,7 @@
 import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
-String testNotEmitAfterObservationDispose(int? number) {
+String testObservableCombineNotEmitAfterObservationDispose(int? number) {
   final isList = number == null;
   final count = number ?? 2;
   return '''

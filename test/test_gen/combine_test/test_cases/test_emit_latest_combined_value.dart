@@ -2,7 +2,7 @@
 import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
-String testEmitLatestCombinedValue(int? number) {
+String testObservableCombineEmitLatestCombinedValue(int? number) {
   final isList = number == null;
   final count = number ?? 2;
   return '''
