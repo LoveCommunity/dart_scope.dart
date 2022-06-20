@@ -54,3 +54,41 @@ List<String> _expects(int count) {
     .reversed
     .toList();
 }
+
+String testDriverCombineDisposeObservation(int? number) {
+  final isList = number == null;
+  final count = number ?? 2;
+  return '''
+    test('${driverCombineTestHeader(number)} dispose observation will dispose all children observations', () {
+      ${[
+        _invokes(),
+        ...drivers(isList, count, _driver),
+        driverCombine(number),
+        _startDrive(),
+        expectInvokesList([]),
+        _stopDrive(),
+        expectInvokesList(_expects(count)),
+      ].join('\n')}
+    });
+  ''';
+}
+
+String _driver(bool isList, bool isLast, int n) {
+  return '''
+    final driver${n} = Driver<${isList ? 'Object?' : 'String'}>((onData) {
+      return Disposable(() {
+        invokes.add('dispose$n');
+      });
+    });
+  ''';
+}
+
+String _startDrive() {
+  return '''
+    final observation = combine.drive((data) {});
+  ''';
+}
+
+String _stopDrive() {
+  return _stopObserve();
+}

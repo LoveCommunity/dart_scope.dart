@@ -26,3 +26,22 @@ List<String> _expects(int count) {
     joinAllA(count),
   ];
 }
+
+String testDriverCombineNotEmitAfterObservationDispose(int? number) {
+  final isList = number == null;
+  final count = number ?? 2;
+  return '''
+    test('${driverCombineTestHeader(number)} will not emit data after observation disposed', () async {
+      ${[
+        ...drivers(isList, count, sampleDriver),
+        driverCombine(number),
+        driverTester(),
+        testerStartDrive(),
+        testerStopDrive(),
+        expectTesterRecorded(_expects(count)),
+        awaitEmptyFuture(),
+        expectTesterRecorded(_expects(count)),
+      ].join('\n')}
+    });
+  ''';
+}
