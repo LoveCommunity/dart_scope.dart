@@ -39,3 +39,22 @@ List<String> _expects2(int count) {
     ).boxed()
   ];
 }
+
+String testDriverCombineEmitLatestCombinedValue(int? number) {
+  final isList = number == null;
+  final count = number ?? 2;
+  return '''
+    test('${driverCombineTestHeader(number)} emit latest combined value when a child emit', () async {
+      ${[
+        ...drivers(isList, count, sampleDriver),
+        driverCombine(number),
+        driverTester(),
+        testerStartDrive(),
+        expectTesterRecorded(_expects1(count)),
+        awaitEmptyFuture(),
+        expectTesterRecorded(_expects2(count)),
+        testerStopDrive(),
+      ].join('\n')}
+    });
+  ''';
+}
