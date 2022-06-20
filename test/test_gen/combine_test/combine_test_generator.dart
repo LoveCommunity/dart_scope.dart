@@ -36,7 +36,7 @@ class DriverCombineTestGenerator extends GeneratorForAnnotation<DriverCombineTes
         testDriverCombineDisposeObservation,
         testDriverCombineNotEmitAfterObservationDispose,
       ],
-      numbers: [null],
+      numbers: [null, 2, 3],
     );
   }
 }
