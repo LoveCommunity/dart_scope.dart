@@ -8,17 +8,17 @@ part of 'observable_combine_test.dart';
 
 void _main() {
   test('`Observable.combine` emit if all children emitted', () async {
-    final observable1 = Observable<Object?>((onData) {
+    final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final observable2 = Observable<Object?>((onData) {
+    final observable2 = Observable<String>((onData) {
       Future(() => onData('2a'));
       return Disposable.empty;
     });
 
-    final combine = Observable<String>.combine(
+    final combine = Observable.combine<String, String>(
       children: [
         observable1,
         observable2,
@@ -113,18 +113,18 @@ void _main() {
 
   test('`Observable.combine` emit latest combined value when a child emit',
       () async {
-    final observable1 = Observable<Object?>((onData) {
+    final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final observable2 = Observable<Object?>((onData) {
+    final observable2 = Observable<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Observable<String>.combine(
+    final combine = Observable.combine<String, String>(
       children: [
         observable1,
         observable2,
@@ -226,19 +226,19 @@ void _main() {
       () {
     final List<String> invokes = [];
 
-    final observable1 = Observable<Object?>((onData) {
+    final observable1 = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final observable2 = Observable<Object?>((onData) {
+    final observable2 = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose2');
       });
     });
 
-    final combine = Observable<String>.combine(
+    final combine = Observable.combine<String, String>(
       children: [
         observable1,
         observable2,
@@ -328,18 +328,18 @@ void _main() {
 
   test('`Observable.combine` will not emit data after observation disposed',
       () async {
-    final observable1 = Observable<Object?>((onData) {
+    final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final observable2 = Observable<Object?>((onData) {
+    final observable2 = Observable<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Observable<String>.combine(
+    final combine = Observable.combine<String, String>(
       children: [
         observable1,
         observable2,

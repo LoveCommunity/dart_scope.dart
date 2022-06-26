@@ -24,10 +24,13 @@ abstract class Observable<T> {
     Observe<T> observe
   ) = CreateObservable;
 
-  const factory Observable.combine({
-    required List<Observable<Object?>> children,
-    required T Function(List<Object?> items) combiner,
-  }) = CombineObservable;
+  static Observable<R> combine<T, R>({
+    required List<Observable<T>> children,
+    required R Function(List<T> items) combiner,
+  }) => CombineObservable(
+    children: children,
+    combiner: combiner,
+  );
 
   static Observable<R> combine2<T1, T2, R>({
     required Observable<T1> child1,

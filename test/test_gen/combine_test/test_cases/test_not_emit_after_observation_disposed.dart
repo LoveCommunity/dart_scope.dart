@@ -3,12 +3,11 @@ import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
 String testObservableCombineNotEmitAfterObservationDispose(int? number) {
-  final isList = number == null;
   final count = number ?? 2;
   return '''
     test('${observableCombineTestHeader(number)} will not emit data after observation disposed', () async {
       ${[
-        ...observables(isList, count, sampleObservable),
+        ...observables(count, sampleObservable),
         observableCombine(number),
         observableTester(),
         testerStartObserve(),
@@ -28,12 +27,11 @@ List<String> _expects(int count) {
 }
 
 String testDriverCombineNotEmitAfterObservationDispose(int? number) {
-  final isList = number == null;
   final count = number ?? 2;
   return '''
     test('${driverCombineTestHeader(number)} will not emit data after observation disposed', () async {
       ${[
-        ...drivers(isList, count, sampleDriver),
+        ...drivers(count, sampleDriver),
         driverCombine(number),
         driverTester(),
         testerStartDrive(),

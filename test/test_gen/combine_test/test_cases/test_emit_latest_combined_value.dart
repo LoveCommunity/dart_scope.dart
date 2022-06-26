@@ -3,12 +3,11 @@ import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
 String testObservableCombineEmitLatestCombinedValue(int? number) {
-  final isList = number == null;
   final count = number ?? 2;
   return '''
     test('${observableCombineTestHeader(number)} emit latest combined value when a child emit', () async {
       ${[
-        ...observables(isList, count, sampleObservable),
+        ...observables(count, sampleObservable),
         observableCombine(number),
         observableTester(),
         testerStartObserve(),
@@ -41,12 +40,11 @@ List<String> _expects2(int count) {
 }
 
 String testDriverCombineEmitLatestCombinedValue(int? number) {
-  final isList = number == null;
   final count = number ?? 2;
   return '''
     test('${driverCombineTestHeader(number)} emit latest combined value when a child emit', () async {
       ${[
-        ...drivers(isList, count, sampleDriver),
+        ...drivers(count, sampleDriver),
         driverCombine(number),
         driverTester(),
         testerStartDrive(),
