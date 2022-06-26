@@ -8,17 +8,17 @@ part of 'driver_combine_test.dart';
 
 void _main() {
   test('`Driver.combine` initial emit', () {
-    final driver1 = Driver<Object?>((onData) {
+    final driver1 = Driver<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<Object?>((onData) {
+    final driver2 = Driver<String>((onData) {
       onData('2a');
       return Disposable.empty;
     });
 
-    final combine = Driver<String>.combine(
+    final combine = Driver.combine<String, String>(
       children: [
         driver1,
         driver2,
@@ -107,18 +107,18 @@ void _main() {
 
   test('`Driver.combine` emit latest combined value when a child emit',
       () async {
-    final driver1 = Driver<Object?>((onData) {
+    final driver1 = Driver<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<Object?>((onData) {
+    final driver2 = Driver<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Driver<String>.combine(
+    final combine = Driver.combine<String, String>(
       children: [
         driver1,
         driver2,
@@ -220,19 +220,19 @@ void _main() {
       () {
     final List<String> invokes = [];
 
-    final driver1 = Driver<Object?>((onData) {
+    final driver1 = Driver<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final driver2 = Driver<Object?>((onData) {
+    final driver2 = Driver<String>((onData) {
       return Disposable(() {
         invokes.add('dispose2');
       });
     });
 
-    final combine = Driver<String>.combine(
+    final combine = Driver.combine<String, String>(
       children: [
         driver1,
         driver2,
@@ -322,18 +322,18 @@ void _main() {
 
   test('`Driver.combine` will not emit data after observation disposed',
       () async {
-    final driver1 = Driver<Object?>((onData) {
+    final driver1 = Driver<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<Object?>((onData) {
+    final driver2 = Driver<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Driver<String>.combine(
+    final combine = Driver.combine<String, String>(
       children: [
         driver1,
         driver2,

@@ -6,16 +6,16 @@ import '../observers/observer.dart';
 import 'observable.dart';
 
 @internal
-class CombineObservable<R> implements Observable<R> {
+class CombineObservable<T, R> implements Observable<R> {
 
   const CombineObservable({
-    required List<Observable<Object?>> children,
-    required R Function(List<Object?> items) combiner,
+    required List<Observable<T>> children,
+    required R Function(List<T> items) combiner,
   }): _children = children,
     _combiner = combiner;
 
-  final List<Observable<Object?>> _children;
-  final R Function(List<Object?> items) _combiner;
+  final List<Observable<T>> _children;
+  final R Function(List<T> items) _combiner;
 
   @override
   Disposable observe(OnData<R> onData) {
@@ -34,7 +34,8 @@ class CombineObservable<R> implements Observable<R> {
         }
         latests[index] = data;
         if (emitted.length == length) {
-          final result = _combiner(List.from(latests)); 
+          final list = List<T>.from(latests, growable: false);
+          final result = _combiner(list);
           onData(result);
         }
       });
@@ -51,7 +52,7 @@ class CombineObservable<R> implements Observable<R> {
 }
 
 @internal
-class CombineObservable2<T1, T2, R> extends CombineObservable<R> {
+class CombineObservable2<T1, T2, R> extends CombineObservable<Object?, R> {
 
   CombineObservable2({
     required Observable<T1> child1,
@@ -70,7 +71,7 @@ class CombineObservable2<T1, T2, R> extends CombineObservable<R> {
 }
 
 @internal
-class CombineObservable3<T1, T2, T3, R> extends CombineObservable<R> {
+class CombineObservable3<T1, T2, T3, R> extends CombineObservable<Object?, R> {
 
   CombineObservable3({
     required Observable<T1> child1,

@@ -3,13 +3,12 @@ import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
 String testObservableCombineDisposeObservation(int? number) {
-  final isList = number == null;
   final count = number ?? 2;
   return '''
     test('${observableCombineTestHeader(number)} dispose observation will dispose all children observations', () {
       ${[
         _invokes(),
-        ...observables(isList, count, _observable),
+        ...observables(count, _observable),
         observableCombine(number),
         _startObserve(),
         expectInvokesList([]),
@@ -26,9 +25,9 @@ String _invokes() {
   ''';
 }
 
-String _observable(bool isList, bool isLast, int n) {
+String _observable(bool isLast, int n) {
   return '''
-    final observable${n} = Observable<${isList ? 'Object?' : 'String'}>((onData) {
+    final observable${n} = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose$n');
       });
@@ -56,13 +55,12 @@ List<String> _expects(int count) {
 }
 
 String testDriverCombineDisposeObservation(int? number) {
-  final isList = number == null;
   final count = number ?? 2;
   return '''
     test('${driverCombineTestHeader(number)} dispose observation will dispose all children observations', () {
       ${[
         _invokes(),
-        ...drivers(isList, count, _driver),
+        ...drivers(count, _driver),
         driverCombine(number),
         _startDrive(),
         expectInvokesList([]),
@@ -73,9 +71,9 @@ String testDriverCombineDisposeObservation(int? number) {
   ''';
 }
 
-String _driver(bool isList, bool isLast, int n) {
+String _driver(bool isLast, int n) {
   return '''
-    final driver${n} = Driver<${isList ? 'Object?' : 'String'}>((onData) {
+    final driver${n} = Driver<String>((onData) {
       return Disposable(() {
         invokes.add('dispose$n');
       });

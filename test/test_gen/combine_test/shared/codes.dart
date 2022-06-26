@@ -10,30 +10,28 @@ String driverCombineTestHeader(int? number) {
 }
 
 Iterable<String> observables(
-  bool isList,
   int count, 
-  String Function(bool isList, bool isLast, int n) observable
+  String Function(bool isLast, int n) observable
 ) {
   return generateN(
     count,
-    (n) => observable(isList, n == count, n),
+    (n) => observable(n == count, n),
   );
 }
 
 Iterable<String> drivers(
-  bool isList,
   int count,
-  String Function(bool isList, bool isLast, int n) driver
+  String Function(bool isLast, int n) driver
 ) {
   return generateN(
     count,
-    (n) => driver(isList, n == count, n),
+    (n) => driver(n == count, n),
   );
 }
 
-String sampleObservable(bool isList, bool isLast, int n) {
+String sampleObservable(bool isLast, int n) {
   return '''
-    final observable$n = Observable<${isList ? 'Object?' : 'String'}>((onData) {
+    final observable$n = Observable<String>((onData) {
        ${[
         "onData('${n}a');",
         if (isLast) "Future(() => onData('${n}b'));"
@@ -43,9 +41,9 @@ String sampleObservable(bool isList, bool isLast, int n) {
   ''';
 }
 
-String sampleDriver(bool isList, bool isLast, int n) {
+String sampleDriver(bool isLast, int n) {
   return '''
-    final driver$n = Driver<${isList? 'Object?' : 'String'}>((onData) {
+    final driver$n = Driver<String>((onData) {
        ${[
         "onData('${n}a');",
         if (isLast) "Future(() => onData('${n}b'));"
@@ -68,7 +66,7 @@ String _combine(bool isObservable, int? number) {
   final name = isObservable ? 'observable' : 'driver';
   if (number == null) {
     return '''
-      final combine = $type<String>.combine(
+      final combine = $type.combine<String, String>(
         children: [
           ${name}1,
           ${name}2,
