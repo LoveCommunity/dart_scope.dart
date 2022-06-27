@@ -8,8 +8,8 @@ void main() {
 
   test('`States.defaultConstructor` common', () {
 
-    final states = States<String>((onData) {
-      onData('a');
+    final states = States<String>((setState) {
+      setState('a');
       return Disposable.empty;
     });
 
@@ -31,8 +31,8 @@ void main() {
 
     int invokes = 0;
 
-    final states = States<String>((onData) {
-      onData('a');
+    final states = States<String>((setState) {
+      setState('a');
       return Disposable(() {
         invokes += 1;
       });
@@ -47,9 +47,9 @@ void main() {
 
   test('`States.defaultConstructor` not receive data after disposed', () async {
 
-    final states = States<String>((onData) {
-      onData('a');
-      Future(() => onData('b'));
+    final states = States<String>((setState) {
+      setState('a');
+      Future(() => setState('b'));
       return Disposable.empty;
     });
 

@@ -6,10 +6,10 @@ void main() {
 
   test('`states.first` success', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('b');
-      onData('c');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('b');
+      setState('c');
       return Disposable.empty;
     });
 
@@ -21,7 +21,7 @@ void main() {
 
   test('`states.first` failure', () {
 
-    final states = States<String>((onData) {
+    final states = States<String>((setState) {
       return Disposable.empty;
     });
 

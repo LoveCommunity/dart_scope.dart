@@ -8,8 +8,8 @@ void main() {
 
   test('`states.cast` success', () {
 
-    final states = States<String>((onData) {
-      onData('a');
+    final states = States<String>((setState) {
+      setState('a');
       return Disposable.empty;
     });
 
@@ -32,8 +32,8 @@ void main() {
 
   test('`states.cast` failure', () {
 
-    final states = States<String>((onData) {
-      onData('a');
+    final states = States<String>((setState) {
+      setState('a');
       return Disposable.empty;
     });
 

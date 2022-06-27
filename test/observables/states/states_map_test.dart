@@ -8,10 +8,10 @@ void main() {
 
   test('`states.map`', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('ab');
-      onData('abc');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('ab');
+      setState('abc');
       return Disposable.empty;
     });
 

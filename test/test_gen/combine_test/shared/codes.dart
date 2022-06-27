@@ -43,10 +43,10 @@ String sampleObservable(bool isLast, int n) {
 
 String sampleStates(bool isLast, int n) {
   return '''
-    final states$n = States<String>((onData) {
+    final states$n = States<String>((setState) {
        ${[
-        "onData('${n}a');",
-        if (isLast) "Future(() => onData('${n}b'));"
+        "setState('${n}a');",
+        if (isLast) "Future(() => setState('${n}b'));"
        ].join('\n')}
       return Disposable.empty;
     });

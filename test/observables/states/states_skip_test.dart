@@ -8,13 +8,13 @@ void main() {
 
   test('`states.skip`', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('b');
-      onData('c');
-      onData('d');
-      onData('e');
-      onData('f');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('b');
+      setState('c');
+      setState('d');
+      setState('e');
+      setState('f');
       return Disposable.empty;
     });
 
@@ -37,10 +37,10 @@ void main() {
 
   test('`states.skipFirst`', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('b');
-      onData('c');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('b');
+      setState('c');
       return Disposable.empty;
     });
 

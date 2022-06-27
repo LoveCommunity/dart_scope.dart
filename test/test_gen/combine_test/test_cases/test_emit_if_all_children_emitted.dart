@@ -56,8 +56,8 @@ String testStatesCombineInitialEmit(int? number) {
 
 String _states(bool isLast, int n) {
   return '''
-    final states$n = States<String>((onData) {
-      onData('${n}a');
+    final states$n = States<String>((setState) {
+      setState('${n}a');
       return Disposable.empty;
     });
   ''';

@@ -8,13 +8,13 @@ part of 'states_combine_test.dart';
 
 void _main() {
   test('`States.combine` initial emit', () {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
+    final states2 = States<String>((setState) {
+      setState('2a');
       return Disposable.empty;
     });
 
@@ -40,13 +40,13 @@ void _main() {
   });
 
   test('`States.combine2` initial emit', () {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
+    final states2 = States<String>((setState) {
+      setState('2a');
       return Disposable.empty;
     });
 
@@ -70,18 +70,18 @@ void _main() {
   });
 
   test('`States.combine3` initial emit', () {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
+    final states2 = States<String>((setState) {
+      setState('2a');
       return Disposable.empty;
     });
 
-    final states3 = States<String>((onData) {
-      onData('3a');
+    final states3 = States<String>((setState) {
+      setState('3a');
       return Disposable.empty;
     });
 
@@ -107,14 +107,14 @@ void _main() {
 
   test('`States.combine` emit latest combined value when a child emit',
       () async {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
-      Future(() => onData('2b'));
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2b'));
       return Disposable.empty;
     });
 
@@ -143,14 +143,14 @@ void _main() {
 
   test('`States.combine2` emit latest combined value when a child emit',
       () async {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
-      Future(() => onData('2b'));
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2b'));
       return Disposable.empty;
     });
 
@@ -177,19 +177,19 @@ void _main() {
 
   test('`States.combine3` emit latest combined value when a child emit',
       () async {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
+    final states2 = States<String>((setState) {
+      setState('2a');
       return Disposable.empty;
     });
 
-    final states3 = States<String>((onData) {
-      onData('3a');
-      Future(() => onData('3b'));
+    final states3 = States<String>((setState) {
+      setState('3a');
+      Future(() => setState('3b'));
       return Disposable.empty;
     });
 
@@ -220,13 +220,13 @@ void _main() {
       () {
     final List<String> invokes = [];
 
-    final states1 = States<String>((onData) {
+    final states1 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final states2 = States<String>((onData) {
+    final states2 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose2');
       });
@@ -254,13 +254,13 @@ void _main() {
       () {
     final List<String> invokes = [];
 
-    final states1 = States<String>((onData) {
+    final states1 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final states2 = States<String>((onData) {
+    final states2 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose2');
       });
@@ -286,19 +286,19 @@ void _main() {
       () {
     final List<String> invokes = [];
 
-    final states1 = States<String>((onData) {
+    final states1 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final states2 = States<String>((onData) {
+    final states2 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose2');
       });
     });
 
-    final states3 = States<String>((onData) {
+    final states3 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose3');
       });
@@ -322,14 +322,14 @@ void _main() {
 
   test('`States.combine` will not emit data after observation disposed',
       () async {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
-      Future(() => onData('2b'));
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2b'));
       return Disposable.empty;
     });
 
@@ -358,14 +358,14 @@ void _main() {
 
   test('`States.combine2` will not emit data after observation disposed',
       () async {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
-      Future(() => onData('2b'));
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2b'));
       return Disposable.empty;
     });
 
@@ -392,19 +392,19 @@ void _main() {
 
   test('`States.combine3` will not emit data after observation disposed',
       () async {
-    final states1 = States<String>((onData) {
-      onData('1a');
+    final states1 = States<String>((setState) {
+      setState('1a');
       return Disposable.empty;
     });
 
-    final states2 = States<String>((onData) {
-      onData('2a');
+    final states2 = States<String>((setState) {
+      setState('2a');
       return Disposable.empty;
     });
 
-    final states3 = States<String>((onData) {
-      onData('3a');
-      Future(() => onData('3b'));
+    final states3 = States<String>((setState) {
+      setState('3a');
+      Future(() => setState('3b'));
       return Disposable.empty;
     });
 

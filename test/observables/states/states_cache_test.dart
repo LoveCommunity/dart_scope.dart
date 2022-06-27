@@ -10,8 +10,8 @@ void main() {
 
     int invokes = 0;
 
-    final states = States<String>((onData) {
-      onData('a');
+    final states = States<String>((setState) {
+      setState('a');
       invokes += 1;
       return Disposable.empty;
     });
@@ -33,8 +33,8 @@ void main() {
 
     int invokes = 0;
 
-    final states = States<String>((onData) {
-      onData('a');
+    final states = States<String>((setState) {
+      setState('a');
       return Disposable(() {
         invokes += 1;
       });
@@ -55,9 +55,9 @@ void main() {
 
   test('`states.cache` forward data to observers', () async {
 
-    final states = States<String>((onData) {
-      onData('a');
-      Future(() => onData('b'));
+    final states = States<String>((setState) {
+      setState('a');
+      Future(() => setState('b'));
       return Disposable.empty;
     });
 
@@ -98,10 +98,10 @@ void main() {
 
   test('`states.cache` replay data to observers', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('b');
-      onData('c');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('b');
+      setState('c');
       return Disposable.empty;
     });
 

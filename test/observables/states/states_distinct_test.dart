@@ -9,11 +9,11 @@ void main() {
 
   test('`states.distinct` default equals', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('a');
-      onData('b');
-      onData('b');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('a');
+      setState('b');
+      setState('b');
       return Disposable.empty;
     });
 
@@ -36,11 +36,11 @@ void main() {
 
   test('`states.distinct` custom equals', () {
 
-    final states = States<String>((onData) {
-      onData('a');
-      onData('b');
-      onData('aa');
-      onData('bb');
+    final states = States<String>((setState) {
+      setState('a');
+      setState('b');
+      setState('aa');
+      setState('bb');
       return Disposable.empty;
     });
 
