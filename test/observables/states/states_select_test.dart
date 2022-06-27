@@ -2,13 +2,13 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
 void main() {
   
-  test('`driver.select` default equals', () {
+  test('`states.select` default equals', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('a');
       onData('b');
@@ -16,27 +16,27 @@ void main() {
       return Disposable.empty;
     });
 
-    final select = driver
+    final select = states
       .select((it) => '1$it');
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       select,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       '1a',
       '1b',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 
-  test('`driver.select` custom equals', () {
+  test('`states.select` custom equals', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('b');
       onData('aa');
@@ -44,24 +44,24 @@ void main() {
       return Disposable.empty;
     });
 
-    final select = driver
+    final select = states
       .select<String>(
         (it) => '1$it',
         equals: (it1, it2) => it1.length == it2.length,
       );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       select,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       '1a',
       '1aa',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 }

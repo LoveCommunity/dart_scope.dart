@@ -4,31 +4,31 @@ import 'package:scopes/scopes.dart';
 
 void main() {
 
-  test("`Driver.from`'s observable is identical to observable passed in", () {
+  test("`States.from`'s observable is identical to observable passed in", () {
 
     final observable = Observable<String>((onData) {
       return Disposable.empty;
     });
     
-    final driver = Driver.from(observable);
+    final states = States.from(observable);
 
-    expect(driver.observable, observable);
+    expect(states.observable, observable);
 
   });
 
-  test("`observable.asDriver`'s observable is identical to origin observable", () {
+  test("`observable.asStates`'s observable is identical to origin observable", () {
 
     final observable = Observable<String>((onData) {
       return Disposable.empty;
     });
 
-    final driver = observable.asDriver();
+    final states = observable.asStates();
 
-    expect(driver.observable, observable);
+    expect(states.observable, observable);
 
   });
   
-  test("`driver.drive` cause observable observe", () {
+  test("`states.observe` cause observable observe", () {
 
     int invokes = 0;
 
@@ -37,16 +37,16 @@ void main() {
       return Disposable.empty;
     });
 
-    final driver = Driver.from(observable);
+    final states = States.from(observable);
 
     expect(invokes, 0);
-    final observation = driver.drive((data) {});
+    final observation = states.observe((data) {});
     expect(invokes, 1);
 
     observation.dispose();
   });
 
-  test("driver's observation dispose cause observable's observation dispose", () {
+  test("states's observation dispose cause observable's observation dispose", () {
 
     int invokes = 0;
 
@@ -56,9 +56,9 @@ void main() {
       });
     });
 
-    final driver = Driver.from(observable);
+    final states = States.from(observable);
 
-    final observation = driver.drive((data) {});
+    final observation = states.observe((data) {});
 
     expect(invokes, 0);
     observation.dispose();

@@ -3,13 +3,13 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
 void main() {
 
-  test('`driver.distinct` default equals', () {
+  test('`states.distinct` default equals', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('a');
       onData('b');
@@ -17,26 +17,26 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinct = driver.distinct();
+    final distinct = states.distinct();
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       distinct,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       'a',
       'b',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 
-  test('`driver.distinct` custom equals', () {
+  test('`states.distinct` custom equals', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('b');
       onData('aa');
@@ -44,21 +44,21 @@ void main() {
       return Disposable.empty;
     });
 
-    final distinct = driver
+    final distinct = states
       .distinct((it1, it2) => it1.length == it2.length);
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       distinct,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       'a',
       'aa',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 }

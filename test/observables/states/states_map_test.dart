@@ -2,35 +2,35 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
 void main() {
 
-  test('`driver.map`', () {
+  test('`states.map`', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('ab');
       onData('abc');
       return Disposable.empty;
     });
 
-    final map = driver
+    final map = states
       .map<int>((data) => data.length);
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       map,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       1,
       2,
       3,
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 }

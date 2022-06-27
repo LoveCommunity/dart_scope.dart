@@ -1,136 +1,136 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'driver_combine_test.dart';
+part of 'states_combine_test.dart';
 
 // **************************************************************************
-// DriverCombineTestGenerator
+// StatesCombineTestGenerator
 // **************************************************************************
 
 void _main() {
-  test('`Driver.combine` initial emit', () {
-    final driver1 = Driver<String>((onData) {
+  test('`States.combine` initial emit', () {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       return Disposable.empty;
     });
 
-    final combine = Driver.combine<String, String>(
+    final combine = States.combine<String, String>(
       children: [
-        driver1,
-        driver2,
+        states1,
+        states2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
     expect(tester.recorded, []);
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, ['1a|2a']);
 
-    tester.stopDrive();
+    tester.stopObserve();
   });
 
-  test('`Driver.combine2` initial emit', () {
-    final driver1 = Driver<String>((onData) {
+  test('`States.combine2` initial emit', () {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       return Disposable.empty;
     });
 
-    final combine = Driver.combine2<String, String, String>(
-      child1: driver1,
-      child2: driver2,
+    final combine = States.combine2<String, String, String>(
+      child1: states1,
+      child2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
     expect(tester.recorded, []);
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, ['1a|2a']);
 
-    tester.stopDrive();
+    tester.stopObserve();
   });
 
-  test('`Driver.combine3` initial emit', () {
-    final driver1 = Driver<String>((onData) {
+  test('`States.combine3` initial emit', () {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       return Disposable.empty;
     });
 
-    final driver3 = Driver<String>((onData) {
+    final states3 = States<String>((onData) {
       onData('3a');
       return Disposable.empty;
     });
 
-    final combine = Driver.combine3<String, String, String, String>(
-      child1: driver1,
-      child2: driver2,
-      child3: driver3,
+    final combine = States.combine3<String, String, String, String>(
+      child1: states1,
+      child2: states2,
+      child3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
     expect(tester.recorded, []);
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, ['1a|2a|3a']);
 
-    tester.stopDrive();
+    tester.stopObserve();
   });
 
-  test('`Driver.combine` emit latest combined value when a child emit',
+  test('`States.combine` emit latest combined value when a child emit',
       () async {
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Driver.combine<String, String>(
+    final combine = States.combine<String, String>(
       children: [
-        driver1,
-        driver2,
+        states1,
+        states2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, ['1a|2a']);
 
@@ -138,33 +138,33 @@ void _main() {
 
     expect(tester.recorded, ['1a|2a', '1a|2b']);
 
-    tester.stopDrive();
+    tester.stopObserve();
   });
 
-  test('`Driver.combine2` emit latest combined value when a child emit',
+  test('`States.combine2` emit latest combined value when a child emit',
       () async {
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Driver.combine2<String, String, String>(
-      child1: driver1,
-      child2: driver2,
+    final combine = States.combine2<String, String, String>(
+      child1: states1,
+      child2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, ['1a|2a']);
 
@@ -172,39 +172,39 @@ void _main() {
 
     expect(tester.recorded, ['1a|2a', '1a|2b']);
 
-    tester.stopDrive();
+    tester.stopObserve();
   });
 
-  test('`Driver.combine3` emit latest combined value when a child emit',
+  test('`States.combine3` emit latest combined value when a child emit',
       () async {
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       return Disposable.empty;
     });
 
-    final driver3 = Driver<String>((onData) {
+    final states3 = States<String>((onData) {
       onData('3a');
       Future(() => onData('3b'));
       return Disposable.empty;
     });
 
-    final combine = Driver.combine3<String, String, String, String>(
-      child1: driver1,
-      child2: driver2,
-      child3: driver3,
+    final combine = States.combine3<String, String, String, String>(
+      child1: states1,
+      child2: states2,
+      child3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, ['1a|2a|3a']);
 
@@ -212,35 +212,35 @@ void _main() {
 
     expect(tester.recorded, ['1a|2a|3a', '1a|2a|3b']);
 
-    tester.stopDrive();
+    tester.stopObserve();
   });
 
   test(
-      '`Driver.combine` dispose observation will dispose all children observations',
+      '`States.combine` dispose observation will dispose all children observations',
       () {
     final List<String> invokes = [];
 
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose2');
       });
     });
 
-    final combine = Driver.combine<String, String>(
+    final combine = States.combine<String, String>(
       children: [
-        driver1,
-        driver2,
+        states1,
+        states2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
 
-    final observation = combine.drive((data) {});
+    final observation = combine.observe((data) {});
 
     expect(invokes, []);
 
@@ -250,29 +250,29 @@ void _main() {
   });
 
   test(
-      '`Driver.combine2` dispose observation will dispose all children observations',
+      '`States.combine2` dispose observation will dispose all children observations',
       () {
     final List<String> invokes = [];
 
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose2');
       });
     });
 
-    final combine = Driver.combine2<String, String, String>(
-      child1: driver1,
-      child2: driver2,
+    final combine = States.combine2<String, String, String>(
+      child1: states1,
+      child2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
-    final observation = combine.drive((data) {});
+    final observation = combine.observe((data) {});
 
     expect(invokes, []);
 
@@ -282,36 +282,36 @@ void _main() {
   });
 
   test(
-      '`Driver.combine3` dispose observation will dispose all children observations',
+      '`States.combine3` dispose observation will dispose all children observations',
       () {
     final List<String> invokes = [];
 
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
       });
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose2');
       });
     });
 
-    final driver3 = Driver<String>((onData) {
+    final states3 = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose3');
       });
     });
 
-    final combine = Driver.combine3<String, String, String, String>(
-      child1: driver1,
-      child2: driver2,
-      child3: driver3,
+    final combine = States.combine3<String, String, String, String>(
+      child1: states1,
+      child2: states2,
+      child3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final observation = combine.drive((data) {});
+    final observation = combine.observe((data) {});
 
     expect(invokes, []);
 
@@ -320,34 +320,34 @@ void _main() {
     expect(invokes, ['dispose3', 'dispose2', 'dispose1']);
   });
 
-  test('`Driver.combine` will not emit data after observation disposed',
+  test('`States.combine` will not emit data after observation disposed',
       () async {
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Driver.combine<String, String>(
+    final combine = States.combine<String, String>(
       children: [
-        driver1,
-        driver2,
+        states1,
+        states2,
       ],
       combiner: (items) => '${items[0]}|${items[1]}',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
-    tester.stopDrive();
+    tester.stopObserve();
 
     expect(tester.recorded, ['1a|2a']);
 
@@ -356,32 +356,32 @@ void _main() {
     expect(tester.recorded, ['1a|2a']);
   });
 
-  test('`Driver.combine2` will not emit data after observation disposed',
+  test('`States.combine2` will not emit data after observation disposed',
       () async {
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       Future(() => onData('2b'));
       return Disposable.empty;
     });
 
-    final combine = Driver.combine2<String, String, String>(
-      child1: driver1,
-      child2: driver2,
+    final combine = States.combine2<String, String, String>(
+      child1: states1,
+      child2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
-    tester.stopDrive();
+    tester.stopObserve();
 
     expect(tester.recorded, ['1a|2a']);
 
@@ -390,38 +390,38 @@ void _main() {
     expect(tester.recorded, ['1a|2a']);
   });
 
-  test('`Driver.combine3` will not emit data after observation disposed',
+  test('`States.combine3` will not emit data after observation disposed',
       () async {
-    final driver1 = Driver<String>((onData) {
+    final states1 = States<String>((onData) {
       onData('1a');
       return Disposable.empty;
     });
 
-    final driver2 = Driver<String>((onData) {
+    final states2 = States<String>((onData) {
       onData('2a');
       return Disposable.empty;
     });
 
-    final driver3 = Driver<String>((onData) {
+    final states3 = States<String>((onData) {
       onData('3a');
       Future(() => onData('3b'));
       return Disposable.empty;
     });
 
-    final combine = Driver.combine3<String, String, String, String>(
-      child1: driver1,
-      child2: driver2,
-      child3: driver3,
+    final combine = States.combine3<String, String, String, String>(
+      child1: states1,
+      child2: states2,
+      child3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
-    tester.stopDrive();
+    tester.stopObserve();
 
     expect(tester.recorded, ['1a|2a|3a']);
 

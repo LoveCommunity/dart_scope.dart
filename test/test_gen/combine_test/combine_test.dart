@@ -5,8 +5,8 @@ class ObservableCombineTest {
 
 const observableCombineTest = ObservableCombineTest();
 
-class DriverCombineTest {
-  const DriverCombineTest();
+class StatesCombineTest {
+  const StatesCombineTest();
 }
 
-const driverCombineTest = DriverCombineTest();
+const statesCombineTest = StatesCombineTest();

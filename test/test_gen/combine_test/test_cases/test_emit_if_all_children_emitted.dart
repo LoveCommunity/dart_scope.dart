@@ -37,26 +37,26 @@ List<String> _expects(int count) => [
   joinAllA(count), // '1a|2a'
 ];
 
-String testDriverCombineInitialEmit(int? number) {
+String testStatesCombineInitialEmit(int? number) {
   final count = number ?? 2;
   return '''
-    test('${driverCombineTestHeader(number)} initial emit', () {
+    test('${statesCombineTestHeader(number)} initial emit', () {
       ${[
-        ...drivers(count, _driver),
-        driverCombine(number),
-        driverTester(),
+        ...states_iterable(count, _states),
+        statesCombine(number),
+        statesTester(),
         expectTesterRecorded([]),
-        testerStartDrive(),
+        testerStartObserve(),
         expectTesterRecorded(_expects(count)),
-        testerStopDrive(),
+        testerStopObserve(),
       ].join('\n')}
     });
   ''';
 }
 
-String _driver(bool isLast, int n) {
+String _states(bool isLast, int n) {
   return '''
-    final driver$n = Driver<String>((onData) {
+    final states$n = States<String>((onData) {
       onData('${n}a');
       return Disposable.empty;
     });

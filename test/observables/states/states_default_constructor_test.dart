@@ -2,68 +2,68 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
 void main() {
 
-  test('`Driver.defaultConstructor` common', () {
+  test('`States.defaultConstructor` common', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       return Disposable.empty;
     });
 
-    final tester = DriverTester(
-      driver,
+    final tester = StatesTester(
+      states,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       'a',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 
-  test('`Driver.defaultConstructor` observation dispose', () {
+  test('`States.defaultConstructor` observation dispose', () {
 
     int invokes = 0;
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       return Disposable(() {
         invokes += 1;
       });
     });
 
-    final observation = driver.drive((data) {});
+    final observation = states.observe((data) {});
 
     expect(invokes, 0);
     observation.dispose();
     expect(invokes, 1);
   });
 
-  test('`Driver.defaultConstructor` not receive data after disposed', () async {
+  test('`States.defaultConstructor` not receive data after disposed', () async {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       Future(() => onData('b'));
       return Disposable.empty;
     });
 
-    final tester = DriverTester(
-      driver,
+    final tester = StatesTester(
+      states,
     );
 
-    tester.startDrive();
+    tester.startObserve();
 
     expect(tester.recorded, [
       'a',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
     await Future(() {});
     expect(tester.recorded, [

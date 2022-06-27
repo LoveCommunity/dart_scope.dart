@@ -3,11 +3,11 @@ import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
 import '../../test_gen/combine_test/combine_test.dart';
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
-part 'driver_combine_test.g.dart';
+part 'states_combine_test.g.dart';
 
-@driverCombineTest
+@statesCombineTest
 void main() {
   _main();
 }

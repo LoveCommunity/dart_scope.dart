@@ -4,7 +4,7 @@ targets:
       scopes|_test_builder:
         generate_for:
           - test/observables/observables/observable_combine_test.dart
-          - test/observables/drivers/driver_combine_test.dart
+          - test/observables/states/states_combine_test.dart
 
 builders:
   _test_builder:

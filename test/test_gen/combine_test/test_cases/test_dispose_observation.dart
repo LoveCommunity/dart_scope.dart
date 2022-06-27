@@ -54,39 +54,29 @@ List<String> _expects(int count) {
     .toList();
 }
 
-String testDriverCombineDisposeObservation(int? number) {
+String testStatesCombineDisposeObservation(int? number) {
   final count = number ?? 2;
   return '''
-    test('${driverCombineTestHeader(number)} dispose observation will dispose all children observations', () {
+    test('${statesCombineTestHeader(number)} dispose observation will dispose all children observations', () {
       ${[
         _invokes(),
-        ...drivers(count, _driver),
-        driverCombine(number),
-        _startDrive(),
+        ...states_iterable(count, _states),
+        statesCombine(number),
+        _startObserve(),
         expectInvokesList([]),
-        _stopDrive(),
+        _stopObserve(),
         expectInvokesList(_expects(count)),
       ].join('\n')}
     });
   ''';
 }
 
-String _driver(bool isLast, int n) {
+String _states(bool isLast, int n) {
   return '''
-    final driver${n} = Driver<String>((onData) {
+    final states${n} = States<String>((onData) {
       return Disposable(() {
         invokes.add('dispose$n');
       });
     });
   ''';
-}
-
-String _startDrive() {
-  return '''
-    final observation = combine.drive((data) {});
-  ''';
-}
-
-String _stopDrive() {
-  return _stopObserve();
 }

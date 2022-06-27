@@ -2,46 +2,46 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
 void main() {
 
-  test('`driver.cast` success', () {
+  test('`states.cast` success', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       return Disposable.empty;
     });
 
-    final cast = driver.cast<Object>();
+    final cast = states.cast<Object>();
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       cast,
     );
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       'a',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
 
   });
 
 
-  test('`driver.cast` failure', () {
+  test('`states.cast` failure', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       return Disposable.empty;
     });
 
-    final cast = driver.cast<int>();
+    final cast = states.cast<int>();
 
     expect(
       () {
-        cast.drive((data) {});
+        cast.observe((data) {});
       },
       throwsA(
         isA<TypeError>()

@@ -6,9 +6,9 @@ import '../../toolbox/observable_tester.dart';
 
 void main() {
 
-  test('`driver.skip`', () {
+  test('`states.skip`', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('b');
       onData('c');
@@ -18,7 +18,7 @@ void main() {
       return Disposable.empty;
     });
 
-    final skip = driver.skip(3);
+    final skip = states.skip(3);
 
     final tester = ObservableTester(
       skip
@@ -35,16 +35,16 @@ void main() {
     tester.stopObserve();
   });
 
-  test('`driver.skipFirst`', () {
+  test('`states.skipFirst`', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('b');
       onData('c');
       return Disposable.empty;
     });
 
-    final skip = driver.skipFirst();
+    final skip = states.skipFirst();
 
     final tester = ObservableTester(
       skip

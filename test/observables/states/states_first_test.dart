@@ -4,37 +4,37 @@ import 'package:scopes/scopes.dart';
 
 void main() {
 
-  test('`driver.first` success', () {
+  test('`states.first` success', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('b');
       onData('c');
       return Disposable.empty;
     });
 
-    final first = driver.first;
+    final first = states.first;
 
     expect(first, 'a');
 
   });
 
-  test('`driver.first` failure', () {
+  test('`states.first` failure', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       return Disposable.empty;
     });
 
     expect(
       () {
-        driver.first;
+        states.first;
       },
       throwsA(
-        isA<DriverLatestValueNotReplayError<String>>()
+        isA<StatesLatestValueNotReplayError<String>>()
           .having(
             (error) => error.toString(),
             'description',
-            contains("Instance of 'Driver<String>' should replay latest value synchronousy when observed"),
+            contains("Instance of 'States<String>' should replay latest value synchronousy when observed"),
           )
       ),
     );

@@ -21,18 +21,6 @@ String testerStopObserve() {
   ''';
 }
 
-String testerStartDrive() {
-  return '''
-    tester.startDrive();
-  ''';
-}
-
-String testerStopDrive() {
-  return '''
-    tester.stopDrive();
-  ''';
-}
-
 String expectTesterRecorded(List<String> expects) {
   return expectList('tester.recorded', expects);
 }

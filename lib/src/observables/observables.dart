@@ -1,8 +1,8 @@
 
 export 'package:disposal/disposal.dart' show Disposable;
-export 'drivers/driver.dart';
-export 'drivers/observable_as_driver_x.dart';
-export 'errors/driver_latest_value_not_replay_error.dart';
+export 'states/states.dart';
+export 'states/observable_as_states_x.dart';
+export 'errors/states_latest_value_not_replay_error.dart';
 export 'observables/observable.dart';
 export 'observables/proxy_observable.dart';
 export 'observers/observer.dart';

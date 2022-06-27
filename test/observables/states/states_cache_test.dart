@@ -2,26 +2,26 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/driver_tester.dart';
+import '../../toolbox/states_tester.dart';
 
 void main() {
 
-  test('`driver.cache` connect when observers increase to one', () {
+  test('`states.cache` connect when observers increase to one', () {
 
     int invokes = 0;
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       invokes += 1;
       return Disposable.empty;
     });
 
-    final cache = driver.cache();
+    final cache = states.cache();
 
     expect(invokes, 0);
-    final observation1 = cache.drive((data) {});
+    final observation1 = cache.observe((data) {});
     expect(invokes, 1);
-    final observation2 = cache.drive((data) {});
+    final observation2 = cache.observe((data) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -29,21 +29,21 @@ void main() {
 
   });
 
-  test('`driver.cache` disconnect when observers decrease to zero', () {
+  test('`states.cache` disconnect when observers decrease to zero', () {
 
     int invokes = 0;
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       return Disposable(() {
         invokes += 1;
       });
     });
 
-    final cache = driver.cache();
+    final cache = states.cache();
 
-    final observation1 = cache.drive((data) {});
-    final observation2 = cache.drive((data) {});
+    final observation1 = cache.observe((data) {});
+    final observation2 = cache.observe((data) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -53,27 +53,27 @@ void main() {
 
   });
 
-  test('`driver.cache` forward data to observers', () async {
+  test('`states.cache` forward data to observers', () async {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       Future(() => onData('b'));
       return Disposable.empty;
     });
 
-    final cache = driver.cache();
+    final cache = states.cache();
 
-    final tester1 = DriverTester(
+    final tester1 = StatesTester(
       cache,
     ); 
 
-    final tester2 = DriverTester(
+    final tester2 = StatesTester(
       cache,
     ); 
 
 
-    tester1.startDrive();
-    tester2.startDrive();
+    tester1.startObserve();
+    tester2.startObserve();
     
     expect(tester1.recorded, [
       'a',
@@ -91,35 +91,35 @@ void main() {
       'b',
     ]);
 
-    tester1.stopDrive();
-    tester2.stopDrive();
+    tester1.stopObserve();
+    tester2.stopObserve();
 
   });
 
-  test('`driver.cache` replay data to observers', () {
+  test('`states.cache` replay data to observers', () {
 
-    final driver = Driver<String>((onData) {
+    final states = States<String>((onData) {
       onData('a');
       onData('b');
       onData('c');
       return Disposable.empty;
     });
 
-    final cache = driver.cache();
+    final cache = states.cache();
 
-    final tester = DriverTester(
+    final tester = StatesTester(
       cache,
     );
 
-    final observation  = cache.drive((data) {});
+    final observation  = cache.observe((data) {});
 
     expect(tester.recorded, []);
-    tester.startDrive();
+    tester.startObserve();
     expect(tester.recorded, [
       'c',
     ]);
 
-    tester.stopDrive();
+    tester.stopObserve();
     observation.dispose();
 
   });

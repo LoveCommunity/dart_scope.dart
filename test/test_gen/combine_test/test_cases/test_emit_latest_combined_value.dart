@@ -39,19 +39,19 @@ List<String> _expects2(int count) {
   ];
 }
 
-String testDriverCombineEmitLatestCombinedValue(int? number) {
+String testStatesCombineEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
-    test('${driverCombineTestHeader(number)} emit latest combined value when a child emit', () async {
+    test('${statesCombineTestHeader(number)} emit latest combined value when a child emit', () async {
       ${[
-        ...drivers(count, sampleDriver),
-        driverCombine(number),
-        driverTester(),
-        testerStartDrive(),
+        ...states_iterable(count, sampleStates),
+        statesCombine(number),
+        statesTester(),
+        testerStartObserve(),
         expectTesterRecorded(_expects1(count)),
         awaitEmptyFuture(),
         expectTesterRecorded(_expects2(count)),
-        testerStopDrive(),
+        testerStopObserve(),
       ].join('\n')}
     });
   ''';
