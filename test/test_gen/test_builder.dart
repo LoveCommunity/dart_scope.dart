@@ -8,7 +8,7 @@ Builder testBuilder(BuilderOptions options) {
   return SharedPartBuilder(
     [
       ObservableCombineTestGenerator(),
-      DriverCombineTestGenerator(),
+      StatesCombineTestGenerator(),
     ],
     'test_builder',
   );

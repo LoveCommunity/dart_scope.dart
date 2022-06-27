@@ -5,8 +5,8 @@ String observableCombineTestHeader(int? number) {
   return '`Observable.combine${number == null ? '' : '$number'}`';
 }
 
-String driverCombineTestHeader(int? number) {
-  return '`Driver.combine${number == null ? '' : '$number'}`';
+String statesCombineTestHeader(int? number) {
+  return '`States.combine${number == null ? '' : '$number'}`';
 }
 
 Iterable<String> observables(
@@ -19,13 +19,13 @@ Iterable<String> observables(
   );
 }
 
-Iterable<String> drivers(
+Iterable<String> states_iterable(
   int count,
-  String Function(bool isLast, int n) driver
+  String Function(bool isLast, int n) states
 ) {
   return generateN(
     count,
-    (n) => driver(n == count, n),
+    (n) => states(n == count, n),
   );
 }
 
@@ -41,12 +41,12 @@ String sampleObservable(bool isLast, int n) {
   ''';
 }
 
-String sampleDriver(bool isLast, int n) {
+String sampleStates(bool isLast, int n) {
   return '''
-    final driver$n = Driver<String>((onData) {
+    final states$n = States<String>((setState) {
        ${[
-        "onData('${n}a');",
-        if (isLast) "Future(() => onData('${n}b'));"
+        "setState('${n}a');",
+        if (isLast) "Future(() => setState('${n}b'));"
        ].join('\n')}
       return Disposable.empty;
     });
@@ -57,13 +57,13 @@ String observableCombine(int? number) {
   return _combine(true, number);
 }
 
-String driverCombine(int? number) {
+String statesCombine(int? number) {
   return _combine(false, number);
 }
 
 String _combine(bool isObservable, int? number) {
-  final type = isObservable ? 'Observable' : 'Driver';
-  final name = isObservable ? 'observable' : 'driver';
+  final type = isObservable ? 'Observable' : 'States';
+  final name = isObservable ? 'observable' : 'states';
   if (number == null) {
     return '''
       final combine = $type.combine<String, String>(
@@ -104,9 +104,9 @@ String observableTester() {
   ''';
 }
 
-String driverTester() {
+String statesTester() {
   return '''
-    final tester = DriverTester(
+    final tester = StatesTester(
       combine,
     );
   ''';

@@ -4,77 +4,77 @@ import 'package:typedef_equals/typedef_equals.dart';
 
 import '../observers/observer.dart';
 import '../observables/observable.dart';
-import 'observable_as_driver_x.dart';
-import 'driver_first.dart';
+import 'observable_as_states_x.dart';
+import 'states_first.dart';
 
-class Driver<T> {
+class States<T> {
 
-  Driver(
-    Observe<T> drive
-  ): this.from(Observable(drive));
+  States(
+    Observe<T> observe
+  ): this.from(Observable(observe));
 
-  static Driver<R> combine<T, R>({
-    required List<Driver<T>> children,
+  static States<R> combine<T, R>({
+    required List<States<T>> children,
     required R Function(List<T> items) combiner,
   }) => Observable.combine<T, R>(
     children: children
-      .map((driver) => driver.observable)
+      .map((states) => states.observable)
       .toList(),
     combiner: combiner,
-  ).asDriver();
+  ).asStates();
 
-  static Driver<R> combine2<T1, T2, R>({
-    required Driver<T1> child1,
-    required Driver<T2> child2,
+  static States<R> combine2<T1, T2, R>({
+    required States<T1> child1,
+    required States<T2> child2,
     required R Function(T1, T2) combiner,
   }) => Observable.combine2<T1, T2, R>(
     child1: child1.observable,
     child2: child2.observable,
     combiner: combiner,
-  ).asDriver();
+  ).asStates();
 
-  static Driver<R> combine3<T1, T2, T3, R>({
-    required Driver<T1> child1,
-    required Driver<T2> child2,
-    required Driver<T3> child3,
+  static States<R> combine3<T1, T2, T3, R>({
+    required States<T1> child1,
+    required States<T2> child2,
+    required States<T3> child3,
     required R Function(T1, T2, T3) combiner,
   }) => Observable.combine3<T1, T2, T3, R>(
     child1: child1.observable,
     child2: child2.observable,
     child3: child3.observable,
     combiner: combiner,
-  ).asDriver();
+  ).asStates();
 
-  const Driver.from(this.observable);
+  const States.from(this.observable);
 
   final Observable<T> observable;
 
-  Disposable drive(OnData<T> onData) {
+  Disposable observe(OnData<T> onData) {
     return observable.observe(onData);
   }
 }
 
-extension DriverX<T> on Driver<T> {
+extension StatesX<T> on States<T> {
 
-  Driver<R> map<R>(R Function(T) convert) {
+  States<R> map<R>(R Function(T) convert) {
     return observable
       .map(convert)
-      .asDriver();
+      .asStates();
   }
 
-  Driver<R> cast<R>() {
+  States<R> cast<R>() {
     return observable
       .cast<R>()
-      .asDriver();
+      .asStates();
   }
 
-  Driver<T> distinct([Equals<T>? equals]) {
+  States<T> distinct([Equals<T>? equals]) {
     return observable
       .distinct(equals)
-      .asDriver();
+      .asStates();
   }
 
-  Driver<R> select<R>(
+  States<R> select<R>(
     R Function(T) convert, {
     Equals<R>? equals,
   }) {
@@ -83,13 +83,13 @@ extension DriverX<T> on Driver<T> {
         convert,
         equals: equals,
       )
-      .asDriver();
+      .asStates();
   }
 
-  Driver<T> cache() {
+  States<T> cache() {
     return observable
       .multicastReplay(1)
-      .asDriver();
+      .asStates();
   }
 
   Observable<T> skip(int n) {
@@ -103,6 +103,6 @@ extension DriverX<T> on Driver<T> {
   }
 
   T get first {
-    return driverFirst(this);
+    return statesFirst(this);
   }
 }

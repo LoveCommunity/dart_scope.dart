@@ -26,16 +26,16 @@ List<String> _expects(int count) {
   ];
 }
 
-String testDriverCombineNotEmitAfterObservationDispose(int? number) {
+String testStatesCombineNotEmitAfterObservationDispose(int? number) {
   final count = number ?? 2;
   return '''
-    test('${driverCombineTestHeader(number)} will not emit data after observation disposed', () async {
+    test('${statesCombineTestHeader(number)} will not emit data after observation disposed', () async {
       ${[
-        ...drivers(count, sampleDriver),
-        driverCombine(number),
-        driverTester(),
-        testerStartDrive(),
-        testerStopDrive(),
+        ...states_iterable(count, sampleStates),
+        statesCombine(number),
+        statesTester(),
+        testerStartObserve(),
+        testerStopObserve(),
         expectTesterRecorded(_expects(count)),
         awaitEmptyFuture(),
         expectTesterRecorded(_expects(count)),
