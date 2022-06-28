@@ -30,11 +30,11 @@ void main() {
         states.first;
       },
       throwsA(
-        isA<StatesLatestValueNotReplayError<String>>()
+        isA<LatestStateNotReplayError<String>>()
           .having(
             (error) => error.toString(),
             'description',
-            contains("Instance of 'States<String>' should replay latest value synchronousy when observed"),
+            contains("Instance of 'States<String>' should replay latest state synchronously when observed"),
           )
       ),
     );
