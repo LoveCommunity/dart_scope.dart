@@ -17,9 +17,9 @@ void main() {
     final multicast = observable.multicast();
 
     expect(invokes, 0);
-    final observation1 = multicast.observe((data) {});
+    final observation1 = multicast.observe((_) {});
     expect(invokes, 1);
-    final observation2 = multicast.observe((data) {});
+    final observation2 = multicast.observe((_) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -39,8 +39,8 @@ void main() {
 
     final multicast = observable.multicast();
 
-    final observation1 = multicast.observe((data) {});
-    final observation2 = multicast.observe((data) {});
+    final observation1 = multicast.observe((_) {});
+    final observation2 = multicast.observe((_) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -106,10 +106,10 @@ void main() {
       );
     
     expect(invokes, 0);
-    final observation1 = multicast.observe((data) {});
+    final observation1 = multicast.observe((_) {});
     expect(invokes, 1);
     expect(subject.observeInvokes, 1);
-    final observation2 = multicast.observe((data) {});
+    final observation2 = multicast.observe((_) {});
     expect(invokes, 1);
     expect(subject.observeInvokes, 2);
 
@@ -138,8 +138,8 @@ void main() {
         },
       );
     
-    final observation1 = multicast.observe((data) {});
-    final observation2 = multicast.observe((data) {});
+    final observation1 = multicast.observe((_) {});
+    final observation2 = multicast.observe((_) {});
 
     expect(invokes, 0);
     expect(subject.observationDisposeInvokes, 0);
@@ -168,8 +168,8 @@ void main() {
         },
       );
     
-    final observation1 = multicast.observe((data) {});
-    final observation2 = multicast.observe((data) {});
+    final observation1 = multicast.observe((_) {});
+    final observation2 = multicast.observe((_) {});
 
     expect(subject.disposeInvokes, 0);
     observation1.dispose();
@@ -196,7 +196,7 @@ void main() {
         },
       );
 
-    final observation = multicast.observe((data) {});
+    final observation = multicast.observe((_) {});
 
     expect(subject.recorded, []);
     await Future(() {});

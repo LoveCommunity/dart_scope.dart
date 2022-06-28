@@ -19,9 +19,9 @@ void main() {
     final cache = states.cache();
 
     expect(invokes, 0);
-    final observation1 = cache.observe((data) {});
+    final observation1 = cache.observe((_) {});
     expect(invokes, 1);
-    final observation2 = cache.observe((data) {});
+    final observation2 = cache.observe((_) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -42,8 +42,8 @@ void main() {
 
     final cache = states.cache();
 
-    final observation1 = cache.observe((data) {});
-    final observation2 = cache.observe((data) {});
+    final observation1 = cache.observe((_) {});
+    final observation2 = cache.observe((_) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -111,7 +111,7 @@ void main() {
       cache,
     );
 
-    final observation  = cache.observe((data) {});
+    final observation  = cache.observe((_) {});
 
     expect(tester.recorded, []);
     tester.startObserve();

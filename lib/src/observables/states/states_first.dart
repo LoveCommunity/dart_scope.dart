@@ -8,9 +8,9 @@ import 'states.dart';
 @internal
 T statesFirst<T>(States<T> states) {
   Value<T>? result;
-  states.observe((data) {
+  states.observe((state) {
     if (result == null) {
-      result = Value(data);
+      result = Value(state);
     }
   })
   .dispose();

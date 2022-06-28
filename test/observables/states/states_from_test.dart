@@ -40,7 +40,7 @@ void main() {
     final states = States.from(observable);
 
     expect(invokes, 0);
-    final observation = states.observe((data) {});
+    final observation = states.observe((_) {});
     expect(invokes, 1);
 
     observation.dispose();
@@ -58,7 +58,7 @@ void main() {
 
     final states = States.from(observable);
 
-    final observation = states.observe((data) {});
+    final observation = states.observe((_) {});
 
     expect(invokes, 0);
     observation.dispose();

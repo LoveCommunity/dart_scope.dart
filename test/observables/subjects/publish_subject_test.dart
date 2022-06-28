@@ -141,7 +141,7 @@ void main() {
 
     expect(
       () {
-        subject.observe((data) {});
+        subject.observe((_) {});
       },
       throwsA(
         isA<StateError>()

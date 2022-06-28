@@ -16,7 +16,7 @@ void main() {
     });
 
     final map = states
-      .map<int>((data) => data.length);
+      .map<int>((state) => state.length);
 
     final tester = StatesTester(
       map,

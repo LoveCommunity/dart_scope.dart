@@ -246,7 +246,7 @@ void _main() {
       combiner: (items) => '${items[0]}|${items[1]}',
     );
 
-    final observation = combine.observe((data) {});
+    final observation = combine.observe((_) {});
 
     expect(invokes, []);
 
@@ -278,7 +278,7 @@ void _main() {
       combiner: (it1, it2) => '$it1|$it2',
     );
 
-    final observation = combine.observe((data) {});
+    final observation = combine.observe((_) {});
 
     expect(invokes, []);
 
@@ -317,7 +317,7 @@ void _main() {
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final observation = combine.observe((data) {});
+    final observation = combine.observe((_) {});
 
     expect(invokes, []);
 

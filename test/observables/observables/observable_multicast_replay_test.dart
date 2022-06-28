@@ -17,9 +17,9 @@ void main() {
     final multicastReplay = observable.multicastReplay(3);
 
     expect(invokes, 0);
-    final observation1 = multicastReplay.observe((data) {});
+    final observation1 = multicastReplay.observe((_) {});
     expect(invokes, 1);
-    final observation2 = multicastReplay.observe((data) {});
+    final observation2 = multicastReplay.observe((_) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -39,8 +39,8 @@ void main() {
 
     final multicastReplay = observable.multicastReplay(3);
 
-    final observation1 = multicastReplay.observe((data) {});
-    final observation2 = multicastReplay.observe((data) {});
+    final observation1 = multicastReplay.observe((_) {});
+    final observation2 = multicastReplay.observe((_) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -103,7 +103,7 @@ void main() {
       multicastReplay,
     );
 
-    final observation = multicastReplay.observe((data) {});
+    final observation = multicastReplay.observe((_) {});
 
     expect(tester.recorded, []);
     tester.startObserve();
