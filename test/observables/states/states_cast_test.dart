@@ -41,7 +41,7 @@ void main() {
 
     expect(
       () {
-        cast.observe((data) {});
+        cast.observe((_) {});
       },
       throwsA(
         isA<TypeError>()

@@ -62,7 +62,7 @@ void main() {
       });
     });
 
-    final observation = observable.observe((data) {});
+    final observation = observable.observe((_) {});
 
     expect(invoked, 0);
     observation.dispose();

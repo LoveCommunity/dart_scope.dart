@@ -37,7 +37,7 @@ String _observable(bool isLast, int n) {
 
 String _startObserve() {
   return '''
-    final observation = combine.observe((data) {});
+    final observation = combine.observe((_) {});
   ''';
 }
 

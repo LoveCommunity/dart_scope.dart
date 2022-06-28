@@ -38,7 +38,7 @@ void main() {
       });
     });
 
-    final observation = states.observe((data) {});
+    final observation = states.observe((_) {});
 
     expect(invokes, 0);
     observation.dispose();

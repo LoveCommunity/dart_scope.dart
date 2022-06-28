@@ -42,7 +42,7 @@ void main() {
       proxy: observable,
     );
     
-    final observation = proxyObservable.observe((data) {});
+    final observation = proxyObservable.observe((_) {});
 
     expect(invokes, 0);
     observation.dispose();
