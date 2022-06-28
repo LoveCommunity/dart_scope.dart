@@ -2,7 +2,7 @@
 export 'package:disposal/disposal.dart' show Disposable;
 export 'states/states.dart';
 export 'states/observable_as_states_x.dart';
-export 'errors/states_latest_value_not_replay_error.dart';
+export 'errors/latest_state_not_replay_error.dart';
 export 'observables/observable.dart';
 export 'observables/proxy_observable.dart';
 export 'observers/observer.dart';
