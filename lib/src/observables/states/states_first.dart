@@ -7,15 +7,15 @@ import 'states.dart';
 
 @internal
 T statesFirst<T>(States<T> states) {
-  Value<T>? result;
+  Value<T>? first;
   states.observe((state) {
-    if (result == null) {
-      result = Value(state);
+    if (first == null) {
+      first = Value(state);
     }
   })
   .dispose();
-  if (result == null) {
+  if (first == null) {
     throw LatestStateNotReplayError(states);
   }
-  return result!.value;
+  return first!.value;
 }
