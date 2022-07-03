@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:typedef_foundation/typedef_foundation.dart';
 
+import '../configurables/configurable.dart';
 import '../scope_methods/scope_expose.dart';
+import '../shared/build_scope.dart';
 import 'scope.dart';
 
 abstract class ConfigurableScope implements Scope, ScopeExpose {
@@ -9,11 +12,17 @@ abstract class ConfigurableScope implements Scope, ScopeExpose {
   factory ConfigurableScope() = _ConfigurableScopeImpl;
 }
 
+typedef _Storage = Map<Type, Map<Object?, Function>>;
+
 class _ConfigurableScopeImpl implements ConfigurableScope {
   _ConfigurableScopeImpl():
     _storage = {};
 
-  final Map<Type, Map<Object?, Function>> _storage;
+  _ConfigurableScopeImpl._fromStorage(_Storage storage):
+    _storage = storage
+      .map((key, value) => MapEntry(key, Map.of(value)));
+
+  final _Storage _storage;
 
   @override
   T? getOrNull<T>({
@@ -39,6 +48,12 @@ class _ConfigurableScopeImpl implements ConfigurableScope {
       _storage[T] = <Object?, Getter<T>>{};
     }
     _storage[T]![name] = expose;
+  }
+
+  @override
+  FutureOr<Scope> push(List<Configurable> configure) {
+    final scope = _ConfigurableScopeImpl._fromStorage(_storage);
+    return buildScope(configure, scope);
   }
 }
 
