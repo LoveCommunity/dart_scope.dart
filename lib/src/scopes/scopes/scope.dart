@@ -3,11 +3,12 @@ import 'dart:async';
 
 import '../configurables/configurable.dart';
 import '../scope_methods/scope_get.dart';
+import '../scope_methods/scope_push.dart';
 import '../shared/build_scope.dart';
 
 import 'configurable_scope.dart';
 
-abstract class Scope implements ScopeGet {
+abstract class Scope implements ScopeGet, ScopePush {
   static FutureOr<Scope> root(List<Configurable> configure) => _scopeRoot(configure);
 }
 

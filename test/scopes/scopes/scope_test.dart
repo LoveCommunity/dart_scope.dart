@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
@@ -152,4 +153,9 @@ class _MockScope implements Scope {
   bool has<T>({
     Object? name,
   }) => throw UnimplementedError();
+
+  @override
+  FutureOr<Scope> push(
+    List<Configurable> configure,
+  ) => throw UnimplementedError();
 }
