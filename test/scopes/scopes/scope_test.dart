@@ -6,11 +6,13 @@ import '../../toolbox/mock_configurable.dart';
 
 void main() {
 
-  test('`scope` is `ScopeGet`', () {
+  test('`scope` is `ScopeGet`, `ScopePush` and `Disposable`', () {
 
     final scope = _MockScope();
 
     expect(scope, isA<ScopeGet>());
+    expect(scope, isA<ScopePush>());
+    expect(scope, isA<Disposable>());
   });
 
   test('`Scope.root` return sync scope if it only has sync configuration', () {
