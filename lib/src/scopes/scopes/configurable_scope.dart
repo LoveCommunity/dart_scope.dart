@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
+import 'package:disposal/disposal.dart';
 import 'package:typedef_foundation/typedef_foundation.dart';
 
 import '../configurables/configurable.dart';
+import '../scope_methods/disposable_sink.dart';
 import '../scope_methods/scope_expose.dart';
 import '../shared/build_scope.dart';
 import 'scope.dart';
 
-abstract class ConfigurableScope implements Scope, ScopeExpose {
+abstract class ConfigurableScope implements Scope, ScopeExpose, DisposableSink {
   @internal
   factory ConfigurableScope() = _ConfigurableScopeImpl;
 }
@@ -23,6 +25,7 @@ class _ConfigurableScopeImpl implements ConfigurableScope {
       .map((key, value) => MapEntry(key, Map.of(value)));
 
   final _Storage _storage;
+  final _disposables = CompositeDisposable();
 
   @override
   T? getOrNull<T>({
@@ -54,6 +57,20 @@ class _ConfigurableScopeImpl implements ConfigurableScope {
   FutureOr<Scope> push(List<Configurable> configure) {
     final scope = _ConfigurableScopeImpl._fromStorage(_storage);
     return buildScope(configure, scope);
+  }
+
+  @override
+  void addDisposable(Disposable disposable) {
+    _disposables.addDisposable(disposable);
+  }
+
+  void addDisposables(List<Disposable> disposables) {
+    _disposables.addDisposables(disposables);
+  }
+
+  @override
+  void dispose() {
+    _disposables.dispose();
   }
 }
 

@@ -158,4 +158,9 @@ class _MockScope implements Scope {
   FutureOr<Scope> push(
     List<Configurable> configure,
   ) => throw UnimplementedError();
+
+  @override
+  void dispose() {
+    throw UnimplementedError();
+  }
 }
