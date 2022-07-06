@@ -46,7 +46,7 @@ void main() {
 
   });
 
-  test('`Final` assign value which has dependency on other scope value', () async {
+  test('`Final` assign value which depends on other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
