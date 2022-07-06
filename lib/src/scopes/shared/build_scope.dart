@@ -8,11 +8,16 @@ import '../scopes/scope.dart';
 
 @internal
 FutureOr<Scope> buildScope(List<Configurable> configure, ConfigurableScope scope) {
+  return configureScope(configure, scope)
+    .then((_) => scope);
+}
+
+@internal
+FutureOr<void> configureScope(List<Configurable> configure, ConfigurableScope scope) {
   return configure
     .fold<FutureOr<void>>(null, (futureOrVoid, configurable) {
       return futureOrVoid.then((_) => configurable.configure(scope));
-    })
-    .then((_) => scope);
+    });
 }
 
 extension <T> on FutureOr<T> {
