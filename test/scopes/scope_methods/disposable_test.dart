@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/mock_configurable.dart';
+import '../shared/mock_configurable.dart';
 
 void main() {
 

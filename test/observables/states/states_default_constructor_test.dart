@@ -2,7 +2,7 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/states_tester.dart';
+import '../shared/states_tester.dart';
 
 void main() {
 

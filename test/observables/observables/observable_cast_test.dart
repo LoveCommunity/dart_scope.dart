@@ -2,7 +2,7 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/observable_tester.dart';
+import '../shared/observable_tester.dart';
 
 void main() {
 
