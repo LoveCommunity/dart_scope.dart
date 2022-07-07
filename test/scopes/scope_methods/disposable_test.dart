@@ -151,4 +151,26 @@ void main() {
     expect(invokes, 1);
 
   });
+
+  test('`scope.addDispose` register dispose logic', () async {
+
+    int invokes = 0;
+
+    final configurable = MockConfigurable((scope) {
+
+      scope.addDispose(() {
+        invokes += 1;
+      });
+
+    });
+
+    final scope = await Scope.root([
+      configurable,
+    ]);
+
+    expect(invokes, 0);
+    scope.dispose();
+    expect(invokes, 1);
+
+  });
 }
