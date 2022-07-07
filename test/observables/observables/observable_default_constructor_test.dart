@@ -2,8 +2,8 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
-import '../../toolbox/async_toolbox.dart';
-import '../../toolbox/observable_tester.dart';
+import '../../shared/async_toolbox.dart';
+import '../shared/observable_tester.dart';
 
 void main() {
 
