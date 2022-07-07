@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:disposal/disposal.dart';
 import 'package:typedef_foundation/typedef_foundation.dart';
 
+import '../scope_methods/disposable_sink.dart';
 import '../scopes/configurable_scope.dart';
 import '../shared/typedefs.dart';
 
@@ -78,9 +78,9 @@ class _Final<T> implements Configurable {
     }
 
     if (_dispose != null) {
-      scope.addDisposable(Disposable(() {
+      scope.addDispose(() {
         _dispose!(getter());
-      }));
+      });
     }
 
   }
