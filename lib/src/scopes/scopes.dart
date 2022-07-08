@@ -1,4 +1,5 @@
 
+export 'configurables/async_final.dart';
 export 'configurables/configurable.dart';
 export 'configurables/final.dart';
 export 'errors/scope_value_not_exposed_error.dart';
