@@ -21,7 +21,7 @@ class AsyncFinal<T> implements Configurable {
     _dispose = dispose;
 
   final Object? _name;
-  final FutureEqual<T> _equal;
+  final Equal<Future<T>> _equal;
   final InstanceExpose<T>? _expose;
   final InstanceDispose<T>? _dispose;
 
