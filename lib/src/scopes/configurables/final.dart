@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:typedef_foundation/typedef_foundation.dart';
 
-import '../scope_methods/disposable_sink.dart';
 import '../scopes/configurable_scope.dart';
+import '../shared/expose_in_scope.dart';
 import '../shared/typedefs.dart';
 
 import 'configurable.dart';
@@ -70,19 +70,14 @@ class _Final<T> implements Configurable {
       late final instance = _equal(scope);
       getter = () => instance;
     }
-
-    if (_expose != null) {
-      _expose!(scope, getter);
-    } else {
-      scope.expose<T>(name: _name, expose: getter);
-    }
-
-    if (_dispose != null) {
-      scope.addDispose(() {
-        _dispose!(getter());
-      });
-    }
-
+    
+    exposeInScope(
+      scope: scope,
+      name: _name,
+      getter: getter,
+      expose: _expose,
+      dispose: _dispose,
+    );
   }
 }
 
