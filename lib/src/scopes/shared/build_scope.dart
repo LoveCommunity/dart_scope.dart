@@ -14,21 +14,33 @@ FutureOr<Scope> buildScope(List<Configurable> configure, ConfigurableScope scope
 
 @internal
 FutureOr<void> configureScope(List<Configurable> configure, ConfigurableScope scope) {
-  return configure
-    .fold<FutureOr<void>>(null, (futureOrVoid, configurable) {
-      return futureOrVoid.then((_) => configurable.configure(scope));
-    });
+  try {
+    final result = configure
+      .fold<FutureOr<void>>(null, (futureOrVoid, configurable) {
+        return futureOrVoid.then((_) => configurable.configure(scope));
+      });
+    if (result is Future<void>) {
+      return result.catchError(
+        (error, stackTrace) {
+          scope.dispose();
+          return Future.error(error, stackTrace);
+        }
+      );
+    }
+  } catch(_) {
+    scope.dispose();
+    rethrow;
+  }
 }
 
 extension <T> on FutureOr<T> {
 
   FutureOr<R> then<R>(
-    FutureOr<R> Function(T) onValue, {
-    FutureOr<R> Function(Object error, StackTrace stackTrace)? onError,
-  }) {
+    FutureOr<R> Function(T) onValue
+  ) {
     final _this = this;
     if (_this is Future<T>) {
-      return _this.then(onValue, onError: onError);
+      return _this.then(onValue);
     } else {
       return onValue(_this);
     }
