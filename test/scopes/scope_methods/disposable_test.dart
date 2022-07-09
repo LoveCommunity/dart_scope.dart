@@ -152,6 +152,66 @@ void main() {
 
   });
 
+  test('`scope` auto dispose if sync configuration throw error', () async {
+
+    int invokes = 0;
+    Object? error;
+
+    final configurable = MockConfigurable((scope) {
+
+      final disposable = Disposable(() {
+        invokes += 1;
+      });
+
+      scope.addDisposable(disposable);
+
+      throw 'error';
+
+    });
+
+    try {
+      await Scope.root([
+        configurable,
+      ]);
+    } catch(e) {
+      error = e;
+    }
+    
+    expect(invokes, 1);
+    expect(error, 'error');
+    
+  });
+
+  test('`scope` auto dispose if async configuration throw error', () async {
+
+    int invokes = 0;
+    Object? error;
+
+    final configurable = MockConfigurable((scope) async {
+
+      final disposable = Disposable(() {
+        invokes += 1;
+      });
+
+      scope.addDisposable(disposable);
+
+      throw 'error';
+
+    });
+
+    try {
+      await Scope.root([
+        configurable,
+      ]);
+    } catch(e) {
+      error = e;
+    }
+    
+    expect(invokes, 1);
+    expect(error, 'error');
+    
+  });
+
   test('`scope.addDispose` register dispose logic', () async {
 
     int invokes = 0;
