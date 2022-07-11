@@ -7,9 +7,9 @@ import '../shared/build_scope.dart';
 import 'configurable.dart';
 
 @internal
-class CombineConfigurable implements Configurable {
+class ConfigurableCombine implements Configurable {
 
-  const CombineConfigurable({
+  const ConfigurableCombine({
     required List<Configurable> children,
   }): _children = children;
 
