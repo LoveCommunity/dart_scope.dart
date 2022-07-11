@@ -6,9 +6,9 @@ import 'observable.dart';
 import '../observers/observer.dart';
 
 @internal
-class CreateObservable<T> implements Observable<T> {
+class ObservableCreate<T> implements Observable<T> {
 
-  const CreateObservable(this._observe);
+  const ObservableCreate(this._observe);
 
   final Observe<T> _observe;
 

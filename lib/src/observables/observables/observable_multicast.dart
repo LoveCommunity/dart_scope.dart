@@ -8,9 +8,9 @@ import '../subjects/subject.dart';
 import '../subjects/publish_subject.dart';
 
 @internal
-class MulticastObservable<T> implements Observable<T> {
+class ObservableMulticast<T> implements Observable<T> {
 
-  MulticastObservable({
+  ObservableMulticast({
     Subject<T> Function()? createSubject,
     required Observable<T> child,
   }): _createSubject = createSubject ?? _defaultCreateSubject,

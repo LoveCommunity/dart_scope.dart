@@ -8,8 +8,8 @@ import '../observers/observer.dart';
 import 'observable.dart';
 
 @internal
-class DistinctObservable<T> implements Observable<T> {
-  const DistinctObservable({
+class ObservableDistinct<T> implements Observable<T> {
+  const ObservableDistinct({
     required Equals<T>? equals,
     required Observable<T> child,
   }): _equals = equals ?? defaultEquals,

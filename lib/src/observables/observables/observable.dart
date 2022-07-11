@@ -5,14 +5,14 @@ import 'package:typedef_equals/typedef_equals.dart';
 import '../observers/observer.dart';
 import '../subjects/subject.dart';
 import '../subjects/replay_subject.dart';
-import 'create_observable.dart';
-import 'cast_observable.dart';
-import 'combine_observable.dart';
-import 'distinct_observable.dart';
-import 'map_observable.dart';
-import 'multicast_observable.dart';
-import 'skip_observable.dart';
-import 'where_observable.dart';
+import 'observable_create.dart';
+import 'observable_cast.dart';
+import 'observable_combine.dart';
+import 'observable_distinct.dart';
+import 'observable_map.dart';
+import 'observable_multicast.dart';
+import 'observable_skip.dart';
+import 'observable_where.dart';
 
 typedef Observe<T> = Disposable Function(OnData<T> onData);
 
@@ -22,12 +22,12 @@ abstract class Observable<T> {
 
   const factory Observable(
     Observe<T> observe
-  ) = CreateObservable;
+  ) = ObservableCreate;
 
   static Observable<R> combine<T, R>({
     required List<Observable<T>> children,
     required R Function(List<T> items) combiner,
-  }) => CombineObservable(
+  }) => ObservableCombine(
     children: children,
     combiner: combiner,
   );
@@ -59,27 +59,27 @@ abstract class Observable<T> {
 extension ObservableX<T> on Observable<T> {
 
   Observable<R> map<R>(R Function(T) convert) {
-    return MapObservable<T, R>(
+    return ObservableMap<T, R>(
       convert: convert,
       child: this,
     );
   }
 
   Observable<T> where(bool Function(T) test) {
-    return WhereObservable<T>(
+    return ObservableWhere<T>(
       test: test,
       child: this,
     );
   }
 
   Observable<R> cast<R>() {
-    return CastObservable<T, R>(
+    return ObservableCast<T, R>(
       child: this,
     );
   }
 
   Observable<T> distinct([Equals<T>? equals]) {
-    return DistinctObservable<T>(
+    return ObservableDistinct<T>(
       equals: equals,
       child: this,
     );
@@ -92,7 +92,7 @@ extension ObservableX<T> on Observable<T> {
     .distinct(equals);
 
   Observable<T> skip(int n) {
-    return SkipObservable(
+    return ObservableSkip(
       n: n,
       child: this,
     );
@@ -101,7 +101,7 @@ extension ObservableX<T> on Observable<T> {
   Observable<T> multicast({
     Subject<T> Function()? createSubject,
   }) {
-    return MulticastObservable<T>(
+    return ObservableMulticast<T>(
       createSubject: createSubject,
       child: this,
     );

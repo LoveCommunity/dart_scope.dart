@@ -2,25 +2,28 @@
 import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
-import '../observers/observer.dart';
 import 'observable.dart';
+import '../observers/observer.dart';
 
 @internal
-class WhereObservable<T> implements Observable<T> {
+class ObservableSkip<T> implements Observable<T> {
 
-  const WhereObservable({
-    required bool Function(T) test,
+  const ObservableSkip({
+    required int n,
     required Observable<T> child,
-  }): _test = test,
+  }): _n = n,
     _child = child;
 
-  final bool Function(T) _test;
+  final int _n;
   final Observable<T> _child;
 
   @override
   Disposable observe(OnData<T> onData) {
+    int shouldSkip = _n;
     final OnData<T> newOnData = (data) {
-      if (_test(data)) {
+      if (shouldSkip > 0) {
+        shouldSkip -= 1;
+      } else {
         onData(data);
       }
     };
