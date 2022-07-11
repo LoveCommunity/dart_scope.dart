@@ -6,9 +6,9 @@ import '../observers/observer.dart';
 import 'observable.dart';
 
 @internal
-class CombineObservable<T, R> implements Observable<R> {
+class ObservableCombine<T, R> implements Observable<R> {
 
-  const CombineObservable({
+  const ObservableCombine({
     required List<Observable<T>> children,
     required R Function(List<T> items) combiner,
   }): _children = children,
@@ -52,7 +52,7 @@ class CombineObservable<T, R> implements Observable<R> {
 }
 
 @internal
-class CombineObservable2<T1, T2, R> extends CombineObservable<Object?, R> {
+class CombineObservable2<T1, T2, R> extends ObservableCombine<Object?, R> {
 
   CombineObservable2({
     required Observable<T1> child1,
@@ -71,7 +71,7 @@ class CombineObservable2<T1, T2, R> extends CombineObservable<Object?, R> {
 }
 
 @internal
-class CombineObservable3<T1, T2, T3, R> extends CombineObservable<Object?, R> {
+class CombineObservable3<T1, T2, T3, R> extends ObservableCombine<Object?, R> {
 
   CombineObservable3({
     required Observable<T1> child1,
