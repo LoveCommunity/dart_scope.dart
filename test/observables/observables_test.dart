@@ -19,7 +19,6 @@ import 'observables/observable_multicast_replay_test.dart' as observable_multica
 import 'observables/observable_multicast_test.dart' as observable_multicast_test;
 import 'observables/observable_skip_test.dart' as observable_skip_test;
 import 'observables/observable_where_test.dart' as observable_where_test;
-import 'observables/proxy_observable_test.dart' as proxy_observable_test;
 import 'observers/observer_default_constructor_test.dart' as observer_default_constructor_test;
 import 'subjects/publish_subject_test.dart' as publish_subject_test;
 import 'subjects/replay_subject_test.dart' as replay_subject_test;
@@ -48,7 +47,6 @@ void main() {
   observable_multicast_test.main();
   observable_skip_test.main();
   observable_where_test.main();
-  proxy_observable_test.main();
   observer_default_constructor_test.main();
   publish_subject_test.main();
   replay_subject_test.main();
