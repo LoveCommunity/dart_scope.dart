@@ -6,17 +6,34 @@ import '../scopes/configurable_scope.dart';
 import '../shared/build_scope.dart';
 import 'configurable.dart';
 
-@internal
-class ConfigurableCombine implements Configurable {
+abstract class ConfigurableCombine implements Configurable {
 
-  const ConfigurableCombine({
+  const ConfigurableCombine();
+
+  @internal
+  const factory ConfigurableCombine.impl({
+    required List<Configurable> children,
+  }) = _ConfigurableCombineImpl;
+
+  List<Configurable> combine();
+
+  @override
+  FutureOr<void> configure(ConfigurableScope scope) {
+    final configure = combine();
+    return configureScope(configure, scope);
+  }
+}
+
+class _ConfigurableCombineImpl extends ConfigurableCombine {
+
+  const _ConfigurableCombineImpl ({
     required List<Configurable> children,
   }): _children = children;
 
   final List<Configurable> _children;
 
   @override
-  FutureOr<void> configure(ConfigurableScope scope) {
-    return configureScope(_children, scope);
+  List<Configurable> combine() {
+    return _children;
   }
 }

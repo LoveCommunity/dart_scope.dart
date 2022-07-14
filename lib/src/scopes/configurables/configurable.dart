@@ -12,6 +12,6 @@ abstract class Configurable {
   const factory Configurable(ScopeConfigure configure) = ConfigurableFunction;
   const factory Configurable.combine({
     required List<Configurable> children,
-  }) = ConfigurableCombine;
+  }) = ConfigurableCombine.impl;
 }
 

@@ -1,6 +1,7 @@
 
 export 'configurables/async_final.dart';
 export 'configurables/configurable.dart';
+export 'configurables/configurable_combine.dart';
 export 'configurables/final.dart';
 export 'errors/scope_value_not_exposed_error.dart';
 export 'scope_methods/disposable_sink.dart';
