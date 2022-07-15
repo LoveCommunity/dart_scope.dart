@@ -6,6 +6,8 @@ import 'configurable.dart';
 
 abstract class ConfigurableCompose implements Configurable {
 
+  const ConfigurableCompose();
+
   Configurable build();
 
   @override
