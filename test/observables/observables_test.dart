@@ -1,4 +1,5 @@
 
+import 'states/states_activated_test.dart' as states_activated_test;
 import 'states/states_cache_test.dart' as states_cache_test;
 import 'states/states_cast_test.dart' as states_cast_test;
 import 'states/states_combine_test.dart' as states_combine_test;
@@ -27,6 +28,7 @@ import 'subjects/value_subject_test.dart' as value_subject_test;
 
 
 void main() {
+  states_activated_test.main();
   states_cache_test.main();
   states_cast_test.main();
   states_combine_test.main();
