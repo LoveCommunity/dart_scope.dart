@@ -5,6 +5,7 @@ import 'package:typedef_equals/typedef_equals.dart';
 import '../observers/observer.dart';
 import '../observables/observable.dart';
 import 'observable_as_states_x.dart';
+import 'states_activated.dart';
 import 'states_first.dart';
 
 class States<T> {
@@ -104,5 +105,11 @@ extension StatesX<T> on States<T> {
 
   T get first {
     return statesFirst(this);
+  }
+
+  StatesActivated<T> activated() {
+    return StatesActivated<T>(
+      child: this
+    );
   }
 }
