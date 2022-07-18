@@ -6,20 +6,32 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`Final` is sync configuration', () {
+  test('`FinalBase` is sync configuration', () {
 
     final scope = Scope.root([
-      Final<String>(equal: (_) => 'a'),
+      FinalBase<String>(
+        name: null,
+        equal: (_) => 'a',
+        expose: null,
+        dispose: null,
+        late: true,
+      ),
     ]); 
 
     expect(scope, isA<Scope>());
 
   });
 
-  test('`Final` share same instance in scope', () async {
+  test('`FinalBase` share same instance in scope', () async {
 
     final scope = await Scope.root([
-      Final<Object>(equal: (_) => Object()),
+      FinalBase<Object>(
+        name: null,
+        equal: (_) => Object(),
+        expose: null,
+        dispose: null,
+        late: true,
+      ),
     ]);
 
     final object1 = scope.get<Object>();
@@ -31,10 +43,16 @@ void main() {
 
   });
 
-  test('`Final` share same instance in scope with name', () async {
+  test('`FinalBase` share same instance in scope with name', () async {
 
     final scope = await Scope.root([
-      Final<Object>(name: 'object', equal: (_) => Object()),
+      FinalBase<Object>(
+        name: 'object', 
+        equal: (_) => Object(),
+        expose: null,
+        dispose: null,
+        late: true,
+      ),
     ]);
 
     final object1 = scope.get<Object>(name: 'object');
@@ -46,14 +64,18 @@ void main() {
 
   });
 
-  test('`Final` assign value which depends on other scope value', () async {
+  test('`FinalBase` assign value which depends on other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
         scope.expose<int>(expose: () => 0);
       }),
-      Final<String>(
+      FinalBase<String>(
+        name: null,
         equal: (scope) => scope.get<int>().toString(),
+        expose: null,
+        dispose: null,
+        late: true,
       ),
     ]);
 
@@ -63,14 +85,17 @@ void main() {
 
   });
 
-  test('`Final` expose value using custom `expose`', () async {
+  test('`FinalBase` expose value using custom `expose`', () async {
 
     final scope = await Scope.root([
-      Final<String>(
+      FinalBase<String>(
+        name: null,
         equal: (_) => 'a',
         expose: (scope, getter) {
           scope.expose<Object>(expose: getter);
         },
+        dispose: null,
+        late: true,
       ),
     ]); 
 
@@ -82,16 +107,19 @@ void main() {
 
   });
 
-  test('`Final` register instance dispose logic using `dispose`', () async {
+  test('`FinalBase` register instance dispose logic using `dispose`', () async {
 
     int invokes = 0;
 
     final scope = await Scope.root([
-      Final<Disposable>(
+      FinalBase<Disposable>(
+        name: null,
         equal: (_) => Disposable(() {
           invokes += 1;
         }),
+        expose: null,
         dispose: (instance) => instance.dispose(),
+        late: true,
       ),
     ]);
 
@@ -101,16 +129,43 @@ void main() {
 
   });
 
-  test('`Final` assign instance immediately', () async {
+  test('`FinalBase` assign instance lazily when late is true', () async {
 
     int invokes = 0;
 
-    await Scope.root([
-      Final<Object>(
+    final scope = await Scope.root([
+      FinalBase<Object>(
+        name: null,
         equal: (_) {
           invokes += 1;
           return Object();
         },
+        expose: null,
+        dispose: null,
+        late: true,
+      ),
+    ]);
+
+    expect(invokes, 0);
+    scope.get<Object>();
+    expect(invokes, 1);
+
+  });
+
+  test('`FinalBase` assign instance immediately when late is false', () async {
+
+    int invokes = 0;
+
+    await Scope.root([
+      FinalBase<Object>(
+        name: null,
+        equal: (_) {
+          invokes += 1;
+          return Object();
+        },
+        expose: null,
+        dispose: null,
+        late: false,
       ),
     ]);
 
@@ -133,6 +188,23 @@ void main() {
 
     expect(invokes, 0);
     scope.get<Object>();
+    expect(invokes, 1);
+
+  });
+
+  test('`Final` assign instance immediately', () async {
+
+    int invokes = 0;
+
+    await Scope.root([
+      Final<Object>(
+        equal: (_) {
+          invokes += 1;
+          return Object();
+        },
+      ),
+    ]);
+
     expect(invokes, 1);
 
   });
