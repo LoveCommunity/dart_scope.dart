@@ -42,10 +42,10 @@ class LateFinal<T> extends FinalBase<T> {
 class FinalBase<T> implements Configurable {
 
   const FinalBase({
-    Object? name,
+    required Object? name,
     required Equal<T> equal,
-    InstanceExpose<T>? expose,
-    InstanceDispose<T>? dispose,
+    required InstanceExpose<T>? expose,
+    required InstanceDispose<T>? dispose,
     required bool late,
   }): _name = name,
     _equal = equal,
