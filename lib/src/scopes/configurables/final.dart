@@ -7,7 +7,7 @@ import '../shared/typedefs.dart';
 
 import 'configurable.dart';
 
-class Final<T> extends _Final<T> {
+class Final<T> extends FinalBase<T> {
 
   const Final({
     Object? name,
@@ -23,7 +23,7 @@ class Final<T> extends _Final<T> {
   );
 }
 
-class LateFinal<T> extends _Final<T> {
+class LateFinal<T> extends FinalBase<T> {
 
   const LateFinal({
     Object? name,
@@ -39,13 +39,13 @@ class LateFinal<T> extends _Final<T> {
   );
 }
 
-class _Final<T> implements Configurable {
+class FinalBase<T> implements Configurable {
 
-  const _Final({
-    Object? name,
+  const FinalBase({
+    required Object? name,
     required Equal<T> equal,
-    InstanceExpose<T>? expose,
-    InstanceDispose<T>? dispose,
+    required InstanceExpose<T>? expose,
+    required InstanceDispose<T>? dispose,
     required bool late,
   }): _name = name,
     _equal = equal,
