@@ -11,7 +11,7 @@ class FinalStates<T> extends FinalStatesBase<T> {
   FinalStates({
     Object? name,
     required Equal<States<T>> equal,
-    InstanceExpose<States<T>>? expose,
+    ValueExpose<States<T>>? expose,
   }): super(
     name: name,
     equal: equal,
@@ -25,7 +25,7 @@ class LateFinalStates<T> extends FinalStatesBase<T> {
   LateFinalStates({
     Object? name,
     required Equal<States<T>> equal,
-    InstanceExpose<States<T>>? expose,
+    ValueExpose<States<T>>? expose,
   }): super(
     name: name,
     equal: equal,
@@ -39,7 +39,7 @@ class FinalStatesBase<T> extends FinalBase<StatesActivated<T>> {
   FinalStatesBase({
     required Object? name,
     required Equal<States<T>> equal,
-    required InstanceExpose<States<T>>? expose,
+    required ValueExpose<States<T>>? expose,
     required bool late,
   }): super(
     name: name,
@@ -55,9 +55,9 @@ Equal<StatesActivated<T>> _superEqual<T>(Equal<States<T>> equal) {
     .activated();
 }
 
-InstanceExpose<StatesActivated<T>> _superExpose<T>(
+ValueExpose<StatesActivated<T>> _superExpose<T>(
   Object? name, 
-  InstanceExpose<States<T>>? expose
+  ValueExpose<States<T>>? expose
 ) {
   final statesExpose = expose ?? defaultExpose(name);
   return (scope, getActivated) {

@@ -12,7 +12,7 @@ class Final<T> extends FinalBase<T> {
   const Final({
     Object? name,
     required Equal<T> equal,
-    InstanceExpose<T>? expose,
+    ValueExpose<T>? expose,
     ValueDispose<T>? dispose,
   }): super(
     name: name,
@@ -28,7 +28,7 @@ class LateFinal<T> extends FinalBase<T> {
   const LateFinal({
     Object? name,
     required Equal<T> equal,
-    InstanceExpose<T>? expose,
+    ValueExpose<T>? expose,
     ValueDispose<T>? dispose,
   }): super(
     name: name,
@@ -44,7 +44,7 @@ class FinalBase<T> implements Configurable {
   const FinalBase({
     required Object? name,
     required Equal<T> equal,
-    required InstanceExpose<T>? expose,
+    required ValueExpose<T>? expose,
     required ValueDispose<T>? dispose,
     required bool late,
   }): _name = name,
@@ -55,7 +55,7 @@ class FinalBase<T> implements Configurable {
 
   final Object? _name;
   final Equal<T> _equal;
-  final InstanceExpose<T>? _expose;
+  final ValueExpose<T>? _expose;
   final ValueDispose<T>? _dispose;
   final bool _late;
 

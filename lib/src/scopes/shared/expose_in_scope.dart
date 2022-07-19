@@ -11,7 +11,7 @@ void exposeInScope<T>({
   required ConfigurableScope scope,
   required Object? name,
   required Getter<T> getter,
-  required InstanceExpose<T>? expose,
+  required ValueExpose<T>? expose,
   required ValueDispose<T>? dispose,
 }) {
 
@@ -26,7 +26,7 @@ void exposeInScope<T>({
 }
 
 @internal 
-InstanceExpose<T> defaultExpose<T>(Object? name) {
+ValueExpose<T> defaultExpose<T>(Object? name) {
   return (scope, getter) {
     scope.expose<T>(name: name, expose: getter);
   };
