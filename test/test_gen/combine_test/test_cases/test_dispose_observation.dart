@@ -11,9 +11,9 @@ String testObservableCombineDisposeObservation(int? number) {
         ...observables(count, _observable),
         observableCombine(number),
         _startObserve(),
-        expectInvokesList([]),
+        expectInvokesList<String>([]),
         _stopObserve(),
-        expectInvokesList(_expects(count)),
+        expectInvokesList<String>(_expects(count)),
       ].join('\n')}
     });
   ''';
@@ -63,9 +63,9 @@ String testStatesCombineDisposeObservation(int? number) {
         ...states_iterable(count, _states),
         statesCombine(number),
         _startObserve(),
-        expectInvokesList([]),
+        expectInvokesList<String>([]),
         _stopObserve(),
-        expectInvokesList(_expects(count)),
+        expectInvokesList<String>(_expects(count)),
       ].join('\n')}
     });
   ''';

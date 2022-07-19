@@ -21,17 +21,17 @@ String testerStopObserve() {
   ''';
 }
 
-String expectTesterRecorded(List<String> expects) {
-  return expectList('tester.recorded', expects);
+String expectTesterRecorded<T>(List<String> expects) {
+  return expectList<T>('tester.recorded', expects);
 }
 
-String expectInvokesList(List<String> expects) {
-  return expectList('invokes', expects);
+String expectInvokesList<T>(List<String> expects) {
+  return expectList<T>('invokes', expects);
 }
 
-String expectList(String name, List<String> expects) {
+String expectList<T>(String name, List<String> expects) {
   return '''
-    expect($name, [
+    expect($name, <$T>[
       ${expects.join(',\n')}
     ]);
   '''; 

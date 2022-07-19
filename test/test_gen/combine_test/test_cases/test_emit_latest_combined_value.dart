@@ -11,9 +11,9 @@ String testObservableCombineEmitLatestCombinedValue(int? number) {
         observableCombine(number),
         observableTester(),
         testerStartObserve(),
-        expectTesterRecorded(_expects1(count)),
+        expectTesterRecorded<String>(_expects1(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded(_expects2(count)),
+        expectTesterRecorded<String>(_expects2(count)),
         testerStopObserve(),
       ].join('\n')}
     });
@@ -48,9 +48,9 @@ String testStatesCombineEmitLatestCombinedValue(int? number) {
         statesCombine(number),
         statesTester(),
         testerStartObserve(),
-        expectTesterRecorded(_expects1(count)),
+        expectTesterRecorded<String>(_expects1(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded(_expects2(count)),
+        expectTesterRecorded<String>(_expects2(count)),
         testerStopObserve(),
       ].join('\n')}
     });
