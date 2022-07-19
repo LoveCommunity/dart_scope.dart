@@ -66,6 +66,6 @@ InstanceExpose<StatesActivated<T>> _superExpose<T>(
   };
 }
 
-InstanceDispose<StatesActivated<T>> _superDispose<T>() {
+ValueDispose<StatesActivated<T>> _superDispose<T>() {
   return (activated) => activated.dispose();
 }

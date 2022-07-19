@@ -12,7 +12,7 @@ void exposeInScope<T>({
   required Object? name,
   required Getter<T> getter,
   required InstanceExpose<T>? expose,
-  required InstanceDispose<T>? dispose,
+  required ValueDispose<T>? dispose,
 }) {
 
   final instanceExpose = expose ?? defaultExpose(name);
