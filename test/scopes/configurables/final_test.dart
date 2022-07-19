@@ -22,7 +22,7 @@ void main() {
 
   });
 
-  test('`FinalBase` share same instance in scope', () async {
+  test('`FinalBase` share same value in scope', () async {
 
     final scope = await Scope.root([
       FinalBase<Object>(
@@ -43,7 +43,7 @@ void main() {
 
   });
 
-  test('`FinalBase` share same instance in scope with name', () async {
+  test('`FinalBase` share same value in scope with name', () async {
 
     final scope = await Scope.root([
       FinalBase<Object>(
@@ -107,7 +107,7 @@ void main() {
 
   });
 
-  test('`FinalBase` register instance dispose logic using `dispose`', () async {
+  test('`FinalBase` register value dispose logic using `dispose`', () async {
 
     int invokes = 0;
 
@@ -118,7 +118,7 @@ void main() {
           invokes += 1;
         }),
         expose: null,
-        dispose: (instance) => instance.dispose(),
+        dispose: (value) => value.dispose(),
         late: true,
       ),
     ]);
@@ -129,7 +129,7 @@ void main() {
 
   });
 
-  test('`FinalBase` assign instance lazily when late is true', () async {
+  test('`FinalBase` assign value lazily when late is true', () async {
 
     int invokes = 0;
 
@@ -152,7 +152,7 @@ void main() {
 
   });
 
-  test('`FinalBase` assign instance immediately when late is false', () async {
+  test('`FinalBase` assign value immediately when late is false', () async {
 
     int invokes = 0;
 
@@ -173,7 +173,7 @@ void main() {
 
   });
 
-  test('`LateFinal` assign instance lazily', () async {
+  test('`LateFinal` assign value lazily', () async {
 
     int invokes = 0;
 
@@ -192,7 +192,7 @@ void main() {
 
   });
 
-  test('`Final` assign instance immediately', () async {
+  test('`Final` assign value immediately', () async {
 
     int invokes = 0;
 

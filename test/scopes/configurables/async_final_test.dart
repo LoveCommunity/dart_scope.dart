@@ -16,7 +16,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` share same instance in scope', () async {
+  test('`AsyncFinal` share same value in scope', () async {
 
     final scope = await Scope.root([
       AsyncFinal<Object>(equal: (_) async => Object()),
@@ -31,7 +31,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` share same instance in scope with name', () async {
+  test('`AsyncFinal` share same value in scope with name', () async {
 
     final scope = await Scope.root([
       AsyncFinal<Object>(name: 'object', equal: (_) async => Object()),
@@ -82,7 +82,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` register instance dispose logic using `dispose`', () async {
+  test('`AsyncFinal` register value dispose logic using `dispose`', () async {
 
     int invokes = 0;
 
@@ -91,7 +91,7 @@ void main() {
         equal: (_) async => Disposable(() {
           invokes += 1;
         }),
-        dispose: (instance) => instance.dispose(),
+        dispose: (value) => value.dispose(),
       ),
     ]);
 
@@ -101,7 +101,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` assign instance immediately', () async {
+  test('`AsyncFinal` assign value immediately', () async {
 
     int invokes = 0;
 
