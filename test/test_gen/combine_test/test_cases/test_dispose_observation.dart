@@ -27,7 +27,7 @@ String _invokes() {
 
 String _observable(bool isLast, int n) {
   return '''
-    final observable${n} = Observable<String>((onData) {
+    final observable$n = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose$n');
       });
@@ -73,7 +73,7 @@ String testStatesCombineDisposeObservation(int? number) {
 
 String _states(bool isLast, int n) {
   return '''
-    final states${n} = States<String>((setState) {
+    final states$n = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose$n');
       });

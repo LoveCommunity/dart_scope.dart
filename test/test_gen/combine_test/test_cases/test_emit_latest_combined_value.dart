@@ -33,7 +33,7 @@ List<String> _expects2(int count) {
     joinAllA(count), // '1a|2a'
     join(                                     // '1a|2b'
       count,
-      (n) => '${n}${!isLast(n) ? 'a' : 'b'}',
+      (n) => '$n${!isLast(n) ? 'a' : 'b'}',
       '|'
     ).boxed()
   ];
