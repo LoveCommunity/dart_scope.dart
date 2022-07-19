@@ -44,7 +44,7 @@ String testStatesCombineEmitLatestCombinedValue(int? number) {
   return '''
     test('${statesCombineTestHeader(number)} emit latest combined value when a child emit', () async {
       ${[
-        ...states_iterable(count, sampleStates),
+        ...statesIterable(count, sampleStates),
         statesCombine(number),
         statesTester(),
         testerStartObserve(),

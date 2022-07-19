@@ -60,7 +60,7 @@ String testStatesCombineDisposeObservation(int? number) {
     test('${statesCombineTestHeader(number)} dispose observation will dispose all children observations', () {
       ${[
         _invokes(),
-        ...states_iterable(count, _states),
+        ...statesIterable(count, _states),
         statesCombine(number),
         _startObserve(),
         expectInvokesList<String>([]),

@@ -31,7 +31,7 @@ String testStatesCombineNotEmitAfterObservationDispose(int? number) {
   return '''
     test('${statesCombineTestHeader(number)} will not emit data after observation disposed', () async {
       ${[
-        ...states_iterable(count, sampleStates),
+        ...statesIterable(count, sampleStates),
         statesCombine(number),
         statesTester(),
         testerStartObserve(),

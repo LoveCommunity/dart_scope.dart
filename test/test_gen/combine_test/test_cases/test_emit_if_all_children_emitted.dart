@@ -42,7 +42,7 @@ String testStatesCombineInitialEmit(int? number) {
   return '''
     test('${statesCombineTestHeader(number)} initial emit', () {
       ${[
-        ...states_iterable(count, _states),
+        ...statesIterable(count, _states),
         statesCombine(number),
         statesTester(),
         expectTesterRecorded<String>([]),

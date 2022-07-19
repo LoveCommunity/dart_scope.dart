@@ -157,6 +157,7 @@ void main() {
     int invokes = 0;
     Object? error;
 
+    // ignore: void_checks
     final configurable = MockConfigurable((scope) {
 
       final disposable = Disposable(() {

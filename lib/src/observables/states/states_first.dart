@@ -9,9 +9,7 @@ import 'states.dart';
 T statesFirst<T>(States<T> states) {
   Value<T>? first;
   states.observe((state) {
-    if (first == null) {
-      first = Value(state);
-    }
+    first ??= Value(state);
   })
   .dispose();
   if (first == null) {

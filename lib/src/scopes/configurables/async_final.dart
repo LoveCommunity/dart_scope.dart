@@ -1,6 +1,5 @@
 
 import 'dart:async';
-import 'package:typedef_foundation/typedef_foundation.dart';
 
 import '../scopes/configurable_scope.dart';
 import '../shared/typedefs.dart';
