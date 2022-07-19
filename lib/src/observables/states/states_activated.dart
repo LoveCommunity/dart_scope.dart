@@ -10,7 +10,7 @@ abstract class HasStates<T> {
   States<T> get states;
 }
 
-abstract class StatesActivated<T> implements HasStates, Disposable {
+abstract class StatesActivated<T> implements HasStates<T>, Disposable {
   @internal
   factory StatesActivated({
     required States<T> child
