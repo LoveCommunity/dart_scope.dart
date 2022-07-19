@@ -14,15 +14,20 @@ void exposeInScope<T>({
   required InstanceExpose<T>? expose,
   required InstanceDispose<T>? dispose,
 }) {
-  if (expose != null) {
-    expose(scope, getter);
-  } else {
-    scope.expose<T>(name: name, expose: getter);
-  }
+
+  final instanceExpose = expose ?? defaultExpose(name);
+  instanceExpose(scope, getter);
 
   if (dispose != null) {
     scope.addDispose(() {
       dispose(getter());
     });
   }
+}
+
+@internal 
+InstanceExpose<T> defaultExpose<T>(Object? name) {
+  return (scope, getter) {
+    scope.expose<T>(name: name, expose: getter);
+  };
 }
