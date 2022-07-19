@@ -19,11 +19,11 @@ class ObservableWhere<T> implements Observable<T> {
 
   @override
   Disposable observe(OnData<T> onData) {
-    final OnData<T> newOnData = (data) {
+    void newOnData(T data) {
       if (_test(data)) {
         onData(data);
       }
-    };
+    }
     return _child.observe(newOnData);
   }
 }

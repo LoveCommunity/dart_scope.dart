@@ -20,13 +20,13 @@ class ObservableSkip<T> implements Observable<T> {
   @override
   Disposable observe(OnData<T> onData) {
     int shouldSkip = _n;
-    final OnData<T> newOnData = (data) {
+    void newOnData(T data) {
       if (shouldSkip > 0) {
         shouldSkip -= 1;
       } else {
         onData(data);
       }
-    };
+    }
     return _child.observe(newOnData);
   }
 }
