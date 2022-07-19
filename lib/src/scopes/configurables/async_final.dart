@@ -28,13 +28,13 @@ class AsyncFinal<T> implements Configurable {
   @override
   FutureOr<void> configure(ConfigurableScope scope) async {
 
-    final instance = await _equal(scope);
-    final Getter<T> getter = () => instance;
+    final value = await _equal(scope);
+    final Getter<T> getValue = () => value;
 
     exposeInScope(
       scope: scope,
       name: _name,
-      getter: getter,
+      getValue: getValue,
       expose: _expose,
       dispose: _dispose,
     );

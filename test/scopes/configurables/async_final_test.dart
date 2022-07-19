@@ -68,8 +68,8 @@ void main() {
     final scope = await Scope.root([
       AsyncFinal<String>(
         equal: (_) async => 'a',
-        expose: (scope, getter) {
-          scope.expose<Object>(expose: getter);
+        expose: (scope, getValue) {
+          scope.expose<Object>(expose: getValue);
         },
       ),
     ]); 

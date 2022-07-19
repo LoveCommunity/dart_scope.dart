@@ -31,8 +31,8 @@ class _ConfigurableScopeImpl implements ConfigurableScope {
   T? getOrNull<T>({
     Object? name,
   }) {
-    final getter = _storage[T]?[name] as Getter<T>?;
-    return getter?.call();
+    final getValue = _storage[T]?[name] as Getter<T>?;
+    return getValue?.call();
   }
 
   @override

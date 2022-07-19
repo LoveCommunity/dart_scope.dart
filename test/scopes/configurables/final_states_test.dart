@@ -91,8 +91,8 @@ void main() {
       FinalStatesBase<String>(
         name: null,
         equal: (_) => _statesJust('a'),
-        expose: (scope, getter) {
-          scope.expose<Object>(expose: getter);
+        expose: (scope, getStates) {
+          scope.expose<Object>(expose: getStates);
         },
         late: false,
       ),

@@ -91,8 +91,8 @@ void main() {
       FinalBase<String>(
         name: null,
         equal: (_) => 'a',
-        expose: (scope, getter) {
-          scope.expose<Object>(expose: getter);
+        expose: (scope, getValue) {
+          scope.expose<Object>(expose: getValue);
         },
         dispose: null,
         late: true,
