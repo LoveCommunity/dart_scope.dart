@@ -18,7 +18,7 @@ void main() {
       observable,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       'a',
@@ -39,9 +39,9 @@ void main() {
       observable,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
 
     await delayed(30);
     expect(tester.recorded, [

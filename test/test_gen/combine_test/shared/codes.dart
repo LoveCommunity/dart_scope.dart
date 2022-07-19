@@ -19,7 +19,7 @@ Iterable<String> observables(
   );
 }
 
-Iterable<String> states_iterable(
+Iterable<String> statesIterable(
   int count,
   String Function(bool isLast, int n) states
 ) {

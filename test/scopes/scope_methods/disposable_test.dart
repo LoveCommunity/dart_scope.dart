@@ -7,7 +7,7 @@ void main() {
 
   test('`scope.addDisposables` before dispose', () async {
 
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final configurable = MockConfigurable((scope) {
 
@@ -29,7 +29,7 @@ void main() {
       configurable,
     ]);
 
-    expect(invokes, []);
+    expect(invokes, <String>[]);
     scope.dispose();
     expect(invokes, [
       'dispose2',
@@ -64,7 +64,7 @@ void main() {
 
   test('`scope.addDisposables` after dispose', () async {
 
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final configurable = MockConfigurable((scope) {
 
@@ -76,7 +76,7 @@ void main() {
       });
 
       Future(() {
-        expect(invokes, []);
+        expect(invokes, <String>[]);
         scope.addDisposables([
           disposable1,
           disposable2,
@@ -157,6 +157,7 @@ void main() {
     int invokes = 0;
     Object? error;
 
+    // ignore: void_checks
     final configurable = MockConfigurable((scope) {
 
       final disposable = Disposable(() {

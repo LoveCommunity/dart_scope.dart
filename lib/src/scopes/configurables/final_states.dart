@@ -61,7 +61,7 @@ ValueExpose<StatesActivated<T>> _superExpose<T>(
 ) {
   final statesExpose = expose ?? defaultExpose(name);
   return (scope, getActivated) {
-    final getStates = () => getActivated().states;
+    States<T> getStates() => getActivated().states;
     statesExpose(scope, getStates);
   };
 }

@@ -28,7 +28,7 @@ class ObservableCombineTestGenerator extends GeneratorForAnnotation<ObservableCo
 class StatesCombineTestGenerator extends GeneratorForAnnotation<StatesCombineTest> {
 
   @override
-  String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep) {
+  String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     return testAll(
       tests: [
         testStatesCombineInitialEmit,

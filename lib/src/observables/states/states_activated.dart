@@ -31,7 +31,7 @@ class _StatesActivated<T> implements StatesActivated<T> {
   @override
   late final states = _subject.asStates();
 
-  late final _observation;
+  late final Disposable _observation;
 
   void _startObserve() {
     _observation = _child.observe(_subject.onData);

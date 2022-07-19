@@ -22,7 +22,7 @@ void main() {
       map,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <int>[]);
     tester.startObserve();
     expect(tester.recorded, [
       1,

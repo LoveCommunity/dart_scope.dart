@@ -24,7 +24,7 @@ void main() {
       subject,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       'a',
@@ -118,7 +118,7 @@ void main() {
 
     subject.onData('b');
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       'b',

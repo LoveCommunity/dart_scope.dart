@@ -70,8 +70,8 @@ void main() {
     tester1.startObserve();
     tester2.startObserve();
 
-    expect(tester1.recorded, []);
-    expect(tester2.recorded, []);
+    expect(tester1.recorded, <String>[]);
+    expect(tester2.recorded, <String>[]);
     await Future(() {});
     expect(tester1.recorded, [
       'a',
@@ -198,7 +198,7 @@ void main() {
 
     final observation = multicast.observe((_) {});
 
-    expect(subject.recorded, []);
+    expect(subject.recorded, <String>[]);
     await Future(() {});
     expect(subject.recorded, [
       'a',

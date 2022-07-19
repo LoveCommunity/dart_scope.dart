@@ -20,14 +20,14 @@ class ObservableDistinct<T> implements Observable<T> {
 
   @override
   Disposable observe(OnData<T> onData) {
-    Value<T>? oldData = null;
-    final OnData<T> newOnData = (data) {
+    Value<T>? oldData;
+    void newOnData(T data) {
       final dataChanged = oldData == null || !_equals(oldData!.value, data);
       if (dataChanged) {
         onData(data);
         oldData = Value(data);
       }
-    };
+    }
     return _child.observe(newOnData);
   }
 }

@@ -30,11 +30,11 @@ void _main() {
       combine,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
 
     tester.startObserve();
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
 
     tester.stopObserve();
   });
@@ -60,11 +60,11 @@ void _main() {
       combine,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
 
     tester.startObserve();
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
 
     tester.stopObserve();
   });
@@ -96,11 +96,11 @@ void _main() {
       combine,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
 
     tester.startObserve();
 
-    expect(tester.recorded, ['1a|2a|3a']);
+    expect(tester.recorded, <String>['1a|2a|3a']);
 
     tester.stopObserve();
   });
@@ -132,11 +132,11 @@ void _main() {
 
     tester.startObserve();
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
 
     await Future(() {});
 
-    expect(tester.recorded, ['1a|2a', '1a|2b']);
+    expect(tester.recorded, <String>['1a|2a', '1a|2b']);
 
     tester.stopObserve();
   });
@@ -166,11 +166,11 @@ void _main() {
 
     tester.startObserve();
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
 
     await Future(() {});
 
-    expect(tester.recorded, ['1a|2a', '1a|2b']);
+    expect(tester.recorded, <String>['1a|2a', '1a|2b']);
 
     tester.stopObserve();
   });
@@ -206,11 +206,11 @@ void _main() {
 
     tester.startObserve();
 
-    expect(tester.recorded, ['1a|2a|3a']);
+    expect(tester.recorded, <String>['1a|2a|3a']);
 
     await Future(() {});
 
-    expect(tester.recorded, ['1a|2a|3a', '1a|2a|3b']);
+    expect(tester.recorded, <String>['1a|2a|3a', '1a|2a|3b']);
 
     tester.stopObserve();
   });
@@ -218,7 +218,7 @@ void _main() {
   test(
       '`States.combine` dispose observation will dispose all children observations',
       () {
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final states1 = States<String>((setState) {
       return Disposable(() {
@@ -242,17 +242,17 @@ void _main() {
 
     final observation = combine.observe((_) {});
 
-    expect(invokes, []);
+    expect(invokes, <String>[]);
 
     observation.dispose();
 
-    expect(invokes, ['dispose2', 'dispose1']);
+    expect(invokes, <String>['dispose2', 'dispose1']);
   });
 
   test(
       '`States.combine2` dispose observation will dispose all children observations',
       () {
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final states1 = States<String>((setState) {
       return Disposable(() {
@@ -274,17 +274,17 @@ void _main() {
 
     final observation = combine.observe((_) {});
 
-    expect(invokes, []);
+    expect(invokes, <String>[]);
 
     observation.dispose();
 
-    expect(invokes, ['dispose2', 'dispose1']);
+    expect(invokes, <String>['dispose2', 'dispose1']);
   });
 
   test(
       '`States.combine3` dispose observation will dispose all children observations',
       () {
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final states1 = States<String>((setState) {
       return Disposable(() {
@@ -313,11 +313,11 @@ void _main() {
 
     final observation = combine.observe((_) {});
 
-    expect(invokes, []);
+    expect(invokes, <String>[]);
 
     observation.dispose();
 
-    expect(invokes, ['dispose3', 'dispose2', 'dispose1']);
+    expect(invokes, <String>['dispose3', 'dispose2', 'dispose1']);
   });
 
   test('`States.combine` will not emit data after observation disposed',
@@ -349,11 +349,11 @@ void _main() {
 
     tester.stopObserve();
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
 
     await Future(() {});
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
   });
 
   test('`States.combine2` will not emit data after observation disposed',
@@ -383,11 +383,11 @@ void _main() {
 
     tester.stopObserve();
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
 
     await Future(() {});
 
-    expect(tester.recorded, ['1a|2a']);
+    expect(tester.recorded, <String>['1a|2a']);
   });
 
   test('`States.combine3` will not emit data after observation disposed',
@@ -423,10 +423,10 @@ void _main() {
 
     tester.stopObserve();
 
-    expect(tester.recorded, ['1a|2a|3a']);
+    expect(tester.recorded, <String>['1a|2a|3a']);
 
     await Future(() {});
 
-    expect(tester.recorded, ['1a|2a|3a']);
+    expect(tester.recorded, <String>['1a|2a|3a']);
   });
 }

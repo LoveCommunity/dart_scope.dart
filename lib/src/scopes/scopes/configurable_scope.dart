@@ -64,6 +64,7 @@ class _ConfigurableScopeImpl implements ConfigurableScope {
     _disposables.addDisposable(disposable);
   }
 
+  @override
   void addDisposables(List<Disposable> disposables) {
     _disposables.addDisposables(disposables);
   }

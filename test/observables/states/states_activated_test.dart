@@ -102,7 +102,7 @@ void main() {
       activated.states,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       'c',

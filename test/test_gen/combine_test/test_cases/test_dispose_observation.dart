@@ -11,9 +11,9 @@ String testObservableCombineDisposeObservation(int? number) {
         ...observables(count, _observable),
         observableCombine(number),
         _startObserve(),
-        expectInvokesList([]),
+        expectInvokesList<String>([]),
         _stopObserve(),
-        expectInvokesList(_expects(count)),
+        expectInvokesList<String>(_expects(count)),
       ].join('\n')}
     });
   ''';
@@ -21,13 +21,13 @@ String testObservableCombineDisposeObservation(int? number) {
 
 String _invokes() {
   return '''
-    final List<String> invokes = [];
+    final invokes = <String>[];
   ''';
 }
 
 String _observable(bool isLast, int n) {
   return '''
-    final observable${n} = Observable<String>((onData) {
+    final observable$n = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose$n');
       });
@@ -60,12 +60,12 @@ String testStatesCombineDisposeObservation(int? number) {
     test('${statesCombineTestHeader(number)} dispose observation will dispose all children observations', () {
       ${[
         _invokes(),
-        ...states_iterable(count, _states),
+        ...statesIterable(count, _states),
         statesCombine(number),
         _startObserve(),
-        expectInvokesList([]),
+        expectInvokesList<String>([]),
         _stopObserve(),
-        expectInvokesList(_expects(count)),
+        expectInvokesList<String>(_expects(count)),
       ].join('\n')}
     });
   ''';
@@ -73,7 +73,7 @@ String testStatesCombineDisposeObservation(int? number) {
 
 String _states(bool isLast, int n) {
   return '''
-    final states${n} = States<String>((setState) {
+    final states$n = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose$n');
       });

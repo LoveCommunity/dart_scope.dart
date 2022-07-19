@@ -113,7 +113,7 @@ void main() {
 
     final observation  = cache.observe((_) {});
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       'c',

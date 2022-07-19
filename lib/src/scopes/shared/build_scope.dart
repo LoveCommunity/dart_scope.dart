@@ -21,9 +21,9 @@ FutureOr<void> configureScope(List<Configurable> configure, ConfigurableScope sc
       });
     if (result is Future<void>) {
       return result.catchError(
-        (error, stackTrace) {
+        (Object error, StackTrace? stackTrace) {
           scope.dispose();
-          return Future.error(error, stackTrace);
+          return Future<void>.error(error, stackTrace);
         }
       );
     }

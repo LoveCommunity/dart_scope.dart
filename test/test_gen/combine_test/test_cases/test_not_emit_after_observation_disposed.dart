@@ -12,9 +12,9 @@ String testObservableCombineNotEmitAfterObservationDispose(int? number) {
         observableTester(),
         testerStartObserve(),
         testerStopObserve(),
-        expectTesterRecorded(_expects(count)),
+        expectTesterRecorded<String>(_expects(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded(_expects(count)),
+        expectTesterRecorded<String>(_expects(count)),
       ].join('\n')}
     });
   ''';
@@ -31,14 +31,14 @@ String testStatesCombineNotEmitAfterObservationDispose(int? number) {
   return '''
     test('${statesCombineTestHeader(number)} will not emit data after observation disposed', () async {
       ${[
-        ...states_iterable(count, sampleStates),
+        ...statesIterable(count, sampleStates),
         statesCombine(number),
         statesTester(),
         testerStartObserve(),
         testerStopObserve(),
-        expectTesterRecorded(_expects(count)),
+        expectTesterRecorded<String>(_expects(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded(_expects(count)),
+        expectTesterRecorded<String>(_expects(count)),
       ].join('\n')}
     });
   ''';

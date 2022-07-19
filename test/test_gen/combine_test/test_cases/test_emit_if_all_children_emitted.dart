@@ -11,9 +11,9 @@ String testObservableCombineEmitIfAllChildrenEmitted(int? number) {
         observableCombine(number),
         observableTester(),
         testerStartObserve(),
-        expectTesterRecorded([]),
+        expectTesterRecorded<String>([]),
         awaitEmptyFuture(),
-        expectTesterRecorded(_expects(count)),
+        expectTesterRecorded<String>(_expects(count)),
         testerStopObserve(),
       ].join('\n')}
     });
@@ -42,12 +42,12 @@ String testStatesCombineInitialEmit(int? number) {
   return '''
     test('${statesCombineTestHeader(number)} initial emit', () {
       ${[
-        ...states_iterable(count, _states),
+        ...statesIterable(count, _states),
         statesCombine(number),
         statesTester(),
-        expectTesterRecorded([]),
+        expectTesterRecorded<String>([]),
         testerStartObserve(),
-        expectTesterRecorded(_expects(count)),
+        expectTesterRecorded<String>(_expects(count)),
         testerStopObserve(),
       ].join('\n')}
     });
