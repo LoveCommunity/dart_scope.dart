@@ -7,7 +7,7 @@ void main() {
 
   test('`Configurable.combine` invokes', () async {
 
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final configurable1 = MockConfigurable((scope) {
       invokes.add('configure1');
@@ -24,7 +24,7 @@ void main() {
       ],
     );
 
-    expect(invokes, []);
+    expect(invokes, <String>[]);
     await Scope.root([
       combine,
     ]);

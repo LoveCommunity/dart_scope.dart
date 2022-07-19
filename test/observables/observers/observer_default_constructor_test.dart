@@ -8,13 +8,13 @@ void main() {
 
   test('`Observer.defaultConstructor` function invokes', () {
     
-    final List<String> invokes = [];
+    final invokes = <String>[];
 
     final observer = Observer<String>((data) {
       invokes.add(data);
     });
 
-    expect(invokes, []);
+    expect(invokes, <String>[]);
     observer.onData('a');
     expect(invokes, [
       'a',

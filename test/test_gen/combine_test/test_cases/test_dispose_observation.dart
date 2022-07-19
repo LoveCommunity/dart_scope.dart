@@ -21,7 +21,7 @@ String testObservableCombineDisposeObservation(int? number) {
 
 String _invokes() {
   return '''
-    final List<String> invokes = [];
+    final invokes = <String>[];
   ''';
 }
 

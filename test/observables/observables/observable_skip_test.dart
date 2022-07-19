@@ -23,7 +23,7 @@ void main()  {
       skip,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       'd',

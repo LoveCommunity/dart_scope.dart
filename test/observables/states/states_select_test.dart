@@ -23,7 +23,7 @@ void main() {
       select,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       '1a',
@@ -54,7 +54,7 @@ void main() {
       select,
     );
 
-    expect(tester.recorded, []);
+    expect(tester.recorded, <String>[]);
     tester.startObserve();
     expect(tester.recorded, [
       '1a',
