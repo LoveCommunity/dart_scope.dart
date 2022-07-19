@@ -21,7 +21,7 @@ void main() {
     expect(scope, isA<Scope>());
   });
   
-  test('`FinalStatesBase` share same instance in scope', () async {
+  test('`FinalStatesBase` share same states in scope', () async {
 
     final scope = await Scope.root([
       FinalStatesBase<String>(
@@ -41,7 +41,7 @@ void main() {
 
   });
 
-  test('`FinalStatesBase` share same instance in scope with name', () async {
+  test('`FinalStatesBase` share same states in scope with name', () async {
 
     final scope = await Scope.root([
       FinalStatesBase<String>(
@@ -91,8 +91,8 @@ void main() {
       FinalStatesBase<String>(
         name: null,
         equal: (_) => _statesJust('a'),
-        expose: (scope, getter) {
-          scope.expose<Object>(expose: getter);
+        expose: (scope, getStates) {
+          scope.expose<Object>(expose: getStates);
         },
         late: false,
       ),
@@ -145,7 +145,7 @@ void main() {
 
   });
 
-  test('`FinalStatesBase` assign instance immediately when late is false', () async {
+  test('`FinalStatesBase` assign states immediately when late is false', () async {
 
     int invokes = 0;
 
@@ -165,7 +165,7 @@ void main() {
 
   });
   
-  test('`FinalStatesBase` assign instance lazily when late is true', () async {
+  test('`FinalStatesBase` assign states lazily when late is true', () async {
 
     int invokes = 0;
 
@@ -187,7 +187,7 @@ void main() {
 
   });
   
-  test('`FinalStates` assign instance immediately', () async {
+  test('`FinalStates` assign states immediately', () async {
 
     int invokes = 0;
 
@@ -204,7 +204,7 @@ void main() {
 
   });
   
-  test('`LateFinalStates` assign instance lazily', () async {
+  test('`LateFinalStates` assign states lazily', () async {
 
     int invokes = 0;
 

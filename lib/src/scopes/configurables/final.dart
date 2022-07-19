@@ -12,8 +12,8 @@ class Final<T> extends FinalBase<T> {
   const Final({
     Object? name,
     required Equal<T> equal,
-    InstanceExpose<T>? expose,
-    InstanceDispose<T>? dispose,
+    ValueExpose<T>? expose,
+    ValueDispose<T>? dispose,
   }): super(
     name: name,
     equal: equal,
@@ -28,8 +28,8 @@ class LateFinal<T> extends FinalBase<T> {
   const LateFinal({
     Object? name,
     required Equal<T> equal,
-    InstanceExpose<T>? expose,
-    InstanceDispose<T>? dispose,
+    ValueExpose<T>? expose,
+    ValueDispose<T>? dispose,
   }): super(
     name: name,
     equal: equal,
@@ -44,8 +44,8 @@ class FinalBase<T> implements Configurable {
   const FinalBase({
     required Object? name,
     required Equal<T> equal,
-    required InstanceExpose<T>? expose,
-    required InstanceDispose<T>? dispose,
+    required ValueExpose<T>? expose,
+    required ValueDispose<T>? dispose,
     required bool late,
   }): _name = name,
     _equal = equal,
@@ -55,26 +55,26 @@ class FinalBase<T> implements Configurable {
 
   final Object? _name;
   final Equal<T> _equal;
-  final InstanceExpose<T>? _expose;
-  final InstanceDispose<T>? _dispose;
+  final ValueExpose<T>? _expose;
+  final ValueDispose<T>? _dispose;
   final bool _late;
 
   @override
   FutureOr<void> configure(ConfigurableScope scope) {
 
-    final Getter<T> getter;
+    final Getter<T> getValue;
     if (!_late) {
-      final instance = _equal(scope);
-      getter = () => instance;
+      final value = _equal(scope);
+      getValue = () => value;
     } else {
-      late final instance = _equal(scope);
-      getter = () => instance;
+      late final value = _equal(scope);
+      getValue = () => value;
     }
     
     exposeInScope(
       scope: scope,
       name: _name,
-      getter: getter,
+      getValue: getValue,
       expose: _expose,
       dispose: _dispose,
     );

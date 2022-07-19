@@ -13,8 +13,8 @@ class AsyncFinal<T> implements Configurable {
   const AsyncFinal({
     Object? name,
     required Equal<Future<T>> equal,
-    InstanceExpose<T>? expose,
-    InstanceDispose<T>? dispose,
+    ValueExpose<T>? expose,
+    ValueDispose<T>? dispose,
   }): _name = name,
     _equal = equal,
     _expose = expose,
@@ -22,19 +22,19 @@ class AsyncFinal<T> implements Configurable {
 
   final Object? _name;
   final Equal<Future<T>> _equal;
-  final InstanceExpose<T>? _expose;
-  final InstanceDispose<T>? _dispose;
+  final ValueExpose<T>? _expose;
+  final ValueDispose<T>? _dispose;
 
   @override
   FutureOr<void> configure(ConfigurableScope scope) async {
 
-    final instance = await _equal(scope);
-    final Getter<T> getter = () => instance;
+    final value = await _equal(scope);
+    final Getter<T> getValue = () => value;
 
     exposeInScope(
       scope: scope,
       name: _name,
-      getter: getter,
+      getValue: getValue,
       expose: _expose,
       dispose: _dispose,
     );

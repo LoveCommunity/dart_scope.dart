@@ -10,24 +10,24 @@ import 'typedefs.dart';
 void exposeInScope<T>({
   required ConfigurableScope scope,
   required Object? name,
-  required Getter<T> getter,
-  required InstanceExpose<T>? expose,
-  required InstanceDispose<T>? dispose,
+  required Getter<T> getValue,
+  required ValueExpose<T>? expose,
+  required ValueDispose<T>? dispose,
 }) {
 
-  final instanceExpose = expose ?? defaultExpose(name);
-  instanceExpose(scope, getter);
+  final valueExpose = expose ?? defaultExpose(name);
+  valueExpose(scope, getValue);
 
   if (dispose != null) {
     scope.addDispose(() {
-      dispose(getter());
+      dispose(getValue());
     });
   }
 }
 
 @internal 
-InstanceExpose<T> defaultExpose<T>(Object? name) {
-  return (scope, getter) {
-    scope.expose<T>(name: name, expose: getter);
+ValueExpose<T> defaultExpose<T>(Object? name) {
+  return (scope, getValue) {
+    scope.expose<T>(name: name, expose: getValue);
   };
 }
