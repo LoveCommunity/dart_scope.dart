@@ -2,6 +2,7 @@
 import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
+import '../../observables/shared/states_tester.dart';
 import '../shared/mock_configurable.dart';
 
 void main() {
@@ -106,6 +107,41 @@ void main() {
     final string = (object as States<String>).first;
 
     expect(string, 'a');
+
+  });
+
+  test("`FinalStatesBase` exposed `States` won't forward data after scope disposed", () async {
+
+    final scope = await Scope.root([
+      FinalStatesBase<String>(
+        name: null,
+        equal: (_) => States((setState) {
+          setState('a');
+          Future(() => setState('b'));
+          return Disposable.empty;
+        }),
+        expose: null,
+        late: false,
+      ),
+    ]);
+
+    final states = scope.get<States<String>>();
+
+    final tester = StatesTester(
+      states,
+    );
+
+    tester.startObserve();
+
+    scope.dispose();
+
+    expect(tester.recorded, [
+      'a',
+    ]);
+    await Future(() {});
+    expect(tester.recorded, [
+      'a',
+    ]);
 
   });
 
