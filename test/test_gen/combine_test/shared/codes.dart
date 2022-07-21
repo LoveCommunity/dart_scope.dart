@@ -65,6 +65,7 @@ String _combine(bool isObservable, int? number) {
   final type = isObservable ? 'Observable' : 'States';
   final name = isObservable ? 'observable' : 'states';
   final children = isObservable ? 'observables' : 'children';
+  final child = isObservable ? 'observable' : 'child';
   if (number == null) {
     return '''
       final combine = $type.combine<String, String>(
@@ -80,7 +81,7 @@ String _combine(bool isObservable, int? number) {
       return join(number, (n) => 'String', ', ') + ', String';
     }
     String children() {
-      return join(number, (n) => 'child$n: $name$n,', '\n');
+      return join(number, (n) => '$child$n: $name$n,', '\n');
     }
     String combinerParameters() {
       return join(number, (n) => 'it$n', ', ');

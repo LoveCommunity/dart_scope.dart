@@ -10,12 +10,12 @@ class ObservableWhere<T> implements Observable<T> {
 
   const ObservableWhere({
     required bool Function(T) test,
-    required Observable<T> child,
+    required Observable<T> observable,
   }): _test = test,
-    _child = child;
+    _observable = observable;
 
   final bool Function(T) _test;
-  final Observable<T> _child;
+  final Observable<T> _observable;
 
   @override
   Disposable observe(OnData<T> onData) {
@@ -24,6 +24,6 @@ class ObservableWhere<T> implements Observable<T> {
         onData(data);
       }
     }
-    return _child.observe(newOnData);
+    return _observable.observe(newOnData);
   }
 }

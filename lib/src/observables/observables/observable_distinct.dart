@@ -11,12 +11,12 @@ import 'observable.dart';
 class ObservableDistinct<T> implements Observable<T> {
   const ObservableDistinct({
     required Equals<T>? equals,
-    required Observable<T> child,
+    required Observable<T> observable,
   }): _equals = equals ?? defaultEquals,
-    _child = child;
+    _observable = observable;
 
   final Equals<T> _equals;
-  final Observable<T> _child;
+  final Observable<T> _observable;
 
   @override
   Disposable observe(OnData<T> onData) {
@@ -28,7 +28,7 @@ class ObservableDistinct<T> implements Observable<T> {
         oldData = Value(data);
       }
     }
-    return _child.observe(newOnData);
+    return _observable.observe(newOnData);
   }
 }
 

@@ -55,13 +55,13 @@ class ObservableCombine<T, R> implements Observable<R> {
 class CombineObservable2<T1, T2, R> extends ObservableCombine<Object?, R> {
 
   CombineObservable2({
-    required Observable<T1> child1,
-    required Observable<T2> child2,
+    required Observable<T1> observable1,
+    required Observable<T2> observable2,
     required R Function(T1, T2) combiner,
   }): super(
     observables: [
-      child1.cast<Object?>(),
-      child2.cast<Object?>(),
+      observable1.cast<Object?>(),
+      observable2.cast<Object?>(),
     ],
     combiner: (items) => combiner(
       items[0] as T1,
@@ -74,15 +74,15 @@ class CombineObservable2<T1, T2, R> extends ObservableCombine<Object?, R> {
 class CombineObservable3<T1, T2, T3, R> extends ObservableCombine<Object?, R> {
 
   CombineObservable3({
-    required Observable<T1> child1,
-    required Observable<T2> child2,
-    required Observable<T3> child3,
+    required Observable<T1> observable1,
+    required Observable<T2> observable2,
+    required Observable<T3> observable3,
     required R Function(T1, T2, T3) combiner,
   }): super(
     observables: [
-      child1.cast<Object?>(),
-      child2.cast<Object?>(),
-      child3.cast<Object?>(),
+      observable1.cast<Object?>(),
+      observable2.cast<Object?>(),
+      observable3.cast<Object?>(),
     ],
     combiner: (items) => combiner(
       items[0] as T1,

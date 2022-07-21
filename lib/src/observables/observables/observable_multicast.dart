@@ -12,12 +12,12 @@ class ObservableMulticast<T> implements Observable<T> {
 
   ObservableMulticast({
     Subject<T> Function()? createSubject,
-    required Observable<T> child,
+    required Observable<T> observable,
   }): _createSubject = createSubject ?? _defaultCreateSubject,
-    _child = child;
+    _observable = observable;
 
   final Subject<T> Function() _createSubject;
-  final Observable<T> _child;
+  final Observable<T> _observable;
 
   int _observationsLength = 0;
   Subject<T>? _subject;
@@ -30,7 +30,7 @@ class ObservableMulticast<T> implements Observable<T> {
     final observation = subject.observe(onData);
     _observationsLength += 1;
     if (_observationsLength == 1) {
-      _connection = _child.observe(subject.onData);
+      _connection = _observable.observe(subject.onData);
     }
     return Disposable(() {
       if (disposed) {

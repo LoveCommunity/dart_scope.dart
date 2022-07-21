@@ -29,8 +29,8 @@ class States<T> {
     required States<T2> child2,
     required R Function(T1, T2) combiner,
   }) => Observable.combine2<T1, T2, R>(
-    child1: child1.observable,
-    child2: child2.observable,
+    observable1: child1.observable,
+    observable2: child2.observable,
     combiner: combiner,
   ).asStates();
 
@@ -40,9 +40,9 @@ class States<T> {
     required States<T3> child3,
     required R Function(T1, T2, T3) combiner,
   }) => Observable.combine3<T1, T2, T3, R>(
-    child1: child1.observable,
-    child2: child2.observable,
-    child3: child3.observable,
+    observable1: child1.observable,
+    observable2: child2.observable,
+    observable3: child3.observable,
     combiner: combiner,
   ).asStates();
 

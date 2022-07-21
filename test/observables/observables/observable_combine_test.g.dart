@@ -53,8 +53,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -90,9 +90,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -161,8 +161,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -200,9 +200,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -273,8 +273,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -311,9 +311,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -376,8 +376,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -415,9 +415,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
