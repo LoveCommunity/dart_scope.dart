@@ -19,7 +19,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -51,8 +51,8 @@ void _main() {
     });
 
     final combine = States.combine2<String, String, String>(
-      child1: states1,
-      child2: states2,
+      states1: states1,
+      states2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -86,9 +86,9 @@ void _main() {
     });
 
     final combine = States.combine3<String, String, String, String>(
-      child1: states1,
-      child2: states2,
-      child3: states3,
+      states1: states1,
+      states2: states2,
+      states3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -119,7 +119,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -155,8 +155,8 @@ void _main() {
     });
 
     final combine = States.combine2<String, String, String>(
-      child1: states1,
-      child2: states2,
+      states1: states1,
+      states2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -194,9 +194,9 @@ void _main() {
     });
 
     final combine = States.combine3<String, String, String, String>(
-      child1: states1,
-      child2: states2,
-      child3: states3,
+      states1: states1,
+      states2: states2,
+      states3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -233,7 +233,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -267,8 +267,8 @@ void _main() {
     });
 
     final combine = States.combine2<String, String, String>(
-      child1: states1,
-      child2: states2,
+      states1: states1,
+      states2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -305,9 +305,9 @@ void _main() {
     });
 
     final combine = States.combine3<String, String, String, String>(
-      child1: states1,
-      child2: states2,
-      child3: states3,
+      states1: states1,
+      states2: states2,
+      states3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -334,7 +334,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -370,8 +370,8 @@ void _main() {
     });
 
     final combine = States.combine2<String, String, String>(
-      child1: states1,
-      child2: states2,
+      states1: states1,
+      states2: states2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -409,9 +409,9 @@ void _main() {
     });
 
     final combine = States.combine3<String, String, String, String>(
-      child1: states1,
-      child2: states2,
-      child3: states3,
+      states1: states1,
+      states2: states2,
+      states3: states3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
