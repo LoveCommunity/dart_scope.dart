@@ -25,24 +25,24 @@ class States<T> {
   ).asStates();
 
   static States<R> combine2<T1, T2, R>({
-    required States<T1> child1,
-    required States<T2> child2,
+    required States<T1> states1,
+    required States<T2> states2,
     required R Function(T1, T2) combiner,
   }) => Observable.combine2<T1, T2, R>(
-    observable1: child1.observable,
-    observable2: child2.observable,
+    observable1: states1.observable,
+    observable2: states2.observable,
     combiner: combiner,
   ).asStates();
 
   static States<R> combine3<T1, T2, T3, R>({
-    required States<T1> child1,
-    required States<T2> child2,
-    required States<T3> child3,
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
     required R Function(T1, T2, T3) combiner,
   }) => Observable.combine3<T1, T2, T3, R>(
-    observable1: child1.observable,
-    observable2: child2.observable,
-    observable3: child3.observable,
+    observable1: states1.observable,
+    observable2: states2.observable,
+    observable3: states3.observable,
     combiner: combiner,
   ).asStates();
 
@@ -109,7 +109,7 @@ extension StatesX<T> on States<T> {
 
   StatesActivated<T> activated() {
     return StatesActivated<T>(
-      child: this
+      states: this
     );
   }
 }

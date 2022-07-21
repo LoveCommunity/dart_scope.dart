@@ -13,19 +13,19 @@ abstract class HasStates<T> {
 abstract class StatesActivated<T> implements HasStates<T>, Disposable {
   @internal
   factory StatesActivated({
-    required States<T> child
+    required States<T> states
   }) = _StatesActivated;
 }
 
 class _StatesActivated<T> implements StatesActivated<T> {
 
   _StatesActivated({
-    required States<T> child
-  }): _child = child {
+    required States<T> states
+  }): _states = states {
     _startObserve();
   }
 
-  final States<T> _child;
+  final States<T> _states;
   final _subject = ReplaySubject<T>(bufferSize: 1);
 
   @override
@@ -34,7 +34,7 @@ class _StatesActivated<T> implements StatesActivated<T> {
   late final Disposable _observation;
 
   void _startObserve() {
-    _observation = _child.observe(_subject.onData);
+    _observation = _states.observe(_subject.onData);
   }
 
   void _stopObserve() {
