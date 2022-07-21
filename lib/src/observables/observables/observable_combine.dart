@@ -46,7 +46,7 @@ class ObservableCombine<T, R> implements Observable<R> {
       .toList();
 
     return Disposable.combine(
-      children: observations,
+      disposables: observations,
     );
   }
 }
