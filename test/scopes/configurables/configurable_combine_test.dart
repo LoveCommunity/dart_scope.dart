@@ -18,7 +18,7 @@ void main() {
     });
 
     final combine = Configurable.combine(
-      children: [
+      configurables: [
         configurable1,
         configurable2,
       ],
@@ -52,7 +52,7 @@ void main() {
     });
 
     final combine = Configurable.combine(
-      children: [
+      configurables: [
         configurable1,
         configurable2,
       ],
@@ -70,10 +70,10 @@ void main() {
 
   });
 
-  test('`Configurable.combine` make sync scope if children only has sync configuration', () {
+  test('`Configurable.combine` make sync scope if configurables only has sync configuration', () {
 
     final combine = Configurable.combine(
-      children: [
+      configurables: [
         MockConfigurable((scope) {}),
       ],
     );
@@ -86,10 +86,10 @@ void main() {
 
   });
 
-  test('`Configurable.combine` make async scope if children has async configuration', () {
+  test('`Configurable.combine` make async scope if configurables has async configuration', () {
 
     final combine = Configurable.combine(
-      children: [
+      configurables: [
         MockConfigurable((scope) async {}),
       ],
     );

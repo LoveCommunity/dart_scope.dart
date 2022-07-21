@@ -11,7 +11,7 @@ abstract class ConfigurableCombine extends ConfigurableCompose {
 
   @internal
   const factory ConfigurableCombine.impl({
-    required List<Configurable> children,
+    required List<Configurable> configurables,
   }) = _ConfigurableCombineImpl;
 
   List<Configurable> combine();
@@ -30,13 +30,13 @@ Configurable _combineConfigure(List<Configurable> configure) {
 class _ConfigurableCombineImpl extends ConfigurableCombine {
 
   const _ConfigurableCombineImpl ({
-    required List<Configurable> children,
-  }): _children = children;
+    required List<Configurable> configurables,
+  }): _configurables = configurables;
 
-  final List<Configurable> _children;
+  final List<Configurable> _configurables;
 
   @override
   List<Configurable> combine() {
-    return _children;
+    return _configurables;
   }
 }
