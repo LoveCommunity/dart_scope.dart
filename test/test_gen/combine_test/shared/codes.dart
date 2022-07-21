@@ -64,12 +64,12 @@ String statesCombine(int? number) {
 String _combine(bool isObservable, int? number) {
   final type = isObservable ? 'Observable' : 'States';
   final name = isObservable ? 'observable' : 'states';
-  final children = isObservable ? 'observables' : 'children';
-  final child = isObservable ? 'observable' : 'child';
+  final sources = isObservable ? 'observables' : 'children';
+  final source = isObservable ? 'observable' : 'child';
   if (number == null) {
     return '''
       final combine = $type.combine<String, String>(
-        $children: [
+        $sources: [
           ${name}1,
           ${name}2,
         ],
@@ -80,8 +80,8 @@ String _combine(bool isObservable, int? number) {
     String types() {
       return join(number, (n) => 'String', ', ') + ', String';
     }
-    String children() {
-      return join(number, (n) => '$child$n: $name$n,', '\n');
+    String sources() {
+      return join(number, (n) => '$source$n: $name$n,', '\n');
     }
     String combinerParameters() {
       return join(number, (n) => 'it$n', ', ');
@@ -91,7 +91,7 @@ String _combine(bool isObservable, int? number) {
     }
     return '''
       final combine = $type.combine$number<${types()}>(
-        ${children()}
+        ${sources()}
         combiner: (${combinerParameters()}) => '${combinerBody()}',
       );
     ''';
