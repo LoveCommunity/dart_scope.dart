@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testObservableCombineEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
-    test('${observableCombineTestHeader(number)} emit latest combined value when a child emit', () async {
+    test('${observableCombineTestHeader(number)} emit latest combined value when a source emit', () async {
       ${[
         ...observables(count, sampleObservable),
         observableCombine(number),
@@ -42,7 +42,7 @@ List<String> _expects2(int count) {
 String testStatesCombineEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
-    test('${statesCombineTestHeader(number)} emit latest combined value when a child emit', () async {
+    test('${statesCombineTestHeader(number)} emit latest combined value when a source emit', () async {
       ${[
         ...statesIterable(count, sampleStates),
         statesCombine(number),

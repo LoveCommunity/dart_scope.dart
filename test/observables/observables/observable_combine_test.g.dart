@@ -7,7 +7,7 @@ part of 'observable_combine_test.dart';
 // **************************************************************************
 
 void _main() {
-  test('`Observable.combine` emit if all children emitted', () async {
+  test('`Observable.combine` emit if all sources emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -19,7 +19,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -41,7 +41,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine2` emit if all children emitted', () async {
+  test('`Observable.combine2` emit if all sources emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -53,8 +53,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -73,7 +73,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine3` emit if all children emitted', () async {
+  test('`Observable.combine3` emit if all sources emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -90,9 +90,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -111,7 +111,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine` emit latest combined value when a child emit',
+  test('`Observable.combine` emit latest combined value when a source emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -125,7 +125,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -147,7 +147,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine2` emit latest combined value when a child emit',
+  test('`Observable.combine2` emit latest combined value when a source emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -161,8 +161,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -181,7 +181,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine3` emit latest combined value when a child emit',
+  test('`Observable.combine3` emit latest combined value when a source emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -200,9 +200,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -222,7 +222,7 @@ void _main() {
   });
 
   test(
-      '`Observable.combine` dispose observation will dispose all children observations',
+      '`Observable.combine` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
 
@@ -239,7 +239,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -256,7 +256,7 @@ void _main() {
   });
 
   test(
-      '`Observable.combine2` dispose observation will dispose all children observations',
+      '`Observable.combine2` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
 
@@ -273,8 +273,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -288,7 +288,7 @@ void _main() {
   });
 
   test(
-      '`Observable.combine3` dispose observation will dispose all children observations',
+      '`Observable.combine3` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
 
@@ -311,9 +311,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
@@ -340,7 +340,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -376,8 +376,8 @@ void _main() {
     });
 
     final combine = Observable.combine2<String, String, String>(
-      child1: observable1,
-      child2: observable2,
+      observable1: observable1,
+      observable2: observable2,
       combiner: (it1, it2) => '$it1|$it2',
     );
 
@@ -415,9 +415,9 @@ void _main() {
     });
 
     final combine = Observable.combine3<String, String, String, String>(
-      child1: observable1,
-      child2: observable2,
-      child3: observable3,
+      observable1: observable1,
+      observable2: observable2,
+      observable3: observable3,
       combiner: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 

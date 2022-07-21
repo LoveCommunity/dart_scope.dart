@@ -10,12 +10,12 @@ class ObservableSkip<T> implements Observable<T> {
 
   const ObservableSkip({
     required int n,
-    required Observable<T> child,
+    required Observable<T> observable,
   }): _n = n,
-    _child = child;
+    _observable = observable;
 
   final int _n;
-  final Observable<T> _child;
+  final Observable<T> _observable;
 
   @override
   Disposable observe(OnData<T> onData) {
@@ -27,6 +27,6 @@ class ObservableSkip<T> implements Observable<T> {
         onData(data);
       }
     }
-    return _child.observe(newOnData);
+    return _observable.observe(newOnData);
   }
 }

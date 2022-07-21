@@ -25,32 +25,32 @@ abstract class Observable<T> {
   ) = ObservableCreate;
 
   static Observable<R> combine<T, R>({
-    required List<Observable<T>> children,
+    required List<Observable<T>> observables,
     required R Function(List<T> items) combiner,
   }) => ObservableCombine(
-    children: children,
+    observables: observables,
     combiner: combiner,
   );
 
   static Observable<R> combine2<T1, T2, R>({
-    required Observable<T1> child1,
-    required Observable<T2> child2,
+    required Observable<T1> observable1,
+    required Observable<T2> observable2,
     required R Function(T1, T2) combiner,
   }) => CombineObservable2(
-    child1: child1,
-    child2: child2,
+    observable1: observable1,
+    observable2: observable2,
     combiner: combiner,
   );
 
   static Observable<R> combine3<T1, T2, T3, R>({
-    required Observable<T1> child1,
-    required Observable<T2> child2,
-    required Observable<T3> child3,
+    required Observable<T1> observable1,
+    required Observable<T2> observable2,
+    required Observable<T3> observable3,
     required R Function(T1, T2, T3) combiner,
   }) => CombineObservable3(
-    child1: child1,
-    child2: child2,
-    child3: child3,
+    observable1: observable1,
+    observable2: observable2,
+    observable3: observable3,
     combiner: combiner,
   );
 }
@@ -61,27 +61,27 @@ extension ObservableX<T> on Observable<T> {
   Observable<R> map<R>(R Function(T) convert) {
     return ObservableMap<T, R>(
       convert: convert,
-      child: this,
+      observable: this,
     );
   }
 
   Observable<T> where(bool Function(T) test) {
     return ObservableWhere<T>(
       test: test,
-      child: this,
+      observable: this,
     );
   }
 
   Observable<R> cast<R>() {
     return ObservableCast<T, R>(
-      child: this,
+      observable: this,
     );
   }
 
   Observable<T> distinct([Equals<T>? equals]) {
     return ObservableDistinct<T>(
       equals: equals,
-      child: this,
+      observable: this,
     );
   }
 
@@ -94,7 +94,7 @@ extension ObservableX<T> on Observable<T> {
   Observable<T> skip(int n) {
     return ObservableSkip(
       n: n,
-      child: this,
+      observable: this,
     );
   }
 
@@ -103,7 +103,7 @@ extension ObservableX<T> on Observable<T> {
   }) {
     return ObservableMulticast<T>(
       createSubject: createSubject,
-      child: this,
+      observable: this,
     );
   }
 

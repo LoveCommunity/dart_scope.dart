@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testObservableCombineDisposeObservation(int? number) {
   final count = number ?? 2;
   return '''
-    test('${observableCombineTestHeader(number)} dispose observation will dispose all children observations', () {
+    test('${observableCombineTestHeader(number)} dispose observation will dispose all source observations', () {
       ${[
         _invokes(),
         ...observables(count, _observable),
@@ -57,7 +57,7 @@ List<String> _expects(int count) {
 String testStatesCombineDisposeObservation(int? number) {
   final count = number ?? 2;
   return '''
-    test('${statesCombineTestHeader(number)} dispose observation will dispose all children observations', () {
+    test('${statesCombineTestHeader(number)} dispose observation will dispose all source observations', () {
       ${[
         _invokes(),
         ...statesIterable(count, _states),

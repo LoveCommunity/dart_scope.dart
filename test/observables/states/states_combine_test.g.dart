@@ -105,7 +105,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`States.combine` emit latest combined value when a child emit',
+  test('`States.combine` emit latest combined value when a source emit',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -141,7 +141,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`States.combine2` emit latest combined value when a child emit',
+  test('`States.combine2` emit latest combined value when a source emit',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -175,7 +175,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`States.combine3` emit latest combined value when a child emit',
+  test('`States.combine3` emit latest combined value when a source emit',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -216,7 +216,7 @@ void _main() {
   });
 
   test(
-      '`States.combine` dispose observation will dispose all children observations',
+      '`States.combine` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
 
@@ -250,7 +250,7 @@ void _main() {
   });
 
   test(
-      '`States.combine2` dispose observation will dispose all children observations',
+      '`States.combine2` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
 
@@ -282,7 +282,7 @@ void _main() {
   });
 
   test(
-      '`States.combine3` dispose observation will dispose all children observations',
+      '`States.combine3` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
 

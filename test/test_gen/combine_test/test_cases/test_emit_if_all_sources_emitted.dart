@@ -2,10 +2,10 @@
 import '../../shared/codes.dart';
 import '../shared/codes.dart';
 
-String testObservableCombineEmitIfAllChildrenEmitted(int? number) {
+String testObservableCombineEmitIfAllSourcesEmitted(int? number) {
   final count = number ?? 2;
   return '''
-    test('${observableCombineTestHeader(number)} emit if all children emitted', () async {
+    test('${observableCombineTestHeader(number)} emit if all sources emitted', () async {
       ${[
         ...observables(count, _observable),
         observableCombine(number),
