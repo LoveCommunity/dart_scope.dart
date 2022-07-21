@@ -14,7 +14,7 @@ void main() {
         equal: (_) => 'a',
         expose: null,
         dispose: null,
-        late: true,
+        late: false,
       ),
     ]); 
 
@@ -30,7 +30,7 @@ void main() {
         equal: (_) => Object(),
         expose: null,
         dispose: null,
-        late: true,
+        late: false,
       ),
     ]);
 
@@ -51,7 +51,7 @@ void main() {
         equal: (_) => Object(),
         expose: null,
         dispose: null,
-        late: true,
+        late: false,
       ),
     ]);
 
@@ -75,7 +75,7 @@ void main() {
         equal: (scope) => scope.get<int>().toString(),
         expose: null,
         dispose: null,
-        late: true,
+        late: false,
       ),
     ]);
 
@@ -95,7 +95,7 @@ void main() {
           scope.expose<Object>(expose: getValue);
         },
         dispose: null,
-        late: true,
+        late: false,
       ),
     ]); 
 
@@ -119,12 +119,33 @@ void main() {
         }),
         expose: null,
         dispose: (value) => value.dispose(),
-        late: true,
+        late: false,
       ),
     ]);
 
     expect(invokes, 0);
     scope.dispose();
+    expect(invokes, 1);
+
+  });
+
+  test('`FinalBase` assign value immediately when late is false', () async {
+
+    int invokes = 0;
+
+    await Scope.root([
+      FinalBase<Object>(
+        name: null,
+        equal: (_) {
+          invokes += 1;
+          return Object();
+        },
+        expose: null,
+        dispose: null,
+        late: false,
+      ),
+    ]);
+
     expect(invokes, 1);
 
   });
@@ -152,20 +173,16 @@ void main() {
 
   });
 
-  test('`FinalBase` assign value immediately when late is false', () async {
+  test('`Final` assign value immediately', () async {
 
     int invokes = 0;
 
     await Scope.root([
-      FinalBase<Object>(
-        name: null,
+      Final<Object>(
         equal: (_) {
           invokes += 1;
           return Object();
         },
-        expose: null,
-        dispose: null,
-        late: false,
       ),
     ]);
 
@@ -188,23 +205,6 @@ void main() {
 
     expect(invokes, 0);
     scope.get<Object>();
-    expect(invokes, 1);
-
-  });
-
-  test('`Final` assign value immediately', () async {
-
-    int invokes = 0;
-
-    await Scope.root([
-      Final<Object>(
-        equal: (_) {
-          invokes += 1;
-          return Object();
-        },
-      ),
-    ]);
-
     expect(invokes, 1);
 
   });
