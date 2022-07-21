@@ -9,26 +9,26 @@ import 'observable.dart';
 class ObservableCombine<T, R> implements Observable<R> {
 
   const ObservableCombine({
-    required List<Observable<T>> children,
+    required List<Observable<T>> observables,
     required R Function(List<T> items) combiner,
-  }): _children = children,
+  }): _observables = observables,
     _combiner = combiner;
 
-  final List<Observable<T>> _children;
+  final List<Observable<T>> _observables;
   final R Function(List<T> items) _combiner;
 
   @override
   Disposable observe(OnData<R> onData) {
-    if (_children.isEmpty) {
+    if (_observables.isEmpty) {
       return Disposable.empty;
     }
 
-    final length = _children.length;
+    final length = _observables.length;
     final emitted = <int>{};
     final latests = List<Object?>.filled(length, null);
 
     Disposable _observe(int index) {
-      return _children[index].observe((data) {
+      return _observables[index].observe((data) {
         if (!emitted.contains(index)) {
           emitted.add(index);
         }
@@ -59,7 +59,7 @@ class CombineObservable2<T1, T2, R> extends ObservableCombine<Object?, R> {
     required Observable<T2> child2,
     required R Function(T1, T2) combiner,
   }): super(
-    children: [
+    observables: [
       child1.cast<Object?>(),
       child2.cast<Object?>(),
     ],
@@ -79,7 +79,7 @@ class CombineObservable3<T1, T2, T3, R> extends ObservableCombine<Object?, R> {
     required Observable<T3> child3,
     required R Function(T1, T2, T3) combiner,
   }): super(
-    children: [
+    observables: [
       child1.cast<Object?>(),
       child2.cast<Object?>(),
       child3.cast<Object?>(),

@@ -64,10 +64,11 @@ String statesCombine(int? number) {
 String _combine(bool isObservable, int? number) {
   final type = isObservable ? 'Observable' : 'States';
   final name = isObservable ? 'observable' : 'states';
+  final children = isObservable ? 'observables' : 'children';
   if (number == null) {
     return '''
       final combine = $type.combine<String, String>(
-        children: [
+        $children: [
           ${name}1,
           ${name}2,
         ],

@@ -25,10 +25,10 @@ abstract class Observable<T> {
   ) = ObservableCreate;
 
   static Observable<R> combine<T, R>({
-    required List<Observable<T>> children,
+    required List<Observable<T>> observables,
     required R Function(List<T> items) combiner,
   }) => ObservableCombine(
-    children: children,
+    observables: observables,
     combiner: combiner,
   );
 

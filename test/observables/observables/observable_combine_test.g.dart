@@ -19,7 +19,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -125,7 +125,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -239,7 +239,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],
@@ -340,7 +340,7 @@ void _main() {
     });
 
     final combine = Observable.combine<String, String>(
-      children: [
+      observables: [
         observable1,
         observable2,
       ],

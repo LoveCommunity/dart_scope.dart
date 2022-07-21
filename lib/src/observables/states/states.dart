@@ -18,7 +18,7 @@ class States<T> {
     required List<States<T>> children,
     required R Function(List<T> items) combiner,
   }) => Observable.combine<T, R>(
-    children: children
+    observables: children
       .map((states) => states.observable)
       .toList(),
     combiner: combiner,
