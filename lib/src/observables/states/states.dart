@@ -15,10 +15,10 @@ class States<T> {
   ): this.from(Observable(observe));
 
   static States<R> combine<T, R>({
-    required List<States<T>> children,
+    required List<States<T>> states,
     required R Function(List<T> items) combiner,
   }) => Observable.combine<T, R>(
-    observables: children
+    observables: states
       .map((states) => states.observable)
       .toList(),
     combiner: combiner,

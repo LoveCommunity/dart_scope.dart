@@ -19,7 +19,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -119,7 +119,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -233,7 +233,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
@@ -334,7 +334,7 @@ void _main() {
     });
 
     final combine = States.combine<String, String>(
-      children: [
+      states: [
         states1,
         states2,
       ],
