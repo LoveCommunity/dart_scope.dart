@@ -74,11 +74,11 @@ void main() {
       ),
     ]); 
 
-    final string = scope.getOrNull<String>();
-    final object = scope.getOrNull<Object>();
+    final hasString = scope.has<String>();
+    final hasObject = scope.has<Object>();
 
-    expect(string, null);
-    expect(object, 'a');
+    expect(hasString, false);
+    expect(hasObject, true);
 
   });
 

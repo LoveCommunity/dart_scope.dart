@@ -98,15 +98,11 @@ void main() {
       ),
     ]);
 
-    final states = scope.getOrNull<States<String>>();
-    final object = scope.getOrNull<Object>();
+    final hasStates = scope.has<States<String>>();
+    final hasObject = scope.has<Object>();
 
-    expect(states, null);
-    expect(object, isNotNull);
-
-    final string = (object as States<String>).first;
-
-    expect(string, 'a');
+    expect(hasStates, false);
+    expect(hasObject, true);
 
   });
 
