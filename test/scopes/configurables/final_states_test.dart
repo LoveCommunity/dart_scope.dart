@@ -13,7 +13,6 @@ void main() {
       FinalStatesBase<String>(
         name: null,
         equal: (_) => _statesJust('a'),
-        expose: null,
         late: false,
       ),
     ]);
@@ -27,7 +26,6 @@ void main() {
       FinalStatesBase<String>(
         name: null,
         equal: (_) => _statesJust('a'),
-        expose: null,
         late: false,
       ),
     ]);
@@ -47,7 +45,6 @@ void main() {
       FinalStatesBase<String>(
         name: 'states',
         equal: (_) => _statesJust('a'),
-        expose: null,
         late: false,
       ),
     ]);
@@ -73,7 +70,6 @@ void main() {
           final value = scope.get<int>().toString();
           return _statesJust(value);
         },
-        expose: null,
         late: false,
       ),
     ]);
@@ -85,27 +81,6 @@ void main() {
 
   });
   
-  test('`FinalStatesBase` expose states using custom `expose`', () async {
-
-    final scope = await Scope.root([
-      FinalStatesBase<String>(
-        name: null,
-        equal: (_) => _statesJust('a'),
-        expose: (scope, getStates) {
-          scope.expose<Object>(expose: getStates);
-        },
-        late: false,
-      ),
-    ]);
-
-    final hasStates = scope.has<States<String>>();
-    final hasObject = scope.has<Object>();
-
-    expect(hasStates, false);
-    expect(hasObject, true);
-
-  });
-
   test("`FinalStatesBase` exposed `States` won't forward data after scope disposed", () async {
 
     final scope = await Scope.root([
@@ -116,7 +91,6 @@ void main() {
           Future(() => setState('b'));
           return Disposable.empty;
         }),
-        expose: null,
         late: false,
       ),
     ]);
@@ -152,7 +126,6 @@ void main() {
           invokes += 1;
           return _statesJust(Object());
         },
-        expose: null,
         late: false,
       ),
     ]);
@@ -172,7 +145,6 @@ void main() {
           invokes += 1;
           return _statesJust(Object());
         },
-        expose: null,
         late: true,
       ),
     ]);
