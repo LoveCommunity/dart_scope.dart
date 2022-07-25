@@ -4,6 +4,7 @@ import 'package:scopes/scopes.dart';
 
 import '../../observables/shared/states_tester.dart';
 import '../shared/mock_configurable.dart';
+import '../shared/states_just.dart';
 
 void main() {
 
@@ -12,7 +13,7 @@ void main() {
     final scope = Scope.root([
       FinalStatesBase<String>(
         name: null,
-        equal: (_) => _statesJust('a'),
+        equal: (_) => statesJust('a'),
         late: false,
       ),
     ]);
@@ -25,7 +26,7 @@ void main() {
     final scope = await Scope.root([
       FinalStatesBase<String>(
         name: null,
-        equal: (_) => _statesJust('a'),
+        equal: (_) => statesJust('a'),
         late: false,
       ),
     ]);
@@ -44,7 +45,7 @@ void main() {
     final scope = await Scope.root([
       FinalStatesBase<String>(
         name: 'states',
-        equal: (_) => _statesJust('a'),
+        equal: (_) => statesJust('a'),
         late: false,
       ),
     ]);
@@ -68,7 +69,7 @@ void main() {
         name: null,
         equal: (scope) {
           final value = scope.get<int>().toString();
-          return _statesJust(value);
+          return statesJust(value);
         },
         late: false,
       ),
@@ -124,7 +125,7 @@ void main() {
         name: null,
         equal: (_) {
           invokes += 1;
-          return _statesJust(Object());
+          return statesJust(Object());
         },
         late: false,
       ),
@@ -143,7 +144,7 @@ void main() {
         name: null,
         equal: (_) {
           invokes += 1;
-          return _statesJust(Object());
+          return statesJust(Object());
         },
         late: true,
       ),
@@ -163,7 +164,7 @@ void main() {
       FinalStates<Object>(
         equal: (_) {
           invokes += 1;
-          return _statesJust(Object());
+          return statesJust(Object());
         },
       ),
     ]);
@@ -180,7 +181,7 @@ void main() {
       LateFinalStates<Object>(
         equal: (_) {
           invokes += 1;
-          return _statesJust(Object());
+          return statesJust(Object());
         },
       ),
     ]);
@@ -192,8 +193,3 @@ void main() {
   });
   
 }
-
-States<T> _statesJust<T>(T value) => States((setState) {
-  setState(value);
-  return Disposable.empty;
-});

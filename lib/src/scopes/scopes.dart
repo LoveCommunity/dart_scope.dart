@@ -1,5 +1,6 @@
 
 export 'configurables/async_final.dart';
+export 'configurables/computed.dart';
 export 'configurables/configurable.dart';
 export 'configurables/configurable_combine.dart';
 export 'configurables/configurable_compose.dart';
