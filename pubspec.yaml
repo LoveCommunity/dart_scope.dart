@@ -1,6 +1,7 @@
 name: scopes
 version: 0.1.0-alpha.1
 homepage: https://github.com/LoveCommunity/scopes.dart
+description: A declarative dependency injection library which use dart syntax and flutter style
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
@@ -13,6 +14,7 @@ dependencies:
 
 
 dev_dependencies:
+  analyzer: ^4.1.0
   build: ^2.3.0
   build_runner: ^2.1.11
   lints: ^1.0.1
