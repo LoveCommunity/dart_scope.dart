@@ -3,13 +3,16 @@ import 'package:test/test.dart';
 import 'package:scopes/scopes.dart';
 
 import '../../observables/shared/states_tester.dart';
+import '../../test_gen/configurable_computed_test/configurable_computed_test.dart';
 import '../shared/mock_configurable.dart';
 import '../shared/states_just.dart';
 
+part 'computed_test.g.dart';
+
+@configurableComputedTest
 void main() {
 
   test('`Computed` is sync configuration', () {
-
     final scope = Scope.root([
       MockConfigurable((scope) {
         scope.expose<States<String>>(
@@ -273,375 +276,377 @@ void main() {
 
   });
 
-  test('`Computed2` is sync configuration', () {
+  // test('`Computed2` is sync configuration', () {
 
-    final scope = Scope.root([
-      MockConfigurable((scope) {
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => statesJust('1a'),
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => statesJust('2a'),
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) => '$it1|$it2', 
-        late: false,
-      ),
-    ]);
+  //   final scope = Scope.root([
+  //     MockConfigurable((scope) {
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => statesJust('1a'),
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => statesJust('2a'),
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) => '$it1|$it2', 
+  //       late: false,
+  //     ),
+  //   ]);
 
-    expect(scope, isA<Scope>());
+  //   expect(scope, isA<Scope>());
 
-  });
+  // });
 
-  test('`Computed2` share same instance in scope with name', () async {
+  // test('`Computed2` share same instance in scope with name', () async {
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => statesJust('1a'),
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => statesJust('2a'),
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) => '$it1|$it2', 
-        late: false,
-      ),
-    ]);
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => statesJust('1a'),
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => statesJust('2a'),
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) => '$it1|$it2', 
+  //       late: false,
+  //     ),
+  //   ]);
 
-    final computed1 = scope.get<States<String>>(name: 'computed');
-    final computed2 = scope.get<States<String>>(name: 'computed');
+  //   final computed1 = scope.get<States<String>>(name: 'computed');
+  //   final computed2 = scope.get<States<String>>(name: 'computed');
 
-    final isIdentical = identical(computed1, computed2);
+  //   final isIdentical = identical(computed1, computed2);
 
-    expect(isIdentical, true);
+  //   expect(isIdentical, true);
 
-  });
+  // });
 
-  test('`Computed2` emit latest combined value when a source emit', () async {
+  // test('`Computed2` emit latest combined value when a source emit', () async {
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
 
-        final states1 = States<String>((setState) {
-          setState('1a');
-          return Disposable.empty;
-        });
+  //       final states1 = States<String>((setState) {
+  //         setState('1a');
+  //         return Disposable.empty;
+  //       });
 
-        final states2 = States<String>((setState) {
-          setState('2a');
-          Future(() => setState('2b'));
-          return Disposable.empty;
-        });
+  //       final states2 = States<String>((setState) {
+  //         setState('2a');
+  //         Future(() => setState('2b'));
+  //         return Disposable.empty;
+  //       });
 
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => states1,
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => states2,
-        );
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => states1,
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => states2,
+  //       );
 
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) => '$it1|$it2',
-        late: false,
-      ),
-    ]);
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) => '$it1|$it2',
+  //       late: false,
+  //     ),
+  //   ]);
 
-    final computed = scope.get<States<String>>(name: 'computed');
+  //   final computed = scope.get<States<String>>(name: 'computed');
 
-    final tester = StatesTester(
-      computed,
-    );
+  //   final tester = StatesTester(
+  //     computed,
+  //   );
 
-    tester.startObserve();
+  //   tester.startObserve();
 
-    expect(tester.recorded, <String>['1a|2a']);
+  //   expect(tester.recorded, <String>['1a|2a']);
 
-    await Future(() {});
+  //   await Future(() {});
 
-    expect(tester.recorded, <String>['1a|2a', '1a|2b']);
+  //   expect(tester.recorded, <String>['1a|2a', '1a|2b']);
 
-    tester.stopObserve();
+  //   tester.stopObserve();
 
-  });
+  // });
 
-  test('`Computed2` compute with other scope value', () async {
+  // test('`Computed2` compute with other scope value', () async {
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => statesJust('1a'),
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => statesJust('2a'),
-        );
-        scope.expose<int>(
-          expose: () => 0
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (scope, it1, it2) {
-          final value = scope.get<int>();
-          return '$value|$it1|$it2';
-        },
-        late: false,
-      ),
-    ]);
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => statesJust('1a'),
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => statesJust('2a'),
+  //       );
+  //       scope.expose<int>(
+  //         expose: () => 0
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (scope, it1, it2) {
+  //         final value = scope.get<int>();
+  //         return '$value|$it1|$it2';
+  //       },
+  //       late: false,
+  //     ),
+  //   ]);
 
-    final computed = scope.get<States<String>>(name: 'computed');
+  //   final computed = scope.get<States<String>>(name: 'computed');
 
-    final first = computed.first;
+  //   final first = computed.first;
     
-    expect(first, '0|1a|2a');
+  //   expect(first, '0|1a|2a');
 
-  });
+  // });
 
-  test("`Computed2` exposed `States` won't forward data after scope disposed", () async {
+  // test("`Computed2` exposed `States` won't forward data after scope disposed", () async {
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
-        final states1 = States<String>((setState) {
-          setState('1a');
-          return Disposable.empty;
-        });
-        final states2 = States<String>((setState) {
-          setState('2a');
-          Future(() => setState('2b'));
-          return Disposable.empty;
-        });
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => states1,
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => states2,
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) => '$it1|$it2',
-        late: false,
-      ),
-    ]);
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
+  //       final states1 = States<String>((setState) {
+  //         setState('1a');
+  //         return Disposable.empty;
+  //       });
+  //       final states2 = States<String>((setState) {
+  //         setState('2a');
+  //         Future(() => setState('2b'));
+  //         return Disposable.empty;
+  //       });
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => states1,
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => states2,
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) => '$it1|$it2',
+  //       late: false,
+  //     ),
+  //   ]);
 
-    final computed = scope.get<States<String>>(name: 'computed');
+  //   final computed = scope.get<States<String>>(name: 'computed');
 
-    final tester = StatesTester(
-      computed,
-    );
+  //   final tester = StatesTester(
+  //     computed,
+  //   );
 
-    tester.startObserve();
+  //   tester.startObserve();
 
-    scope.dispose();
+  //   scope.dispose();
     
-    expect(tester.recorded, <String>[
-      '1a|2a',
-    ]);
-    await Future(() {});
-    expect(tester.recorded, <String>[
-      '1a|2a',
-    ]);
+  //   expect(tester.recorded, <String>[
+  //     '1a|2a',
+  //   ]);
+  //   await Future(() {});
+  //   expect(tester.recorded, <String>[
+  //     '1a|2a',
+  //   ]);
 
-    tester.stopObserve();
+  //   tester.stopObserve();
 
-  });
+  // });
 
-  test('`Computed2` default equals', () async {
+  // test('`Computed2` default equals', () async {
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
-        final states1 = States<String>((setState) {
-          setState('1a');
-          return Disposable.empty;
-        });
-        final states2 = States<String>((setState) {
-          setState('2a');
-          Future(() => setState('2a'));
-          Future(() => setState('2b'));
-          Future(() => setState('2b'));
-          return Disposable.empty;
-        });
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => states1,
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => states2,
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) => '$it1|$it2',
-        late: false,
-      ),
-    ]);
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
+  //       final states1 = States<String>((setState) {
+  //         setState('1a');
+  //         return Disposable.empty;
+  //       });
+  //       final states2 = States<String>((setState) {
+  //         setState('2a');
+  //         Future(() => setState('2a'));
+  //         Future(() => setState('2b'));
+  //         Future(() => setState('2b'));
+  //         return Disposable.empty;
+  //       });
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => states1,
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => states2,
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) => '$it1|$it2',
+  //       late: false,
+  //     ),
+  //   ]);
 
-    final computed = scope.get<States<String>>(name: 'computed');
+  //   final computed = scope.get<States<String>>(name: 'computed');
 
-    final tester = StatesTester(
-      computed,
-    );
+  //   final tester = StatesTester(
+  //     computed,
+  //   );
 
-    tester.startObserve();
+  //   tester.startObserve();
     
-    expect(tester.recorded, <String>[
-      '1a|2a',
-    ]);
-    await Future(() {});
-    expect(tester.recorded, <String>[
-      '1a|2a',
-      '1a|2b',
-    ]);
+  //   expect(tester.recorded, <String>[
+  //     '1a|2a',
+  //   ]);
+  //   await Future(() {});
+  //   expect(tester.recorded, <String>[
+  //     '1a|2a',
+  //     '1a|2b',
+  //   ]);
 
-    tester.stopObserve();
+  //   tester.stopObserve();
 
-  });
+  // });
 
-  test('`Computed2` custom equals', () async {
+  // test('`Computed2` custom equals', () async {
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
-        final states1 = States<String>((setState) {
-          setState('1a');
-          return Disposable.empty;
-        });
-        final states2 = States<String>((setState) {
-          setState('2a');
-          Future(() => setState('2b'));
-          Future(() => setState('2aa'));
-          Future(() => setState('2bb'));
-          return Disposable.empty;
-        });
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => states1,
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => states2,
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) => '$it1|$it2',
-        equals: (it1, it2) => it1.length == it2.length,
-        late: false,
-      ),
-    ]);
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
+  //       final states1 = States<String>((setState) {
+  //         setState('1a');
+  //         return Disposable.empty;
+  //       });
+  //       final states2 = States<String>((setState) {
+  //         setState('2a');
+  //         Future(() => setState('2b'));
+  //         Future(() => setState('2aa'));
+  //         Future(() => setState('2bb'));
+  //         return Disposable.empty;
+  //       });
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => states1,
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => states2,
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) => '$it1|$it2',
+  //       equals: (it1, it2) => it1.length == it2.length,
+  //       late: false,
+  //     ),
+  //   ]);
 
-    final computed = scope.get<States<String>>(name: 'computed');
+  //   final computed = scope.get<States<String>>(name: 'computed');
 
-    final tester = StatesTester(
-      computed,
-    );
+  //   final tester = StatesTester(
+  //     computed,
+  //   );
 
-    tester.startObserve();
+  //   tester.startObserve();
     
-    expect(tester.recorded, <String>[
-      '1a|2a',
-    ]);
-    await Future(() {});
-    expect(tester.recorded, <String>[
-      '1a|2a',
-      '1a|2aa',
-    ]);
+  //   expect(tester.recorded, <String>[
+  //     '1a|2a',
+  //   ]);
+  //   await Future(() {});
+  //   expect(tester.recorded, <String>[
+  //     '1a|2a',
+  //     '1a|2aa',
+  //   ]);
 
-    tester.stopObserve();
+  //   tester.stopObserve();
 
-  });
+  // });
 
-  test('`Computed2` compute immediately when late is false', () async {
+  // test('`Computed2` compute immediately when late is false', () async {
 
-    int invokes = 0;
+  //   int invokes = 0;
 
-    await Scope.root([
-      MockConfigurable((scope) {
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => statesJust('1a'),
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => statesJust('2a'),
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) {
-          invokes += 1;
-          return '$it1|$it2';
-        }, 
-        late: false,
-      ),
-    ]);
+  //   await Scope.root([
+  //     MockConfigurable((scope) {
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => statesJust('1a'),
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => statesJust('2a'),
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) {
+  //         invokes += 1;
+  //         return '$it1|$it2';
+  //       }, 
+  //       late: false,
+  //     ),
+  //   ]);
 
-    expect(invokes, 1);
+  //   expect(invokes, 1);
 
-  });
+  // });
 
-  test('`Computed2` compute lazily when late is true', () async {
+  // test('`Computed2` compute lazily when late is true', () async {
 
-    int invokes = 0;
+  //   int invokes = 0;
 
-    final scope = await Scope.root([
-      MockConfigurable((scope) {
-        scope.expose<States<String>>(
-          name: 'states1',
-          expose: () => statesJust('1a'),
-        );
-        scope.expose<States<String>>(
-          name: 'states2',
-          expose: () => statesJust('2a'),
-        );
-      }),
-      Computed2<String, String, String>(
-        name: 'computed',
-        statesName1: 'states1',
-        statesName2: 'states2',
-        compute: (_, it1, it2) {
-          invokes += 1;
-          return '$it1|$it2';
-        }, 
-        late: true,
-      ),
-    ]);
+  //   final scope = await Scope.root([
+  //     MockConfigurable((scope) {
+  //       scope.expose<States<String>>(
+  //         name: 'states1',
+  //         expose: () => statesJust('1a'),
+  //       );
+  //       scope.expose<States<String>>(
+  //         name: 'states2',
+  //         expose: () => statesJust('2a'),
+  //       );
+  //     }),
+  //     Computed2<String, String, String>(
+  //       name: 'computed',
+  //       statesName1: 'states1',
+  //       statesName2: 'states2',
+  //       compute: (_, it1, it2) {
+  //         invokes += 1;
+  //         return '$it1|$it2';
+  //       }, 
+  //       late: true,
+  //     ),
+  //   ]);
 
-    expect(invokes, 0);
-    scope.get<States<String>>(name: 'computed');
-    expect(invokes, 1);
+  //   expect(invokes, 0);
+  //   scope.get<States<String>>(name: 'computed');
+  //   expect(invokes, 1);
 
-  });
+  // });
+
+  _main();
 }
