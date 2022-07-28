@@ -12,9 +12,9 @@ String testNotForwardAfterScopeDisposed(int? number) {
         statesTester(),
         testerStartObserve(),
         scopeDispose(),
-        expectTesterRecorded<String>(expectAllA(n)),
+        expectTesterRecorded<String>(expectsAllA(n)),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(expectAllA(n)),
+        expectTesterRecorded<String>(expectsAllA(n)),
         testerStopObserve(),
       ])}
     });

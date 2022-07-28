@@ -12,9 +12,9 @@ String testObservableCombineNotEmitAfterObservationDispose(int? number) {
         observableTester(),
         testerStartObserve(),
         testerStopObserve(),
-        expectTesterRecorded<String>(expectAllA(count)),
+        expectTesterRecorded<String>(expectsAllA(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(expectAllA(count)),
+        expectTesterRecorded<String>(expectsAllA(count)),
       ])}
     });
   ''';
@@ -30,9 +30,9 @@ String testStatesCombineNotEmitAfterObservationDispose(int? number) {
         statesTester(),
         testerStartObserve(),
         testerStopObserve(),
-        expectTesterRecorded<String>(expectAllA(count)),
+        expectTesterRecorded<String>(expectsAllA(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(expectAllA(count)),
+        expectTesterRecorded<String>(expectsAllA(count)),
       ])}
     });
   ''';

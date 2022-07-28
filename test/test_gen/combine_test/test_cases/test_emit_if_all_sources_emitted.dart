@@ -13,7 +13,7 @@ String testObservableCombineEmitIfAllSourcesEmitted(int? number) {
         testerStartObserve(),
         expectTesterRecorded<String>([]),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(expectAllA(count)),
+        expectTesterRecorded<String>(expectsAllA(count)),
         testerStopObserve(),
       ])}
     });
@@ -43,7 +43,7 @@ String testStatesCombineInitialEmit(int? number) {
         statesTester(),
         expectTesterRecorded<String>([]),
         testerStartObserve(),
-        expectTesterRecorded<String>(expectAllA(count)),
+        expectTesterRecorded<String>(expectsAllA(count)),
         testerStopObserve(),
       ])}
     });

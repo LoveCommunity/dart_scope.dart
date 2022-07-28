@@ -11,7 +11,7 @@ String testCustomEquals(int? number) {
         getComputed(),
         statesTester(),
         testerStartObserve(),
-        expectTesterRecorded<String>(expectAllA(n)),
+        expectTesterRecorded<String>(expectsAllA(n)),
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects2(n)),
         testerStopObserve(),
