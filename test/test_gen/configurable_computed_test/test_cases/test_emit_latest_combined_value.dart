@@ -6,7 +6,7 @@ String testEmitLatestCombinedValue(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` emit latest combined value when a source emit', () async {
-      ${[
+      ${code([
         _scopeRoot(n),
         getComputed(),
         statesTester(),
@@ -15,7 +15,7 @@ String testEmitLatestCombinedValue(int? number) {
         awaitEmptyFuture(),
         expectTesterRecorded<String>(expectAB(n)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }

@@ -6,7 +6,7 @@ String testObservableCombineNotEmitAfterObservationDispose(int? number) {
   final count = number ?? 2;
   return '''
     test('${observableCombineTestHeader(number)} will not emit data after observation disposed', () async {
-      ${[
+      ${code([
         ...observables(count, sampleObservable),
         observableCombine(number),
         observableTester(),
@@ -15,7 +15,7 @@ String testObservableCombineNotEmitAfterObservationDispose(int? number) {
         expectTesterRecorded<String>(_expects(count)),
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects(count)),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
@@ -30,7 +30,7 @@ String testStatesCombineNotEmitAfterObservationDispose(int? number) {
   final count = number ?? 2;
   return '''
     test('${statesCombineTestHeader(number)} will not emit data after observation disposed', () async {
-      ${[
+      ${code([
         ...statesIterable(count, sampleStates),
         statesCombine(number),
         statesTester(),
@@ -39,7 +39,7 @@ String testStatesCombineNotEmitAfterObservationDispose(int? number) {
         expectTesterRecorded<String>(_expects(count)),
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects(count)),
-      ].join('\n')}
+      ])}
     });
   ''';
 }

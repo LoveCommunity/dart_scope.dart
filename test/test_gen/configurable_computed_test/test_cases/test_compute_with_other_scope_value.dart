@@ -7,12 +7,12 @@ String testComputeWithOtherScopeValue(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` compute with other scope value', () async {
-      ${[
+      ${code([
         _scopeRoot(n),
         getComputed(),
         _first(),
         _expect(n),
-      ].join('\n')}
+      ])}
     });
   ''';
 }

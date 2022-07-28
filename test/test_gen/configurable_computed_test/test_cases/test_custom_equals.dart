@@ -6,7 +6,7 @@ String testCustomEquals(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` custom equals', () async {
-      ${[
+      ${code([
         _scopeRoot(n),
         getComputed(),
         statesTester(),
@@ -15,7 +15,7 @@ String testCustomEquals(int? number) {
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects2(n)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
@@ -40,14 +40,14 @@ String _scopeRoot(int n) {
 String _states(bool isLast, int n) {
   return '''
     final states$n = States<String>((setState) {
-      ${[
+      ${code([
         "setState('${n}a');",
         if (isLast) ...[
           "Future(() => setState('${n}b'));",
           "Future(() => setState('${n}aa'));",
           "Future(() => setState('${n}bb'));",
         ],
-      ].join('\n')}
+      ])}
       return Disposable.empty;
     });
   ''';

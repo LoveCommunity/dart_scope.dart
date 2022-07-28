@@ -3,10 +3,13 @@ String testAll({
   required List<String Function(int?)> tests,
   required List<int?> numbers,
 }) {
-  final allTests = tests
-    .expand((test) => numbers.map(test))
-    .join('\n');
+  final allTests = code(tests
+    .expand((test) => numbers.map(test)));
   return 'void _main() {$allTests}';
+}
+
+String code(Iterable<String> codes) {
+  return codes.join('\n');
 }
 
 Iterable<String> observables(
@@ -40,10 +43,10 @@ Iterable<String> sampleStatesIterable(int count) {
 String sampleObservable(bool isLast, int n) {
   return '''
     final observable$n = Observable<String>((onData) {
-       ${[
+       ${code([
         "onData('${n}a');",
         if (isLast) "Future(() => onData('${n}b'));"
-       ].join('\n')}
+       ])}
       return Disposable.empty;
     });
   ''';
@@ -52,10 +55,10 @@ String sampleObservable(bool isLast, int n) {
 String sampleStates(bool isLast, int n) {
   return '''
     final states$n = States<String>((setState) {
-       ${[
+       ${code([
         "setState('${n}a');",
         if (isLast) "Future(() => setState('${n}b'));"
-       ].join('\n')}
+       ])}
       return Disposable.empty;
     });
   ''';
