@@ -92,7 +92,9 @@ String testerStopObserve() {
   ''';
 }
 
-String intInvokes() => 'int invokes = 0;';
+String invokes() => 'int invokes = 0;';
+
+String invokesList() => 'final invokes = <String>[];';
 
 String expectTesterRecorded<T>(List<String> expects) {
   return expectList<T>('tester.recorded', expects);
@@ -112,13 +114,13 @@ String expectList<T>(String name, List<String> expects) {
   '''; 
 }
 
-List<String> expectAllA(int count) {
+List<String> expectsAllA(int count) {
   return [
     joinAllA(count), // '1a|2a'
   ];
 }
 
-List<String> expectAB(int count) {
+List<String> expectsAB(int count) {
   bool isLast(int n) => n == count;
   return [
     joinAllA(count), // '1a|2a'

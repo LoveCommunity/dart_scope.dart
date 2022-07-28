@@ -11,9 +11,9 @@ String testDefaultEquals(int? number) {
         getComputed(),
         statesTester(),
         testerStartObserve(),
-        expectTesterRecorded<String>(expectAllA(n)),
+        expectTesterRecorded<String>(expectsAllA(n)),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(expectAB(n)),
+        expectTesterRecorded<String>(expectsAB(n)),
         testerStopObserve(),
       ])}
     });
