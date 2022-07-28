@@ -29,7 +29,7 @@ class ConfigurableComputedTestGenerator extends GeneratorForAnnotation<Configura
         testLateIsFalse,
         testLateIsTrue,
       ],
-      numbers: [2],
+      numbers: [2, 3],
     );
   }
 }
