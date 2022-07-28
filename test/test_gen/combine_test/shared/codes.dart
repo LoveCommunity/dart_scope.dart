@@ -8,51 +8,6 @@ String observableCombineTestHeader(int? number) {
 String statesCombineTestHeader(int? number) {
   return '`States.combine${number == null ? '' : '$number'}`';
 }
-
-Iterable<String> observables(
-  int count, 
-  String Function(bool isLast, int n) observable
-) {
-  return generateN(
-    count,
-    (n) => observable(n == count, n),
-  );
-}
-
-Iterable<String> statesIterable(
-  int count,
-  String Function(bool isLast, int n) states
-) {
-  return generateN(
-    count,
-    (n) => states(n == count, n),
-  );
-}
-
-String sampleObservable(bool isLast, int n) {
-  return '''
-    final observable$n = Observable<String>((onData) {
-       ${[
-        "onData('${n}a');",
-        if (isLast) "Future(() => onData('${n}b'));"
-       ].join('\n')}
-      return Disposable.empty;
-    });
-  ''';
-}
-
-String sampleStates(bool isLast, int n) {
-  return '''
-    final states$n = States<String>((setState) {
-       ${[
-        "setState('${n}a');",
-        if (isLast) "Future(() => setState('${n}b'));"
-       ].join('\n')}
-      return Disposable.empty;
-    });
-  ''';
-}
-
 String observableCombine(int? number) {
   return _combine(true, number);
 }
@@ -99,26 +54,9 @@ String _combine(bool isObservable, int? number) {
 }
 
 String observableTester() {
-  return '''
-    final tester = ObservableTester(
-      combine,
-    );
-  ''';
+  return assignObservableTester('combine');
 }
 
 String statesTester() {
-  return '''
-    final tester = StatesTester(
-      combine,
-    );
-  ''';
-}
-
-/// '1a|2a'
-String joinAllA(int count) {
-  return join(
-    count, 
-    (n) => '${n}a', 
-    '|'
-  ).boxed(); 
+  return assignStatesTester('combine');
 }

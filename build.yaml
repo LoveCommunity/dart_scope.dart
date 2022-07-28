@@ -5,7 +5,7 @@ targets:
         generate_for:
           - test/observables/observables/observable_combine_test.dart
           - test/observables/states/states_combine_test.dart
-
+          - test/scopes/configurables/computed_test.dart
 builders:
   _test_builder:
     import: "test/test_gen/test_builder.dart"
