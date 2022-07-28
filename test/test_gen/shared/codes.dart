@@ -92,7 +92,9 @@ String testerStopObserve() {
   ''';
 }
 
-String intInvokes() => 'int invokes = 0;';
+String invokes() => 'int invokes = 0;';
+
+String invokesList() => 'final invokes = <String>[];';
 
 String expectTesterRecorded<T>(List<String> expects) {
   return expectList<T>('tester.recorded', expects);

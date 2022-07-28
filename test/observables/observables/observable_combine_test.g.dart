@@ -225,7 +225,6 @@ void _main() {
       '`Observable.combine` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
-
     final observable1 = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
@@ -259,7 +258,6 @@ void _main() {
       '`Observable.combine2` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
-
     final observable1 = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');
@@ -291,7 +289,6 @@ void _main() {
       '`Observable.combine3` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
-
     final observable1 = Observable<String>((onData) {
       return Disposable(() {
         invokes.add('dispose1');

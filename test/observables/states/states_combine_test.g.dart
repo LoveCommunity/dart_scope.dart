@@ -219,7 +219,6 @@ void _main() {
       '`States.combine` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
-
     final states1 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose1');
@@ -253,7 +252,6 @@ void _main() {
       '`States.combine2` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
-
     final states1 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose1');
@@ -285,7 +283,6 @@ void _main() {
       '`States.combine3` dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
-
     final states1 = States<String>((setState) {
       return Disposable(() {
         invokes.add('dispose1');

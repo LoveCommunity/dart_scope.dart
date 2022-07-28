@@ -7,7 +7,7 @@ String testObservableCombineDisposeObservation(int? number) {
   return '''
     test('${observableCombineTestHeader(number)} dispose observation will dispose all source observations', () {
       ${code([
-        _invokes(),
+        invokesList(),
         ...observables(count, _observable),
         observableCombine(number),
         _startObserve(),
@@ -16,12 +16,6 @@ String testObservableCombineDisposeObservation(int? number) {
         expectInvokesList<String>(_expects(count)),
       ])}
     });
-  ''';
-}
-
-String _invokes() {
-  return '''
-    final invokes = <String>[];
   ''';
 }
 
@@ -59,7 +53,7 @@ String testStatesCombineDisposeObservation(int? number) {
   return '''
     test('${statesCombineTestHeader(number)} dispose observation will dispose all source observations', () {
       ${code([
-        _invokes(),
+        invokesList(),
         ...statesIterable(count, _states),
         statesCombine(number),
         _startObserve(),
