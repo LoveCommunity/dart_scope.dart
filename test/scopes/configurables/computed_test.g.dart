@@ -133,7 +133,6 @@ void _main() {
 
     final computed1 = scope.get<States<String>>(name: 'computed');
     final computed2 = scope.get<States<String>>(name: 'computed');
-    final computed3 = scope.get<States<String>>(name: 'computed');
     final isIdentical = identical(computed1, computed2);
     expect(isIdentical, true);
   });
