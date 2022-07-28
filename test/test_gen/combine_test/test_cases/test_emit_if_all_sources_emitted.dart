@@ -13,7 +13,7 @@ String testObservableCombineEmitIfAllSourcesEmitted(int? number) {
         testerStartObserve(),
         expectTesterRecorded<String>([]),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(_expects(count)),
+        expectTesterRecorded<String>(expectAllA(count)),
         testerStopObserve(),
       ])}
     });
@@ -33,10 +33,6 @@ String _observable(bool isLast, int n) {
   ''';
 }
 
-List<String> _expects(int count) => [
-  joinAllA(count), // '1a|2a'
-];
-
 String testStatesCombineInitialEmit(int? number) {
   final count = number ?? 2;
   return '''
@@ -47,7 +43,7 @@ String testStatesCombineInitialEmit(int? number) {
         statesTester(),
         expectTesterRecorded<String>([]),
         testerStartObserve(),
-        expectTesterRecorded<String>(_expects(count)),
+        expectTesterRecorded<String>(expectAllA(count)),
         testerStopObserve(),
       ])}
     });

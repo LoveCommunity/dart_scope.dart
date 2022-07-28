@@ -11,32 +11,13 @@ String testObservableCombineEmitLatestCombinedValue(int? number) {
         observableCombine(number),
         observableTester(),
         testerStartObserve(),
-        expectTesterRecorded<String>(_expects1(count)),
+        expectTesterRecorded<String>(expectAllA(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(_expects2(count)),
+        expectTesterRecorded<String>(expectAB(count)),
         testerStopObserve(),
       ])}
     });
   ''';
-}
-
-
-List<String> _expects1(int count) {
-  return [
-    joinAllA(count), // '1a|2a'
-  ];
-}
-
-List<String> _expects2(int count) {
-  bool isLast(int n) => n == count;
-  return [
-    joinAllA(count), // '1a|2a'
-    join(                                     // '1a|2b'
-      count,
-      (n) => '$n${!isLast(n) ? 'a' : 'b'}',
-      '|'
-    ).boxed()
-  ];
 }
 
 String testStatesCombineEmitLatestCombinedValue(int? number) {
@@ -48,9 +29,9 @@ String testStatesCombineEmitLatestCombinedValue(int? number) {
         statesCombine(number),
         statesTester(),
         testerStartObserve(),
-        expectTesterRecorded<String>(_expects1(count)),
+        expectTesterRecorded<String>(expectAllA(count)),
         awaitEmptyFuture(),
-        expectTesterRecorded<String>(_expects2(count)),
+        expectTesterRecorded<String>(expectAB(count)),
         testerStopObserve(),
       ])}
     });
