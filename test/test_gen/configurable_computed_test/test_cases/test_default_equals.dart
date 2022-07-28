@@ -6,7 +6,7 @@ String testDefaultEquals(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` default equals', () async {
-      ${[
+      ${code([
         _scopeRoot(n),
         getComputed(),
         statesTester(),
@@ -15,7 +15,7 @@ String testDefaultEquals(int? number) {
         awaitEmptyFuture(),
         expectTesterRecorded<String>(expectAB(n)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
@@ -39,14 +39,14 @@ String _scopeRoot(int n) {
 String _states(bool isLast, int n) {
   return '''
     final states$n = States<String>((setState) {
-      ${[
+      ${code([
         "setState('${n}a');",
         if (isLast) ...[
           "Future(() => setState('${n}a'));",
           "Future(() => setState('${n}b'));",
           "Future(() => setState('${n}b'));",
         ],
-      ].join('\n')}
+      ])}
       return Disposable.empty;
     });
   ''';

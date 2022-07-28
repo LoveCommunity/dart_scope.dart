@@ -6,11 +6,11 @@ String testLateIsFalse(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` compute immediately when late is false', () async {
-      ${[
+      ${code([
         intInvokes(),
         _scopeRoot(n: n, assign: false, computedLate: false),
         expectInvokes(1),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
@@ -19,13 +19,13 @@ String testLateIsTrue(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` compute immediately when late is true', () async {
-      ${[
+      ${code([
         intInvokes(),
         _scopeRoot(n: n, assign: true, computedLate: true),
         expectInvokes(0),
         getComputed(assign: false),
         expectInvokes(1),
-      ].join('\n')}
+      ])}
     });
   ''';
 }

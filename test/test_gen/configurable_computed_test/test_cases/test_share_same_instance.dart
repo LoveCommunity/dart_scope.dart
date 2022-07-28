@@ -6,12 +6,12 @@ String testShareSameInstance(int? number) {
   final n = number!;
   return '''
     test('`Computed$number` share same instance in scope with name', () async {
-      ${[
+      ${code([
         sampleScopeRoot(n: n),
         ...generateN(n, (n) => getComputed(assignTo: 'computed$n')),
         _isIdentical(),
         _expect(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }

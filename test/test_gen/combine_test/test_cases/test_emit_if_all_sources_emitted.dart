@@ -6,7 +6,7 @@ String testObservableCombineEmitIfAllSourcesEmitted(int? number) {
   final count = number ?? 2;
   return '''
     test('${observableCombineTestHeader(number)} emit if all sources emitted', () async {
-      ${[
+      ${code([
         ...observables(count, _observable),
         observableCombine(number),
         observableTester(),
@@ -15,7 +15,7 @@ String testObservableCombineEmitIfAllSourcesEmitted(int? number) {
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects(count)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
@@ -41,7 +41,7 @@ String testStatesCombineInitialEmit(int? number) {
   final count = number ?? 2;
   return '''
     test('${statesCombineTestHeader(number)} initial emit', () {
-      ${[
+      ${code([
         ...statesIterable(count, _states),
         statesCombine(number),
         statesTester(),
@@ -49,7 +49,7 @@ String testStatesCombineInitialEmit(int? number) {
         testerStartObserve(),
         expectTesterRecorded<String>(_expects(count)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }

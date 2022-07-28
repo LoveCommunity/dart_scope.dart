@@ -6,7 +6,7 @@ String testObservableCombineEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
     test('${observableCombineTestHeader(number)} emit latest combined value when a source emit', () async {
-      ${[
+      ${code([
         ...observables(count, sampleObservable),
         observableCombine(number),
         observableTester(),
@@ -15,7 +15,7 @@ String testObservableCombineEmitLatestCombinedValue(int? number) {
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects2(count)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
@@ -43,7 +43,7 @@ String testStatesCombineEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
     test('${statesCombineTestHeader(number)} emit latest combined value when a source emit', () async {
-      ${[
+      ${code([
         ...statesIterable(count, sampleStates),
         statesCombine(number),
         statesTester(),
@@ -52,7 +52,7 @@ String testStatesCombineEmitLatestCombinedValue(int? number) {
         awaitEmptyFuture(),
         expectTesterRecorded<String>(_expects2(count)),
         testerStopObserve(),
-      ].join('\n')}
+      ])}
     });
   ''';
 }
