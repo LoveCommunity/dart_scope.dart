@@ -1,6 +1,6 @@
 
-import '../../observables/states/states.dart';
-import '../../observables/states/states_activated.dart';
+import '../../dart_observable/states/states.dart';
+import '../../dart_observable/states/states_activated.dart';
 import '../shared/typedefs.dart';
 
 import 'final.dart';

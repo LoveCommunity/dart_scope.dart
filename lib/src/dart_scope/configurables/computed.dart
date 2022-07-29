@@ -1,6 +1,6 @@
 import 'package:typedef_equals/typedef_equals.dart';
 
-import '../../observables/states/states.dart';
+import '../../dart_observable/states/states.dart';
 import '../scope_methods/scope_get.dart';
 import '../shared/typedefs.dart';
 
