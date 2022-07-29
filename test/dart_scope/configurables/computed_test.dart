@@ -1,6 +1,6 @@
 
 import 'package:test/test.dart';
-import 'package:scopes/scopes.dart';
+import 'package:dart_scope/dart_scope.dart';
 
 import '../../observables/shared/states_tester.dart';
 import '../../test_gen/configurable_computed_test/configurable_computed_test.dart';

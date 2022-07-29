@@ -1,6 +1,6 @@
-name: scopes
+name: dart_scope
 version: 0.1.0-alpha.1
-homepage: https://github.com/LoveCommunity/scopes.dart
+homepage: https://github.com/LoveCommunity/dart_scope.dart
 description: A declarative dependency injection library which use dart syntax and flutter style
 
 environment:
