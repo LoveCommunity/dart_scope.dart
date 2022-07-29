@@ -1,6 +1,6 @@
 
 import 'package:test/test.dart';
-import 'package:scopes/scopes.dart';
+import 'package:dart_scope/dart_scope.dart';
 
 import '../../test_gen/combine_test/combine_test.dart';
 import '../shared/states_tester.dart';

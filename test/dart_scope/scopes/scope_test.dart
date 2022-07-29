@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:test/test.dart';
-import 'package:scopes/scopes.dart';
+import 'package:dart_scope/dart_scope.dart';
 
 import '../shared/mock_configurable.dart';
 
