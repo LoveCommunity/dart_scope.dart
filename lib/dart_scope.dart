@@ -1,3 +1,3 @@
 
 export 'src/observables/observables.dart';
-export 'src/scopes/scopes.dart';
+export 'src/dart_scope/dart_scope.dart';

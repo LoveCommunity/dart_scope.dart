@@ -1,4 +1,4 @@
-import 'package:scopes/scopes.dart';
+import 'package:dart_scope/dart_scope.dart';
 
 class ObservableTester<T> {
 

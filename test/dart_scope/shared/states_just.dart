@@ -1,5 +1,5 @@
 
-import 'package:scopes/scopes.dart';
+import 'package:dart_scope/dart_scope.dart';
 
 States<T> statesJust<T>(T state) => States((setState) {
   setState(state);
