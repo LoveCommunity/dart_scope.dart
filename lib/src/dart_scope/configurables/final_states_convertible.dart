@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:typedef_foundation/typedef_foundation.dart';
 
-import '../../observables/states/states.dart';
+import '../../dart_observable/states/states.dart';
 
 import '../scopes/configurable_scope.dart';
 import '../scope_methods/disposable_sink.dart';
