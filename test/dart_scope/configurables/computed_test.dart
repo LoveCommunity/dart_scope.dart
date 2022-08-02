@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:dart_scope/dart_scope.dart';
 
 import '../../dart_observable/shared/states_tester.dart';
-import '../../test_gen/configurable_computed_test/configurable_computed_test.dart';
+import '../../test_gen/configurable_computed_test/configurable_computed_test_annotation.dart';
 import '../shared/mock_configurable.dart';
 import '../shared/states_just.dart';
 

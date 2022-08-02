@@ -11,7 +11,7 @@ import 'test_cases/test_emit_latest_combined_value.dart';
 import 'test_cases/test_late.dart';
 import 'test_cases/test_not_forward_after_scope_disposed.dart';
 import 'test_cases/test_share_same_instance.dart';
-import 'configurable_computed_test.dart';
+import 'configurable_computed_test_annotation.dart';
 
 class ConfigurableComputedTestGenerator extends GeneratorForAnnotation<ConfigurableComputedTest> {
 
