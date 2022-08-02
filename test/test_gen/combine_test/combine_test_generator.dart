@@ -3,7 +3,7 @@ import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
 import '../shared/codes.dart';
-import 'combine_test.dart';
+import 'combine_test_annotation.dart';
 import 'test_cases/test_dispose_observation.dart';
 import 'test_cases/test_emit_if_all_sources_emitted.dart';
 import 'test_cases/test_emit_latest_combined_value.dart';
