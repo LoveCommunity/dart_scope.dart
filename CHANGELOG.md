@@ -97,3 +97,7 @@
 * Meta/meta by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/101
 * downgrade `analyzer` min to 4.0.0 by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/102
 * Ci/publish by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/103
+* Refactor/rename package by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/105
+* rename package to `dart_scope` to avoid name conflict by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/104
+* rename `observables` to `dart_observable` to avoid name conflict by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/106
+* rename annotation file `*_test.dart` to `*_test_annotation.dart` by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/107
