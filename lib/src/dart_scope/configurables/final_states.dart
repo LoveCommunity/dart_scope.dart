@@ -5,7 +5,7 @@ import '../shared/typedefs.dart';
 
 import 'final.dart';
 
-class FinalStates<T> extends FinalBase<StatesActivated<T>> {
+class FinalStates<T> extends Final<StatesActivated<T>> {
 
   FinalStates({
     Object? name,
@@ -16,7 +16,7 @@ class FinalStates<T> extends FinalBase<StatesActivated<T>> {
     equal: _superEqual(equal),
     expose: _superExpose(name),
     dispose: _superDispose(),
-    late: lazy,
+    lazy: lazy,
   );
 }
 
