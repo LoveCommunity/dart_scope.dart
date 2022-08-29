@@ -161,7 +161,7 @@ void main() {
 
     final invokes = <String>[];
 
-    await Scope.root([
+    final scope = await Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) {
           invokes.add('equal');
@@ -175,6 +175,12 @@ void main() {
       ),
     ]);
 
+    expect(invokes, <String>[
+      'equal',
+      'statesEqual',
+    ]);
+    scope.get<_MockSubject<String>>();
+    scope.get<States<String>>();
     expect(invokes, <String>[
       'equal',
       'statesEqual',
