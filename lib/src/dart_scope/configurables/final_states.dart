@@ -5,42 +5,18 @@ import '../shared/typedefs.dart';
 
 import 'final.dart';
 
-class FinalStates<T> extends FinalStatesBase<T> {
+class FinalStates<T> extends FinalBase<StatesActivated<T>> {
 
   FinalStates({
     Object? name,
     required Equal<States<T>> equal,
-  }): super(
-    name: name,
-    equal: equal,
-    late: false,
-  );
-}
-
-class LateFinalStates<T> extends FinalStatesBase<T> {
-
-  LateFinalStates({
-    Object? name,
-    required Equal<States<T>> equal,
-  }): super(
-    name: name,
-    equal: equal,
-    late: true,
-  );
-}
-
-class FinalStatesBase<T> extends FinalBase<StatesActivated<T>> {
-
-  FinalStatesBase({
-    required Object? name,
-    required Equal<States<T>> equal,
-    required bool late,
+    bool lazy = true,
   }): super(
     name: name,
     equal: _superEqual(equal),
     expose: _superExpose(name),
     dispose: _superDispose(),
-    late: late,
+    late: lazy,
   );
 }
 

@@ -8,26 +8,22 @@ import '../shared/states_just.dart';
 
 void main() {
 
-  test('`FinalStatesBase` is sync configuration', () {
+  test('`FinalStates` is sync configuration', () {
 
     final scope = Scope.root([
-      FinalStatesBase<String>(
-        name: null,
+      FinalStates<String>(
         equal: (_) => statesJust('a'),
-        late: false,
       ),
     ]);
 
     expect(scope, isA<Scope>());
   });
   
-  test('`FinalStatesBase` share same states in scope', () async {
+  test('`FinalStates` share same states in scope', () async {
 
     final scope = await Scope.root([
-      FinalStatesBase<String>(
-        name: null,
+      FinalStates<String>(
         equal: (_) => statesJust('a'),
-        late: false,
       ),
     ]);
 
@@ -40,13 +36,12 @@ void main() {
 
   });
 
-  test('`FinalStatesBase` share same states in scope with name', () async {
+  test('`FinalStates` share same states in scope with name', () async {
 
     final scope = await Scope.root([
-      FinalStatesBase<String>(
+      FinalStates<String>(
         name: 'states',
         equal: (_) => statesJust('a'),
-        late: false,
       ),
     ]);
 
@@ -59,19 +54,17 @@ void main() {
 
   });
 
-  test('`FinalStatesBase` assign states which depends on other scope value', () async {
+  test('`FinalStates` assign states which depends on other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
         scope.expose<int>(expose: () => 0);
       }),
-      FinalStatesBase<String>(
-        name: null,
+      FinalStates<String>(
         equal: (scope) {
           final value = scope.get<int>().toString();
           return statesJust(value);
         },
-        late: false,
       ),
     ]);
 
@@ -82,17 +75,15 @@ void main() {
 
   });
   
-  test("`FinalStatesBase` exposed `States` won't forward data after scope disposed", () async {
+  test("`FinalStates` exposed `States` won't forward data after scope disposed", () async {
 
     final scope = await Scope.root([
-      FinalStatesBase<String>(
-        name: null,
+      FinalStates<String>(
         equal: (_) => States((setState) {
           setState('a');
           Future(() => setState('b'));
           return Disposable.empty;
         }),
-        late: false,
       ),
     ]);
 
@@ -116,73 +107,37 @@ void main() {
 
   });
 
-  test('`FinalStatesBase` assign states immediately when late is false', () async {
-
-    int invokes = 0;
-
-    await Scope.root([
-      FinalStatesBase<Object>(
-        name: null,
-        equal: (_) {
-          invokes += 1;
-          return statesJust(Object());
-        },
-        late: false,
-      ),
-    ]);
-
-    expect(invokes, 1);
-
-  });
-  
-  test('`FinalStatesBase` assign states lazily when late is true', () async {
+  test('`FinalStates` assign states immediately when lazy is false', () async {
 
     int invokes = 0;
 
     final scope = await Scope.root([
-      FinalStatesBase<Object>(
-        name: null,
-        equal: (_) {
-          invokes += 1;
-          return statesJust(Object());
-        },
-        late: true,
-      ),
-    ]);
-
-    expect(invokes, 0);
-    scope.get<States<Object>>();
-    expect(invokes, 1);
-
-  });
-  
-  test('`FinalStates` assign states immediately', () async {
-
-    int invokes = 0;
-
-    await Scope.root([
       FinalStates<Object>(
         equal: (_) {
           invokes += 1;
           return statesJust(Object());
         },
+        lazy: false,
       ),
     ]);
 
     expect(invokes, 1);
+    scope.get<States<Object>>();
+    expect(invokes, 1);
 
   });
   
-  test('`LateFinalStates` assign states lazily', () async {
+  test('`FinalStates` assign states lazily when lazy is true', () async {
 
     int invokes = 0;
 
     final scope = await Scope.root([
-      LateFinalStates<Object>(
+      FinalStates<Object>(
         equal: (_) {
           invokes += 1;
           return statesJust(Object());
         },
+        lazy: true,
       ),
     ]);
 

@@ -6,7 +6,7 @@ import '../shared/typedefs.dart';
 
 import 'final_states.dart';
 
-class Computed<T, R> extends FinalStatesBase<R> {
+class Computed<T, R> extends FinalStates<R> {
 
   Computed({
     Object? name,
@@ -21,11 +21,11 @@ class Computed<T, R> extends FinalStatesBase<R> {
       compute,
       equals,
     ),
-    late: late,
+    lazy: late,
   );
 }
 
-class Computed2<T1, T2, R> extends FinalStatesBase<R> {
+class Computed2<T1, T2, R> extends FinalStates<R> {
 
   Computed2({
     Object? name,
@@ -42,11 +42,11 @@ class Computed2<T1, T2, R> extends FinalStatesBase<R> {
       compute,
       equals,
     ),
-    late: late,
+    lazy: late,
   );
 }
 
-class Computed3<T1, T2, T3, R> extends FinalStatesBase<R> {
+class Computed3<T1, T2, T3, R> extends FinalStates<R> {
 
   Computed3({
     Object? name,
@@ -65,7 +65,7 @@ class Computed3<T1, T2, T3, R> extends FinalStatesBase<R> {
       compute,
       equals,
     ),
-    late: late,
+    lazy: late,
   );
 }
 
