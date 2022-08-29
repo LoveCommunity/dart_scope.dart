@@ -16,7 +16,7 @@ typedef StatesConvertibleExpose<T, E> = void Function(
   Getter<States<E>> getStates
 );
 
-class FinalStatesConvertible<T, E> extends FinalStatesConvertibleBase<T, E> {
+class FinalStatesConvertible<T, E> implements Configurable {
 
   const FinalStatesConvertible({
     Object? name,
@@ -25,54 +25,14 @@ class FinalStatesConvertible<T, E> extends FinalStatesConvertibleBase<T, E> {
     required States<E> Function(T it) statesEqual,
     StatesConvertibleExpose<T, E>? expose,
     ValueDispose<T>? dispose,
-  }): super(
-    name: name,
-    equal: equal,
-    statesName: statesName,
-    statesEqual: statesEqual,
-    expose: expose,
-    dispose: dispose,
-    late: false,
-  );
-}
-
-class LateFinalStatesConvertible<T, E> extends FinalStatesConvertibleBase<T, E> {
-
-  const LateFinalStatesConvertible({
-    Object? name,
-    required Equal<T> equal,
-    Object? statesName,
-    required States<E> Function(T it) statesEqual,
-    StatesConvertibleExpose<T, E>? expose,
-    ValueDispose<T>? dispose,
-  }): super(
-    name: name,
-    equal: equal,
-    statesName: statesName,
-    statesEqual: statesEqual,
-    expose: expose,
-    dispose: dispose,
-    late: true,
-  );
-}
-
-class FinalStatesConvertibleBase<T, E> implements Configurable {
-
-  const FinalStatesConvertibleBase({
-    required Object? name,
-    required Equal<T> equal,
-    required Object? statesName,
-    required States<E> Function(T it) statesEqual,
-    required StatesConvertibleExpose<T, E>? expose,
-    required ValueDispose<T>? dispose,
-    required bool late,
+    bool lazy = true,
   }): _name = name,
     _equal = equal,
     _statesName = statesName,
     _statesEqual = statesEqual,
     _expose = expose,
     _dispose = dispose,
-    _late = late;
+    _lazy = lazy;
 
   final Object? _name;
   final Equal<T> _equal;
@@ -80,7 +40,7 @@ class FinalStatesConvertibleBase<T, E> implements Configurable {
   final States<E> Function(T it) _statesEqual;
   final StatesConvertibleExpose<T, E>? _expose;
   final ValueDispose<T>? _dispose;
-  final bool _late;
+  final bool _lazy;
 
   @override
   FutureOr<void> configure(ConfigurableScope scope) {
@@ -88,7 +48,7 @@ class FinalStatesConvertibleBase<T, E> implements Configurable {
     final Getter<T> getValue;
     final Getter<States<E>> getStates;
 
-    if (!_late) {
+    if (!_lazy) {
       final value = _equal(scope);
       final states = _statesEqual(value);
       getValue = () => value;

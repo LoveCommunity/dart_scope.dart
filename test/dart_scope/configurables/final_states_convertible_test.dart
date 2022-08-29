@@ -7,34 +7,24 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`FinalStatesConvertibleBase` is sync configuration', () {
+  test('`FinalStatesConvertible` is sync configuration', () {
 
     final scope = Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) => _MockSubject('a'),
-        statesName: null,
         statesEqual: (it) => it.asStates(),
-        expose: null,
-        dispose: null,
-        late: false,
       ),
     ]);
     
     expect(scope, isA<Scope>());
   });
 
-  test('`FinalStatesConvertibleBase` share same value and states in scope', () async {
+  test('`FinalStatesConvertible` share same value and states in scope', () async {
 
     final scope = await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) => _MockSubject('a'),
-        statesName: null,
         statesEqual: (it) => it.asStates(),
-        expose: null,
-        dispose: null,
-        late: false,
       ),
     ]);
 
@@ -51,17 +41,14 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertibleBase` share same value and states in scope with name', () async {
+  test('`FinalStatesConvertible` share same value and states in scope with name', () async {
 
     final scope = await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
+      FinalStatesConvertible<_MockSubject<String>, String>(
         name: 'subject',
         equal: (_) => _MockSubject('a'),
         statesName: 'states',
         statesEqual: (it) => it.asStates(),
-        expose: null,
-        dispose: null,
-        late: false,
       ),
     ]);
 
@@ -78,23 +65,18 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertibleBase` assign value which depends on other scope value', () async {
+  test('`FinalStatesConvertible` assign value which depends on other scope value', () async {
     
     final scope = await Scope.root([
       MockConfigurable((scope) {
         scope.expose<int>(expose: () => 0);
       }),
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (scope) {
           final value = scope.get<int>().toString();
           return _MockSubject(value);
         },
-        statesName: null,
         statesEqual: (it) => it.asStates(),
-        expose: null,
-        dispose: null,
-        late: false,
       ),
     ]);
 
@@ -104,17 +86,12 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertibleBase` assign states success', () async {
+  test('`FinalStatesConvertible` assign states success', () async {
 
     final scope = await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) => _MockSubject('a'),
-        statesName: null,
         statesEqual: (it) => it.asStates(),
-        expose: null,
-        dispose: null,
-        late: false,
       ),
     ]);
     
@@ -140,19 +117,15 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertibleBase` expose value and states using custom `expose`', () async {
+  test('`FinalStatesConvertible` expose value and states using custom `expose`', () async {
 
     final scope = await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) => _MockSubject('a'),
-        statesName: null,
         statesEqual: (it) => it.asStates(),
         expose: (scope, getSubject, getStates) {
           scope.expose<Observer<String>>(expose: getSubject);
         },
-        dispose: null,
-        late: false,
       ),
     ]);
     
@@ -166,17 +139,13 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertibleBase` register value dispose logic using `dispose`', () async {
+  test('`FinalStatesConvertible` register value dispose logic using `dispose`', () async {
 
     final scope = await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) => _MockSubject('a'),
-        statesName: null,
         statesEqual: (it) => it.asStates(),
-        expose: null,
         dispose: (it) => it.dispose(),
-        late: false,
       ),
     ]);
 
@@ -188,71 +157,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertibleBase` assign value and states immediately when late is false', () async {
-
-    final invokes = <String>[];
-
-    await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
-        equal: (_) {
-          invokes.add('equal');
-          return _MockSubject('a');
-        },
-        statesName: null,
-        statesEqual: (it) {
-          invokes.add('statesEqual');
-          return it.asStates();
-        },
-        expose: null,
-        dispose: null,
-        late: false,
-      ),
-    ]);
-
-    expect(invokes, <String>[
-      'equal',
-      'statesEqual',
-    ]);
-
-  });
-
-  test('`FinalStatesConvertibleBase` assign value and states lazily when late is true', () async {
-
-    final invokes = <String>[];
-
-    final scope = await Scope.root([
-      FinalStatesConvertibleBase<_MockSubject<String>, String>(
-        name: null,
-        equal: (_) {
-          invokes.add('equal');
-          return _MockSubject('a');
-        },
-        statesName: null,
-        statesEqual: (it) {
-          invokes.add('statesEqual');
-          return it.asStates();
-        },
-        expose: null,
-        dispose: null,
-        late: true,
-      ),
-    ]);
-
-    expect(invokes, <String>[]);
-    scope.get<_MockSubject<String>>();
-    expect(invokes, <String>[
-      'equal',
-    ]);
-    scope.get<States<String>>();
-    expect(invokes, <String>[
-      'equal',
-      'statesEqual',
-    ]);
-
-  });
-
-  test('`FinalStatesConvertible` assign value and states immediately', () async {
+  test('`FinalStatesConvertible` assign value and states immediately when lazy is false', () async {
 
     final invokes = <String>[];
 
@@ -266,6 +171,7 @@ void main() {
           invokes.add('statesEqual');
           return it.asStates();
         },
+        lazy: false,
       ),
     ]);
 
@@ -276,12 +182,12 @@ void main() {
 
   });
 
-  test('`LateFinalStatesConvertible` assign value and states lazily', () async {
+  test('`FinalStatesConvertible` assign value and states lazily when lazy is true', () async {
 
     final invokes = <String>[];
 
     final scope = await Scope.root([
-      LateFinalStatesConvertible<_MockSubject<String>, String>(
+      FinalStatesConvertible<_MockSubject<String>, String>(
         equal: (_) {
           invokes.add('equal');
           return _MockSubject('a');
@@ -290,6 +196,7 @@ void main() {
           invokes.add('statesEqual');
           return it.asStates();
         },
+        lazy: true,
       ),
     ]);
 
