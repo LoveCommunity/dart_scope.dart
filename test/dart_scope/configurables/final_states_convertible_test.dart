@@ -157,7 +157,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states lazily when lazy is omitted', () async {
+  test('`FinalStatesConvertible` assign value and states lazily when `lazy` is omitted', () async {
 
     final invokes = <String>[];
 
@@ -187,7 +187,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states immediately when lazy is false', () async {
+  test('`FinalStatesConvertible` assign value and states immediately when `lazy` is false', () async {
 
     final invokes = <String>[];
 
@@ -218,7 +218,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states lazily when lazy is true', () async {
+  test('`FinalStatesConvertible` assign value and states lazily when `lazy` is true', () async {
 
     final invokes = <String>[];
 

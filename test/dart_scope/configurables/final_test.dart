@@ -108,7 +108,7 @@ void main() {
 
   });
 
-  test('`Final` assign value lazily when lazy is omitted', () async {
+  test('`Final` assign value lazily when `lazy` is omitted', () async {
 
     int invokes = 0;
 
@@ -127,7 +127,7 @@ void main() {
 
   });
 
-  test('`Final` assign value immediately when lazy is false', () async {
+  test('`Final` assign value immediately when `lazy` is false', () async {
 
     int invokes = 0;
 
@@ -147,7 +147,7 @@ void main() {
 
   });
 
-  test('`Final` assign value lazily when lazy is true', () async {
+  test('`Final` assign value lazily when `lazy` is true', () async {
 
     int invokes = 0;
 

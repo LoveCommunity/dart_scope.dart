@@ -107,7 +107,7 @@ void main() {
 
   });
 
-  test('`FinalStates` assign states lazily when lazy is omitted', () async {
+  test('`FinalStates` assign states lazily when `lazy` is omitted', () async {
 
     int invokes = 0;
 
@@ -126,7 +126,7 @@ void main() {
 
   });
 
-  test('`FinalStates` assign states immediately when lazy is false', () async {
+  test('`FinalStates` assign states immediately when `lazy` is false', () async {
 
     int invokes = 0;
 
@@ -146,7 +146,7 @@ void main() {
 
   });
   
-  test('`FinalStates` assign states lazily when lazy is true', () async {
+  test('`FinalStates` assign states lazily when `lazy` is true', () async {
 
     int invokes = 0;
 
