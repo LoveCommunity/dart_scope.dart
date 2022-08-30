@@ -187,37 +187,6 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states immediately when `lazy` is false', () async {
-
-    final invokes = <String>[];
-
-    final scope = await Scope.root([
-      FinalStatesConvertible<_MockSubject<String>, String>(
-        equal: (_) {
-          invokes.add('equal');
-          return _MockSubject('a');
-        },
-        statesEqual: (it) {
-          invokes.add('statesEqual');
-          return it.asStates();
-        },
-        lazy: false,
-      ),
-    ]);
-
-    expect(invokes, <String>[
-      'equal',
-      'statesEqual',
-    ]);
-    scope.get<_MockSubject<String>>();
-    scope.get<States<String>>();
-    expect(invokes, <String>[
-      'equal',
-      'statesEqual',
-    ]);
-
-  });
-
   test('`FinalStatesConvertible` assign value and states lazily when `lazy` is true', () async {
 
     final invokes = <String>[];
@@ -241,6 +210,37 @@ void main() {
     expect(invokes, <String>[
       'equal',
     ]);
+    scope.get<States<String>>();
+    expect(invokes, <String>[
+      'equal',
+      'statesEqual',
+    ]);
+
+  });
+
+  test('`FinalStatesConvertible` assign value and states immediately when `lazy` is false', () async {
+
+    final invokes = <String>[];
+
+    final scope = await Scope.root([
+      FinalStatesConvertible<_MockSubject<String>, String>(
+        equal: (_) {
+          invokes.add('equal');
+          return _MockSubject('a');
+        },
+        statesEqual: (it) {
+          invokes.add('statesEqual');
+          return it.asStates();
+        },
+        lazy: false,
+      ),
+    ]);
+
+    expect(invokes, <String>[
+      'equal',
+      'statesEqual',
+    ]);
+    scope.get<_MockSubject<String>>();
     scope.get<States<String>>();
     expect(invokes, <String>[
       'equal',
