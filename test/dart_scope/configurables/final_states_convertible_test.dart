@@ -157,6 +157,36 @@ void main() {
 
   });
 
+  test('`FinalStatesConvertible` assign value and states lazily when lazy is omitted', () async {
+
+    final invokes = <String>[];
+
+    final scope = await Scope.root([
+      FinalStatesConvertible<_MockSubject<String>, String>(
+        equal: (_) {
+          invokes.add('equal');
+          return _MockSubject('a');
+        },
+        statesEqual: (it) {
+          invokes.add('statesEqual');
+          return it.asStates();
+        },
+      ),
+    ]);
+
+    expect(invokes, <String>[]);
+    scope.get<_MockSubject<String>>();
+    expect(invokes, <String>[
+      'equal',
+    ]);
+    scope.get<States<String>>();
+    expect(invokes, <String>[
+      'equal',
+      'statesEqual',
+    ]);
+
+  });
+
   test('`FinalStatesConvertible` assign value and states immediately when lazy is false', () async {
 
     final invokes = <String>[];
