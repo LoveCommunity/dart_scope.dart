@@ -13,7 +13,7 @@ class Computed<T, R> extends FinalStates<R> {
     Object? statesName,
     required R Function(ScopeGet scope, T it) compute,
     Equals<R>? equals,
-    bool late = true,
+    bool lazy = true,
   }): super(
     name: name,
     equal: _superEqual<T, R>(
@@ -21,7 +21,7 @@ class Computed<T, R> extends FinalStates<R> {
       compute,
       equals,
     ),
-    lazy: late,
+    lazy: lazy,
   );
 }
 
@@ -33,7 +33,7 @@ class Computed2<T1, T2, R> extends FinalStates<R> {
     Object? statesName2,
     required R Function(ScopeGet scope, T1 it1, T2 it2) compute,
     Equals<R>? equals,
-    bool late = true,
+    bool lazy = true,
   }): super(
     name: name,
     equal: _superEqual2<T1, T2, R>(
@@ -42,7 +42,7 @@ class Computed2<T1, T2, R> extends FinalStates<R> {
       compute,
       equals,
     ),
-    lazy: late,
+    lazy: lazy,
   );
 }
 
@@ -55,7 +55,7 @@ class Computed3<T1, T2, T3, R> extends FinalStates<R> {
     Object? statesName3,
     required R Function(ScopeGet scope, T1 it1, T2 it2, T3 it3) compute,
     Equals<R>? equals,
-    bool late = true,
+    bool lazy = true,
   }): super(
     name: name,
     equal: _superEqual3<T1, T2, T3, R>(
@@ -65,7 +65,7 @@ class Computed3<T1, T2, T3, R> extends FinalStates<R> {
       compute,
       equals,
     ),
-    lazy: late,
+    lazy: lazy,
   );
 }
 
