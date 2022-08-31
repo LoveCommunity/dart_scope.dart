@@ -26,6 +26,7 @@ class ConfigurableComputedTestGenerator extends GeneratorForAnnotation<Configura
         testNotForwardAfterScopeDisposed,
         testDefaultEquals,
         testCustomEquals,
+        testLazyIsOmitted,
         testLazyIsTrue,
         testLazyIsFalse,
       ],

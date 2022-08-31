@@ -51,7 +51,7 @@ String computed({
   required int n,
   String? computeBody,
   String? equalsBody,
-  bool lazy = false,
+  bool? lazy,
 }) {
   String types() {
     return join(n + 1, (n) => 'String', ', ');
@@ -68,13 +68,17 @@ String computed({
     if (equalsBody == null) return '';
     return 'equals: (it1, it2) {$equalsBody},';
   }
+  String lazyCode() {
+    if (lazy == null) return '';
+    return 'lazy: $lazy,';
+  }
   return '''
     Computed$n<${types()}>(
       name: 'computed',
       ${statesNames()}
       ${compute()}
       ${equals()}
-      lazy: $lazy,
+      ${lazyCode()}
     )
   ''';
 }

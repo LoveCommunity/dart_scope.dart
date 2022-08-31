@@ -28,7 +28,6 @@ void _main() {
         compute: (scope, it1, it2) {
           return '$it1|$it2';
         },
-        lazy: false,
       ),
     ]);
 
@@ -62,7 +61,6 @@ void _main() {
         compute: (scope, it1, it2, it3) {
           return '$it1|$it2|$it3';
         },
-        lazy: false,
       ),
     ]);
 
@@ -90,7 +88,6 @@ void _main() {
         compute: (scope, it1, it2) {
           return '$it1|$it2';
         },
-        lazy: false,
       ),
     ]);
 
@@ -127,7 +124,6 @@ void _main() {
         compute: (scope, it1, it2, it3) {
           return '$it1|$it2|$it3';
         },
-        lazy: false,
       ),
     ]);
 
@@ -165,7 +161,6 @@ void _main() {
         compute: (scope, it1, it2) {
           return '$it1|$it2';
         },
-        lazy: false,
       ),
     ]);
 
@@ -222,7 +217,6 @@ void _main() {
         compute: (scope, it1, it2, it3) {
           return '$it1|$it2|$it3';
         },
-        lazy: false,
       ),
     ]);
 
@@ -265,7 +259,6 @@ void _main() {
           final value = scope.get<int>();
           return '$value|$it1|$it2';
         },
-        lazy: false,
       ),
     ]);
 
@@ -303,7 +296,6 @@ void _main() {
           final value = scope.get<int>();
           return '$value|$it1|$it2|$it3';
         },
-        lazy: false,
       ),
     ]);
 
@@ -341,7 +333,6 @@ void _main() {
         compute: (scope, it1, it2) {
           return '$it1|$it2';
         },
-        lazy: false,
       ),
     ]);
 
@@ -401,7 +392,6 @@ void _main() {
         compute: (scope, it1, it2, it3) {
           return '$it1|$it2|$it3';
         },
-        lazy: false,
       ),
     ]);
 
@@ -453,7 +443,6 @@ void _main() {
         compute: (scope, it1, it2) {
           return '$it1|$it2';
         },
-        lazy: false,
       ),
     ]);
 
@@ -512,7 +501,6 @@ void _main() {
         compute: (scope, it1, it2, it3) {
           return '$it1|$it2|$it3';
         },
-        lazy: false,
       ),
     ]);
 
@@ -565,7 +553,6 @@ void _main() {
         equals: (it1, it2) {
           return it1.length == it2.length;
         },
-        lazy: false,
       ),
     ]);
 
@@ -627,7 +614,6 @@ void _main() {
         equals: (it1, it2) {
           return it1.length == it2.length;
         },
-        lazy: false,
       ),
     ]);
 
@@ -647,7 +633,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed2` compute immediately when `lazy` is true', () async {
+  test('`Computed2` compute lazily when `lazy` is omitted', () async {
     int invokes = 0;
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -679,7 +665,77 @@ void _main() {
     expect(invokes, 1);
   });
 
-  test('`Computed3` compute immediately when `lazy` is true', () async {
+  test('`Computed3` compute lazily when `lazy` is omitted', () async {
+    int invokes = 0;
+    final scope = await Scope.root([
+      MockConfigurable((scope) {
+        final states1 = statesJust('1a');
+        final states2 = statesJust('2a');
+        final states3 = statesJust('3a');
+        scope.expose<States<String>>(
+          name: 'states1',
+          expose: () => states1,
+        );
+        scope.expose<States<String>>(
+          name: 'states2',
+          expose: () => states2,
+        );
+        scope.expose<States<String>>(
+          name: 'states3',
+          expose: () => states3,
+        );
+      }),
+      Computed3<String, String, String, String>(
+        name: 'computed',
+        statesName1: 'states1',
+        statesName2: 'states2',
+        statesName3: 'states3',
+        compute: (scope, it1, it2, it3) {
+          invokes += 1;
+          return '$it1|$it2|$it3';
+        },
+        lazy: true,
+      ),
+    ]);
+
+    expect(invokes, 0);
+    scope.get<States<String>>(name: 'computed');
+    expect(invokes, 1);
+  });
+
+  test('`Computed2` compute lazily when `lazy` is true', () async {
+    int invokes = 0;
+    final scope = await Scope.root([
+      MockConfigurable((scope) {
+        final states1 = statesJust('1a');
+        final states2 = statesJust('2a');
+        scope.expose<States<String>>(
+          name: 'states1',
+          expose: () => states1,
+        );
+        scope.expose<States<String>>(
+          name: 'states2',
+          expose: () => states2,
+        );
+      }),
+      Computed2<String, String, String>(
+        name: 'computed',
+        statesName1: 'states1',
+        statesName2: 'states2',
+        compute: (scope, it1, it2) {
+          invokes += 1;
+          return '$it1|$it2';
+        },
+        lazy: true,
+      ),
+    ]);
+
+    expect(invokes, 0);
+    scope.get<States<String>>(name: 'computed');
+    expect(invokes, 1);
+  });
+
+  test('`Computed3` compute lazily when `lazy` is true', () async {
     int invokes = 0;
     final scope = await Scope.root([
       MockConfigurable((scope) {
