@@ -24,7 +24,6 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        lazy: false,
       ),
     ]);
 
@@ -45,7 +44,6 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        lazy: false,
       ),
     ]);
 
@@ -75,7 +73,6 @@ void main() {
           final value = scope.get<int>();
           return '$value$it';
         }, 
-        lazy: false,
       ),
     ]);
 
@@ -105,7 +102,6 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        lazy: false,
       ),
     ]);
 
@@ -151,7 +147,6 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        lazy: false,
       ),
     ]);
 
@@ -197,7 +192,6 @@ void main() {
         statesName: 'states',
         compute: (_, it) => '1$it', 
         equals: (it1, it2) => it1.length == it2.length,
-        lazy: false,
       ),
     ]);
 
@@ -219,6 +213,33 @@ void main() {
     ]);
 
     tester.stopObserve();
+
+  });
+
+  test('`Computed` compute lazily when `lazy` is omitted', () async {
+
+    int invokes = 0;
+
+    final scope = await Scope.root([
+      MockConfigurable((scope) {
+        scope.expose<States<String>>(
+          name: 'states',
+          expose: () => statesJust('a'),
+        );
+      }),
+      Computed<String, String>(
+        name: 'computed',
+        statesName: 'states',
+        compute: (_, it) {
+          invokes += 1;
+          return '1$it';
+        }, 
+      ),
+    ]);
+
+    expect(invokes, 0);
+    scope.get<States<String>>(name: 'computed');
+    expect(invokes, 1);
 
   });
 
