@@ -2,26 +2,13 @@
 import '../../shared/codes.dart' hide sampleStatesIterable;
 import '../shared/codes.dart';
 
-String testLateIsFalse(int? number) {
+String testLazyIsTrue(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` compute immediately when late is false', () async {
+    test('`Computed$number` compute immediately when `lazy` is true', () async {
       ${code([
         invokes(),
-        _scopeRoot(n: n, assign: false, computedLate: false),
-        expectInvokes(1),
-      ])}
-    });
-  ''';
-}
-
-String testLateIsTrue(int? number) {
-  final n = number!;
-  return '''
-    test('`Computed$number` compute immediately when late is true', () async {
-      ${code([
-        invokes(),
-        _scopeRoot(n: n, assign: true, computedLate: true),
+        _scopeRoot(n: n, assign: true, computedLazy: true),
         expectInvokes(0),
         getComputed(assign: false),
         expectInvokes(1),
@@ -30,11 +17,23 @@ String testLateIsTrue(int? number) {
   ''';
 }
 
+String testLazyIsFalse(int? number) {
+  final n = number!;
+  return '''
+    test('`Computed$number` compute immediately when `lazy` is false', () async {
+      ${code([
+        invokes(),
+        _scopeRoot(n: n, assign: false, computedLazy: false),
+        expectInvokes(1),
+      ])}
+    });
+  ''';
+}
 
 String _scopeRoot({
   required int n, 
   required bool assign,
-  required bool computedLate,
+  required bool computedLazy,
 }) {
   return scopeRoot(
     assign: assign,
@@ -51,7 +50,7 @@ String _scopeRoot({
           invokes += 1;
           return ${combined(n)};
         ''',
-        late: computedLate,
+        lazy: computedLazy,
       ),
     ],
   );

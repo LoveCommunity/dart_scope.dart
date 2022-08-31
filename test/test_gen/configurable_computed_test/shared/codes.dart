@@ -51,7 +51,7 @@ String computed({
   required int n,
   String? computeBody,
   String? equalsBody,
-  bool late = false,
+  bool lazy = false,
 }) {
   String types() {
     return join(n + 1, (n) => 'String', ', ');
@@ -74,7 +74,7 @@ String computed({
       ${statesNames()}
       ${compute()}
       ${equals()}
-      late: $late,
+      lazy: $lazy,
     )
   ''';
 }

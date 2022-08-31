@@ -24,7 +24,7 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        late: false,
+        lazy: false,
       ),
     ]);
 
@@ -45,7 +45,7 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        late: false,
+        lazy: false,
       ),
     ]);
 
@@ -75,7 +75,7 @@ void main() {
           final value = scope.get<int>();
           return '$value$it';
         }, 
-        late: false,
+        lazy: false,
       ),
     ]);
 
@@ -105,7 +105,7 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        late: false,
+        lazy: false,
       ),
     ]);
 
@@ -151,7 +151,7 @@ void main() {
         name: 'computed',
         statesName: 'states',
         compute: (_, it) => '1$it', 
-        late: false,
+        lazy: false,
       ),
     ]);
 
@@ -197,7 +197,7 @@ void main() {
         statesName: 'states',
         compute: (_, it) => '1$it', 
         equals: (it1, it2) => it1.length == it2.length,
-        late: false,
+        lazy: false,
       ),
     ]);
 
@@ -222,33 +222,7 @@ void main() {
 
   });
 
-  test('`Computed` compute immediately when late is false', () async {
-
-    int invokes = 0;
-
-    await Scope.root([
-      MockConfigurable((scope) {
-        scope.expose<States<String>>(
-          name: 'states',
-          expose: () => statesJust('a'),
-        );
-      }),
-      Computed<String, String>(
-        name: 'computed',
-        statesName: 'states',
-        compute: (_, it) {
-          invokes += 1;
-          return '1$it';
-        }, 
-        late: false,
-      ),
-    ]);
-
-    expect(invokes, 1);
-
-  });
-
-  test('`Computed` compute lazily when late is true', () async {
+  test('`Computed` compute lazily when `lazy` is true', () async {
 
     int invokes = 0;
 
@@ -266,12 +240,38 @@ void main() {
           invokes += 1;
           return '1$it';
         }, 
-        late: true,
+        lazy: true,
       ),
     ]);
 
     expect(invokes, 0);
     scope.get<States<String>>(name: 'computed');
+    expect(invokes, 1);
+
+  });
+
+  test('`Computed` compute immediately when `lazy` is false', () async {
+
+    int invokes = 0;
+
+    await Scope.root([
+      MockConfigurable((scope) {
+        scope.expose<States<String>>(
+          name: 'states',
+          expose: () => statesJust('a'),
+        );
+      }),
+      Computed<String, String>(
+        name: 'computed',
+        statesName: 'states',
+        compute: (_, it) {
+          invokes += 1;
+          return '1$it';
+        }, 
+        lazy: false,
+      ),
+    ]);
+
     expect(invokes, 1);
 
   });
