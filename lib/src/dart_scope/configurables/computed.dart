@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'package:typedef_equals/typedef_equals.dart';
 
 import '../../dart_observable/states/states.dart';
@@ -6,6 +7,7 @@ import '../shared/typedefs.dart';
 
 import 'final_states.dart';
 
+@experimental
 class Computed<T, R> extends FinalStates<R> {
 
   Computed({
@@ -25,6 +27,7 @@ class Computed<T, R> extends FinalStates<R> {
   );
 }
 
+@experimental
 class Computed2<T1, T2, R> extends FinalStates<R> {
 
   Computed2({
@@ -46,6 +49,7 @@ class Computed2<T1, T2, R> extends FinalStates<R> {
   );
 }
 
+@experimental
 class Computed3<T1, T2, T3, R> extends FinalStates<R> {
 
   Computed3({
