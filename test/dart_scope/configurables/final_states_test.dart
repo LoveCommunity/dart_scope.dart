@@ -107,7 +107,7 @@ void main() {
 
   });
 
-  test('`FinalStates` assign states immediately when lazy is false', () async {
+  test('`FinalStates` assign states lazily when `lazy` is omitted', () async {
 
     int invokes = 0;
 
@@ -117,17 +117,16 @@ void main() {
           invokes += 1;
           return statesJust(Object());
         },
-        lazy: false,
       ),
     ]);
 
-    expect(invokes, 1);
+    expect(invokes, 0);
     scope.get<States<Object>>();
     expect(invokes, 1);
 
   });
   
-  test('`FinalStates` assign states lazily when lazy is true', () async {
+  test('`FinalStates` assign states lazily when `lazy` is true', () async {
 
     int invokes = 0;
 
@@ -142,6 +141,26 @@ void main() {
     ]);
 
     expect(invokes, 0);
+    scope.get<States<Object>>();
+    expect(invokes, 1);
+
+  });
+
+  test('`FinalStates` assign states immediately when `lazy` is false', () async {
+
+    int invokes = 0;
+
+    final scope = await Scope.root([
+      FinalStates<Object>(
+        equal: (_) {
+          invokes += 1;
+          return statesJust(Object());
+        },
+        lazy: false,
+      ),
+    ]);
+
+    expect(invokes, 1);
     scope.get<States<Object>>();
     expect(invokes, 1);
 

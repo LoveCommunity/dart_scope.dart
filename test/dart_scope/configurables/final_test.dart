@@ -108,7 +108,7 @@ void main() {
 
   });
 
-  test('`Final` assign value immediately when lazy is false', () async {
+  test('`Final` assign value lazily when `lazy` is omitted', () async {
 
     int invokes = 0;
 
@@ -118,17 +118,16 @@ void main() {
           invokes += 1;
           return Object();
         },
-        lazy: false,
       ),
     ]);
 
-    expect(invokes, 1);
+    expect(invokes, 0);
     scope.get<Object>();
     expect(invokes, 1);
 
   });
 
-  test('`Final` assign value lazily when lazy is true', () async {
+  test('`Final` assign value lazily when `lazy` is true', () async {
 
     int invokes = 0;
 
@@ -143,6 +142,26 @@ void main() {
     ]);
 
     expect(invokes, 0);
+    scope.get<Object>();
+    expect(invokes, 1);
+
+  });
+
+  test('`Final` assign value immediately when `lazy` is false', () async {
+
+    int invokes = 0;
+
+    final scope = await Scope.root([
+      Final<Object>(
+        equal: (_) {
+          invokes += 1;
+          return Object();
+        },
+        lazy: false,
+      ),
+    ]);
+
+    expect(invokes, 1);
     scope.get<Object>();
     expect(invokes, 1);
 
