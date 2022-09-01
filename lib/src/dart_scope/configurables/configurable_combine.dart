@@ -1,11 +1,12 @@
 
+import 'dart:async';
 import 'package:meta/meta.dart';
 
+import '../scopes/configurable_scope.dart';
 import '../shared/build_scope.dart';
 import 'configurable.dart';
-import 'configurable_compose.dart';
 
-abstract class ConfigurableCombine extends ConfigurableCompose {
+abstract class ConfigurableCombine implements Configurable {
 
   const ConfigurableCombine();
 
@@ -17,14 +18,10 @@ abstract class ConfigurableCombine extends ConfigurableCompose {
   List<Configurable> combine();
 
   @override
-  Configurable build() {
+  FutureOr<void> configure(ConfigurableScope scope) {
     final configure = combine();
-    return _combineConfigure(configure);
+    return configureScope(configure, scope);
   }
-}
-
-Configurable _combineConfigure(List<Configurable> configure) {
-  return Configurable((scope) => configureScope(configure, scope));
 }
 
 class _ConfigurableCombineImpl extends ConfigurableCombine {
