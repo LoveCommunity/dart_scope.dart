@@ -1,3 +1,13 @@
+## 0.1.0-alpha.2
+- refactor 
+  - merge `Final`, `LateFinal` and `FinalBase` into `Final` [\#113](https://github.com/LoveCommunity/dart_scope.dart/pull/113) ([beeth0ven](https://github.com/beeth0ven))
+  - merge `FinalStates`, `LateFinalStates` and `FinalStatesBase` into `FinalStates` [\#112](https://github.com/LoveCommunity/dart_scope.dart/pull/112) ([beeth0ven](https://github.com/beeth0ven))
+  - merge `FinalStatesConvertible`, `LateFinalStatesConvertible` and `FinalStatesConvertibleBase` into `FinalStatesConvertible` [\#111](https://github.com/LoveCommunity/dart_scope.dart/pull/111) ([beeth0ven](https://github.com/beeth0ven))
+  - rename `Computed.late` to `Computed.lazy` [\#116](https://github.com/LoveCommunity/dart_scope.dart/pull/116) ([beeth0ven](https://github.com/beeth0ven))
+  - add @experimental annotation to `ConfigurableCompose` [\#120](https://github.com/LoveCommunity/dart_scope.dart/pull/120) ([beeth0ven](https://github.com/beeth0ven))
+  - add @experimental annotation to `Computed` [\#118](https://github.com/LoveCommunity/dart_scope.dart/pull/118) ([beeth0ven](https://github.com/beeth0ven))
+  - simplify implementation of `ConfigurableCombine` [\#119](https://github.com/LoveCommunity/dart_scope.dart/pull/119) ([beeth0ven](https://github.com/beeth0ven))
+
 ## 0.1.0-alpha.1
 
 * add `tests.yaml` by @beeth0ven in https://github.com/LoveCommunity/dart_scope.dart/pull/3
