@@ -1,4 +1,10 @@
+## 0.1.0-alpha.3
+
+- feature 
+  - add `Async<T>` [\#123](https://github.com/LoveCommunity/dart_scope.dart/pull/123) ([beeth0ven](https://github.com/beeth0ven))
+
 ## 0.1.0-alpha.2
+
 - refactor 
   - merge `Final`, `LateFinal` and `FinalBase` into `Final` [\#113](https://github.com/LoveCommunity/dart_scope.dart/pull/113) ([beeth0ven](https://github.com/beeth0ven))
   - merge `FinalStates`, `LateFinalStates` and `FinalStatesBase` into `FinalStates` [\#112](https://github.com/LoveCommunity/dart_scope.dart/pull/112) ([beeth0ven](https://github.com/beeth0ven))
