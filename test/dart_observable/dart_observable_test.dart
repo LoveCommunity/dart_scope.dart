@@ -25,6 +25,7 @@ import 'subjects/publish_subject_test.dart' as publish_subject_test;
 import 'subjects/replay_subject_test.dart' as replay_subject_test;
 import 'subjects/subject_test.dart' as subject_test;
 import 'subjects/value_subject_test.dart' as value_subject_test;
+import 'models/async_test.dart' as async_test;
 
 
 void main() {
@@ -54,4 +55,5 @@ void main() {
   replay_subject_test.main();
   subject_test.main();
   value_subject_test.main();
+  async_test.main();
 }
