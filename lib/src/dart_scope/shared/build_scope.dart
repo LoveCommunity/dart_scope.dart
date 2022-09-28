@@ -20,12 +20,15 @@ FutureOr<void> configureScope(List<Configurable> configure, ConfigurableScope sc
         return futureOrVoid.then((_) => configurable.configure(scope));
       });
     if (result is Future<void>) {
-      return result.catchError(
-        (Object error, StackTrace? stackTrace) {
+      final Future<void> autoCleanFuture = () async {
+        try {
+          await result;
+        } catch (_) {
           scope.dispose();
-          return Future<void>.error(error, stackTrace);
+          rethrow;
         }
-      );
+      }();
+      return autoCleanFuture;
     }
   } catch(_) {
     scope.dispose();
