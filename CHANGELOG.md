@@ -1,3 +1,8 @@
+## 0.1.0-alpha.4
+
+- refactor
+  - rethrow future error using async/await [\#126](https://github.com/LoveCommunity/dart_scope.dart/pull/126) ([beeth0ven](https://github.com/beeth0ven))
+
 ## 0.1.0-alpha.3
 
 - feature 
