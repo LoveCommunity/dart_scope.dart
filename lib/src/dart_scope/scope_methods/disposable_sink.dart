@@ -1,6 +1,5 @@
 
 import 'package:disposal/disposal.dart';
-import 'package:typedef_foundation/typedef_foundation.dart';
 
 abstract class DisposableSink {
 

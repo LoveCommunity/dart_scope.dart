@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:dart_scope/dart_scope.dart';
 
 class MockConfigurable implements Configurable {
