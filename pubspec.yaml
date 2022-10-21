@@ -9,7 +9,7 @@ environment:
 dependencies:
   meta: ^1.3.0
   typedef_foundation: ^0.1.0
-  disposal: ^0.1.0-alpha.2
+  disposal: ^0.1.0-alpha.4
   typedef_equals: ^0.0.1
 
 
