@@ -1,3 +1,9 @@
+## 0.1.0-alpha.5
+
+- refactor 
+  - explicitly export `dart_scope` [\#130](https://github.com/LoveCommunity/dart_scope.dart/pull/130) ([beeth0ven](https://github.com/beeth0ven))
+  - upgrade  disposal as ^0.1.0-alpha.4 [\#129](https://github.com/LoveCommunity/dart_scope.dart/pull/129) ([beeth0ven](https://github.com/beeth0ven))
+
 ## 0.1.0-alpha.4
 
 - refactor
