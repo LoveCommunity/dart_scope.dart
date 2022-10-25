@@ -5,7 +5,7 @@ import '../observers/observer.dart';
 import 'basic_subject.dart';
 import 'subject.dart';
 
-class PublishSubject<T> implements Subject<T> {
+class Publisher<T> implements Subject<T> {
 
   bool _disposed = false;
   final _subject = BasicSubject<T>();

@@ -6,37 +6,37 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`PublishSubject` forward data to single observer', () {
+  test('`Publisher` forward data to single observer', () {
 
-    final subject = PublishSubject<String>();
+    final publisher = Publisher<String>();
     
     final tester = ObservableTester(
-      subject,
+      publisher,
     );
 
     tester.startObserve();
 
     expect(tester.recorded, <String>[]);
-    subject.onData('a');
+    publisher.onData('a');
     expect(tester.recorded, [
       'a',
     ]);
 
     tester.stopObserve();
-    subject.dispose();
+    publisher.dispose();
 
   });
 
-  test('`PublishSubject` forward data to multiple observers', () {
+  test('`Publisher` forward data to multiple observers', () {
     
-    final subject = PublishSubject<String>();
+    final publisher = Publisher<String>();
     
     final tester1 = ObservableTester(
-      subject,
+      publisher,
     );
 
     final tester2 = ObservableTester(
-      subject,
+      publisher,
     );
 
     tester1.startObserve();
@@ -44,7 +44,7 @@ void main() {
 
     expect(tester1.recorded, <String>[]);
     expect(tester2.recorded, <String>[]);
-    subject.onData('a');
+    publisher.onData('a');
     expect(tester1.recorded, [
       'a',
     ]);
@@ -54,77 +54,77 @@ void main() {
 
     tester1.stopObserve();
     tester2.stopObserve();
-    subject.dispose();
+    publisher.dispose();
 
   });
 
-  test("`PublishSubject` only forward data after observed", () {
+  test("`Publisher` only forward data after observed", () {
     
-    final subject = PublishSubject<String>();
+    final publisher = Publisher<String>();
 
     final tester = ObservableTester(
-      subject,
+      publisher,
     );
 
-    subject.onData('a');
+    publisher.onData('a');
 
     tester.startObserve();
 
     expect(tester.recorded, <String>[]);
-    subject.onData('b');
+    publisher.onData('b');
     expect(tester.recorded, [
       'b',
     ]);
 
     tester.stopObserve();
-    subject.dispose();
+    publisher.dispose();
 
   });
 
-  test("`PublishSubject` won't forward data after observation disposed", () {
+  test("`Publisher` won't forward data after observation disposed", () {
 
-    final subject = PublishSubject<String>();
+    final publisher = Publisher<String>();
 
     final tester = ObservableTester(
-      subject,
+      publisher,
     );
 
     tester.startObserve();
 
-    subject.onData('a');
+    publisher.onData('a');
 
     tester.stopObserve();
 
     expect(tester.recorded, [
       'a',
     ]);
-    subject.onData('b');
+    publisher.onData('b');
     expect(tester.recorded, [
       'a',
     ]);
 
-    subject.dispose();
+    publisher.dispose();
 
   }); 
 
-  test("`PublishSubject` won't forward data after subject disposed", () {
+  test("`Publisher` won't forward data after publisher disposed", () {
 
-    final subject = PublishSubject<String>();
+    final publisher = Publisher<String>();
 
     final tester = ObservableTester(
-      subject,
+      publisher,
     );
 
     tester.startObserve();
 
-    subject.onData('a');
+    publisher.onData('a');
 
-    subject.dispose();
+    publisher.dispose();
 
     expect(tester.recorded, [
       'a',
     ]);
-    subject.onData('b');
+    publisher.onData('b');
     expect(tester.recorded, [
       'a',
     ]);
@@ -133,15 +133,15 @@ void main() {
 
   });
 
-  test('`PublishSubject` throws error when been observed after it is disposed', () {
+  test('`Publisher` throws error when been observed after it is disposed', () {
     
-    final subject = PublishSubject<String>();
+    final publisher = Publisher<String>();
 
-    subject.dispose();
+    publisher.dispose();
 
     expect(
       () {
-        subject.observe((_) {});
+        publisher.observe((_) {});
       },
       throwsA(
         isA<StateError>()
