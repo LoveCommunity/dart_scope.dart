@@ -6,16 +6,16 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`ReplaySubject` replay all data when emit times is less than buffer size', () {
+  test('`Replayer` replay all data when emit times is less than buffer size', () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
+    final replayer = Replayer<String>(bufferSize: 3);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
-    subject.onData('b');
+    replayer.onData('a');
+    replayer.onData('b');
 
     expect(tester.recorded, <String>[]);
     tester.startObserve();
@@ -26,21 +26,21 @@ void main() {
 
     tester.stopObserve();
 
-    subject.dispose();
+    replayer.dispose();
 
   });
 
-  test('`ReplaySubject` replay all data when emit times is equals to buffer size', () {
+  test('`Replayer` replay all data when emit times is equals to buffer size', () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
+    final replayer = Replayer<String>(bufferSize: 3);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
-    subject.onData('b');
-    subject.onData('c');
+    replayer.onData('a');
+    replayer.onData('b');
+    replayer.onData('c');
 
     expect(tester.recorded, <String>[]);
     tester.startObserve();
@@ -52,22 +52,22 @@ void main() {
 
     tester.stopObserve();
 
-    subject.dispose();
+    replayer.dispose();
 
   });
 
-  test("`ReplaySubject` replay buffer size's data when emit times is more than buffer size", () {
+  test("`Replayer` replay buffer size's data when emit times is more than buffer size", () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
+    final replayer = Replayer<String>(bufferSize: 3);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
-    subject.onData('b');
-    subject.onData('c');
-    subject.onData('d');
+    replayer.onData('a');
+    replayer.onData('b');
+    replayer.onData('c');
+    replayer.onData('d');
 
     expect(tester.recorded, <String>[]);
     tester.startObserve();
@@ -79,22 +79,22 @@ void main() {
 
     tester.stopObserve();
 
-    subject.dispose();
+    replayer.dispose();
 
   });
 
-  test("`ReplaySubject` with single element buffer", () {
+  test("`Replayer` with single element buffer", () {
 
-    final subject = ReplaySubject<String>(bufferSize: 1);
+    final replayer = Replayer<String>(bufferSize: 1);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
-    subject.onData('b');
-    subject.onData('c');
-    subject.onData('d');
+    replayer.onData('a');
+    replayer.onData('b');
+    replayer.onData('c');
+    replayer.onData('d');
 
     expect(tester.recorded, <String>[]);
     tester.startObserve();
@@ -105,26 +105,26 @@ void main() {
 
     tester.stopObserve();
 
-    subject.dispose();
+    replayer.dispose();
 
   });
 
-  test('`ReplaySubject` forward data after observed', () {
+  test('`Replayer` forward data after observed', () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
+    final replayer = Replayer<String>(bufferSize: 3);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
+    replayer.onData('a');
 
     tester.startObserve();
 
     expect(tester.recorded, [
       'a',
     ]);
-    subject.onData('b');
+    replayer.onData('b');
     expect(tester.recorded, [
       'a',
       'b',
@@ -132,19 +132,19 @@ void main() {
 
     tester.stopObserve();
 
-    subject.dispose();
+    replayer.dispose();
 
   });
 
-  test("`ReplaySubject` won't forward data after observation is disposed", () {
+  test("`Replayer` won't forward data after observation is disposed", () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
+    final replayer = Replayer<String>(bufferSize: 3);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
+    replayer.onData('a');
 
     tester.startObserve();
     tester.stopObserve();
@@ -152,32 +152,32 @@ void main() {
     expect(tester.recorded, [
       'a',
     ]);
-    subject.onData('b');
+    replayer.onData('b');
     expect(tester.recorded, [
       'a',
     ]);
 
-    subject.dispose();
+    replayer.dispose();
 
   });
 
-  test("`ReplaySubject` won't forward data after subject is disposed", () {
+  test("`Replayer` won't forward data after replayer is disposed", () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
+    final replayer = Replayer<String>(bufferSize: 3);
 
     final tester = ObservableTester(
-      subject,
+      replayer,
     );
 
-    subject.onData('a');
+    replayer.onData('a');
 
     tester.startObserve();
-    subject.dispose();
+    replayer.dispose();
 
     expect(tester.recorded, [
       'a',
     ]);
-    subject.onData('b');
+    replayer.onData('b');
     expect(tester.recorded, [
       'a',
     ]);
@@ -186,14 +186,14 @@ void main() {
 
   });
 
-  test('`ReplaySubject` throws error when been observed after subject is disposed', () {
+  test('`Replayer` throws error when been observed after replayer is disposed', () {
 
-    final subject = ReplaySubject<String>(bufferSize: 3);
-    subject.dispose();
+    final replayer = Replayer<String>(bufferSize: 3);
+    replayer.dispose();
     
     expect(
       () {
-        subject.observe((_) {});
+        replayer.observe((_) {});
       },
       throwsA(
         isA<StateError>()

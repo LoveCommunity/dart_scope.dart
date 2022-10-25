@@ -34,9 +34,9 @@ export 'observers/observer.dart'
 export 'subjects/publisher.dart'
   show
     Publisher;
-export 'subjects/replay_subject.dart'
+export 'subjects/replayer.dart'
   show
-    ReplaySubject;
+    Replayer;
 export 'subjects/subject.dart'
   show
     Subject;

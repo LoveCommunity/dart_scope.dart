@@ -7,9 +7,9 @@ import '../observers/observer.dart';
 import 'basic_subject.dart';
 import 'subject.dart';
 
-class ReplaySubject<T> implements Subject<T> {
+class Replayer<T> implements Subject<T> {
 
-  ReplaySubject({
+  Replayer({
     required int bufferSize
   }): _buffer = bufferSize == 1
         ? _SingleElementBuffer<T>()

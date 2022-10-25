@@ -22,7 +22,7 @@ import 'observables/observable_skip_test.dart' as observable_skip_test;
 import 'observables/observable_where_test.dart' as observable_where_test;
 import 'observers/observer_default_constructor_test.dart' as observer_default_constructor_test;
 import 'subjects/publisher_test.dart' as publisher_test;
-import 'subjects/replay_subject_test.dart' as replay_subject_test;
+import 'subjects/replayer_test.dart' as replayer_test;
 import 'subjects/subject_test.dart' as subject_test;
 import 'subjects/value_subject_test.dart' as value_subject_test;
 import 'models/async_test.dart' as async_test;
@@ -52,7 +52,7 @@ void main() {
   observable_where_test.main();
   observer_default_constructor_test.main();
   publisher_test.main();
-  replay_subject_test.main();
+  replayer_test.main();
   subject_test.main();
   value_subject_test.main();
   async_test.main();

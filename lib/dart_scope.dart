@@ -18,7 +18,7 @@ export 'src/dart_observable/dart_observable.dart'
     OnData,
     Observer,
     Publisher,
-    ReplaySubject,
+    Replayer,
     Subject,
     ValueSubject,
     AsyncStatus,
