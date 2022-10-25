@@ -31,9 +31,9 @@ export 'observers/observer.dart'
   show
     OnData,
     Observer;
-export 'subjects/publish_subject.dart'
+export 'subjects/publisher.dart'
   show
-    PublishSubject;
+    Publisher;
 export 'subjects/replay_subject.dart'
   show
     ReplaySubject;

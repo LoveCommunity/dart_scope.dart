@@ -5,7 +5,7 @@ import 'package:disposal/disposal.dart';
 import 'observable.dart';
 import '../observers/observer.dart';
 import '../subjects/subject.dart';
-import '../subjects/publish_subject.dart';
+import '../subjects/publisher.dart';
 
 @internal
 class ObservableMulticast<T> implements Observable<T> {
@@ -50,5 +50,5 @@ class ObservableMulticast<T> implements Observable<T> {
 }
 
 Subject<T> _defaultCreateSubject<T>() {
-  return PublishSubject<T>();
+  return Publisher<T>();
 }
