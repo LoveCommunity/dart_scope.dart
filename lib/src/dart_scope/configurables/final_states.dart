@@ -34,6 +34,6 @@ ValueExpose<StatesActivated<T>> _superExpose<T>(Object? name) {
   };
 }
 
-ValueDispose<StatesActivated<T>> _superDispose<T>() {
+DisposeValue<StatesActivated<T>> _superDispose<T>() {
   return (activated) => activated.dispose();
 }

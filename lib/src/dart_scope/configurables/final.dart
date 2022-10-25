@@ -13,7 +13,7 @@ class Final<T> implements Configurable {
     Object? name,
     required Equal<T> equal,
     ValueExpose<T>? expose,
-    ValueDispose<T>? dispose,
+    DisposeValue<T>? dispose,
     bool lazy = true,
   }): _name = name,
     _equal = equal,
@@ -24,7 +24,7 @@ class Final<T> implements Configurable {
   final Object? _name;
   final Equal<T> _equal;
   final ValueExpose<T>? _expose;
-  final ValueDispose<T>? _dispose;
+  final DisposeValue<T>? _dispose;
   final bool _lazy;
 
   @override

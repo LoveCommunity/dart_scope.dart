@@ -62,6 +62,6 @@ export 'scopes/scope.dart'
     Scope;
 export 'shared/typedefs.dart'
   show
-    ValueDispose,
+    DisposeValue,
     ValueExpose,
     Equal;

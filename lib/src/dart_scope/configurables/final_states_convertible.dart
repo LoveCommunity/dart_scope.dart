@@ -24,7 +24,7 @@ class FinalStatesConvertible<T, E> implements Configurable {
     Object? statesName,
     required States<E> Function(T it) statesEqual,
     StatesConvertibleExpose<T, E>? expose,
-    ValueDispose<T>? dispose,
+    DisposeValue<T>? dispose,
     bool lazy = true,
   }): _name = name,
     _equal = equal,
@@ -39,7 +39,7 @@ class FinalStatesConvertible<T, E> implements Configurable {
   final Object? _statesName;
   final States<E> Function(T it) _statesEqual;
   final StatesConvertibleExpose<T, E>? _expose;
-  final ValueDispose<T>? _dispose;
+  final DisposeValue<T>? _dispose;
   final bool _lazy;
 
   @override

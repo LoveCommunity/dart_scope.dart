@@ -13,7 +13,7 @@ class AsyncFinal<T> implements Configurable {
     Object? name,
     required Equal<Future<T>> equal,
     ValueExpose<T>? expose,
-    ValueDispose<T>? dispose,
+    DisposeValue<T>? dispose,
   }): _name = name,
     _equal = equal,
     _expose = expose,
@@ -22,7 +22,7 @@ class AsyncFinal<T> implements Configurable {
   final Object? _name;
   final Equal<Future<T>> _equal;
   final ValueExpose<T>? _expose;
-  final ValueDispose<T>? _dispose;
+  final DisposeValue<T>? _dispose;
 
   @override
   FutureOr<void> configure(ConfigurableScope scope) async {

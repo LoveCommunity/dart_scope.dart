@@ -50,6 +50,6 @@ export 'src/dart_scope/dart_scope.dart'
     ScopePush,
     ConfigurableScope,
     Scope,
-    ValueDispose,
+    DisposeValue,
     ValueExpose,
     Equal;
