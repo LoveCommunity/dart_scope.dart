@@ -20,7 +20,7 @@ export 'src/dart_observable/dart_observable.dart'
     Publisher,
     Replayer,
     Subject,
-    ValueSubject,
+    Variable,
     AsyncStatus,
     Async;
 export 'src/dart_scope/dart_scope.dart'

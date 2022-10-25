@@ -40,9 +40,9 @@ export 'subjects/replayer.dart'
 export 'subjects/subject.dart'
   show
     Subject;
-export 'subjects/value_subject.dart'
+export 'subjects/variable.dart'
   show
-    ValueSubject;
+    Variable;
 export 'models/async.dart'
   show
     AsyncStatus,
