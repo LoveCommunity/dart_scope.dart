@@ -35,7 +35,7 @@ export 'configurables/final_states.dart'
     FinalStates;
 export 'configurables/final_states_convertible.dart'
   show
-    StatesConvertibleExpose,
+    ExposeStatesConvertible,
     FinalStatesConvertible;
 export 'errors/scope_value_not_exposed_error.dart'
   show

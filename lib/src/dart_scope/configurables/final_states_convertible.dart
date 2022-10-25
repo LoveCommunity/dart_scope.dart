@@ -10,7 +10,7 @@ import '../shared/typedefs.dart';
 
 import 'configurable.dart';
 
-typedef StatesConvertibleExpose<T, E> = void Function(
+typedef ExposeStatesConvertible<T, E> = void Function(
   ScopeExpose scope, 
   Getter<T> getValue, 
   Getter<States<E>> getStates
@@ -23,7 +23,7 @@ class FinalStatesConvertible<T, E> implements Configurable {
     required Equal<T> equal,
     Object? statesName,
     required States<E> Function(T it) statesEqual,
-    StatesConvertibleExpose<T, E>? expose,
+    ExposeStatesConvertible<T, E>? expose,
     DisposeValue<T>? dispose,
     bool lazy = true,
   }): _name = name,
@@ -38,7 +38,7 @@ class FinalStatesConvertible<T, E> implements Configurable {
   final Equal<T> _equal;
   final Object? _statesName;
   final States<E> Function(T it) _statesEqual;
-  final StatesConvertibleExpose<T, E>? _expose;
+  final ExposeStatesConvertible<T, E>? _expose;
   final DisposeValue<T>? _dispose;
   final bool _lazy;
 
