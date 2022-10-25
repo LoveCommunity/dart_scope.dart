@@ -10,10 +10,10 @@ import 'configurable.dart';
 class ConfigurableFunction implements Configurable {
 
   const ConfigurableFunction(
-    ScopeConfigure configure
+    ConfigureScope configure
   ): _configure = configure;
   
-  final ScopeConfigure _configure;
+  final ConfigureScope _configure;
 
   @override
   FutureOr<void> configure(ConfigurableScope scope) {
