@@ -5,9 +5,9 @@ import '../observers/observer.dart';
 import 'basic_subject.dart';
 import 'subject.dart';
 
-class ValueSubject<T> implements Subject<T> {
+class Variable<T> implements Subject<T> {
 
-  ValueSubject(
+  Variable(
     T initialValue
   ): _value = initialValue;
 
