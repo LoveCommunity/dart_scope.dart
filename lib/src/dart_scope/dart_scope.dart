@@ -19,7 +19,7 @@ export 'configurables/computed.dart'
     Computed3;
 export 'configurables/configurable.dart'
   show
-    ScopeConfigure,
+    ConfigureScope,
     Configurable;
 export 'configurables/configurable_combine.dart'
   show

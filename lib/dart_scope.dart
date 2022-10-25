@@ -33,7 +33,7 @@ export 'src/dart_scope/dart_scope.dart'
     Computed,
     Computed2,
     Computed3,
-    ScopeConfigure,
+    ConfigureScope,
     Configurable,
     ConfigurableCombine,
     ConfigurableCompose,
