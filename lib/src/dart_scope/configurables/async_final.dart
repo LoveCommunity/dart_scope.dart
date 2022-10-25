@@ -12,7 +12,7 @@ class AsyncFinal<T> implements Configurable {
   const AsyncFinal({
     Object? name,
     required Equal<Future<T>> equal,
-    ValueExpose<T>? expose,
+    ExposeValue<T>? expose,
     DisposeValue<T>? dispose,
   }): _name = name,
     _equal = equal,
@@ -21,7 +21,7 @@ class AsyncFinal<T> implements Configurable {
 
   final Object? _name;
   final Equal<Future<T>> _equal;
-  final ValueExpose<T>? _expose;
+  final ExposeValue<T>? _expose;
   final DisposeValue<T>? _dispose;
 
   @override

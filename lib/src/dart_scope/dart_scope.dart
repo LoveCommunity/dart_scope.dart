@@ -63,5 +63,5 @@ export 'scopes/scope.dart'
 export 'shared/typedefs.dart'
   show
     DisposeValue,
-    ValueExpose,
+    ExposeValue,
     Equal;

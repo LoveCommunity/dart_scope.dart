@@ -51,5 +51,5 @@ export 'src/dart_scope/dart_scope.dart'
     ConfigurableScope,
     Scope,
     DisposeValue,
-    ValueExpose,
+    ExposeValue,
     Equal;

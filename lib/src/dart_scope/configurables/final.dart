@@ -12,7 +12,7 @@ class Final<T> implements Configurable {
   const Final({
     Object? name,
     required Equal<T> equal,
-    ValueExpose<T>? expose,
+    ExposeValue<T>? expose,
     DisposeValue<T>? dispose,
     bool lazy = true,
   }): _name = name,
@@ -23,7 +23,7 @@ class Final<T> implements Configurable {
 
   final Object? _name;
   final Equal<T> _equal;
-  final ValueExpose<T>? _expose;
+  final ExposeValue<T>? _expose;
   final DisposeValue<T>? _dispose;
   final bool _lazy;
 
