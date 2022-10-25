@@ -25,7 +25,7 @@ Equal<StatesActivated<T>> _superEqual<T>(Equal<States<T>> equal) {
     .activated();
 }
 
-ValueExpose<StatesActivated<T>> _superExpose<T>(Object? name) {
+ExposeValue<StatesActivated<T>> _superExpose<T>(Object? name) {
   return (scope, getActivated) {
     scope.expose<States<T>>(
       name: name, 
