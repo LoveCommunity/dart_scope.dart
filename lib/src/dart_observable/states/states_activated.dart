@@ -2,7 +2,7 @@
 import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
-import '../subjects/replay_subject.dart';
+import '../subjects/replayer.dart';
 import 'observable_as_states_x.dart';
 import 'states.dart';
 
@@ -26,7 +26,7 @@ class _StatesActivated<T> implements StatesActivated<T> {
   }
 
   final States<T> _states;
-  final _subject = ReplaySubject<T>(bufferSize: 1);
+  final _subject = Replayer<T>(bufferSize: 1);
 
   @override
   late final states = _subject.asStates();

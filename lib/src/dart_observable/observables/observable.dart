@@ -4,7 +4,7 @@ import 'package:typedef_equals/typedef_equals.dart';
 
 import '../observers/observer.dart';
 import '../subjects/subject.dart';
-import '../subjects/replay_subject.dart';
+import '../subjects/replayer.dart';
 import 'observable_create.dart';
 import 'observable_cast.dart';
 import 'observable_combine.dart';
@@ -109,7 +109,7 @@ extension ObservableX<T> on Observable<T> {
 
   Observable<T> multicastReplay(int bufferSize) {
     return multicast(
-      createSubject: () => ReplaySubject<T>(
+      createSubject: () => Replayer<T>(
         bufferSize: bufferSize
       ),
     );
