@@ -48,7 +48,7 @@ void main() {
 
   });
 
-  test('`Variable` updata value by call `set value`', () {
+  test('`Variable` update value by call `set value`', () {
 
     final variable = Variable<String>('a');
 
