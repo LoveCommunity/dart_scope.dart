@@ -1,3 +1,16 @@
+## 0.1.0-alpha.6
+
+- fix 
+  - fix typos [\#145](https://github.com/LoveCommunity/dart_scope.dart/pull/145)
+- refactor 
+  - rename `ValueSubject` to `Variable` [\#143](https://github.com/LoveCommunity/dart_scope.dart/pull/143)
+  - rename `ReplaySubject` to `Replayer` [\#142](https://github.com/LoveCommunity/dart_scope.dart/pull/142)
+  - rename `PublishSubject` to `Publisher` [\#141](https://github.com/LoveCommunity/dart_scope.dart/pull/141)
+  - rename `ScopeConfigure` to `ConfigureScope` [\#136](https://github.com/LoveCommunity/dart_scope.dart/pull/136)
+  - rename `StatesConvertibleExpose` to `ExposeStatesConvertible` [\#135](https://github.com/LoveCommunity/dart_scope.dart/pull/135)
+  - rename `ValueExpose` to `ExposeValue` [\#134](https://github.com/LoveCommunity/dart_scope.dart/pull/134)
+  - rename `ValueDispose` to `DisposeValue` [\#133](https://github.com/LoveCommunity/dart_scope.dart/pull/133)
+
 ## 0.1.0-alpha.5
 
 - refactor 
