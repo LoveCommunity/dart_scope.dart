@@ -6,7 +6,7 @@ import '../shared/states_tester.dart';
 
 void main() {
   
-  test('`states.select` default equals', () {
+  test('`states.convert` default equals', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -16,11 +16,11 @@ void main() {
       return Disposable.empty;
     });
 
-    final select = states
-      .select((it) => '1$it');
+    final convert = states
+      .convert((it) => '1$it');
 
     final tester = StatesTester(
-      select,
+      convert,
     );
 
     expect(tester.recorded, <String>[]);
@@ -34,7 +34,7 @@ void main() {
 
   });
 
-  test('`states.select` custom equals', () {
+  test('`states.convert` custom equals', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -44,14 +44,14 @@ void main() {
       return Disposable.empty;
     });
 
-    final select = states
-      .select<String>(
+    final convert = states
+      .convert<String>(
         (it) => '1$it',
         equals: (it1, it2) => it1.length == it2.length,
       );
 
     final tester = StatesTester(
-      select,
+      convert,
     );
 
     expect(tester.recorded, <String>[]);

@@ -80,7 +80,7 @@ Equal<States<R>> _superEqual<T, R>(
 ) {
   return (scope) => scope
     .get<States<T>>(name: statesName)
-    .select<R>(
+    .convert<R>(
       (it) => compute(scope, it),
       equals: equals,
     );
