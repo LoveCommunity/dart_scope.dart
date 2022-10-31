@@ -1,3 +1,8 @@
+## 0.1.0-alpha.7
+
+- refactor 
+  - rename operator `states.select` to `states.convert` [\#147](https://github.com/LoveCommunity/dart_scope.dart/pull/147)
+
 ## 0.1.0-alpha.6
 
 - fix 
