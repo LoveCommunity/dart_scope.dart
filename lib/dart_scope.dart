@@ -1,3 +1,4 @@
+library dart_scope;
 
 export 'src/dart_observable/dart_observable.dart'
   show

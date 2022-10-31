@@ -8,7 +8,7 @@ import 'states/states_distinct_test.dart' as states_distinct_test;
 import 'states/states_first_test.dart' as states_first_test;
 import 'states/states_from_test.dart' as states_from_test;
 import 'states/states_map_test.dart' as states_map_test;
-import 'states/states_select_test.dart' as states_select_test;
+import 'states/states_convert_test.dart' as states_convert_test;
 import 'states/states_skip_test.dart' as states_skip_test;
 import 'observables/observable_cast_test.dart' as observable_cast_test;
 import 'observables/observable_combine_test.dart' as observable_combine_test;
@@ -38,7 +38,7 @@ void main() {
   states_first_test.main();
   states_from_test.main();
   states_map_test.main();
-  states_select_test.main();
+  states_convert_test.main();
   states_skip_test.main();
   observable_cast_test.main();
   observable_combine_test.main();

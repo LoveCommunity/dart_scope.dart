@@ -75,7 +75,7 @@ extension StatesX<T> on States<T> {
       .asStates();
   }
 
-  States<R> select<R>(
+  States<R> convert<R>(
     R Function(T) convert, {
     Equals<R>? equals,
   }) {
