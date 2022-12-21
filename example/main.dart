@@ -227,7 +227,9 @@ Future<void> configurableInlineExample() async {
       scope.expose<PersistenceService>(expose: () => persistenceService);
       scope.expose<AppNotifier>(expose: () => appNotifier);
       // register dispose logic
-      scope.addDispose(appNotifier.dispose);
+      scope.addDispose(() {
+        appNotifier.dispose();
+      });
       // done
     }),
   ]);
