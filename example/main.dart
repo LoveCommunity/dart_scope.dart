@@ -61,7 +61,7 @@ Future<void> scopeRootWithoutNameExample() async {
 /// Example simulates async setup:
 /// ```dart
 /// void rootScope() async {
-///   final persistenceService = await createPersistenceService();
+///   final PersistenceService persistenceService = await createPersistenceService();
 ///   final AppNotifier appNotifier = AppNotifier(
 ///     persistenceService: persistenceService,
 ///   );
@@ -102,12 +102,13 @@ class AddTodoNotifier {}
 ///   final PersistenceService persistenceService = PersistenceService();
 ///   final AppNotifier appNotifier = AppNotifier(
 ///     persistenceService: persistenceService,
-///     authService: authService,
 ///   ); 
 /// 
 ///   void childScope() {
 ///     final AddTodoNotifier addTodoNotifier = AddTodoNotifier();
 /// 
+///     final myPersistenceService = persistenceService;
+///     final myAppNotifier = appNotifier;
 ///     final myAddTodoNotifier = addTodoNotifier;
 ///   }
 /// }
@@ -124,9 +125,13 @@ Future<void> scopePushExample() async {
     Final<AddTodoNotifier>(equal: (scope) => AddTodoNotifier()),
   ]);
 
+  final myPersistenceService = childScope.get<PersistenceService>();
+  final myAppNotifier = childScope.get<AppNotifier>();
   final myAddTodoNotifier = childScope.get<AddTodoNotifier>();
 
-  print(myAddTodoNotifier);
+  print('myPersistenceService: $myPersistenceService');
+  print('myAppNotifier: $myAppNotifier');
+  print('myAddTodoNotifier: $myAddTodoNotifier');
 }
 
 /// Usage of `scope.has<T>()`
@@ -305,7 +310,7 @@ Future<void> configurableExample() async {
   print('myAppNotifier: $myAppNotifier');
 }
 
-/// Hight level configuration is often combined/composed with low level configurations:
+/// High level configuration is often combined/composed with low level configurations:
 class AppConfigurables extends ConfigurableCombine {
 
   const AppConfigurables({
@@ -362,7 +367,7 @@ const examples = {
   'scopeHasExample':              scopeHasExample,
   'scopeGetOrNullExample':        scopeGetOrNullExample,
   'scopeDisposeExample':          scopeDisposeExample,
-  'lazyFinalExample':             nonLazyFinalExample,
+  'nonLazyFinalExample':          nonLazyFinalExample,
   'configurableInlineExample':    configurableInlineExample,
   'configurableExample':          configurableExample,
   'configurableCombineExample':   configurableCombineExample,
