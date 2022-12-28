@@ -52,7 +52,7 @@ class AppNotifier {
 }
 ```
 
-`Repository` has no dependency. And `AppNotifier` depend on `Repository`.
+`AppNotifier` depends on `Repository`.
 
 ### Usage of `Scope.root`
 
@@ -70,7 +70,7 @@ Future<void> scopeRootExample() async {
 }
 ```
 
-We created a `rootScope` which expose singletons of `Repository` and `AppNotifier`. Later we can resolve those instance by calling `scope.get<T>()`. Above example simulates:
+A `rootScope` is created which expose singletons of `Repository` and `AppNotifier`. Later, these instances can be resolved by calling `scope.get<T>()`. Above example simulates:
 
 ```dart
 void rootScope() {  // `{` is the start of scope
@@ -81,7 +81,7 @@ void rootScope() {  // `{` is the start of scope
     repository: repository,
   );
 
-  // we can resolve instances in current scope
+  // resolve instances in current scope
   final myRepository = repository;
   final myAppNotifier = appNotifier;
 
@@ -90,12 +90,12 @@ void rootScope() {  // `{` is the start of scope
 
 This simple pseudocode shown:
   - function scope that starts with `{`, ends with `}`
-  - how to create instances with dependencies in current scope
+  - how to create and expose instances in current scope
   - how to resolve instances in current scope
 
 ### Usage of `name`
 
-We can use different names to create multiple instances. 
+We can use different names to create multiple instances: 
 
 ```dart
 Future<void> multipleNamesExample() async {
@@ -126,7 +126,7 @@ void rootScope() {
 }
 ```
 
-Name can be private, so instance can only be resolved in current library (mostly current file):
+Name can be private, so instance will only be resolved in current library (mostly current file):
 
 ```dart
 // name is private in current library
@@ -138,7 +138,6 @@ Future<void> privateNameExample() async {
     Final<Repository>(name: _privateName, equal: (scope) => Repository()),
   ]);
 
-  // instance can only be resolved in current library with private name
   final myRepository = rootScope.get<Repository>(name: _privateName);
 }
 ```
@@ -146,7 +145,7 @@ Future<void> privateNameExample() async {
 Name can also be omitted, in this case `null` is used as name:
 
 ```dart
-Future<void> withoutNameExample() async {
+Future<void> omitNameExample() async {
   final rootScope = await Scope.root([
     // assigned without name
     Final<Repository>(equal: (scope) => Repository()),
@@ -325,7 +324,7 @@ Future<void> scopeDisposeExample() async {
     ),
   ]);
 
-  // dispose/pop scope will also dispose `appNotifier`
+  // dispose scope will also dispose `appNotifier`
   rootScope.dispose();
 }
 ```
@@ -358,7 +357,7 @@ We've covered basic part of `dart_scope`:
 * Scope strategy is aligned with scoping of functions
 * Can handle async setup
 
-Next, we will explore advanced features:
+Next, we'll explore advanced features:
 * Configuration is aligned with style of flutter widget 
 * Configuration is composable/decomposable
 
@@ -385,19 +384,22 @@ abstract class Configurable {
 }
 ```
 
-`Configurable` is an interface which require `configure` method. It's okay if we're a little confused. Things will become clear when it's in the right context. Let's continue with some examples.
+`Configurable` is an interface which require `configure` method. Let's explore with some examples.
 
 ### Inline `Configurable`
 
-Previously, we've seen this simple example:
+Previously, we've seen this example:
 
 ```dart
-Future<void> withoutNameExample() async {
+Future<void> omitNameExample() async {
   final rootScope = await Scope.root([
     Final<Repository>(equal: (scope) => Repository()),
-    Final<AppNotifier>(equal: (scope) => AppNotifier(
-      repository: scope.get<Repository>(),
-    )),
+    Final<AppNotifier>(
+      equal: (scope) => AppNotifier(
+        repository: scope.get<Repository>(),
+      ),
+      dispose: (appNotifier) => appNotifier.dispose(),
+    ),
   ]);
 
   final myRepository = rootScope.get<Repository>();

@@ -86,7 +86,7 @@ Future<void> privateNameExample() async {
 }
 
 /// Name can be omitted, in this case `null` is used as name
-Future<void> withoutNameExample() async {
+Future<void> omitNameExample() async {
   final rootScope = await Scope.root([
     Final<Repository>(equal: (scope) => Repository()),
     Final<AppNotifier>(equal: (scope) => AppNotifier(
@@ -407,7 +407,7 @@ const examples = {
   'scopeRootExample':             scopeRootExample,
   'multipleNamesExample':         multipleNamesExample,
   'privateNameExample':           privateNameExample,
-  'withoutNameExample':           withoutNameExample,
+  'omitNameExample':              omitNameExample,
   'scopeRootAsyncExample':        scopeRootAsyncExample,
   'scopePushExample':             scopePushExample,
   'scopeHasExample':              scopeHasExample,
