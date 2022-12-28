@@ -1,4 +1,4 @@
-# dart_scope <!-- no toc --> 
+# dart_scope
 
 [![Build Status](https://github.com/LoveCommunity/dart_scope.dart/workflows/Tests/badge.svg)](https://github.com/LoveCommunity/dart_scope.dart/actions/workflows/tests.yaml)
 [![Coverage Status](https://img.shields.io/codecov/c/github/LoveCommunity/dart_scope.dart/main.svg)](https://codecov.io/gh/LoveCommunity/dart_scope.dart) 
