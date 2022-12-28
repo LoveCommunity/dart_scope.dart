@@ -42,8 +42,51 @@ Future<void> scopeRootExample() async {
   print('myAppNotifier: $myAppNotifier');
 }
 
+/// Example simulates:
+/// ```dart
+/// void rootScope() {
+/// 
+///   final PersistenceService persistenceService1 = PersistenceService();
+///   final PersistenceService persistenceService2 = PersistenceService();
+///   final PersistenceService persistenceService3 = PersistenceService();
+/// 
+///   final myPersistenceService1 = persistenceService1;
+///   final myPersistenceService2 = persistenceService2;
+///   final myPersistenceService3 = persistenceService3;
+/// }
+/// ```
+Future<void> multipleNamesExample() async {
+  final rootScope = await Scope.root([
+    Final<PersistenceService>(name: 'persistenceService1', equal: (scope) => PersistenceService()),
+    Final<PersistenceService>(name: 'persistenceService2', equal: (scope) => PersistenceService()),
+    Final<PersistenceService>(name: 'persistenceService3', equal: (scope) => PersistenceService()),
+  ]);
+
+  final myPersistenceService1 = rootScope.get<PersistenceService>(name: 'persistenceService1');
+  final myPersistenceService2 = rootScope.get<PersistenceService>(name: 'persistenceService2');
+  final myPersistenceService3 = rootScope.get<PersistenceService>(name: 'persistenceService3');
+
+  print('myPersistenceService1: $myPersistenceService1');
+  print('myPersistenceService2: $myPersistenceService2');
+  print('myPersistenceService3: $myPersistenceService3');
+}
+
+/// Name can be private, so instance can only be resolved 
+/// in current library (mostly current file)
+final _privateName = Object();
+
+Future<void> privateNameExample() async {
+  final rootScope = await Scope.root([
+    Final<PersistenceService>(name: _privateName, equal: (scope) => PersistenceService()),
+  ]);
+
+  final myPersistenceService = rootScope.get<PersistenceService>(name: _privateName);
+
+  print('myPersistenceService: $myPersistenceService');
+}
+
 /// Name can be omitted, in this case `null` is used as name
-Future<void> scopeRootWithoutNameExample() async {
+Future<void> withoutNameExample() async {
   final rootScope = await Scope.root([
     Final<PersistenceService>(equal: (scope) => PersistenceService()),
     Final<AppNotifier>(equal: (scope) => AppNotifier(
@@ -201,13 +244,13 @@ Future<void> nonLazyFinalExample() async {
   final rootScope = await Scope.root([
     Final<PersistenceService>(
       equal: (scope) => PersistenceService(),
-      lazy: false // defaults to true
+      lazy: false // set to false
     ),
     Final<AppNotifier>(
       equal: (scope) => AppNotifier(
         persistenceService: scope.get<PersistenceService>(),
       ),
-      lazy: false // defaults to true
+      lazy: false // set to false
     ),
   ]);
 
@@ -310,7 +353,8 @@ Future<void> configurableExample() async {
   print('myAppNotifier: $myAppNotifier');
 }
 
-/// High level configuration is often combined/composed with low level configurations:
+/// High level configuration is often combined/composed with 
+/// low level configurations:
 class AppConfigurables extends ConfigurableCombine {
 
   const AppConfigurables({
@@ -361,7 +405,9 @@ Future<void> configurableCombineExample() async {
 
 const examples = {
   'scopeRootExample':             scopeRootExample,
-  'scopeRootWithoutNameExample':  scopeRootWithoutNameExample,
+  'multipleNamesExample':         multipleNamesExample,
+  'privateNameExample':           privateNameExample,
+  'withoutNameExample':           withoutNameExample,
   'scopeRootAsyncExample':        scopeRootAsyncExample,
   'scopePushExample':             scopePushExample,
   'scopeHasExample':              scopeHasExample,
