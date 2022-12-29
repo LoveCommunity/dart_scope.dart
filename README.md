@@ -20,12 +20,12 @@ A declarative dependency injection library which use dart syntax and flutter sty
   - [Features](#features)
   - [Table Of Content](#table-of-content)
   - [Quick Tour](#quick-tour)
-    - [Usage of `Scope.root`](#usage-of-scoperoot)
+    - [Usage of `Scope.root(...)`](#usage-of-scoperoot)
     - [Usage of `name`](#usage-of-name)
-    - [`Scope.root` async setup](#scoperoot-async-setup)
+    - [`Scope.root(...)` async setup](#scoperoot-async-setup)
     - [Usage of `scope.push(...)`](#usage-of-scopepush)
-    - [Usage of `scope.has<T>()`](#usage-of-scopehast)
-    - [Usage of `scope.getOrNull<T>()`](#usage-of-scopegetornullt)
+    - [Usage of `scope.has<T>(...)`](#usage-of-scopehast)
+    - [Usage of `scope.getOrNull<T>(...)`](#usage-of-scopegetornullt)
     - [Usage of `scope.dispose()`](#usage-of-scopedispose)
     - [(Non)Lazily assignment](#nonlazily-assignment)
   - [Advanced](#advanced)
@@ -33,6 +33,7 @@ A declarative dependency injection library which use dart syntax and flutter sty
     - [Inline `Configurable`](#inline-configurable)
     - [Decompose configuration](#decompose-configuration)
     - [Compose configurations](#compose-configurations)
+
 ## Quick Tour
 
 Let's explore with quick examples, assume we have following classes:
@@ -47,14 +48,14 @@ class AppNotifier {
     required this.repository,
   });
   final Repository repository;
+
   // ...implementations
+
   void dispose() {}
 }
 ```
 
-`AppNotifier` depends on `Repository`.
-
-### Usage of `Scope.root`
+### Usage of `Scope.root(...)`
 
 ```dart
 Future<void> scopeRootExample() async {
@@ -70,7 +71,7 @@ Future<void> scopeRootExample() async {
 }
 ```
 
-A `rootScope` is created which expose singletons of `Repository` and `AppNotifier`. Later, these instances can be resolved by calling `scope.get<T>()`. Above example simulates:
+A `rootScope` is created which expose singletons of `Repository` and `AppNotifier`. Later, these instances can be resolved by calling `scope.get<T>(...)`. Above example simulates:
 
 ```dart
 void rootScope() {  // `{` is the start of scope
@@ -95,7 +96,7 @@ This simple pseudocode shown:
 
 ### Usage of `name`
 
-We can use different names to create multiple instances: 
+Use different names to create multiple instances: 
 
 ```dart
 Future<void> multipleNamesExample() async {
@@ -160,18 +161,18 @@ Future<void> omitNameExample() async {
 }
 ```
 
-### `Scope.root` async setup
+### `Scope.root(...)` async setup
 
 If there is async setup like resolving `SharedPreferences`. We can follow this:
 
 ```dart
-Future<void> scopeRootAsyncExample() async {
-  // simulate async resolve instance like `SharedPreferences.getInstance()`
-  Future<Repository> createRepository() async {
-    await Future<void>.delayed(Duration(seconds: 1));
-    return Repository();
-  }
+// simulate async resolve instance like `SharedPreferences.getInstance()`
+Future<Repository> createRepository() async {
+  await Future<void>.delayed(Duration(seconds: 1));
+  return Repository();
+}
 
+Future<void> scopeRootAsyncExample() async {
   final rootScope = await Scope.root([
     // using `AsyncFinal` to handle async setup
     AsyncFinal<Repository>(equal: (scope) async {
@@ -251,9 +252,9 @@ void rootScope() {
 }
 ```
 
-### Usage of `scope.has<T>()`
+### Usage of `scope.has<T>(...)`
 
-We can use `scope.has<T>()` to check if instance has been exposed:
+We can use `scope.has<T>(...)` to check if instance has been exposed:
 
 ```dart
 Future<void> scopeHasExample() async {
@@ -280,9 +281,9 @@ Future<void> scopeHasExample() async {
 }
 ```
 
-### Usage of `scope.getOrNull<T>()`
+### Usage of `scope.getOrNull<T>(...)`
 
-We can use `scope.getOrNull<T>()` to safely resolve instance. This method will not throw error when instance is not exposed, instead `null` is returned:
+We can use `scope.getOrNull<T>(...)` to safely resolve instance. This method will not throw error when instance is not exposed, instead `null` is returned:
 
 ```dart
 Future<void> scopeGetOrNullExample() async {
@@ -384,14 +385,14 @@ abstract class Configurable {
 }
 ```
 
-`Configurable` is an interface which require `configure` method. Let's explore with some examples.
+`Configurable` is an interface which required a `configure` method. Let's explore with some examples.
 
 ### Inline `Configurable`
 
 Previously, we've seen this example:
 
 ```dart
-Future<void> omitNameExample() async {
+Future<void> example() async {
   final rootScope = await Scope.root([
     Final<Repository>(equal: (scope) => Repository()),
     Final<AppNotifier>(
@@ -412,6 +413,7 @@ We can achieve same thing using inline `Configurable`:
 ```dart
 Future<void> configurableInlineExample() async {
   final rootScope = await Scope.root([
+
     // inline `Configurable`
     Configurable((scope) {
       // build dependency graph
@@ -428,6 +430,7 @@ Future<void> configurableInlineExample() async {
       });
       // done
     }),
+
   ]);
 
   final myRepository = rootScope.get<Repository>();
@@ -435,7 +438,12 @@ Future<void> configurableInlineExample() async {
 }
 ```
 
-This inline `Configurable` can also be used to setup scope in a customizable way.
+Inline `Configurable` use a closure `(scope) { ... }` to configure current scope with steps:
+  1. build dependency graph using assignment `late final Repository repository = Repository();`
+  2. expose instance using `scope.expose(...)`
+  3. register dispose logic using `scope.addDispose(...)`
+
+This closure will run only once during scope creation. It is used to configure scope in a customizable way. Inline `Configurable` is just for convenience, if we need scale up, then create class that implements `Configurable` interface.
 
 ### Decompose configuration
 
@@ -480,7 +488,7 @@ class MyFinal<T> implements Configurable {
 }
 ```
 
-`Configurable` is like a flutter widget, `configure` method is like `build` method. But `configure` will only run once during scope creation. Now we can use `MyFinal` like this:
+`Configurable` is like a flutter widget, `configure` method is like `build` method. Now we can use `MyFinal` like this:
 
 ```dart
 Future<void> configurableExample() async {
