@@ -102,7 +102,7 @@ Future<void> omitNameExample() async {
 }
 
 // simulate async resolve instance like `SharedPreferences.getInstance()`
-Future<Repository> createRepository() async {
+Future<Repository> createRepositoryAsync() async {
   await Future<void>.delayed(Duration(seconds: 1));
   return Repository();
 }
@@ -110,7 +110,7 @@ Future<Repository> createRepository() async {
 /// Example simulates async setup:
 /// ```dart
 /// void rootScope() async {
-///   final Repository repository = await createRepository();
+///   final Repository repository = await createRepositoryAsync();
 ///   final AppNotifier appNotifier = AppNotifier(
 ///     repository: repository,
 ///   );
@@ -122,7 +122,7 @@ Future<Repository> createRepository() async {
 Future<void> scopeRootAsyncExample() async {
   final rootScope = await Scope.root([
     AsyncFinal<Repository>(equal: (scope) async {
-      return await createRepository();
+      return await createRepositoryAsync();
     }),
     Final<AppNotifier>(equal: (scope) => AppNotifier(
       repository: scope.get<Repository>(),

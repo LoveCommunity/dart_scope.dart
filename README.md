@@ -170,7 +170,7 @@ If there is async setup like resolving `SharedPreferences`. We can follow this:
 
 ```dart
 // simulate async resolve instance like `SharedPreferences.getInstance()`
-Future<Repository> createRepository() async {
+Future<Repository> createRepositoryAsync() async {
   await Future<void>.delayed(Duration(seconds: 1));
   return Repository();
 }
@@ -179,7 +179,7 @@ Future<void> scopeRootAsyncExample() async {
   final rootScope = await Scope.root([
     // using `AsyncFinal` to handle async setup
     AsyncFinal<Repository>(equal: (scope) async {
-      return await createRepository();
+      return await createRepositoryAsync();
     }),
     Final<AppNotifier>(equal: (scope) => AppNotifier(
       repository: scope.get<Repository>(),
@@ -195,7 +195,7 @@ Above example simulates:
 
 ```dart
 void rootScope() async {
-  final Repository repository = await createRepository();
+  final Repository repository = await createRepositoryAsync();
   final AppNotifier appNotifier = AppNotifier(
     repository: repository,
   );
