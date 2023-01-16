@@ -7,10 +7,56 @@ import '../observers/observer.dart';
 import 'basic_subject.dart';
 import 'subject.dart';
 
+/// `Replayer` first replays items to an observer that are emitted 
+/// by the source Observable(s) and then forward upcoming items to 
+/// this observer.
 class Replayer<T> implements Subject<T> {
-
+  
+  /// Use `Replayer(...)` to create a subject that replay items 
+  /// already emitted to observer, also forward upcoming items
+  /// to observer.
+  /// 
+  /// Use `bufferSize` to specific how many items to replay:
+  /// 
+  /// ```dart
+  /// final replayer = Replayer<int>(bufferSize: 3);
+  /// replayer.onData(1);
+  /// replayer.onData(2);
+  /// replayer.onData(3);
+  /// replayer.onData(4);
+  /// replayer.onData(5);
+  /// replayer.onData(6);
+  /// 
+  /// final observation = replayer.observe((data) {
+  ///   print('onData: $data');
+  /// });
+  /// ```
+  /// 
+  /// prints:
+  /// 
+  /// ```
+  /// onData: 4
+  /// onData: 5
+  /// onData: 6
+  /// ```
+  /// 
+  /// The `bufferSize` is set to 3, so latest 3 items has been
+  /// replayed. 
+  /// 
+  /// Items emitted after observation will also be forward 
+  /// to observer:
+  /// 
+  /// ```dart
+  /// /// Continuing with the example
+  ///                     
+  ///                     //  prints:
+  /// replayer.onData(7); //    onData: 7  
+  /// replayer.onData(8); //    onData: 8  
+  /// replayer.onData(9); //    onData: 9
+  /// ```
+  /// 
   Replayer({
-    required int bufferSize
+    required int bufferSize,
   }): _buffer = bufferSize == 1
         ? _SingleElementBuffer<T>()
         : _MultiElementBuffer<T>(size: bufferSize);
