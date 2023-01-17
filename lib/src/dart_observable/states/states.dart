@@ -17,7 +17,7 @@ import 'states_first.dart';
 /// 
 /// ```dart
 /// final states = States<int>((setState) {
-///   setState(0); // promising set initial state synchronously
+///   setState(0); // promising set current state synchronously
 /// 
 ///   // then can set following state asynchronously or synchronously
 ///   Future(() => setState(1));

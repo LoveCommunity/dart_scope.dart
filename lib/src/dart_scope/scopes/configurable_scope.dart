@@ -9,7 +9,7 @@ import '../scope_methods/scope_expose.dart';
 import '../shared/build_scope.dart';
 import 'scope.dart';
 
-/// `ConfigurableScope` is a scope that can be configured with
+/// `ConfigurableScope` is a draft of scope that can be configured with
 /// `scope.expose` and `scope.addDispose` methods, it is often used
 /// during scope creation.
 /// 

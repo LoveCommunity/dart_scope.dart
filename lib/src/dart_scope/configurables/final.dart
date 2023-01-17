@@ -47,8 +47,8 @@ class Final<T> implements Configurable {
   ///   )
   /// ]);
   /// 
-  /// print(rootScope.has<StreamController<String>>); // false
-  /// print(rootScope.has<Stream<String>>);           // true
+  /// print(rootScope.has<StreamController<String>>()); // false
+  /// print(rootScope.has<Stream<String>>());           // true
   /// ```
   /// 
   /// Use `dispose` parameter to register dispose logic:
