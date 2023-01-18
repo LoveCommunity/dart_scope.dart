@@ -54,17 +54,23 @@ typedef Observe<T> = Disposable Function(OnData<T> onData);
 /// when observed:
 /// 
 /// ```dart
+/// print('before observe');
+/// 
 /// final observation = observable.observe((data) {
 ///   print('onData: $data');
 /// });
+/// 
+/// print('after observe');
 /// ```
 /// 
 /// Prints:
 /// 
 /// ```dart
+/// before observe
 /// onData: 0
 /// onData: 1
 /// onData: 2
+/// after observe
 /// ```
 /// 
 abstract class Observable<T> {

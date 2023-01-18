@@ -214,7 +214,7 @@ extension StatesX<T> on States<T> {
 
   /// Suppress the first item emitted by States.
   /// 
-  /// You can ignore the first items emitted by States 
+  /// You can ignore the first item emitted by States 
   /// and attend only to those items that come after, 
   /// by modifying the States with the SkipFirst operator.
   /// 
@@ -224,9 +224,9 @@ extension StatesX<T> on States<T> {
       .skip(1);
   }
 
-  /// Resolve the first item of states.
+  /// Get the first item of states.
   /// 
-  /// This getter is often used to resolve current state:
+  /// This getter is often used to get current state:
   /// 
   /// ```dart
   /// final States<int> states = ...;

@@ -11,7 +11,7 @@ import 'observer_function.dart';
 /// 
 typedef OnData<T> = void Function(T data);
 
-/// `Observer` is someone that observe something.
+/// `Observer` is someone who observe something.
 /// 
 /// Technical speaking, `Observer` is an interface that
 /// has an `onData` method:

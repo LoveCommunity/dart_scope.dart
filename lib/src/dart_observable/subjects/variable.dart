@@ -25,7 +25,7 @@ import 'subject.dart';
 /// variable.value = 1;
 /// ```
 /// 
-/// prints:
+/// Prints:
 /// 
 /// ```
 /// onData: 0
@@ -43,7 +43,7 @@ class Variable<T> implements Subject<T> {
   final _subject = BasicSubject<T>();
   T _value;
 
-  /// Use `variable.value` getter  to resolve current value.
+  /// Use `variable.value` getter to resolve current value.
   T get value {
     return _value;
   }

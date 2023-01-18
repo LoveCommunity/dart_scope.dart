@@ -57,10 +57,10 @@ class Async<T> {
   /// The stackTrace associated with error.
   final StackTrace? stackTrace;
 
-  /// Get underlining data and assert it's not null
+  /// Get underlining data and assert it's not null.
   T get requireData => data!;
 
-  /// Get error and assert it's not null
+  /// Get error and assert it's not null.
   Object get requireError => error!;
 
   @override

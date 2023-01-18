@@ -26,7 +26,7 @@ class Final<T> implements Configurable {
   /// 
   /// Simulate:
   /// ```dart
-  /// void rootScope() async {
+  /// void rootScope() {
   ///   final StreamController<String> controller = StreamController();
   /// }
   /// ``` 
@@ -38,11 +38,13 @@ class Final<T> implements Configurable {
   ///   Final<StreamController<String>>(
   ///     equal: (scope) => StreamController(),
   ///     expose: (scope, getStreamController) {
+  /// 
   ///       // Instead of exposing the whole `StreamController`, 
-  ///       // We can only expose it's stream field here.
+  ///       // We can only expose its stream field here.
   ///       scope.expose<Stream<String>>(
   ///         expose: () => getStreamController().stream,
   ///       );
+  /// 
   ///     },
   ///   )
   /// ]);
