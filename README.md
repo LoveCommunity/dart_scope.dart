@@ -57,6 +57,8 @@ class AppNotifier {
 
 ### Usage of `Scope.root(...)`
 
+Use `Scope.root(...)` to create a top level scope with configurations:
+
 ```dart
 Future<void> scopeRootExample() async {
   final rootScope = await Scope.root([
@@ -66,6 +68,7 @@ Future<void> scopeRootExample() async {
     )),
   ]);
 
+  // resolve instances
   final myRepository = rootScope.get<Repository>(name: 'repository');
   final myAppNotifier = rootScope.get<AppNotifier>(name: 'appNotifier');
 }
@@ -167,7 +170,7 @@ If there is async setup like resolving `SharedPreferences`. We can follow this:
 
 ```dart
 // simulate async resolve instance like `SharedPreferences.getInstance()`
-Future<Repository> createRepository() async {
+Future<Repository> createRepositoryAsync() async {
   await Future<void>.delayed(Duration(seconds: 1));
   return Repository();
 }
@@ -176,7 +179,7 @@ Future<void> scopeRootAsyncExample() async {
   final rootScope = await Scope.root([
     // using `AsyncFinal` to handle async setup
     AsyncFinal<Repository>(equal: (scope) async {
-      return await createRepository();
+      return await createRepositoryAsync();
     }),
     Final<AppNotifier>(equal: (scope) => AppNotifier(
       repository: scope.get<Repository>(),
@@ -192,7 +195,7 @@ Above example simulates:
 
 ```dart
 void rootScope() async {
-  final Repository repository = await createRepository();
+  final Repository repository = await createRepositoryAsync();
   final AppNotifier appNotifier = AppNotifier(
     repository: repository,
   );
@@ -204,7 +207,7 @@ void rootScope() async {
 
 ### Usage of `scope.push(...)`
 
-Use `scope.push(...)` to create a new child scope:
+Use `scope.push(...)` to create a new child scope. Child scope inherited getters from parent:
 
 ```dart
 class AddTodoNotifier {}
@@ -229,7 +232,7 @@ Future<void> scopePushExample() async {
 }
 ```
 
-Child scope inherited getters from parent, as:
+Which simulates::
 
 ```dart
 void rootScope() {                                                    
@@ -254,7 +257,7 @@ void rootScope() {
 
 ### Usage of `scope.has<T>(...)`
 
-We can use `scope.has<T>(...)` to check if instance has been exposed:
+Use `scope.has<T>(...)` to check if instance has been exposed:
 
 ```dart
 Future<void> scopeHasExample() async {
@@ -283,7 +286,7 @@ Future<void> scopeHasExample() async {
 
 ### Usage of `scope.getOrNull<T>(...)`
 
-We can use `scope.getOrNull<T>(...)` to safely resolve instance. This method will not throw error when instance is not exposed, instead `null` is returned:
+Use `scope.getOrNull<T>(...)` to safely resolve instance. This method will return `null` when instance is not exposed::
 
 ```dart
 Future<void> scopeGetOrNullExample() async {
@@ -443,7 +446,7 @@ Inline `Configurable` use a closure `(scope) { ... }` to configure current scope
   2. expose instance using `scope.expose(...)`
   3. register dispose logic using `scope.addDispose(...)`
 
-This closure will run only once during scope creation. It is used to configure scope in a customizable way. Inline `Configurable` is just for convenience, if we need scale up, then create class that implements `Configurable` interface.
+This closure will run only once during scope creation. It is used to configure scope in a customizable way. Inline `Configurable` is just for convenience, if we need scale up, then can create class that implements `Configurable` interface.
 
 ### Decompose configuration
 
@@ -476,7 +479,7 @@ class MyFinal<T> implements Configurable {
       getValue = () => instance;
     }
 
-    scope.expose(name: name, expose: getValue);
+    scope.expose<T>(name: name, expose: getValue);
     
     if (dispose != null) {
       scope.addDispose(() {

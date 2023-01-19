@@ -5,8 +5,36 @@ import '../observers/observer.dart';
 import 'basic_subject.dart';
 import 'subject.dart';
 
+/// `Variable` hold value that can be changed. Value could be 
+/// resolved once or continuously.
+/// 
+/// Resolve value once using `variable.value` getter:
+/// ```dart
+/// final variable = Variable(0);
+/// print(variable.value) // 0
+/// variable.value = 1;
+/// print(variable.value) // 1
+/// ```
+/// 
+/// Resolve value continuously using `variable.observe`:
+/// ```dart
+/// final variable = Variable(0);
+/// final observation = variable.observe((data) {
+///   print('onData: $data');
+/// });
+/// variable.value = 1;
+/// ```
+/// 
+/// Prints:
+/// 
+/// ```
+/// onData: 0
+/// onData: 1
+/// ```
+/// 
 class Variable<T> implements Subject<T> {
 
+  /// Use `Variable(...)` to create a variable with an initial value.
   Variable(
     T initialValue
   ): _value = initialValue;
@@ -15,10 +43,12 @@ class Variable<T> implements Subject<T> {
   final _subject = BasicSubject<T>();
   T _value;
 
+  /// Use `variable.value` getter to resolve current value.
   T get value {
     return _value;
   }
 
+  /// Use `variable.value = ...` to change current value.
   set value(T value) {
     onData(value);
   }

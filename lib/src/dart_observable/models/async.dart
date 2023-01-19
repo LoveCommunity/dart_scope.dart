@@ -1,12 +1,14 @@
-
+/// `AsyncStatus` represent the status of asynchronous data.
 enum AsyncStatus {
-  loading,
-  loaded,
-  error,
+  loading,  /// loading the data.
+  loaded,   /// data has been loaded.
+  error,    /// failed to load data.
 }
 
+/// `Async<T>` represent data in its asynchronous form.
 class Async<T> {
 
+  /// Create async data with loading status.
   const Async.loading({
     T? data,
   }): this(
@@ -14,6 +16,7 @@ class Async<T> {
     data: data,
   );
 
+  /// Create async data with loaded status.
   const Async.loaded({
     required T? data,
   }): this(
@@ -21,6 +24,7 @@ class Async<T> {
     data: data,
   );
 
+  /// Create async data with error status.
   const Async.error({
     T? data,
     required Object error,
@@ -32,6 +36,8 @@ class Async<T> {
     stackTrace: stackTrace,
   );
 
+  /// Create async data with its raw fields:
+  /// status, data, error and stackTrace.
   const Async({
     required this.status,
     this.data,
@@ -39,12 +45,22 @@ class Async<T> {
     this.stackTrace,
   });
 
+  /// Current asynchronous status.
   final AsyncStatus status;
+
+  /// The underlining data.
   final T? data;
+
+  /// The error raised when resolving the data.
   final Object? error;
+
+  /// The stackTrace associated with error.
   final StackTrace? stackTrace;
 
+  /// Get underlining data and assert it's not null.
   T get requireData => data!;
+
+  /// Get error and assert it's not null.
   Object get requireError => error!;
 
   @override

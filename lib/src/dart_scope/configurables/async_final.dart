@@ -7,8 +7,35 @@ import '../shared/expose_in_scope.dart';
 
 import 'configurable.dart';
 
+/// `AsyncFinal` is configuration simulate asynchronous assignment
+/// using `final` keyword.
+/// 
 class AsyncFinal<T> implements Configurable {
 
+  /// Assign an instance asynchronously and exposing it in current scope.
+  /// 
+  /// So:
+  /// ```dart
+  /// final rootScope = await Scope.root([
+  ///   AsyncFinal<Repository>(
+  ///     name: 'repository',
+  ///     equal: (scope) async {
+  ///       return await createRepositoryAsync();
+  ///     },
+  ///   ),
+  /// ]);
+  /// ```
+  /// 
+  /// Simulates:
+  /// ```dart
+  /// void rootScope() async {
+  ///   final repository = await createRepositoryAsync();
+  /// }
+  /// ```
+  /// 
+  /// Use `expose` parameter to override default exposing behavior. 
+  /// Use `dispose` parameter to register dispose logic.
+  /// 
   const AsyncFinal({
     Object? name,
     required Equal<Future<T>> equal,

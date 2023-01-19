@@ -5,6 +5,10 @@ import '../observers/observer.dart';
 import 'basic_subject.dart';
 import 'subject.dart';
 
+/// `Publisher` emits to an observer only those items that are emitted 
+/// by the source Observable(s) subsequent to the time of the subscription.
+///
+/// Modified from: https://reactivex.io/documentation/subject.html
 class Publisher<T> implements Subject<T> {
 
   bool _disposed = false;
