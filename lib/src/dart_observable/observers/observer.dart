@@ -35,9 +35,17 @@ typedef OnData<T> = void Function(T data);
 /// `observer.onData`:
 /// 
 /// ```dart
-/// observer.onData(0); // prints:  onData: 0
-/// observer.onData(1); //          onData: 1
-/// observer.onData(2); //          onData: 2
+/// observer.onData(0); 
+/// observer.onData(1);
+/// observer.onData(2);
+/// ```
+/// 
+/// Prints:
+/// 
+/// ```
+/// onData: 0
+/// onData: 1
+/// onData: 2
 /// ```
 /// 
 abstract class Observer<T> {

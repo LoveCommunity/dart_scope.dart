@@ -55,7 +55,7 @@ class States<T> {
 
   /// Combine multiple `States` into one `States`.
   /// 
-  /// When a item is emitted by one of multiple States, 
+  /// When an item is emitted by one of multiple States, 
   /// combine the latest item emitted by each States 
   /// via a specified function and emit combined item.
   /// 
@@ -72,7 +72,7 @@ class States<T> {
 
   /// Combine two `States` into one `States`.
   /// 
-  /// When a item is emitted by one of two States, 
+  /// When an item is emitted by one of two States, 
   /// combine the latest item emitted by each States 
   /// via a specified function and emit combined item.
   /// 
@@ -89,7 +89,7 @@ class States<T> {
 
   /// Combine three `States` into one `States`.
   /// 
-  /// When a item is emitted by one of three States, 
+  /// When an item is emitted by one of three States, 
   /// combine the latest item emitted by each States 
   /// via a specified function and emit combined item.
   /// 
