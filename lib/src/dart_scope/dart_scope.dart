@@ -24,9 +24,6 @@ export 'configurables/configurable.dart'
 export 'configurables/configurable_combine.dart'
   show
     ConfigurableCombine;
-export 'configurables/configurable_compose.dart'
-  show
-    ConfigurableCompose;
 export 'configurables/final.dart'
   show
     Final;
