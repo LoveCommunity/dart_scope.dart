@@ -1,6 +1,8 @@
 
-import 'package:dart_scope/dart_scope.dart';
+import 'package:disposal/disposal.dart';
 import 'package:meta/meta.dart';
+
+import '../observers/observer.dart';
 
 @internal
 abstract class Observation<T> implements Disposable {
