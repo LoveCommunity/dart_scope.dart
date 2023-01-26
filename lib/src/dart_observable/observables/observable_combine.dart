@@ -4,6 +4,7 @@ import 'package:disposal/disposal.dart';
 
 import '../observers/observer.dart';
 import 'observable.dart';
+import 'observation.dart';
 
 @internal
 class ObservableCombine<T, R> implements Observable<R> {
@@ -22,31 +23,10 @@ class ObservableCombine<T, R> implements Observable<R> {
     if (_observables.isEmpty) {
       return Disposable.empty;
     }
-
-    final length = _observables.length;
-    final emitted = <int>{};
-    final latests = List<Object?>.filled(length, null);
-
-    Disposable _observe(int index) {
-      return _observables[index].observe((data) {
-        if (!emitted.contains(index)) {
-          emitted.add(index);
-        }
-        latests[index] = data;
-        if (emitted.length == length) {
-          final list = List<T>.from(latests, growable: false);
-          final result = _combiner(list);
-          onData(result);
-        }
-      });
-    }
-
-    final observations = Iterable<Disposable>
-      .generate(length, _observe)
-      .toList();
-
-    return Disposable.combine(
-      disposables: observations,
+    return _Observation<T, R>(
+      observables: _observables,
+      combiner: _combiner,
+      onData: onData,
     );
   }
 }
@@ -90,4 +70,60 @@ class CombineObservable3<T1, T2, T3, R> extends ObservableCombine<Object?, R> {
       items[2] as T3,
     ),
   );
+}
+
+class _Observation<T, R> extends Observation<R> {
+
+  _Observation({
+    required List<Observable<T>> observables,
+    required R Function(List<T> items) combiner,
+    required OnData<R> onData,
+  }): _observables = observables,
+    _combiner = combiner, 
+    super(onData: onData);
+
+  final List<Observable<T>> _observables;
+  final R Function(List<T> items) _combiner;
+
+  late final int _observablesLength;
+  late final Set<int> _emitted;
+  late final List<T?> _latests;
+  late final Disposable _disposable;
+
+  @override
+  void init() {
+    _observablesLength = _observables.length;
+    _emitted = <int>{};
+    _latests = List<T?>.filled(_observablesLength, null);
+    final sourceObservations = Iterable<Disposable>
+      .generate(_observablesLength, _observeIndexed)
+      .toList();
+    _disposable = Disposable.combine(
+      disposables: sourceObservations
+    );
+  }
+
+  Disposable _observeIndexed(int index) {
+    return _observables[index]
+      .observe(_onDataIndexed(index));
+  }
+
+  OnData<T> _onDataIndexed(int index) {
+    return (data) {
+      if (!_emitted.contains(index)) {
+        _emitted.add(index);
+      }
+      _latests[index] = data;
+      if (_emitted.length == _observablesLength) {
+        final items = List<T>.from(_latests, growable: false);
+        final combinedItem = _combiner(items);
+        onData(combinedItem);
+      }
+    };
+  }
+
+  @override
+  void dispose() {
+    _disposable.dispose(); 
+  }
 }
