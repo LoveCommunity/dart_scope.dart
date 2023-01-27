@@ -26,7 +26,7 @@ class ObservableCombine<T, R> implements Observable<R> {
     return _Observation<T, R>(
       observables: _observables,
       combiner: _combiner,
-      onData: onData,
+      emit: onData,
     );
   }
 }
@@ -77,10 +77,10 @@ class _Observation<T, R> extends Observation<R> {
   _Observation({
     required List<Observable<T>> observables,
     required R Function(List<T> items) combiner,
-    required OnData<R> onData,
+    required OnData<R> emit,
   }): _observables = observables,
     _combiner = combiner, 
-    super(onData: onData);
+    super(emit: emit);
 
   final List<Observable<T>> _observables;
   final R Function(List<T> items) _combiner;
@@ -117,7 +117,7 @@ class _Observation<T, R> extends Observation<R> {
       if (_emitted.length == _observablesLength) {
         final items = List<T>.from(_latests, growable: false);
         final combinedItem = _combiner(items);
-        onData(combinedItem);
+        emit(combinedItem);
       }
     };
   }

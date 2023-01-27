@@ -8,13 +8,13 @@ import '../observers/observer.dart';
 abstract class Observation<T> implements Disposable {
 
   Observation({
-    required this.onData,
+    required this.emit,
   }) {
     init();
   }
 
   @internal
-  final OnData<T> onData;
+  final OnData<T> emit;
 
   @internal
   @mustCallSuper
