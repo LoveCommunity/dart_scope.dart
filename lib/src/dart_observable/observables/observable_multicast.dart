@@ -39,7 +39,7 @@ Subject<T> _defaultCreateSubject<T>() {
 }
 
 class _SharedBetweenObservations<T> {
-  int observationsLength = 0;
+  int observersCount = 0;
   Subject<T>? subject;
   Disposable? observation;
 }
@@ -68,8 +68,8 @@ class _Observation<T> extends Observation<T> {
   void init() {
     final subject = _shared.subject ??= _createSubject();
     _subjectObservation = subject.observe(emit);
-    _shared.observationsLength += 1;
-    if (_shared.observationsLength == 1) {
+    _shared.observersCount += 1;
+    if (_shared.observersCount == 1) {
       _shared.observation = _observable.observe(subject.onData);
     }
   }
@@ -80,13 +80,13 @@ class _Observation<T> extends Observation<T> {
       return;
     }
     _disposed = true;
-    final shouldDisposeSharedObservation = _shared.observationsLength == 1;
+    final shouldDisposeSharedObservation = _shared.observersCount == 1;
     if (shouldDisposeSharedObservation) {
       _shared.observation?.dispose();
       _shared.observation = null;
     }
     _subjectObservation.dispose();
-    _shared.observationsLength -= 1;
+    _shared.observersCount -= 1;
     if (shouldDisposeSharedObservation) {
       _shared.subject?.dispose();
       _shared.subject = null;
