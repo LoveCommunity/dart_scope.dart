@@ -87,20 +87,17 @@ class _Observation<T, R> extends Observation<R> {
 
   late final int _observablesLength;
   late final Set<int> _emitted;
-  late final List<T?> _latests;
-  late final Disposable _disposable;
+  late final List<T?> _latestItems;
+  late final List<Disposable> _sourceObservations;
 
   @override
   void init() {
     _observablesLength = _observables.length;
     _emitted = <int>{};
-    _latests = List<T?>.filled(_observablesLength, null);
-    final sourceObservations = Iterable<Disposable>
+    _latestItems = List<T?>.filled(_observablesLength, null);
+    _sourceObservations = Iterable<Disposable>
       .generate(_observablesLength, _observeIndexed)
       .toList();
-    _disposable = Disposable.combine(
-      disposables: sourceObservations
-    );
   }
 
   Disposable _observeIndexed(int index) {
@@ -113,9 +110,9 @@ class _Observation<T, R> extends Observation<R> {
       if (!_emitted.contains(index)) {
         _emitted.add(index);
       }
-      _latests[index] = data;
+      _latestItems[index] = data;
       if (_emitted.length == _observablesLength) {
-        final items = List<T>.from(_latests, growable: false);
+        final items = List<T>.from(_latestItems, growable: false);
         final combinedItem = _combiner(items);
         emit(combinedItem);
       }
@@ -124,6 +121,8 @@ class _Observation<T, R> extends Observation<R> {
 
   @override
   void dispose() {
-    _disposable.dispose(); 
+    for (final observation in _sourceObservations.reversed) {
+      observation.dispose();
+    }
   }
 }
