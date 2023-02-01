@@ -49,9 +49,10 @@ class States<T> {
   /// });
   /// ```
   /// 
-  States(
+  factory States(
     Observe<T> observe
-  ): this.from(Observable(observe));
+  ) => Observable(observe)
+    .asStates();
 
   /// Combine multiple `States` into one `States`.
   /// 
