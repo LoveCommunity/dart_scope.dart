@@ -107,7 +107,7 @@ class States<T> {
     combiner: combiner,
   ).asStates();
 
-  /// Cast an `Observable` to `States`.
+  /// Create `States` from raw `Observable`.
   const States.from(this.observable);
 
   /// The underlining raw `observable` that is promised to 
