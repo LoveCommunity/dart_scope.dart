@@ -188,18 +188,6 @@ extension StatesX<T> on States<T> {
       .asStates();
   }
 
-  /// Cache the computed state.
-  /// 
-  /// Instead of computing state very time when observed,
-  /// `Cache` will cache latest state and replay it to new observer. 
-  /// This cache will keep in sync with source `States`.
-  /// 
-  States<T> cache() {
-    return observable
-      .multicastReplay(1)
-      .asStates();
-  }
-
   /// Suppress the first n items emitted by States.
   /// 
   /// You can ignore the first n items emitted by States 
