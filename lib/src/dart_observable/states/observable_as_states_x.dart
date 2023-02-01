@@ -6,5 +6,8 @@ import 'states.dart';
 extension ObservableAsStatesX<T> on Observable<T> {
   
   /// Cast an Observable to States.
-  States<T> asStates() => States<T>.from(this);
+  States<T> asStates() {
+    final observable = multicastReplay(1);
+    return States<T>.from(observable);
+  }
 }

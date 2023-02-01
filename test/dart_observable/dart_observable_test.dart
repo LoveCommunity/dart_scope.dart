@@ -1,4 +1,5 @@
 
+import 'states/observable_as_states_test.dart' as observable_as_states_test;
 import 'states/states_activated_test.dart' as states_activated_test;
 import 'states/states_cast_test.dart' as states_cast_test;
 import 'states/states_combine_test.dart' as states_combine_test;
@@ -28,6 +29,7 @@ import 'models/async_test.dart' as async_test;
 
 
 void main() {
+  observable_as_states_test.main();
   states_activated_test.main();
   states_cast_test.main();
   states_combine_test.main();
