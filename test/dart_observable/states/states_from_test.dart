@@ -15,18 +15,6 @@ void main() {
     expect(states.observable, observable);
 
   });
-
-  test("`observable.asStates`'s observable is identical to origin observable", () {
-
-    final observable = Observable<String>((onData) {
-      return Disposable.empty;
-    });
-
-    final states = observable.asStates();
-
-    expect(states.observable, observable);
-
-  });
   
   test("`states.observe` cause observable observe", () {
 

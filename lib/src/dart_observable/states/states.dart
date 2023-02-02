@@ -49,9 +49,10 @@ class States<T> {
   /// });
   /// ```
   /// 
-  States(
+  factory States(
     Observe<T> observe
-  ): this.from(Observable(observe));
+  ) => Observable(observe)
+    .asStates();
 
   /// Combine multiple `States` into one `States`.
   /// 
@@ -106,7 +107,7 @@ class States<T> {
     combiner: combiner,
   ).asStates();
 
-  /// Cast an `Observable` to `States`.
+  /// Create `States` from raw `Observable`.
   const States.from(this.observable);
 
   /// The underlining raw `observable` that is promised to 
@@ -185,18 +186,6 @@ extension StatesX<T> on States<T> {
         convert,
         equals: equals,
       )
-      .asStates();
-  }
-
-  /// Cache the computed state.
-  /// 
-  /// Instead of computing state very time when observed,
-  /// `Cache` will cache latest state and replay it to new observer. 
-  /// This cache will keep in sync with source `States`.
-  /// 
-  States<T> cache() {
-    return observable
-      .multicastReplay(1)
       .asStates();
   }
 

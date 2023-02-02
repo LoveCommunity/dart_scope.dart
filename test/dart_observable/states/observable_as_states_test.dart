@@ -1,4 +1,5 @@
 
+
 import 'package:test/test.dart';
 import 'package:dart_scope/dart_scope.dart';
 
@@ -6,22 +7,22 @@ import '../shared/states_tester.dart';
 
 void main() {
 
-  test('`states.cache` connect when observers increase to one', () {
+  test('`observable.asStates` connect when observers increase to one', () {
 
     int invokes = 0;
 
-    final states = States<String>((setState) {
-      setState('a');
+    final observable = Observable<String>((onData) {
+      onData('a');
       invokes += 1;
       return Disposable.empty;
     });
 
-    final cache = states.cache();
+    final states = observable.asStates();
 
     expect(invokes, 0);
-    final observation1 = cache.observe((_) {});
+    final observation1 = states.observe((_) {});
     expect(invokes, 1);
-    final observation2 = cache.observe((_) {});
+    final observation2 = states.observe((_) {});
     expect(invokes, 1);
 
     observation1.dispose();
@@ -29,21 +30,21 @@ void main() {
 
   });
 
-  test('`states.cache` disconnect when observers decrease to zero', () {
+  test('`observable.asStates` disconnect when observers decrease to zero', () {
 
     int invokes = 0;
 
-    final states = States<String>((setState) {
-      setState('a');
+    final observable = Observable<String>((onData) {
+      onData('a');
       return Disposable(() {
         invokes += 1;
       });
     });
 
-    final cache = states.cache();
+    final states = observable.asStates();
 
-    final observation1 = cache.observe((_) {});
-    final observation2 = cache.observe((_) {});
+    final observation1 = states.observe((_) {});
+    final observation2 = states.observe((_) {});
 
     expect(invokes, 0);
     observation1.dispose();
@@ -53,28 +54,28 @@ void main() {
 
   });
 
-  test('`states.cache` forward data to observers', () async {
+  test('`observable.asStates` forward data to observers', () async {
 
-    final states = States<String>((setState) {
-      setState('a');
-      Future(() => setState('b'));
+    final observable = Observable<String>((onData) {
+      onData('a');
+      Future(() => onData('b'));
       return Disposable.empty;
     });
 
-    final cache = states.cache();
+    final states = observable.asStates();
 
     final tester1 = StatesTester(
-      cache,
-    ); 
+      states,
+    );
 
     final tester2 = StatesTester(
-      cache,
-    ); 
+      states,
+    );
 
 
     tester1.startObserve();
     tester2.startObserve();
-    
+
     expect(tester1.recorded, [
       'a',
     ]);
@@ -96,22 +97,22 @@ void main() {
 
   });
 
-  test('`states.cache` replay data to observers', () {
+  test('`observable.asStates` replay data to observers', () {
 
-    final states = States<String>((setState) {
-      setState('a');
-      setState('b');
-      setState('c');
+    final observable = Observable<String>((onData) {
+      onData('a');
+      onData('b');
+      onData('c');
       return Disposable.empty;
     });
 
-    final cache = states.cache();
+    final states = observable.asStates();
 
     final tester = StatesTester(
-      cache,
+      states,
     );
 
-    final observation  = cache.observe((_) {});
+    final observation  = states.observe((_) {});
 
     expect(tester.recorded, <String>[]);
     tester.startObserve();
@@ -125,3 +126,4 @@ void main() {
   });
 
 }
+
