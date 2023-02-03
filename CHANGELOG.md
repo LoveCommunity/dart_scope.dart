@@ -1,3 +1,22 @@
+## 0.1.0-beta.1
+
+- refactor 
+  - apply cache behavior to `States` [\#172](https://github.com/LoveCommunity/dart_scope.dart/pull/172)
+  - improve naming in `ObservableCombine` [\#171](https://github.com/LoveCommunity/dart_scope.dart/pull/171)
+  - add internal class `Observation` [\#160](https://github.com/LoveCommunity/dart_scope.dart/pull/160)
+    - reimplements `ObservableMulticast` using `Observation` [\#170](https://github.com/LoveCommunity/dart_scope.dart/pull/170)
+    - reimplements `ObservableDistinct` using `Observation` [\#169](https://github.com/LoveCommunity/dart_scope.dart/pull/169)
+    - reimplements `ObservableSkip` using `Observation` [\#168](https://github.com/LoveCommunity/dart_scope.dart/pull/168)
+    - reimplements `ObservableCreate` using `Observation` [\#164](https://github.com/LoveCommunity/dart_scope.dart/pull/164)
+    - rename `Observation` field `onData` to `emit` [\#162](https://github.com/LoveCommunity/dart_scope.dart/pull/162)
+    - reimplements `ObservableCombine` using `Observation` [\#161](https://github.com/LoveCommunity/dart_scope.dart/pull/161)
+  - remove experimental configurable `ConfigurableCompose` [\#157](https://github.com/LoveCommunity/dart_scope.dart/pull/157)
+- docs 
+  - add API documentations [\#156](https://github.com/LoveCommunity/dart_scope.dart/pull/156)
+  - add `README` [\#154](https://github.com/LoveCommunity/dart_scope.dart/pull/154)
+- example 
+  - add examples [\#151](https://github.com/LoveCommunity/dart_scope.dart/pull/151)
+
 ## 0.1.0-alpha.7
 
 - refactor 
