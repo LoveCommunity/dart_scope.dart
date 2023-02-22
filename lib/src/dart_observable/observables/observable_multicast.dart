@@ -1,25 +1,26 @@
 
+import 'package:dart_scope/src/dart_observable/observables/base_observable.dart';
 import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
-import 'observable.dart';
-import 'observation.dart';
 import '../observers/observer.dart';
 import '../subjects/subject.dart';
 import '../subjects/publisher.dart';
+import 'base_observable.dart';
+import 'observable.dart';
+import 'observation.dart';
 
 @internal
-class ObservableMulticast<T> implements Observable<T> {
+class ObservableMulticast<T> extends PipeObservable<T, T> {
 
   ObservableMulticast({
     Subject<T> Function()? createSubject,
     required Observable<T> observable,
   }): _createSubject = createSubject ?? _defaultCreateSubject,
-    _observable = observable,
-    _shared = _SharedBetweenObservations<T>();
+    _shared = _SharedBetweenObservations<T>(),
+    super(observable: observable);
 
   final Subject<T> Function() _createSubject;
-  final Observable<T> _observable;
 
   final _SharedBetweenObservations<T> _shared;
 
@@ -27,7 +28,7 @@ class ObservableMulticast<T> implements Observable<T> {
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
       createSubject: _createSubject,
-      observable: _observable,
+      observable: observable,
       shared: _shared,
       emit: onData,
     );

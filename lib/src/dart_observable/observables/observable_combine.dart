@@ -3,28 +3,28 @@ import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
 import '../observers/observer.dart';
+import 'base_observable.dart';
 import 'observable.dart';
 import 'observation.dart';
 
 @internal
-class ObservableCombine<T, R> implements Observable<R> {
+class ObservableCombine<T, R> extends MultiSourcePipeObservable<T, R> {
 
   const ObservableCombine({
     required List<Observable<T>> observables,
     required R Function(List<T> items) combiner,
-  }): _observables = observables,
-    _combiner = combiner;
+  }): _combiner = combiner,
+    super(observables: observables);
 
-  final List<Observable<T>> _observables;
   final R Function(List<T> items) _combiner;
 
   @override
   Disposable observe(OnData<R> onData) {
-    if (_observables.isEmpty) {
+    if (observables.isEmpty) {
       return Disposable.empty;
     }
     return _Observation<T, R>(
-      observables: _observables,
+      observables: observables,
       combiner: _combiner,
       emit: onData,
     );

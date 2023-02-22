@@ -4,7 +4,6 @@ import 'package:meta/meta.dart';
 
 import '../observers/observer.dart';
 
-@internal
 abstract class Observation<T> implements Disposable {
 
   Observation({
@@ -13,10 +12,10 @@ abstract class Observation<T> implements Disposable {
     init();
   }
 
-  @internal
+  @protected
   final OnData<T> emit;
 
-  @internal
+  @protected
   @mustCallSuper
   void init();
 }

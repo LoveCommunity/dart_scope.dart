@@ -5,25 +5,25 @@ import 'package:typedef_equals/typedef_equals.dart';
 
 import '../../shared/value.dart';
 import '../observers/observer.dart';
+import 'base_observable.dart';
 import 'observable.dart';
 import 'observation.dart';
 
 @internal
-class ObservableDistinct<T> implements Observable<T> {
+class ObservableDistinct<T> extends PipeObservable<T, T> {
   const ObservableDistinct({
     required Equals<T>? equals,
     required Observable<T> observable,
   }): _equals = equals ?? defaultEquals,
-    _observable = observable;
+    super(observable: observable);
 
   final Equals<T> _equals;
-  final Observable<T> _observable;
 
   @override
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
       equals: _equals,
-      observable: _observable,
+      observable: observable,
       emit: onData,
     );
   }

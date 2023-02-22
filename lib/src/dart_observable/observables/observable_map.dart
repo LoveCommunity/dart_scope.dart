@@ -2,24 +2,24 @@
 import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
-import 'observable.dart';
 import '../observers/observer.dart';
+import 'base_observable.dart';
+import 'observable.dart';
 
 @internal
-class ObservableMap<T, R> implements Observable<R> {
+class ObservableMap<T, R> extends PipeObservable<T, R> {
   
   const ObservableMap({
     required R Function(T) convert,
     required Observable<T> observable,
   }): _convert = convert,
-    _observable = observable;
+    super(observable: observable);
 
   final R Function(T) _convert;
-  final Observable<T> _observable;
 
   @override
   Disposable observe(OnData<R> onData) {
-    return _observable.observe((data) {
+    return observable.observe((data) {
       final result = _convert(data);
       onData(result);
     });
