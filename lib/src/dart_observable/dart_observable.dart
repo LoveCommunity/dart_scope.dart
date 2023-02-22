@@ -22,11 +22,31 @@ export 'states/observable_as_states_x.dart'
 export 'errors/latest_state_not_replay_error.dart'
   show
     LatestStateNotReplayError;
+export 'equalities/observable_equalities.dart'
+  show
+    FallbackObservableEquality,
+    PipeObservableEquality,
+    MultiSourcePipeObservableEquality,
+    InstanceAsObservableEquality,
+    ObservableEqualityFactory,
+    createDeepObservableEquality,
+    observableEqualityFactories,
+    deepObservableEquality;
+export 'observables/base_observable.dart'
+  show
+    PipeObservable,
+    MultiSourcePipeObservable;
+export 'observables/instance_as_observable.dart'
+  show
+    InstanceAsObservable,
+    InstanceObservation;
 export 'observables/observable.dart'
   show
     Observe,
     Observable,
     ObservableX;
+export 'observables/observation.dart'
+  show Observation;
 export 'observers/observer.dart'
   show
     OnData,

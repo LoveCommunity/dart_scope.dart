@@ -10,6 +10,7 @@ import 'states/states_from_test.dart' as states_from_test;
 import 'states/states_map_test.dart' as states_map_test;
 import 'states/states_convert_test.dart' as states_convert_test;
 import 'states/states_skip_test.dart' as states_skip_test;
+import 'equalities/equalities_test.dart' as equalities_test;
 import 'observables/observable_cast_test.dart' as observable_cast_test;
 import 'observables/observable_combine_test.dart' as observable_combine_test;
 import 'observables/observable_default_constructor_test.dart' as observable_default_constructor_test;
@@ -40,6 +41,7 @@ void main() {
   states_map_test.main();
   states_convert_test.main();
   states_skip_test.main();
+  equalities_test.main();
   observable_cast_test.main();
   observable_combine_test.main();
   observable_default_constructor_test.main();
