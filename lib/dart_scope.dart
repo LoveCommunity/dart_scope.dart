@@ -7,6 +7,7 @@ export 'src/dart_observable/dart_observable.dart'
     VoidCallback,
     Disposable,
     DisposableX,
+    Equality,
     States,
     StatesX,
     HasStates,

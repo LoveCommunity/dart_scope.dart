@@ -8,6 +8,9 @@ export 'package:disposal/disposal.dart'
     VoidCallback,
     Disposable,
     DisposableX;
+export 'package:collection/collection.dart'
+  show
+    Equality;
 export 'states/states.dart'
   show
     States,
