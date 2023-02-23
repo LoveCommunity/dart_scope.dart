@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 
 import '../observers/observer.dart';
 import 'observable.dart';
@@ -8,7 +7,6 @@ abstract class InstanceAsObservable<T, R> implements Observable<R> {
   const InstanceAsObservable({
     required this.instance,
   });
-  @internal
   final T instance;  
 }
 
@@ -17,6 +15,5 @@ abstract class InstanceObservation<T, R> extends Observation<R> {
     required this.instance,
     required OnData<R> emit,
   }): super(emit: emit);
-  @internal
   final T instance;  
 }
