@@ -41,11 +41,11 @@ extension <T> on FutureOr<T> {
   FutureOr<R> then<R>(
     FutureOr<R> Function(T) onValue
   ) {
-    final _this = this;
-    if (_this is Future<T>) {
-      return _this.then(onValue);
+    final self = this;
+    if (self is Future<T>) {
+      return self.then(onValue);
     } else {
-      return onValue(_this);
+      return onValue(self);
     }
   }
 }
