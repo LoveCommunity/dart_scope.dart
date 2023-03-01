@@ -33,7 +33,7 @@ String _combine(bool isObservable, int? number) {
     ''';
   } else {
     String types() {
-      return join(number, (n) => 'String', ', ') + ', String';
+      return '${join(number, (n) => 'String', ', ')}, String';
     }
     String sources() {
       return join(number, (n) => '$source$n: $name$n,', '\n');

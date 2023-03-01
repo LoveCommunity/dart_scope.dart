@@ -88,7 +88,7 @@ String getComputed({
   String? assignTo,
 }) {
   final computed = assign ? 'final ${assignTo ?? 'computed'} = ' : '';
-  return computed + "scope.get<States<String>>(name: 'computed');";
+  return "${computed}scope.get<States<String>>(name: 'computed');";
 }
 
 String statesTester() {

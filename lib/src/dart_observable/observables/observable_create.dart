@@ -26,9 +26,8 @@ class _Observation<T> extends Observation<T> implements Observer<T> {
 
   _Observation({
     required Observe<T> observe,
-    required OnData<T> emit,
-  }): _observe = observe,
-    super(emit: emit);
+    required super.emit,
+  }): _observe = observe;
 
   final Observe<T> _observe;
 

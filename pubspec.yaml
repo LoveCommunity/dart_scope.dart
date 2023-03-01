@@ -4,19 +4,18 @@ homepage: https://github.com/LoveCommunity/dart_scope.dart
 description: A declarative dependency injection library which use dart syntax and flutter style
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  meta: ^1.3.0
+  meta: ^1.8.0
   typedef_foundation: ^0.1.0
   disposal: ^0.1.0-alpha.4
   typedef_equals: ^0.0.1
 
-
 dev_dependencies:
-  analyzer: ^4.0.0
+  analyzer: ^5.0.0
   build: ^2.3.0
   build_runner: ^2.1.11
-  lints: ^1.0.1
+  lints: ^2.0.1
   source_gen: ^1.2.2
   test: ^1.17.12

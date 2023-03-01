@@ -34,10 +34,9 @@ class _Observation<T> extends Observation<T> implements Observer<T> {
   _Observation({
     required Equals<T> equals,
     required Observable<T> observable,
-    required OnData<T> emit,
+    required super.emit,
   }): _equals = equals,
-    _observable = observable,
-    super(emit: emit);
+    _observable = observable;
 
   final Equals<T> _equals;
   final Observable<T> _observable;
