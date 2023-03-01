@@ -4,3 +4,7 @@ analyzer:
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
+
+linter:
+  rules:
+    use_super_parameters: true

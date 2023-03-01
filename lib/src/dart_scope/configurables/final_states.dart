@@ -8,15 +8,13 @@ import 'final.dart';
 class FinalStates<T> extends Final<StatesActivated<T>> {
 
   FinalStates({
-    Object? name,
+    super.name,
     required Equal<States<T>> equal,
-    bool lazy = true,
+    super.lazy,
   }): super(
-    name: name,
     equal: _superEqual(equal),
     expose: _superExpose(name),
     dispose: _superDispose(),
-    lazy: lazy,
   );
 }
 

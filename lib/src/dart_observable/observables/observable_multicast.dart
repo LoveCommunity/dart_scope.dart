@@ -50,11 +50,10 @@ class _Observation<T> extends Observation<T> {
     required Subject<T> Function() createSubject,
     required Observable<T> observable,
     required _SharedBetweenObservations<T> shared,
-    required OnData<T> emit,
+    required super.emit,
   }): _createSubject = createSubject,
     _observable = observable,
-    _shared = shared,
-    super(emit: emit);
+    _shared = shared;
 
   final Subject<T> Function() _createSubject;
   final Observable<T> _observable;

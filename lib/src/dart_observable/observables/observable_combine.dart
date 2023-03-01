@@ -77,10 +77,9 @@ class _Observation<T, R> extends Observation<R> {
   _Observation({
     required List<Observable<T>> observables,
     required R Function(List<T> items) combiner,
-    required OnData<R> emit,
+    required super.emit,
   }): _observables = observables,
-    _combiner = combiner, 
-    super(emit: emit);
+    _combiner = combiner;
 
   final List<Observable<T>> _observables;
   final R Function(List<T> items) _combiner;

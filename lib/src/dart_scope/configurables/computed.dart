@@ -11,19 +11,17 @@ import 'final_states.dart';
 class Computed<T, R> extends FinalStates<R> {
 
   Computed({
-    Object? name,
+    super.name,
     Object? statesName,
     required R Function(ScopeGet scope, T it) compute,
     Equals<R>? equals,
-    bool lazy = true,
+    super.lazy,
   }): super(
-    name: name,
     equal: _superEqual<T, R>(
       statesName,
       compute,
       equals,
     ),
-    lazy: lazy,
   );
 }
 
@@ -31,21 +29,19 @@ class Computed<T, R> extends FinalStates<R> {
 class Computed2<T1, T2, R> extends FinalStates<R> {
 
   Computed2({
-    Object? name,
+    super.name,
     Object? statesName1,
     Object? statesName2,
     required R Function(ScopeGet scope, T1 it1, T2 it2) compute,
     Equals<R>? equals,
-    bool lazy = true,
+    super.lazy,
   }): super(
-    name: name,
     equal: _superEqual2<T1, T2, R>(
       statesName1,
       statesName2,
       compute,
       equals,
     ),
-    lazy: lazy,
   );
 }
 
@@ -53,15 +49,14 @@ class Computed2<T1, T2, R> extends FinalStates<R> {
 class Computed3<T1, T2, T3, R> extends FinalStates<R> {
 
   Computed3({
-    Object? name,
+    super.name,
     Object? statesName1,
     Object? statesName2,
     Object? statesName3,
     required R Function(ScopeGet scope, T1 it1, T2 it2, T3 it3) compute,
     Equals<R>? equals,
-    bool lazy = true,
+    super.lazy,
   }): super(
-    name: name,
     equal: _superEqual3<T1, T2, T3, R>(
       statesName1,
       statesName2,
@@ -69,7 +64,6 @@ class Computed3<T1, T2, T3, R> extends FinalStates<R> {
       compute,
       equals,
     ),
-    lazy: lazy,
   );
 }
 

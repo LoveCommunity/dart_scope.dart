@@ -33,10 +33,9 @@ class _Observation<T> extends Observation<T> implements Observer<T> {
   _Observation({
     required int n,
     required Observable<T> observable,
-    required OnData<T> emit,
+    required super.emit,
   }): _shouldSkip = n,
-    _observable = observable,
-    super(emit: emit);
+    _observable = observable;
 
   final Observable<T> _observable;
 
