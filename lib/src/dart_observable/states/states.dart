@@ -65,7 +65,7 @@ class States<T> {
     required List<States<T>> states,
     required R Function(List<T> items) combiner,
   }) => Observable.combine<T, R>(
-    observables: states
+    sources: states
       .map((states) => states.observable)
       .toList(),
     combiner: combiner,
@@ -83,8 +83,8 @@ class States<T> {
     required States<T2> states2,
     required R Function(T1, T2) combiner,
   }) => Observable.combine2<T1, T2, R>(
-    observable1: states1.observable,
-    observable2: states2.observable,
+    source1: states1.observable,
+    source2: states2.observable,
     combiner: combiner,
   ).asStates();
 
@@ -101,9 +101,9 @@ class States<T> {
     required States<T3> states3,
     required R Function(T1, T2, T3) combiner,
   }) => Observable.combine3<T1, T2, T3, R>(
-    observable1: states1.observable,
-    observable2: states2.observable,
-    observable3: states3.observable,
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
     combiner: combiner,
   ).asStates();
 

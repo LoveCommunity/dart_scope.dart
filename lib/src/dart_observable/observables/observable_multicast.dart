@@ -13,13 +13,13 @@ class ObservableMulticast<T> implements Observable<T> {
 
   ObservableMulticast({
     Subject<T> Function()? createSubject,
-    required Observable<T> observable,
+    required Observable<T> source,
   }): _createSubject = createSubject ?? _defaultCreateSubject,
-    _observable = observable,
+    _source = source,
     _shared = _SharedBetweenObservations<T>();
 
   final Subject<T> Function() _createSubject;
-  final Observable<T> _observable;
+  final Observable<T> _source;
 
   final _SharedBetweenObservations<T> _shared;
 
@@ -27,7 +27,7 @@ class ObservableMulticast<T> implements Observable<T> {
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
       createSubject: _createSubject,
-      observable: _observable,
+      source: _source,
       shared: _shared,
       emit: onData,
     );
@@ -48,15 +48,15 @@ class _Observation<T> extends Observation<T> {
 
   _Observation({
     required Subject<T> Function() createSubject,
-    required Observable<T> observable,
+    required Observable<T> source,
     required _SharedBetweenObservations<T> shared,
     required super.emit,
   }): _createSubject = createSubject,
-    _observable = observable,
+    _source = source,
     _shared = shared;
 
   final Subject<T> Function() _createSubject;
-  final Observable<T> _observable;
+  final Observable<T> _source;
 
   final _SharedBetweenObservations<T> _shared;
 
@@ -69,7 +69,7 @@ class _Observation<T> extends Observation<T> {
     _subjectObservation = subject.observe(emit);
     _shared.observersCount += 1;
     if (_shared.observersCount == 1) {
-      _shared.observation = _observable.observe(subject.onData);
+      _shared.observation = _source.observe(subject.onData);
     }
   }
 

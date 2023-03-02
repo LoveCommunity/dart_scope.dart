@@ -10,16 +10,16 @@ class ObservableMap<T, R> implements Observable<R> {
   
   const ObservableMap({
     required R Function(T) convert,
-    required Observable<T> observable,
+    required Observable<T> source,
   }): _convert = convert,
-    _observable = observable;
+    _source = source;
 
   final R Function(T) _convert;
-  final Observable<T> _observable;
+  final Observable<T> _source;
 
   @override
   Disposable observe(OnData<R> onData) {
-    return _observable.observe((data) {
+    return _source.observe((data) {
       final result = _convert(data);
       onData(result);
     });
