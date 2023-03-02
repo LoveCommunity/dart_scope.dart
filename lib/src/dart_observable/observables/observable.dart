@@ -114,10 +114,10 @@ abstract class Observable<T> {
   /// 
   /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
   static Observable<R> combine<T, R>({
-    required List<Observable<T>> observables,
+    required List<Observable<T>> sources,
     required R Function(List<T> items) combiner,
   }) => ObservableCombine(
-    observables: observables,
+    sources: sources,
     combiner: combiner,
   );
 
@@ -129,12 +129,12 @@ abstract class Observable<T> {
   /// 
   /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
   static Observable<R> combine2<T1, T2, R>({
-    required Observable<T1> observable1,
-    required Observable<T2> observable2,
+    required Observable<T1> source1,
+    required Observable<T2> source2,
     required R Function(T1, T2) combiner,
   }) => CombineObservable2(
-    observable1: observable1,
-    observable2: observable2,
+    source1: source1,
+    source2: source2,
     combiner: combiner,
   );
 
@@ -146,14 +146,14 @@ abstract class Observable<T> {
   /// 
   /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
   static Observable<R> combine3<T1, T2, T3, R>({
-    required Observable<T1> observable1,
-    required Observable<T2> observable2,
-    required Observable<T3> observable3,
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
     required R Function(T1, T2, T3) combiner,
   }) => CombineObservable3(
-    observable1: observable1,
-    observable2: observable2,
-    observable3: observable3,
+    source1: source1,
+    source2: source2,
+    source3: source3,
     combiner: combiner,
   );
 }
@@ -174,7 +174,7 @@ extension ObservableX<T> on Observable<T> {
   Observable<R> map<R>(R Function(T) convert) {
     return ObservableMap<T, R>(
       convert: convert,
-      observable: this,
+      source: this,
     );
   }
 
@@ -188,7 +188,7 @@ extension ObservableX<T> on Observable<T> {
   Observable<T> where(bool Function(T) test) {
     return ObservableWhere<T>(
       test: test,
-      observable: this,
+      source: this,
     );
   }
 
@@ -196,7 +196,7 @@ extension ObservableX<T> on Observable<T> {
   /// by casting each item as `R`.
   Observable<R> cast<R>() {
     return ObservableCast<T, R>(
-      observable: this,
+      source: this,
     );
   }
 
@@ -207,7 +207,7 @@ extension ObservableX<T> on Observable<T> {
   Observable<T> distinct([Equals<T>? equals]) {
     return ObservableDistinct<T>(
       equals: equals,
-      observable: this,
+      source: this,
     );
   }
 
@@ -232,7 +232,7 @@ extension ObservableX<T> on Observable<T> {
   Observable<T> skip(int n) {
     return ObservableSkip(
       n: n,
-      observable: this,
+      source: this,
     );
   }
 
@@ -249,7 +249,7 @@ extension ObservableX<T> on Observable<T> {
   }) {
     return ObservableMulticast<T>(
       createSubject: createSubject,
-      observable: this,
+      source: this,
     );
   }
 

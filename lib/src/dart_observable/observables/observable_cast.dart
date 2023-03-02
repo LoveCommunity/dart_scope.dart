@@ -9,14 +9,14 @@ import 'observable.dart';
 class ObservableCast<T, R> implements Observable<R> {
 
   const ObservableCast({
-    required Observable<T> observable,
-  }): _observable = observable;
+    required Observable<T> source,
+  }): _source = source;
 
-  final Observable<T> _observable;
+  final Observable<T> _source;
 
   @override
   Disposable observe(OnData<R> onData) {
-    return _observable.observe((data) {
+    return _source.observe((data) {
       onData(data as R);
     });
   }

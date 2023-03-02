@@ -11,18 +11,18 @@ class ObservableSkip<T> implements Observable<T> {
 
   const ObservableSkip({
     required int n,
-    required Observable<T> observable,
+    required Observable<T> source,
   }): _n = n,
-    _observable = observable;
+    _source = source;
 
   final int _n;
-  final Observable<T> _observable;
+  final Observable<T> _source;
 
   @override
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
       n: _n,
-      observable: _observable,
+      source: _source,
       emit: onData,
     );
   }
@@ -32,19 +32,19 @@ class _Observation<T> extends Observation<T> implements Observer<T> {
 
   _Observation({
     required int n,
-    required Observable<T> observable,
+    required Observable<T> source,
     required super.emit,
   }): _shouldSkip = n,
-    _observable = observable;
+    _source = source;
 
-  final Observable<T> _observable;
+  final Observable<T> _source;
 
   int _shouldSkip;
   late final Disposable _sourceObservation;
 
   @override
   void init() {
-    _sourceObservation = _observable.observe(onData);
+    _sourceObservation = _source.observe(onData);
   }
 
   @override

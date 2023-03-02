@@ -19,8 +19,8 @@ String statesCombine(int? number) {
 String _combine(bool isObservable, int? number) {
   final type = isObservable ? 'Observable' : 'States';
   final name = isObservable ? 'observable' : 'states';
-  final sources = isObservable ? 'observables' : 'states';
-  final source = isObservable ? 'observable' : 'states';
+  final sources = isObservable ? 'sources' : 'states';
+  final source = isObservable ? 'source' : 'states';
   if (number == null) {
     return '''
       final combine = $type.combine<String, String>(
