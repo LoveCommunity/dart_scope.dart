@@ -10,22 +10,20 @@ import 'observation.dart';
 class ObservableCombine<T, R> implements Observable<R> {
 
   const ObservableCombine({
-    required List<Observable<T>> sources,
-    required R Function(List<T> items) combiner,
-  }): _sources = sources,
-    _combiner = combiner;
+    required this.sources,
+    required this.combiner,
+  });
 
-  final List<Observable<T>> _sources;
-  final R Function(List<T> items) _combiner;
+  final List<Observable<T>> sources;
+  final R Function(List<T> items) combiner;
 
   @override
   Disposable observe(OnData<R> onData) {
-    if (_sources.isEmpty) {
+    if (sources.isEmpty) {
       return Disposable.empty;
     }
     return _Observation<T, R>(
-      sources: _sources,
-      combiner: _combiner,
+      configuration: this,
       emit: onData,
     );
   }
@@ -72,17 +70,12 @@ class CombineObservable3<T1, T2, T3, R> extends ObservableCombine<Object?, R> {
   );
 }
 
-class _Observation<T, R> extends Observation<R> {
+class _Observation<T, R> extends Observation<ObservableCombine<T, R>, R> {
 
   _Observation({
-    required List<Observable<T>> sources,
-    required R Function(List<T> items) combiner,
+    required super.configuration, 
     required super.emit,
-  }): _sources = sources,
-    _combiner = combiner;
-
-  final List<Observable<T>> _sources;
-  final R Function(List<T> items) _combiner;
+  });
 
   late final int _sourcesLength;
   late final Set<int> _emitted;
@@ -91,7 +84,7 @@ class _Observation<T, R> extends Observation<R> {
 
   @override
   void init() {
-    _sourcesLength = _sources.length;
+    _sourcesLength = configuration.sources.length;
     _emitted = <int>{};
     _latestItems = List<T?>.filled(_sourcesLength, null);
     _sourceObservations = Iterable<Disposable>
@@ -100,7 +93,7 @@ class _Observation<T, R> extends Observation<R> {
   }
 
   Disposable _observeIndexed(int index) {
-    return _sources[index]
+    return configuration.sources[index]
       .observe(_onDataIndexed(index));
   }
 
@@ -112,7 +105,7 @@ class _Observation<T, R> extends Observation<R> {
       _latestItems[index] = data;
       if (_emitted.length == _sourcesLength) {
         final items = List<T>.from(_latestItems, growable: false);
-        final combinedItem = _combiner(items);
+        final combinedItem = configuration.combiner(items);
         emit(combinedItem);
       }
     };

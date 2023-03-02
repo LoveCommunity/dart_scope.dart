@@ -11,42 +11,36 @@ import 'observation.dart';
 @internal
 class ObservableDistinct<T> implements Observable<T> {
   const ObservableDistinct({
-    required Equals<T>? equals,
-    required Observable<T> source,
-  }): _equals = equals ?? defaultEquals,
-    _source = source;
+    required this.equals,
+    required this.source,
+  });
 
-  final Equals<T> _equals;
-  final Observable<T> _source;
+  final Equals<T>? equals;
+  final Observable<T> source;
 
   @override
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
-      equals: _equals,
-      source: _source,
+      configuration: this,
       emit: onData,
     );
   }
 }
 
-class _Observation<T> extends Observation<T> implements Observer<T> {
+class _Observation<T> extends Observation<ObservableDistinct<T>, T> implements Observer<T> {
 
   _Observation({
-    required Equals<T> equals,
-    required Observable<T> source,
+    required super.configuration, 
     required super.emit,
-  }): _equals = equals,
-    _source = source;
-
-  final Equals<T> _equals;
-  final Observable<T> _source;
+  });
 
   Value<T>? _oldData;
   late final Disposable _sourceObservation;
+  late final Equals<T> _equals = configuration.equals ?? defaultEquals;
 
   @override
   void init() {
-    _sourceObservation = _source.observe(onData);
+    _sourceObservation = configuration.source.observe(onData);
   }
 
   @override

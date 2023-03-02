@@ -103,7 +103,7 @@ abstract class Observable<T> {
   /// ```
   /// 
   const factory Observable(
-    Observe<T> observe
+    Observe<T> inlineObserve
   ) = ObservableCreate;
   
   /// Combine multiple `Observable` into one `Observable`.

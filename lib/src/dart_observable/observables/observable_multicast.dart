@@ -12,23 +12,19 @@ import '../subjects/publisher.dart';
 class ObservableMulticast<T> implements Observable<T> {
 
   ObservableMulticast({
-    Subject<T> Function()? createSubject,
-    required Observable<T> source,
-  }): _createSubject = createSubject ?? _defaultCreateSubject,
-    _source = source,
-    _shared = _SharedBetweenObservations<T>();
+    required this.createSubject,
+    required this.source,
+  }): shared = SharedBetweenObservations<T>();
 
-  final Subject<T> Function() _createSubject;
-  final Observable<T> _source;
+  final Subject<T> Function()? createSubject;
+  final Observable<T> source;
 
-  final _SharedBetweenObservations<T> _shared;
+  final SharedBetweenObservations<T> shared;
 
   @override
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
-      createSubject: _createSubject,
-      source: _source,
-      shared: _shared,
+      configuration: this,
       emit: onData,
     );
   }
@@ -38,27 +34,22 @@ Subject<T> _defaultCreateSubject<T>() {
   return Publisher<T>();
 }
 
-class _SharedBetweenObservations<T> {
+@internal
+class SharedBetweenObservations<T> {
   int observersCount = 0;
   Subject<T>? subject;
   Disposable? observation;
 }
 
-class _Observation<T> extends Observation<T> {
+class _Observation<T> extends Observation<ObservableMulticast<T>, T> {
 
   _Observation({
-    required Subject<T> Function() createSubject,
-    required Observable<T> source,
-    required _SharedBetweenObservations<T> shared,
+    required super.configuration, 
     required super.emit,
-  }): _createSubject = createSubject,
-    _source = source,
-    _shared = shared;
+  });  
 
-  final Subject<T> Function() _createSubject;
-  final Observable<T> _source;
-
-  final _SharedBetweenObservations<T> _shared;
+  late final Subject<T> Function() _createSubject = configuration.createSubject ?? _defaultCreateSubject;
+  SharedBetweenObservations<T> get _shared => configuration.shared;
 
   bool _disposed = false;
   late final Disposable _subjectObservation;
@@ -69,7 +60,7 @@ class _Observation<T> extends Observation<T> {
     _subjectObservation = subject.observe(emit);
     _shared.observersCount += 1;
     if (_shared.observersCount == 1) {
-      _shared.observation = _source.observe(subject.onData);
+      _shared.observation = configuration.source.observe(subject.onData);
     }
   }
 

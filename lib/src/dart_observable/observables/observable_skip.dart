@@ -10,41 +10,36 @@ import '../observers/observer.dart';
 class ObservableSkip<T> implements Observable<T> {
 
   const ObservableSkip({
-    required int n,
-    required Observable<T> source,
-  }): _n = n,
-    _source = source;
+    required this.n,
+    required this.source,
+  });
 
-  final int _n;
-  final Observable<T> _source;
+  final int n;
+  final Observable<T> source;
 
   @override
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
-      n: _n,
-      source: _source,
+      configuration: this,
       emit: onData,
     );
   }
 }
 
-class _Observation<T> extends Observation<T> implements Observer<T> {
+class _Observation<T> extends Observation<ObservableSkip<T>, T> implements Observer<T> {
 
   _Observation({
-    required int n,
-    required Observable<T> source,
-    required super.emit,
-  }): _shouldSkip = n,
-    _source = source;
+    required super.configuration, 
+    required super.emit
+  });
 
-  final Observable<T> _source;
-
-  int _shouldSkip;
+  late int _shouldSkip;
   late final Disposable _sourceObservation;
 
   @override
   void init() {
-    _sourceObservation = _source.observe(onData);
+    _shouldSkip = configuration.n;
+    _sourceObservation = configuration.source.observe(onData);
   }
 
   @override
