@@ -13,6 +13,7 @@ export 'src/dart_observable/dart_observable.dart'
     StatesActivated,
     ObservableAsStatesX,
     LatestStateNotReplayError,
+    PipeObservable,
     Observe,
     Observable,
     ObservableX,
