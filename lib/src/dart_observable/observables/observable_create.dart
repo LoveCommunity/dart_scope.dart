@@ -9,34 +9,32 @@ import '../observers/observer.dart';
 @internal
 class ObservableCreate<T> implements Observable<T> {
 
-  const ObservableCreate(this._observe);
+  const ObservableCreate(this.inlineObserve);
 
-  final Observe<T> _observe;
+  final Observe<T> inlineObserve;
 
   @override
   Disposable observe(OnData<T> onData) {
     return _Observation<T>(
-      observe: _observe,
+      configuration: this,
       emit: onData,
     );
   }
 }
 
-class _Observation<T> extends Observation<T> implements Observer<T> {
+class _Observation<T> extends Observation<ObservableCreate<T>, T> implements Observer<T> {
 
   _Observation({
-    required Observe<T> observe,
+    required super.configuration, 
     required super.emit,
-  }): _observe = observe;
-
-  final Observe<T> _observe;
+  });
 
   bool _disposed = false;
   late final Disposable _sourceObservation;
 
   @override
   void init() {
-    _sourceObservation = _observe(onData);
+    _sourceObservation = configuration.inlineObserve(onData);
   }
 
   @override
