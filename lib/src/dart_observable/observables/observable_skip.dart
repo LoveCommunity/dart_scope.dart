@@ -2,20 +2,19 @@
 import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
-import 'observable.dart';
-import 'observation.dart';
 import '../observers/observer.dart';
+import 'base_observable.dart';
+import 'observation.dart';
 
 @internal
-class ObservableSkip<T> implements Observable<T> {
+class ObservableSkip<T> extends PipeObservable<T, T> {
 
   const ObservableSkip({
     required this.n,
-    required this.source,
+    required super.source,
   });
 
   final int n;
-  final Observable<T> source;
 
   @override
   Disposable observe(OnData<T> onData) {
