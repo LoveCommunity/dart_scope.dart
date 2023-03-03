@@ -4,6 +4,17 @@ import 'observable.dart';
 /// `PipeObservable` transform an input observable (the source) 
 /// to an output observable (itself).
 /// 
+/// ```dart
+/// abstract class PipeObservable<T, R> implements Observable<R> {
+/// 
+///   const PipeObservable({
+///     required this.source,
+///   });
+/// 
+///   final Observable<T> source;
+/// }
+/// ``` 
+/// 
 /// Example:
 /// 
 /// ```dart
