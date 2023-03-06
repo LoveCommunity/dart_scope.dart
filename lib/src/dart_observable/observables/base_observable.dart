@@ -1,8 +1,11 @@
 
 import 'observable.dart';
 
-/// `PipeObservable` transform an input observable (the source) 
-/// to an output observable (itself).
+/// `PipeObservable` is a pipeline that transform an input observable
+/// to an output observable.
+/// 
+/// The input observable is the source that implements `Observable<T>`,
+/// and the output observable is itself that implements `Observable<R>`.
 /// 
 /// ```dart
 /// abstract class PipeObservable<T, R> implements Observable<R> {
