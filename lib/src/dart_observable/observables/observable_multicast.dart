@@ -2,22 +2,21 @@
 import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
-import 'observable.dart';
-import 'observation.dart';
 import '../observers/observer.dart';
 import '../subjects/subject.dart';
 import '../subjects/publisher.dart';
+import 'base_observable.dart';
+import 'observation.dart';
 
 @internal
-class ObservableMulticast<T> implements Observable<T> {
+class ObservableMulticast<T> extends PipeObservable<T, T> {
 
   ObservableMulticast({
     required this.createSubject,
-    required this.source,
+    required super.source,
   }): shared = SharedBetweenObservations<T>();
 
   final Subject<T> Function()? createSubject;
-  final Observable<T> source;
 
   final SharedBetweenObservations<T> shared;
 
