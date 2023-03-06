@@ -24,7 +24,8 @@ export 'errors/latest_state_not_replay_error.dart'
     LatestStateNotReplayError;
 export 'observables/base_observable.dart'
   show
-    PipeObservable;
+    PipeObservable,
+    MultiSourcePipeObservable;
 export 'observables/observable.dart'
   show
     Observe,
