@@ -48,3 +48,12 @@ abstract class PipeObservable<T, R> implements Observable<R> {
   /// The input observable
   final Observable<T> source;
 }
+
+abstract class MultiSourcePipeObservable<T, R> implements Observable<R> {
+
+  const MultiSourcePipeObservable({
+    required this.sources,
+  });
+  
+  final List<Observable<T>> sources; 
+}
