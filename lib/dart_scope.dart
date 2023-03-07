@@ -14,6 +14,7 @@ export 'src/dart_observable/dart_observable.dart'
     ObservableAsStatesX,
     LatestStateNotReplayError,
     PipeObservable,
+    MultiSourcePipeObservable,
     Observe,
     Observable,
     ObservableX,

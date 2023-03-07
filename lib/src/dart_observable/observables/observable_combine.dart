@@ -3,18 +3,18 @@ import 'package:meta/meta.dart';
 import 'package:disposal/disposal.dart';
 
 import '../observers/observer.dart';
+import 'base_observable.dart';
 import 'observable.dart';
 import 'observation.dart';
 
 @internal
-class ObservableCombine<T, R> implements Observable<R> {
+class ObservableCombine<T, R> extends MultiSourcePipeObservable<T, R> {
 
   const ObservableCombine({
-    required this.sources,
+    required super.sources,
     required this.combiner,
   });
 
-  final List<Observable<T>> sources;
   final R Function(List<T> items) combiner;
 
   @override
