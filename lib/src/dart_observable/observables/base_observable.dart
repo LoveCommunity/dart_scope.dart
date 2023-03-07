@@ -40,7 +40,7 @@ import 'observable.dart';
 /// 
 abstract class PipeObservable<T, R> implements Observable<R> {
 
-  /// Create a `PipeObservable` with input source.
+  /// Create a `PipeObservable` with source.
   const PipeObservable({
     required this.source,
   });
