@@ -26,6 +26,9 @@ export 'observables/base_observable.dart'
   show
     PipeObservable,
     MultiSourcePipeObservable;
+export 'observables/instance_as_observable.dart'
+  show
+    InstanceAsObservable;
 export 'observables/observable.dart'
   show
     Observe,
