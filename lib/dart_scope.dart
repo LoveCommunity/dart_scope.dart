@@ -47,6 +47,7 @@ export 'src/dart_scope/dart_scope.dart'
     ScopeValueNotExposedError,
     DisposableSink,
     DisposableSinkX,
+    ScopeGetStatesX,
     ScopeGet,
     ScopeGetX,
     ScopeExpose,

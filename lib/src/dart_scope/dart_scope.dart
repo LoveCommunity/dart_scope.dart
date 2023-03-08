@@ -41,6 +41,9 @@ export 'scope_methods/disposable_sink.dart'
   show
     DisposableSink,
     DisposableSinkX;
+export 'scope_methods/scope_get_states_x.dart'
+  show
+    ScopeGetStatesX;
 export 'scope_methods/scope_get.dart'
   show
     ScopeGet,
