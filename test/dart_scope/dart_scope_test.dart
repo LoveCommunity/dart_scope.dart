@@ -7,6 +7,7 @@ import 'configurables/final_test.dart' as final_test;
 import 'configurables/final_states_test.dart' as final_states_test;
 import 'configurables/final_states_convertible_test.dart' as final_states_convertible_test;
 import 'scope_methods/disposable_test.dart' as disposable_test;
+import 'scope_methods/scope_get_states_x_test.dart' as scope_get_states_x_test;
 import 'scope_methods/scope_get_test.dart' as scope_get_test;
 import 'scope_methods/scope_push_test.dart' as scope_push_test;
 import 'scopes/scope_test.dart' as scope_test;
@@ -20,6 +21,7 @@ void main() {
   final_states_test.main();
   final_states_convertible_test.main();
   disposable_test.main();
+  scope_get_states_x_test.main();
   scope_get_test.main();
   scope_push_test.main();
   scope_test.main();
