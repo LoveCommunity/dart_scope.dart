@@ -1,3 +1,15 @@
+## 0.1.0-beta.2
+
+- feature
+  - add convenience methods `scope.getStates{orNull}` [\#182](https://github.com/LoveCommunity/dart_scope.dart/pull/182)
+  - add observable `InstanceAsObservable` [\#181](https://github.com/LoveCommunity/dart_scope.dart/pull/181)
+- refactor
+  - introduce observable `MultiSourcePipeObservable` [\#180](https://github.com/LoveCommunity/dart_scope.dart/pull/180)
+  - introduce observable `PipeObservable` [\#179](https://github.com/LoveCommunity/dart_scope.dart/pull/179)
+  - add `observation.configuration` field [\#178](https://github.com/LoveCommunity/dart_scope.dart/pull/178)
+  - prefer `source` over `observable` to name input observable [\#177](https://github.com/LoveCommunity/dart_scope.dart/pull/177)
+  - upgrade dart-sdk\(^2.18\) and dependencies [\#176](https://github.com/LoveCommunity/dart_scope.dart/pull/176)
+  
 ## 0.1.0-beta.1
 
 - refactor 
