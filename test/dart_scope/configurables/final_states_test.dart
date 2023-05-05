@@ -8,7 +8,7 @@ import '../shared/states_just.dart';
 
 void main() {
 
-  test('`FinalStates` is sync configuration', () {
+  test('FinalStates is sync configuration', () {
 
     final scope = Scope.root([
       FinalStates<String>(
@@ -19,7 +19,7 @@ void main() {
     expect(scope, isA<Scope>());
   });
   
-  test('`FinalStates` share same states in scope', () async {
+  test('FinalStates share same states in scope', () async {
 
     final scope = await Scope.root([
       FinalStates<String>(
@@ -36,7 +36,7 @@ void main() {
 
   });
 
-  test('`FinalStates` share same states in scope with name', () async {
+  test('FinalStates share same states in scope with name', () async {
 
     final scope = await Scope.root([
       FinalStates<String>(
@@ -54,7 +54,7 @@ void main() {
 
   });
 
-  test('`FinalStates` assign states which depends on other scope value', () async {
+  test('FinalStates assign states which depends on other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -75,7 +75,7 @@ void main() {
 
   });
   
-  test("`FinalStates` exposed `States` won't forward data after scope disposed", () async {
+  test("FinalStates exposed States won't forward data after scope disposed", () async {
 
     final scope = await Scope.root([
       FinalStates<String>(
@@ -107,7 +107,7 @@ void main() {
 
   });
 
-  test('`FinalStates` assign states lazily when `lazy` is omitted', () async {
+  test('FinalStates assign states lazily when lazy is omitted', () async {
 
     int invokes = 0;
 
@@ -126,7 +126,7 @@ void main() {
 
   });
   
-  test('`FinalStates` assign states lazily when `lazy` is true', () async {
+  test('FinalStates assign states lazily when lazy is true', () async {
 
     int invokes = 0;
 
@@ -146,7 +146,7 @@ void main() {
 
   });
 
-  test('`FinalStates` assign states immediately when `lazy` is false', () async {
+  test('FinalStates assign states immediately when lazy is false', () async {
 
     int invokes = 0;
 

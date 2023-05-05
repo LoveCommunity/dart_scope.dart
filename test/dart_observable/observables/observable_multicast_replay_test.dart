@@ -5,7 +5,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`observable.multicastReplay` connect when observers increase to one', () {
+  test('observable.multicastReplay connect when observers increase to one', () {
 
     int invokes = 0;
 
@@ -27,7 +27,7 @@ void main() {
 
   });
 
-  test('`observable.multicastReplay` disconnect when observers decrease to zero', () {
+  test('observable.multicastReplay disconnect when observers decrease to zero', () {
 
     int invokes = 0;
 
@@ -50,7 +50,7 @@ void main() {
 
   });
 
-  test('`observable.multicastReplay` forward data to observers', () async {
+  test('observable.multicastReplay forward data to observers', () async {
   
     final observable = Observable<String>((onData) {
       Future(() => onData('a'));
@@ -85,7 +85,7 @@ void main() {
 
   });
 
-  test('`observable.multicastReplay` replay data to observers', () {
+  test('observable.multicastReplay replay data to observers', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

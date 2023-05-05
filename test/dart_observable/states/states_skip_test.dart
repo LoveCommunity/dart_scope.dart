@@ -6,7 +6,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`states.skip`', () {
+  test('states.skip', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -35,7 +35,7 @@ void main() {
     tester.stopObserve();
   });
 
-  test('`states.skipFirst`', () {
+  test('states.skipFirst', () {
 
     final states = States<String>((setState) {
       setState('a');

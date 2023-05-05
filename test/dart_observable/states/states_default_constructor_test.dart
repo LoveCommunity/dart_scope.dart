@@ -6,7 +6,7 @@ import '../shared/states_tester.dart';
 
 void main() {
 
-  test('`States.defaultConstructor` common', () {
+  test('States.defaultConstructor common', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -27,7 +27,7 @@ void main() {
 
   });
 
-  test('`States.defaultConstructor` observation dispose', () {
+  test('States.defaultConstructor observation dispose', () {
 
     int invokes = 0;
 
@@ -45,7 +45,7 @@ void main() {
     expect(invokes, 1);
   });
 
-  test('`States.defaultConstructor` not receive data after disposed', () async {
+  test('States.defaultConstructor not receive data after disposed', () async {
 
     final states = States<String>((setState) {
       setState('a');

@@ -5,7 +5,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`scope.get` return value if value exposed', () async {
+  test('scope.get return value if value exposed', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -19,7 +19,7 @@ void main() {
 
   });
 
-  test('`scope.get` throws if value not exposed', () async {
+  test('scope.get throws if value not exposed', () async {
 
     final scope = await Scope.root([]);
 
@@ -39,7 +39,7 @@ void main() {
 
   });
 
-  test('`scope.get` return value if value exposed with name', () async {
+  test('scope.get return value if value exposed with name', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -56,7 +56,7 @@ void main() {
 
   });
 
-  test('`scope.get` throws if value not exposed with name', () async {
+  test('scope.get throws if value not exposed with name', () async {
 
     final scope = await Scope.root([]);
 

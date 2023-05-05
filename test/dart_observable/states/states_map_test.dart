@@ -6,7 +6,7 @@ import '../shared/states_tester.dart';
 
 void main() {
 
-  test('`states.map`', () {
+  test('states.map', () {
 
     final states = States<String>((setState) {
       setState('a');

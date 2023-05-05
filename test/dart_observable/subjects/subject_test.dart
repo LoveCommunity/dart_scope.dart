@@ -4,7 +4,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test('`Subject` is `Observable`, `Observer` and `Disposable`', () {
+  test('Subject is Observable, Observer and Disposable', () {
     final subject = _MockSubject<String>();
     expect(subject, isA<Observable<String>>());
     expect(subject, isA<Observer<String>>());

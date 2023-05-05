@@ -5,7 +5,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`scope.addDisposables` before dispose', () async {
+  test('scope.addDisposables before dispose', () async {
 
     final invokes = <String>[];
 
@@ -38,7 +38,7 @@ void main() {
   
   });
 
-  test('`scope.addDisposable` before dispose', () async {
+  test('scope.addDisposable before dispose', () async {
 
     int invokes = 0;
 
@@ -62,7 +62,7 @@ void main() {
 
   });
 
-  test('`scope.addDisposables` after dispose', () async {
+  test('scope.addDisposables after dispose', () async {
 
     final invokes = <String>[];
 
@@ -98,7 +98,7 @@ void main() {
 
   });
   
-  test('`scope.addDisposable` after dispose', () async {
+  test('scope.addDisposable after dispose', () async {
 
     int invokes = 0;
 
@@ -126,7 +126,7 @@ void main() {
 
   });
   
-  test('`scope.dispose` multiple times', () async {
+  test('scope.dispose multiple times', () async {
 
     int invokes = 0;
 
@@ -152,7 +152,7 @@ void main() {
 
   });
 
-  test('`scope` auto dispose if sync configuration throw error', () async {
+  test('scope auto dispose if sync configuration throw error', () async {
 
     int invokes = 0;
     Object? error;
@@ -183,7 +183,7 @@ void main() {
     
   });
 
-  test('`scope` auto dispose if async configuration throw error', () async {
+  test('scope auto dispose if async configuration throw error', () async {
 
     int invokes = 0;
     Object? error;
@@ -213,7 +213,7 @@ void main() {
     
   });
 
-  test('`scope.addDispose` register dispose logic', () async {
+  test('scope.addDispose register dispose logic', () async {
 
     int invokes = 0;
 

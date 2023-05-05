@@ -6,7 +6,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`Publisher` forward data to single observer', () {
+  test('Publisher forward data to single observer', () {
 
     final publisher = Publisher<String>();
     
@@ -27,7 +27,7 @@ void main() {
 
   });
 
-  test('`Publisher` forward data to multiple observers', () {
+  test('Publisher forward data to multiple observers', () {
     
     final publisher = Publisher<String>();
     
@@ -58,7 +58,7 @@ void main() {
 
   });
 
-  test("`Publisher` only forward data after observed", () {
+  test("Publisher only forward data after observed", () {
     
     final publisher = Publisher<String>();
 
@@ -81,7 +81,7 @@ void main() {
 
   });
 
-  test("`Publisher` won't forward data after observation disposed", () {
+  test("Publisher won't forward data after observation disposed", () {
 
     final publisher = Publisher<String>();
 
@@ -107,7 +107,7 @@ void main() {
 
   }); 
 
-  test("`Publisher` won't forward data after publisher disposed", () {
+  test("Publisher won't forward data after publisher disposed", () {
 
     final publisher = Publisher<String>();
 
@@ -133,7 +133,7 @@ void main() {
 
   });
 
-  test('`Publisher` throws error when been observed after it is disposed', () {
+  test('Publisher throws error when been observed after it is disposed', () {
     
     final publisher = Publisher<String>();
 

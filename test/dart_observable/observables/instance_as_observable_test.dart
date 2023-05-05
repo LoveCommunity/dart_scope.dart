@@ -4,7 +4,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test('`InstanceAsObservable` common', () {
+  test('InstanceAsObservable common', () {
 
     final stream = Stream.fromIterable([0, 1, 2]);
     final observable = _StreamAsObservable(stream);

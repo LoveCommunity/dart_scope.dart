@@ -12,7 +12,7 @@ part 'computed_test.g.dart';
 @configurableComputedTest
 void main() {
 
-  test('`Computed` is sync configuration', () {
+  test('Computed is sync configuration', () {
     final scope = Scope.root([
       MockConfigurable((scope) {
         scope.expose<States<String>>(
@@ -31,7 +31,7 @@ void main() {
 
   });
 
-  test('`Computed` share same instance in scope with name', () async {
+  test('Computed share same instance in scope with name', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -56,7 +56,7 @@ void main() {
 
   });
 
-  test('`Computed` compute with other scope value', () async {
+  test('Computed compute with other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -84,7 +84,7 @@ void main() {
 
   });
 
-  test("`Computed` exposed `States` won't forward data after scope disposed", () async {
+  test("Computed exposed States won't forward data after scope disposed", () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -127,7 +127,7 @@ void main() {
 
   });
 
-  test('`Computed` default equals', () async {
+  test('Computed default equals', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -171,7 +171,7 @@ void main() {
 
   });
 
-  test('`Computed` custom equals', () async {
+  test('Computed custom equals', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -216,7 +216,7 @@ void main() {
 
   });
 
-  test('`Computed` compute lazily when `lazy` is omitted', () async {
+  test('Computed compute lazily when lazy is omitted', () async {
 
     int invokes = 0;
 
@@ -243,7 +243,7 @@ void main() {
 
   });
 
-  test('`Computed` compute lazily when `lazy` is true', () async {
+  test('Computed compute lazily when lazy is true', () async {
 
     int invokes = 0;
 
@@ -271,7 +271,7 @@ void main() {
 
   });
 
-  test('`Computed` compute immediately when `lazy` is false', () async {
+  test('Computed compute immediately when lazy is false', () async {
 
     int invokes = 0;
 

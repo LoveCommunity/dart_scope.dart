@@ -7,7 +7,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`FinalStatesConvertible` is sync configuration', () {
+  test('FinalStatesConvertible is sync configuration', () {
 
     final scope = Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
@@ -19,7 +19,7 @@ void main() {
     expect(scope, isA<Scope>());
   });
 
-  test('`FinalStatesConvertible` share same value and states in scope', () async {
+  test('FinalStatesConvertible share same value and states in scope', () async {
 
     final scope = await Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
@@ -41,7 +41,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` share same value and states in scope with name', () async {
+  test('FinalStatesConvertible share same value and states in scope with name', () async {
 
     final scope = await Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
@@ -65,7 +65,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value which depends on other scope value', () async {
+  test('FinalStatesConvertible assign value which depends on other scope value', () async {
     
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -86,7 +86,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign states success', () async {
+  test('FinalStatesConvertible assign states success', () async {
 
     final scope = await Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
@@ -117,7 +117,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` expose value and states using custom `expose`', () async {
+  test('FinalStatesConvertible expose value and states using custom expose', () async {
 
     final scope = await Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
@@ -139,7 +139,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` register value dispose logic using `dispose`', () async {
+  test('FinalStatesConvertible register value dispose logic using dispose', () async {
 
     final scope = await Scope.root([
       FinalStatesConvertible<_MockSubject<String>, String>(
@@ -157,7 +157,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states lazily when `lazy` is omitted', () async {
+  test('FinalStatesConvertible assign value and states lazily when lazy is omitted', () async {
 
     final invokes = <String>[];
 
@@ -187,7 +187,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states lazily when `lazy` is true', () async {
+  test('FinalStatesConvertible assign value and states lazily when lazy is true', () async {
 
     final invokes = <String>[];
 
@@ -218,7 +218,7 @@ void main() {
 
   });
 
-  test('`FinalStatesConvertible` assign value and states immediately when `lazy` is false', () async {
+  test('FinalStatesConvertible assign value and states immediately when lazy is false', () async {
 
     final invokes = <String>[];
 

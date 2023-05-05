@@ -6,7 +6,7 @@ import '../shared/states_tester.dart';
 
 void main() {
   
-  test('`states.activated` connect immediately', () {
+  test('states.activated connect immediately', () {
 
     int invokes = 0;
 
@@ -24,7 +24,7 @@ void main() {
 
   });
   
-  test('`states.activated` disconnect when dispose(deactivate) called', () {
+  test('states.activated disconnect when dispose(deactivate) called', () {
 
     int invokes = 0;
 
@@ -43,7 +43,7 @@ void main() {
 
   });
   
-  test('`states.activated` forward data to observers', () async {
+  test('states.activated forward data to observers', () async {
 
     final states = States<String>((setState) {
       setState('a');
@@ -87,7 +87,7 @@ void main() {
 
   });
   
-  test('`states.activated` replay data to observers', () {
+  test('states.activated replay data to observers', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -112,7 +112,7 @@ void main() {
     activated.dispose();
   });
   
-  test("`states.activated` won't forward data after disposed(deactivated)", () async {
+  test("states.activated won't forward data after disposed(deactivated)", () async {
     
     final states = States<String>((setState) {
       setState('a');

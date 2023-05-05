@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testDefaultEquals(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` default equals', () async {
+    test('Computed$number default equals', () async {
       ${code([
         _scopeRoot(n),
         getComputed(),

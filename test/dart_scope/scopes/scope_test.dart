@@ -6,7 +6,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`scope` is `ScopeGet`, `ScopePush` and `Disposable`', () {
+  test('scope is ScopeGet, ScopePush and Disposable', () {
 
     final scope = _MockScope();
 
@@ -15,7 +15,7 @@ void main() {
     expect(scope, isA<Disposable>());
   });
 
-  test('`Scope.root` return sync scope if it only has sync configuration', () {
+  test('Scope.root return sync scope if it only has sync configuration', () {
 
     final scope = Scope.root([
       MockConfigurable((_) {}),
@@ -24,7 +24,7 @@ void main() {
     expect(scope, isA<Scope>());
   });
 
-  test('`Scope.root` return async scope if it has async configuration', () {
+  test('Scope.root return async scope if it has async configuration', () {
     
     final scope = Scope.root([
       MockConfigurable((_) async {}),
@@ -33,7 +33,7 @@ void main() {
     expect(scope, isA<Future<Scope>>());
   });
 
-  test('`scope.has` return false if value not exposed', () async {
+  test('scope.has return false if value not exposed', () async {
     
     final scope = await Scope.root([]);
 
@@ -42,7 +42,7 @@ void main() {
     expect(hasValue, false);
   });
 
-  test('`scope.has` return true if value exposed', () async {
+  test('scope.has return true if value exposed', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -55,7 +55,7 @@ void main() {
     expect(hasValue, true);
   });
 
-  test('`scope.has` return false if value not exposed with name', () async {
+  test('scope.has return false if value not exposed with name', () async {
     
     final scope = await Scope.root([]);
 
@@ -64,7 +64,7 @@ void main() {
     expect(hasValue, false);
   });
 
-  test('`scope.has` return true if value exposed with name', () async {
+  test('scope.has return true if value exposed with name', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -80,7 +80,7 @@ void main() {
     expect(hasValue, true);
   });
 
-  test('`scope.getOrNull` return null if value not exposed', () async {
+  test('scope.getOrNull return null if value not exposed', () async {
     
     final scope = await Scope.root([]);
 
@@ -89,7 +89,7 @@ void main() {
     expect(value, null);
   });
 
-  test('`scope.getOrNull` return value if value exposed', () async {
+  test('scope.getOrNull return value if value exposed', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -102,7 +102,7 @@ void main() {
     expect(value, 'a');
   });
 
-  test('`scope.getOrNull` return null if value not exposed with name', () async {
+  test('scope.getOrNull return null if value not exposed with name', () async {
 
     final scope = await Scope.root([]);
 
@@ -111,7 +111,7 @@ void main() {
     expect(value, null);
   });
 
-  test('`scope.getOrNull` return value if value exposed with name', () async {
+  test('scope.getOrNull return value if value exposed with name', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -127,7 +127,7 @@ void main() {
     expect(value, 'a');
   });
 
-  test('`scope.getOrNull` return value if value exposed with name using async configuration', () async {
+  test('scope.getOrNull return value if value exposed with name using async configuration', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) async {

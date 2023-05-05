@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testShareSameInstance(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` share same instance in scope with name', () async {
+    test('Computed$number share same instance in scope with name', () async {
       ${code([
         sampleScopeRoot(n: n),
         ...generateN(2, (n) => getComputed(assignTo: 'computed$n')),

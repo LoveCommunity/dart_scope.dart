@@ -6,7 +6,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`Final` is sync configuration', () {
+  test('Final is sync configuration', () {
 
     final scope = Scope.root([
       Final<String>(
@@ -18,7 +18,7 @@ void main() {
 
   });
 
-  test('`Final` share same value in scope', () async {
+  test('Final share same value in scope', () async {
 
     final scope = await Scope.root([
       Final<Object>(
@@ -35,7 +35,7 @@ void main() {
 
   });
 
-  test('`Final` share same value in scope with name', () async {
+  test('Final share same value in scope with name', () async {
 
     final scope = await Scope.root([
       Final<Object>(
@@ -53,7 +53,7 @@ void main() {
 
   });
 
-  test('`Final` assign value which depends on other scope value', () async {
+  test('Final assign value which depends on other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -70,7 +70,7 @@ void main() {
 
   });
 
-  test('`Final` expose value using custom `expose`', () async {
+  test('Final expose value using custom expose', () async {
 
     final scope = await Scope.root([
       Final<String>(
@@ -89,7 +89,7 @@ void main() {
 
   });
 
-  test('`Final` register value dispose logic using `dispose`', () async {
+  test('Final register value dispose logic using dispose', () async {
 
     int invokes = 0;
 
@@ -108,7 +108,7 @@ void main() {
 
   });
 
-  test('`Final` assign value lazily when `lazy` is omitted', () async {
+  test('Final assign value lazily when lazy is omitted', () async {
 
     int invokes = 0;
 
@@ -127,7 +127,7 @@ void main() {
 
   });
 
-  test('`Final` assign value lazily when `lazy` is true', () async {
+  test('Final assign value lazily when lazy is true', () async {
 
     int invokes = 0;
 
@@ -147,7 +147,7 @@ void main() {
 
   });
 
-  test('`Final` assign value immediately when `lazy` is false', () async {
+  test('Final assign value immediately when lazy is false', () async {
 
     int invokes = 0;
 

@@ -6,7 +6,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`AsyncFinal` is async configuration', () {
+  test('AsyncFinal is async configuration', () {
 
     final scope = Scope.root([
       AsyncFinal<String>(equal: (_) async => 'a'),
@@ -16,7 +16,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` share same value in scope', () async {
+  test('AsyncFinal share same value in scope', () async {
 
     final scope = await Scope.root([
       AsyncFinal<Object>(equal: (_) async => Object()),
@@ -31,7 +31,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` share same value in scope with name', () async {
+  test('AsyncFinal share same value in scope with name', () async {
 
     final scope = await Scope.root([
       AsyncFinal<Object>(name: 'object', equal: (_) async => Object()),
@@ -46,7 +46,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` assign value which depends on other scope value', () async {
+  test('AsyncFinal assign value which depends on other scope value', () async {
 
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -63,7 +63,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` expose value using custom `expose`', () async {
+  test('AsyncFinal expose value using custom expose', () async {
 
     final scope = await Scope.root([
       AsyncFinal<String>(
@@ -82,7 +82,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` register value dispose logic using `dispose`', () async {
+  test('AsyncFinal register value dispose logic using dispose', () async {
 
     int invokes = 0;
 
@@ -101,7 +101,7 @@ void main() {
 
   });
 
-  test('`AsyncFinal` assign value immediately', () async {
+  test('AsyncFinal assign value immediately', () async {
 
     int invokes = 0;
 

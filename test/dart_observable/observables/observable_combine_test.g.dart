@@ -7,7 +7,7 @@ part of 'observable_combine_test.dart';
 // **************************************************************************
 
 void _main() {
-  test('`Observable.combine` emit if all sources emitted', () async {
+  test('Observable.combine emit if all sources emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -41,7 +41,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine2` emit if all sources emitted', () async {
+  test('Observable.combine2 emit if all sources emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -73,7 +73,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine3` emit if all sources emitted', () async {
+  test('Observable.combine3 emit if all sources emitted', () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
       return Disposable.empty;
@@ -111,7 +111,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine` emit latest combined value when a source emit',
+  test('Observable.combine emit latest combined value when a source emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -147,7 +147,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine2` emit latest combined value when a source emit',
+  test('Observable.combine2 emit latest combined value when a source emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -181,7 +181,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Observable.combine3` emit latest combined value when a source emit',
+  test('Observable.combine3 emit latest combined value when a source emit',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -222,7 +222,7 @@ void _main() {
   });
 
   test(
-      '`Observable.combine` dispose observation will dispose all source observations',
+      'Observable.combine dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
     final observable1 = Observable<String>((onData) {
@@ -255,7 +255,7 @@ void _main() {
   });
 
   test(
-      '`Observable.combine2` dispose observation will dispose all source observations',
+      'Observable.combine2 dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
     final observable1 = Observable<String>((onData) {
@@ -286,7 +286,7 @@ void _main() {
   });
 
   test(
-      '`Observable.combine3` dispose observation will dispose all source observations',
+      'Observable.combine3 dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
     final observable1 = Observable<String>((onData) {
@@ -323,7 +323,7 @@ void _main() {
     expect(invokes, <String>['dispose3', 'dispose2', 'dispose1']);
   });
 
-  test('`Observable.combine` will not emit data after observation disposed',
+  test('Observable.combine will not emit data after observation disposed',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -359,7 +359,7 @@ void _main() {
     expect(tester.recorded, <String>['1a|2a']);
   });
 
-  test('`Observable.combine2` will not emit data after observation disposed',
+  test('Observable.combine2 will not emit data after observation disposed',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
@@ -393,7 +393,7 @@ void _main() {
     expect(tester.recorded, <String>['1a|2a']);
   });
 
-  test('`Observable.combine3` will not emit data after observation disposed',
+  test('Observable.combine3 will not emit data after observation disposed',
       () async {
     final observable1 = Observable<String>((onData) {
       onData('1a');
