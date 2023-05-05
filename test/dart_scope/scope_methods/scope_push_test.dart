@@ -6,7 +6,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`scope.push` return sync scope if it only has sync configuration', () async {
+  test('scope.push return sync scope if it only has sync configuration', () async {
 
     final parent = await Scope.root([]);
 
@@ -17,7 +17,7 @@ void main() {
     expect(scope, isA<Scope>());
   });
 
-  test('`scope.push` return async scope if it has async configuration', () async {
+  test('scope.push return async scope if it has async configuration', () async {
 
     final parent = await Scope.root([]);
 
@@ -28,7 +28,7 @@ void main() {
     expect(scope, isA<Future<Scope>>());
   });
 
-  test('`scope.push` returned scope has no value if value not exposed', () async {
+  test('scope.push returned scope has no value if value not exposed', () async {
 
     final parent = await Scope.root([]);
 
@@ -41,7 +41,7 @@ void main() {
     expect(value, null);
   });
 
-  test('`scope.push` returned scope has value if value exposed', () async {
+  test('scope.push returned scope has value if value exposed', () async {
 
     final parent = await Scope.root([]);
 
@@ -58,7 +58,7 @@ void main() {
     expect(value, 'a');
   });
 
-  test('`scope.push` returned scope inherit values from parent scope', () async {
+  test('scope.push returned scope inherit values from parent scope', () async {
 
     final parent = await Scope.root([
       MockConfigurable((scope) {

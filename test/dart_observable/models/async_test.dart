@@ -4,7 +4,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test('`Async` default constructor', () {
+  test('Async default constructor', () {
 
     final exception = Exception('custom exception');
     final stackTrace = StackTrace.current;
@@ -23,7 +23,7 @@ void main() {
 
   });
 
-  test('`Async.loading` constructor', () {
+  test('Async.loading constructor', () {
 
     final asyncString = Async<String>.loading(
       data: 'a',
@@ -36,7 +36,7 @@ void main() {
 
   });
 
-  test('`Async.loaded` constructor', () {
+  test('Async.loaded constructor', () {
 
     final asyncString = Async<String>.loaded(
       data: 'a',
@@ -49,7 +49,7 @@ void main() {
 
   });
 
-  test('`Async.error` constructor', () {
+  test('Async.error constructor', () {
 
     final exception = Exception('custom exception');
     final stackTrace = StackTrace.current;
@@ -67,7 +67,7 @@ void main() {
 
   });
 
-  test('`async.operator== && async.hashCode` when instances are identical', () {
+  test('async.operator== && async.hashCode when instances are identical', () {
 
     final exception = Exception('custom exception');
     final stackTrace = StackTrace.current;
@@ -88,7 +88,7 @@ void main() {
     
   });
 
-  test('`async.operator== && async.hashCode` when instances are equal', () {
+  test('async.operator== && async.hashCode when instances are equal', () {
 
     final exception = Exception('custom exception');
     final stackTrace = StackTrace.current;
@@ -113,7 +113,7 @@ void main() {
 
   });
 
-  test('`async.operator==` when instances are not equal', () {
+  test('async.operator== when instances are not equal', () {
 
     final exception = Exception('custom exception');
     final stackTrace = StackTrace.current;
@@ -135,7 +135,7 @@ void main() {
 
   });
 
-  test('`async.toString` return description', () {
+  test('async.toString return description', () {
 
     final exception = Exception('custom exception');
     final stackTrace = StackTrace.empty;
@@ -155,7 +155,7 @@ void main() {
 
   });
 
-  test('`async.requireData` return data if there is data', () {
+  test('async.requireData return data if there is data', () {
 
     final asyncString = Async<String>.loaded(
       data: 'a',
@@ -165,7 +165,7 @@ void main() {
 
   });
 
-  test('`async.requireData` throws if there is no data', () {
+  test('async.requireData throws if there is no data', () {
 
     final asyncString = Async<String>.loaded(
       data: null,
@@ -175,7 +175,7 @@ void main() {
 
   });
   
-  test('`async.requireError` return error if there is error', () {
+  test('async.requireError return error if there is error', () {
 
     final exception = Exception('custom exception');
 
@@ -187,7 +187,7 @@ void main() {
 
   });
 
-  test('`async.requireError` throws if there is no error', () {
+  test('async.requireError throws if there is no error', () {
 
     final asyncString = Async<String>.loading();
 

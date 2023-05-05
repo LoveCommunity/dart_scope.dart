@@ -2,11 +2,11 @@
 import '../../shared/codes.dart';
 
 String observableCombineTestHeader(int? number) {
-  return '`Observable.combine${number == null ? '' : '$number'}`';
+  return 'Observable.combine${number == null ? '' : '$number'}';
 }
 
 String statesCombineTestHeader(int? number) {
-  return '`States.combine${number == null ? '' : '$number'}`';
+  return 'States.combine${number == null ? '' : '$number'}';
 }
 String observableCombine(int? number) {
   return _combine(true, number);

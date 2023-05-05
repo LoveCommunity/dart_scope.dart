@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testIsSyncConfiguration(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` is sync configuration', () {
+    test('Computed$number is sync configuration', () {
       ${code([
         sampleScopeRoot(n: n, awaiting: false),
         _expect(),

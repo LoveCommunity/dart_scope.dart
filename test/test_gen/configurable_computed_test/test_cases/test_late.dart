@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testLazyIsOmitted(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` compute lazily when `lazy` is omitted', () async {
+    test('Computed$number compute lazily when lazy is omitted', () async {
       ${code([
         invokes(),
         _scopeRoot(n: n, assign: true, computedLazy: true),
@@ -20,7 +20,7 @@ String testLazyIsOmitted(int? number) {
 String testLazyIsTrue(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` compute lazily when `lazy` is true', () async {
+    test('Computed$number compute lazily when lazy is true', () async {
       ${code([
         invokes(),
         _scopeRoot(n: n, assign: true, computedLazy: true),
@@ -35,7 +35,7 @@ String testLazyIsTrue(int? number) {
 String testLazyIsFalse(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` compute immediately when `lazy` is false', () async {
+    test('Computed$number compute immediately when lazy is false', () async {
       ${code([
         invokes(),
         _scopeRoot(n: n, assign: false, computedLazy: false),

@@ -7,7 +7,7 @@ import '../shared/states_tester.dart';
 
 void main() {
 
-  test('`observable.asStates` connect when observers increase to one', () {
+  test('observable.asStates connect when observers increase to one', () {
 
     int invokes = 0;
 
@@ -30,7 +30,7 @@ void main() {
 
   });
 
-  test('`observable.asStates` disconnect when observers decrease to zero', () {
+  test('observable.asStates disconnect when observers decrease to zero', () {
 
     int invokes = 0;
 
@@ -54,7 +54,7 @@ void main() {
 
   });
 
-  test('`observable.asStates` forward data to observers', () async {
+  test('observable.asStates forward data to observers', () async {
 
     final observable = Observable<String>((onData) {
       onData('a');
@@ -97,7 +97,7 @@ void main() {
 
   });
 
-  test('`observable.asStates` replay data to observers', () {
+  test('observable.asStates replay data to observers', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

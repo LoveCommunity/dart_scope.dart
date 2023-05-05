@@ -6,7 +6,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`Replayer` replay all data when emit times is less than buffer size', () {
+  test('Replayer replay all data when emit times is less than buffer size', () {
 
     final replayer = Replayer<String>(bufferSize: 3);
 
@@ -30,7 +30,7 @@ void main() {
 
   });
 
-  test('`Replayer` replay all data when emit times is equals to buffer size', () {
+  test('Replayer replay all data when emit times is equals to buffer size', () {
 
     final replayer = Replayer<String>(bufferSize: 3);
 
@@ -56,7 +56,7 @@ void main() {
 
   });
 
-  test("`Replayer` replay buffer size's data when emit times is more than buffer size", () {
+  test("Replayer replay buffer size's data when emit times is more than buffer size", () {
 
     final replayer = Replayer<String>(bufferSize: 3);
 
@@ -83,7 +83,7 @@ void main() {
 
   });
 
-  test("`Replayer` with single element buffer", () {
+  test("Replayer with single element buffer", () {
 
     final replayer = Replayer<String>(bufferSize: 1);
 
@@ -109,7 +109,7 @@ void main() {
 
   });
 
-  test('`Replayer` forward data after observed', () {
+  test('Replayer forward data after observed', () {
 
     final replayer = Replayer<String>(bufferSize: 3);
 
@@ -136,7 +136,7 @@ void main() {
 
   });
 
-  test("`Replayer` won't forward data after observation is disposed", () {
+  test("Replayer won't forward data after observation is disposed", () {
 
     final replayer = Replayer<String>(bufferSize: 3);
 
@@ -161,7 +161,7 @@ void main() {
 
   });
 
-  test("`Replayer` won't forward data after replayer is disposed", () {
+  test("Replayer won't forward data after replayer is disposed", () {
 
     final replayer = Replayer<String>(bufferSize: 3);
 
@@ -186,7 +186,7 @@ void main() {
 
   });
 
-  test('`Replayer` throws error when been observed after replayer is disposed', () {
+  test('Replayer throws error when been observed after replayer is disposed', () {
 
     final replayer = Replayer<String>(bufferSize: 3);
     replayer.dispose();

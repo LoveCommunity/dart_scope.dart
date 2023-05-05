@@ -6,7 +6,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`Variable` initial value', () {
+  test('Variable initial value', () {
 
     final variable = Variable<String>('a');
 
@@ -16,7 +16,7 @@ void main() {
 
   });
 
-  test('`Variable` replay initial value', () {
+  test('Variable replay initial value', () {
 
     final variable = Variable<String>('a');
 
@@ -36,7 +36,7 @@ void main() {
 
   });
 
-  test('`Variable` update value by call `onData`', () {
+  test('Variable update value by call onData', () {
 
     final variable = Variable<String>('a');
     
@@ -48,7 +48,7 @@ void main() {
 
   });
 
-  test('`Variable` update value by call `set value`', () {
+  test('Variable update value by call set value', () {
 
     final variable = Variable<String>('a');
 
@@ -60,7 +60,7 @@ void main() {
 
   });
 
-  test('`Variable` forward data by call `onData`', () {
+  test('Variable forward data by call onData', () {
 
     final variable = Variable<String>('a');
 
@@ -84,7 +84,7 @@ void main() {
 
   });
 
-  test('`Variable` forward data by call `set value`', () {
+  test('Variable forward data by call set value', () {
 
     final variable = Variable<String>('a');
 
@@ -108,7 +108,7 @@ void main() {
 
   });
 
-  test('`Variable` replay current value', () {
+  test('Variable replay current value', () {
 
     final variable = Variable<String>('a');
 
@@ -129,7 +129,7 @@ void main() {
 
   });
 
-  test("`Variable` won't forward data after observation disposed", () {
+  test("Variable won't forward data after observation disposed", () {
 
     final variable = Variable<String>('a');
 
@@ -152,7 +152,7 @@ void main() {
 
   });
 
-  test("`Variable` won't forward data after variable is disposed", () {
+  test("Variable won't forward data after variable is disposed", () {
 
     final variable = Variable<String>('a');
 
@@ -176,7 +176,7 @@ void main() {
 
   });
 
-  test('`Variable` throws error when been observed after it is disposed', () {
+  test('Variable throws error when been observed after it is disposed', () {
     
     final variable = Variable<String>('a');
 

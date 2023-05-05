@@ -4,7 +4,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test("`States.from`'s observable is identical to observable passed in", () {
+  test("States.from's observable is identical to observable passed in", () {
 
     final observable = Observable<String>((onData) {
       return Disposable.empty;
@@ -16,7 +16,7 @@ void main() {
 
   });
   
-  test("`states.observe` cause observable observe", () {
+  test("states.observe cause observable observe", () {
 
     int invokes = 0;
 

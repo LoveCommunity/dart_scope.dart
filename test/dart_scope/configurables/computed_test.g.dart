@@ -7,7 +7,7 @@ part of 'computed_test.dart';
 // **************************************************************************
 
 void _main() {
-  test('`Computed2` is sync configuration', () {
+  test('Computed2 is sync configuration', () {
     final scope = Scope.root([
       MockConfigurable((scope) {
         final states1 = statesJust('1a');
@@ -34,7 +34,7 @@ void _main() {
     expect(scope, isA<Scope>());
   });
 
-  test('`Computed3` is sync configuration', () {
+  test('Computed3 is sync configuration', () {
     final scope = Scope.root([
       MockConfigurable((scope) {
         final states1 = statesJust('1a');
@@ -67,7 +67,7 @@ void _main() {
     expect(scope, isA<Scope>());
   });
 
-  test('`Computed2` share same instance in scope with name', () async {
+  test('Computed2 share same instance in scope with name', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = statesJust('1a');
@@ -97,7 +97,7 @@ void _main() {
     expect(isIdentical, true);
   });
 
-  test('`Computed3` share same instance in scope with name', () async {
+  test('Computed3 share same instance in scope with name', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = statesJust('1a');
@@ -133,7 +133,7 @@ void _main() {
     expect(isIdentical, true);
   });
 
-  test('`Computed2` emit latest combined value when a source emit', () async {
+  test('Computed2 emit latest combined value when a source emit', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = States<String>((setState) {
@@ -180,7 +180,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed3` emit latest combined value when a source emit', () async {
+  test('Computed3 emit latest combined value when a source emit', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = States<String>((setState) {
@@ -236,7 +236,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed2` compute with other scope value', () async {
+  test('Computed2 compute with other scope value', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = statesJust('1a');
@@ -267,7 +267,7 @@ void _main() {
     expect(first, '0|1a|2a');
   });
 
-  test('`Computed3` compute with other scope value', () async {
+  test('Computed3 compute with other scope value', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = statesJust('1a');
@@ -304,7 +304,7 @@ void _main() {
     expect(first, '0|1a|2a|3a');
   });
 
-  test("`Computed2` exposed `States` won't forward data after scope disposed",
+  test("Computed2 exposed States won't forward data after scope disposed",
       () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -354,7 +354,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test("`Computed3` exposed `States` won't forward data after scope disposed",
+  test("Computed3 exposed States won't forward data after scope disposed",
       () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -413,7 +413,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed2` default equals', () async {
+  test('Computed2 default equals', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = States<String>((setState) {
@@ -462,7 +462,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed3` default equals', () async {
+  test('Computed3 default equals', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = States<String>((setState) {
@@ -520,7 +520,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed2` custom equals', () async {
+  test('Computed2 custom equals', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = States<String>((setState) {
@@ -572,7 +572,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed3` custom equals', () async {
+  test('Computed3 custom equals', () async {
     final scope = await Scope.root([
       MockConfigurable((scope) {
         final states1 = States<String>((setState) {
@@ -633,7 +633,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('`Computed2` compute lazily when `lazy` is omitted', () async {
+  test('Computed2 compute lazily when lazy is omitted', () async {
     int invokes = 0;
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -665,7 +665,7 @@ void _main() {
     expect(invokes, 1);
   });
 
-  test('`Computed3` compute lazily when `lazy` is omitted', () async {
+  test('Computed3 compute lazily when lazy is omitted', () async {
     int invokes = 0;
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -703,7 +703,7 @@ void _main() {
     expect(invokes, 1);
   });
 
-  test('`Computed2` compute lazily when `lazy` is true', () async {
+  test('Computed2 compute lazily when lazy is true', () async {
     int invokes = 0;
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -735,7 +735,7 @@ void _main() {
     expect(invokes, 1);
   });
 
-  test('`Computed3` compute lazily when `lazy` is true', () async {
+  test('Computed3 compute lazily when lazy is true', () async {
     int invokes = 0;
     final scope = await Scope.root([
       MockConfigurable((scope) {
@@ -773,7 +773,7 @@ void _main() {
     expect(invokes, 1);
   });
 
-  test('`Computed2` compute immediately when `lazy` is false', () async {
+  test('Computed2 compute immediately when lazy is false', () async {
     int invokes = 0;
     await Scope.root([
       MockConfigurable((scope) {
@@ -803,7 +803,7 @@ void _main() {
     expect(invokes, 1);
   });
 
-  test('`Computed3` compute immediately when `lazy` is false', () async {
+  test('Computed3 compute immediately when lazy is false', () async {
     int invokes = 0;
     await Scope.root([
       MockConfigurable((scope) {

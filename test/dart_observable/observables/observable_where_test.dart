@@ -5,7 +5,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
 
-  test('`observable.where`', () {
+  test('observable.where', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

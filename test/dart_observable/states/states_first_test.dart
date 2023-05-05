@@ -4,7 +4,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test('`states.first` success', () {
+  test('states.first success', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -19,7 +19,7 @@ void main() {
 
   });
 
-  test('`states.first` failure', () {
+  test('states.first failure', () {
 
     final states = States<String>((setState) {
       return Disposable.empty;

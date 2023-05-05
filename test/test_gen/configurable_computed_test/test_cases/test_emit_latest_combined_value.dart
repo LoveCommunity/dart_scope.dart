@@ -5,7 +5,7 @@ import '../shared/codes.dart' hide sampleStatesIterable;
 String testEmitLatestCombinedValue(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` emit latest combined value when a source emit', () async {
+    test('Computed$number emit latest combined value when a source emit', () async {
       ${code([
         _scopeRoot(n),
         getComputed(),

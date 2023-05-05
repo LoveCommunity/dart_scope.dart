@@ -6,7 +6,7 @@ import '../shared/states_tester.dart';
 
 void main() {
 
-  test('`states.cast` success', () {
+  test('states.cast success', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -30,7 +30,7 @@ void main() {
   });
 
 
-  test('`states.cast` failure', () {
+  test('states.cast failure', () {
 
     final states = States<String>((setState) {
       setState('a');

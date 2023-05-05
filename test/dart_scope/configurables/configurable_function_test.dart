@@ -4,7 +4,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test('`Configurable.defaultConstructor` invoked', () async {
+  test('Configurable.defaultConstructor invoked', () async {
 
     int invokes = 0;
     
@@ -18,7 +18,7 @@ void main() {
 
   });
 
-  test('`Configurable.defaultConstructor` configure scope success', () async {
+  test('Configurable.defaultConstructor configure scope success', () async {
 
     final scope = await Scope.root([
       Configurable((scope) {
@@ -32,7 +32,7 @@ void main() {
   });
 
 
-  test('`Configurable.defaultConstructor` make sync scope if configuration is sync', () {
+  test('Configurable.defaultConstructor make sync scope if configuration is sync', () {
 
     final scope = Scope.root([
       Configurable((scope) {}),
@@ -41,7 +41,7 @@ void main() {
     expect(scope, isA<Scope>());
   });
 
-  test('`Configurable.defaultConstructor` make async scope if configuration is async', () {
+  test('Configurable.defaultConstructor make async scope if configuration is async', () {
 
     final scope = Scope.root([
       Configurable((scope) async {}),

@@ -7,7 +7,7 @@ import '../shared/states_tester.dart';
 
 void main() {
 
-  test('`states.distinct` default equals', () {
+  test('states.distinct default equals', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -34,7 +34,7 @@ void main() {
 
   });
 
-  test('`states.distinct` custom equals', () {
+  test('states.distinct custom equals', () {
 
     final states = States<String>((setState) {
       setState('a');

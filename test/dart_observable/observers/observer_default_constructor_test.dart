@@ -6,7 +6,7 @@ import 'package:dart_scope/dart_scope.dart';
 
 void main() {
 
-  test('`Observer.defaultConstructor` function invokes', () {
+  test('Observer.defaultConstructor function invokes', () {
     
     final invokes = <String>[];
 

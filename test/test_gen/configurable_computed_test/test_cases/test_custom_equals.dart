@@ -5,7 +5,7 @@ import '../shared/codes.dart';
 String testCustomEquals(int? number) {
   final n = number!;
   return '''
-    test('`Computed$number` custom equals', () async {
+    test('Computed$number custom equals', () async {
       ${code([
         _scopeRoot(n),
         getComputed(),

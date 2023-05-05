@@ -6,7 +6,7 @@ import '../shared/states_tester.dart';
 
 void main() {
   
-  test('`states.convert` default equals', () {
+  test('states.convert default equals', () {
 
     final states = States<String>((setState) {
       setState('a');
@@ -34,7 +34,7 @@ void main() {
 
   });
 
-  test('`states.convert` custom equals', () {
+  test('states.convert custom equals', () {
 
     final states = States<String>((setState) {
       setState('a');

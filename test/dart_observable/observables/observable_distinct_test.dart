@@ -5,7 +5,7 @@ import '../shared/observable_tester.dart';
 
 void main() {
   
-  test('`observable.distinct` default equals', () {
+  test('observable.distinct default equals', () {
     
     final observable = Observable<String>((onData) {
       onData('a');
@@ -31,7 +31,7 @@ void main() {
     tester.stopObserve();
   });
 
-  test('`observable.distinct` custom equals', () {
+  test('observable.distinct custom equals', () {
 
     final observable = Observable<String>((onData) {
       onData('a');

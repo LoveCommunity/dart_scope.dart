@@ -5,7 +5,7 @@ import '../shared/mock_configurable.dart';
 
 void main() {
 
-  test('`Configurable.combine` invokes', () async {
+  test('Configurable.combine invokes', () async {
 
     final invokes = <String>[];
 
@@ -35,7 +35,7 @@ void main() {
 
   });
 
-  test('`Configurable.combine` configure scope success', () async {
+  test('Configurable.combine configure scope success', () async {
 
     final configurable1 = MockConfigurable((scope) {
       scope.expose<String>(
@@ -70,7 +70,7 @@ void main() {
 
   });
 
-  test('`Configurable.combine` make sync scope if configurables only has sync configuration', () {
+  test('Configurable.combine make sync scope if configurables only has sync configuration', () {
 
     final combine = Configurable.combine(
       configurables: [
@@ -86,7 +86,7 @@ void main() {
 
   });
 
-  test('`Configurable.combine` make async scope if configurables has async configuration', () {
+  test('Configurable.combine make async scope if configurables has async configuration', () {
 
     final combine = Configurable.combine(
       configurables: [

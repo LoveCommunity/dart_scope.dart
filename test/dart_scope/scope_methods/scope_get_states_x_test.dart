@@ -8,7 +8,7 @@ final _emptyStates = States<String>((_) {
 
 void main() {
 
-  test('`scope.getStatesOrNull` return states if states exposed', () async {
+  test('scope.getStatesOrNull return states if states exposed', () async {
 
     final scope = await Scope.root([
       Final<States<String>>(equal: (_) => _emptyStates),
@@ -19,7 +19,7 @@ void main() {
     expect(states, _emptyStates);
   });
 
-  test('`scope.getStatesOrNull` return null if states not exposed', () async {
+  test('scope.getStatesOrNull return null if states not exposed', () async {
 
     final scope = await Scope.root([]);
 
@@ -28,7 +28,7 @@ void main() {
     expect(states, null);
   });
 
-  test('`scope.getStatesOrNull` return states if states exposed with name', () async {
+  test('scope.getStatesOrNull return states if states exposed with name', () async {
 
     final scope = await Scope.root([
       Final<States<String>>(name: 'states', equal: (_) => _emptyStates),
@@ -39,7 +39,7 @@ void main() {
     expect(states, _emptyStates);
   });
 
-  test('`scope.getStatesOrNull` return null if states not exposed with name', () async {
+  test('scope.getStatesOrNull return null if states not exposed with name', () async {
 
     final scope = await Scope.root([]);
 
@@ -48,7 +48,7 @@ void main() {
     expect(states, null);
   });
 
-  test('`scope.getStates` return states if states exposed', () async {
+  test('scope.getStates return states if states exposed', () async {
 
     final scope = await Scope.root([
       Final<States<String>>(equal: (_) => _emptyStates),
@@ -59,7 +59,7 @@ void main() {
     expect(states, _emptyStates);
   });
 
-  test('`scope.getStates` throws if states not exposed', () async {
+  test('scope.getStates throws if states not exposed', () async {
 
     final scope = await Scope.root([]);
 
@@ -78,7 +78,7 @@ void main() {
     );
   });
 
-  test('`scope.getStates` return states if states exposed with name', () async {
+  test('scope.getStates return states if states exposed with name', () async {
 
     final scope = await Scope.root([
       Final<States<String>>(name: 'states', equal: (_) => _emptyStates),
@@ -89,7 +89,7 @@ void main() {
     expect(states, _emptyStates);
   });
 
-  test('`scope.getStates` throws if states not exposed with name', () async {
+  test('scope.getStates throws if states not exposed with name', () async {
 
     final scope = await Scope.root([]);
 
@@ -108,7 +108,7 @@ void main() {
     );
   });
 
-  test('`scope.hasStates` return true if states exposed', () async {
+  test('scope.hasStates return true if states exposed', () async {
 
     final scope = await Scope.root([
       Final<States<String>>(equal: (_) => _emptyStates),
@@ -120,7 +120,7 @@ void main() {
   });
 
 
-  test('`scope.hasStates` return false if states not exposed', () async {
+  test('scope.hasStates return false if states not exposed', () async {
 
     final scope = await Scope.root([]);
 
@@ -129,7 +129,7 @@ void main() {
     expect(hasStates, false);
   });
 
-  test('`scope.hasStates` return true if states exposed with name', () async {
+  test('scope.hasStates return true if states exposed with name', () async {
 
     final scope = await Scope.root([
       Final<States<String>>(name: 'states', equal: (_) => _emptyStates),
@@ -140,7 +140,7 @@ void main() {
     expect(hasStates, true);
   });
 
-  test('`scope.hasStates` return false if states not exposed with name', () async {
+  test('scope.hasStates return false if states not exposed with name', () async {
 
     final scope = await Scope.root([]);
 
