@@ -24,24 +24,6 @@ jobs:
       - run: dart pub get
       - run: dart analyze
       - run: dart pub global activate coverage
-      - name: Run tests
-        run: dart 
-          --disable-service-auth-codes 
-          --pause-isolates-on-exit 
-          --enable_asserts
-          --enable-vm-service=1212 
-          test/dart_scope_test.dart &
-      - name: Collect coverage
-        run: nohup dart pub global run coverage:collect_coverage
-          --port=1212
-          --out=coverage/coverage.json
-          --wait-paused
-          --resume-isolates
-      - name: Generate LCOV
-        run: dart pub global run coverage:format_coverage
-          --lcov
-          --in=coverage/coverage.json
-          --out=coverage/lcov.info
-          --report-on=lib
+      - run: dart pub global run coverage:test_with_coverage
       - name: Upload coverage reports
         uses: codecov/codecov-action@v2.1.0
