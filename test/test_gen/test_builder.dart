@@ -9,7 +9,7 @@ Builder testBuilder(BuilderOptions options) {
   return SharedPartBuilder(
     [
       ObservableCombineTestGenerator(),
-      StatesCombineTestGenerator(),
+      StatesComputedTestGenerator(),
       ConfigurableComputedTestGenerator(),
     ],
     'test_builder',

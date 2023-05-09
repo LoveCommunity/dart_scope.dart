@@ -25,16 +25,16 @@ class ObservableCombineTestGenerator extends GeneratorForAnnotation<ObservableCo
   }
 }
 
-class StatesCombineTestGenerator extends GeneratorForAnnotation<StatesCombineTest> {
+class StatesComputedTestGenerator extends GeneratorForAnnotation<StatesComputedTest> {
 
   @override
   String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     return testAll(
       tests: [
-        testStatesCombineInitialEmit,
-        testStatesCombineEmitLatestCombinedValue,
-        testStatesCombineDisposeObservation,
-        testStatesCombineNotEmitAfterObservationDispose,
+        testStatesComputedInitialEmit,
+        testStatesComputedEmitLatestCombinedValue,
+        testStatesComputedDisposeObservation,
+        testStatesComputedNotEmitAfterObservationDispose,
       ],
       numbers: [null, 2, 3],
     );

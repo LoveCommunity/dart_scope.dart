@@ -87,12 +87,12 @@ Equal<States<R>> _superEqual2<T1, T2, R>(
   Equals<R>? equals,
 ) {
   return (scope) => States
-    .combine2<T1, T2, R>(
+    .computed2<T1, T2, R>(
       states1: scope.get<States<T1>>(name: statesName1),
       states2: scope.get<States<T2>>(name: statesName2),
-      combiner: (it1, it2) => compute(scope, it1, it2),
-    )
-    .distinct(equals);
+      compute: (it1, it2) => compute(scope, it1, it2),
+      equals: equals,
+    );
 }
 
 Equal<States<R>> _superEqual3<T1, T2, T3, R>(
@@ -103,11 +103,11 @@ Equal<States<R>> _superEqual3<T1, T2, T3, R>(
   Equals<R>? equals,
 ) {
   return (scope) => States
-    .combine3<T1, T2, T3, R>(
+    .computed3<T1, T2, T3, R>(
       states1: scope.get<States<T1>>(name: statesName1),
       states2: scope.get<States<T2>>(name: statesName2),
       states3: scope.get<States<T3>>(name: statesName3),
-      combiner: (it1, it2, it3) => compute(scope, it1, it2, it3),
-    )
-    .distinct(equals);
+      compute: (it1, it2, it3) => compute(scope, it1, it2, it3),
+      equals: equals,
+    );
 }

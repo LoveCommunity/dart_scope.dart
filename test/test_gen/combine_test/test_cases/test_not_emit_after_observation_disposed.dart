@@ -20,13 +20,13 @@ String testObservableCombineNotEmitAfterObservationDispose(int? number) {
   ''';
 }
 
-String testStatesCombineNotEmitAfterObservationDispose(int? number) {
+String testStatesComputedNotEmitAfterObservationDispose(int? number) {
   final count = number ?? 2;
   return '''
-    test('${statesCombineTestHeader(number)} will not emit data after observation disposed', () async {
+    test('${statesComputedTestHeader(number)} will not emit data after observation disposed', () async {
       ${code([
         ...statesIterable(count, sampleStates),
-        statesCombine(number),
+        statesComputed(number),
         statesTester(),
         testerStartObserve(),
         testerStopObserve(),

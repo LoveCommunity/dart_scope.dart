@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'states_combine_test.dart';
+part of 'states_computed_test.dart';
 
 // **************************************************************************
-// StatesCombineTestGenerator
+// StatesComputedTestGenerator
 // **************************************************************************
 
 void _main() {
-  test('States.combine initial emit', () {
+  test('States.computed initial emit', () {
     final states1 = States<String>((setState) {
       setState('1a');
       return Disposable.empty;
@@ -18,16 +18,16 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine<String, String>(
+    final computed = States.computed<String, String>(
       states: [
         states1,
         states2,
       ],
-      combiner: (items) => '${items[0]}|${items[1]}',
+      compute: (items) => '${items[0]}|${items[1]}',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     expect(tester.recorded, <String>[]);
@@ -39,7 +39,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('States.combine2 initial emit', () {
+  test('States.computed2 initial emit', () {
     final states1 = States<String>((setState) {
       setState('1a');
       return Disposable.empty;
@@ -50,14 +50,14 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine2<String, String, String>(
+    final computed = States.computed2<String, String, String>(
       states1: states1,
       states2: states2,
-      combiner: (it1, it2) => '$it1|$it2',
+      compute: (it1, it2) => '$it1|$it2',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     expect(tester.recorded, <String>[]);
@@ -69,7 +69,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('States.combine3 initial emit', () {
+  test('States.computed3 initial emit', () {
     final states1 = States<String>((setState) {
       setState('1a');
       return Disposable.empty;
@@ -85,15 +85,15 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine3<String, String, String, String>(
+    final computed = States.computed3<String, String, String, String>(
       states1: states1,
       states2: states2,
       states3: states3,
-      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+      compute: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     expect(tester.recorded, <String>[]);
@@ -105,7 +105,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('States.combine emit latest combined value when a source emit',
+  test('States.computed emit latest combined value when a source emit',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -118,16 +118,16 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine<String, String>(
+    final computed = States.computed<String, String>(
       states: [
         states1,
         states2,
       ],
-      combiner: (items) => '${items[0]}|${items[1]}',
+      compute: (items) => '${items[0]}|${items[1]}',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     tester.startObserve();
@@ -141,7 +141,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('States.combine2 emit latest combined value when a source emit',
+  test('States.computed2 emit latest combined value when a source emit',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -154,14 +154,14 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine2<String, String, String>(
+    final computed = States.computed2<String, String, String>(
       states1: states1,
       states2: states2,
-      combiner: (it1, it2) => '$it1|$it2',
+      compute: (it1, it2) => '$it1|$it2',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     tester.startObserve();
@@ -175,7 +175,7 @@ void _main() {
     tester.stopObserve();
   });
 
-  test('States.combine3 emit latest combined value when a source emit',
+  test('States.computed3 emit latest combined value when a source emit',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -193,15 +193,15 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine3<String, String, String, String>(
+    final computed = States.computed3<String, String, String, String>(
       states1: states1,
       states2: states2,
       states3: states3,
-      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+      compute: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     tester.startObserve();
@@ -216,7 +216,7 @@ void _main() {
   });
 
   test(
-      'States.combine dispose observation will dispose all source observations',
+      'States.computed dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
     final states1 = States<String>((setState) {
@@ -231,15 +231,15 @@ void _main() {
       });
     });
 
-    final combine = States.combine<String, String>(
+    final computed = States.computed<String, String>(
       states: [
         states1,
         states2,
       ],
-      combiner: (items) => '${items[0]}|${items[1]}',
+      compute: (items) => '${items[0]}|${items[1]}',
     );
 
-    final observation = combine.observe((_) {});
+    final observation = computed.observe((_) {});
 
     expect(invokes, <String>[]);
 
@@ -249,7 +249,7 @@ void _main() {
   });
 
   test(
-      'States.combine2 dispose observation will dispose all source observations',
+      'States.computed2 dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
     final states1 = States<String>((setState) {
@@ -264,13 +264,13 @@ void _main() {
       });
     });
 
-    final combine = States.combine2<String, String, String>(
+    final computed = States.computed2<String, String, String>(
       states1: states1,
       states2: states2,
-      combiner: (it1, it2) => '$it1|$it2',
+      compute: (it1, it2) => '$it1|$it2',
     );
 
-    final observation = combine.observe((_) {});
+    final observation = computed.observe((_) {});
 
     expect(invokes, <String>[]);
 
@@ -280,7 +280,7 @@ void _main() {
   });
 
   test(
-      'States.combine3 dispose observation will dispose all source observations',
+      'States.computed3 dispose observation will dispose all source observations',
       () {
     final invokes = <String>[];
     final states1 = States<String>((setState) {
@@ -301,14 +301,14 @@ void _main() {
       });
     });
 
-    final combine = States.combine3<String, String, String, String>(
+    final computed = States.computed3<String, String, String, String>(
       states1: states1,
       states2: states2,
       states3: states3,
-      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+      compute: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
-    final observation = combine.observe((_) {});
+    final observation = computed.observe((_) {});
 
     expect(invokes, <String>[]);
 
@@ -317,7 +317,7 @@ void _main() {
     expect(invokes, <String>['dispose3', 'dispose2', 'dispose1']);
   });
 
-  test('States.combine will not emit data after observation disposed',
+  test('States.computed will not emit data after observation disposed',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -330,16 +330,16 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine<String, String>(
+    final computed = States.computed<String, String>(
       states: [
         states1,
         states2,
       ],
-      combiner: (items) => '${items[0]}|${items[1]}',
+      compute: (items) => '${items[0]}|${items[1]}',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     tester.startObserve();
@@ -353,7 +353,7 @@ void _main() {
     expect(tester.recorded, <String>['1a|2a']);
   });
 
-  test('States.combine2 will not emit data after observation disposed',
+  test('States.computed2 will not emit data after observation disposed',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -366,14 +366,14 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine2<String, String, String>(
+    final computed = States.computed2<String, String, String>(
       states1: states1,
       states2: states2,
-      combiner: (it1, it2) => '$it1|$it2',
+      compute: (it1, it2) => '$it1|$it2',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     tester.startObserve();
@@ -387,7 +387,7 @@ void _main() {
     expect(tester.recorded, <String>['1a|2a']);
   });
 
-  test('States.combine3 will not emit data after observation disposed',
+  test('States.computed3 will not emit data after observation disposed',
       () async {
     final states1 = States<String>((setState) {
       setState('1a');
@@ -405,15 +405,15 @@ void _main() {
       return Disposable.empty;
     });
 
-    final combine = States.combine3<String, String, String, String>(
+    final computed = States.computed3<String, String, String, String>(
       states1: states1,
       states2: states2,
       states3: states3,
-      combiner: (it1, it2, it3) => '$it1|$it2|$it3',
+      compute: (it1, it2, it3) => '$it1|$it2|$it3',
     );
 
     final tester = StatesTester(
-      combine,
+      computed,
     );
 
     tester.startObserve();

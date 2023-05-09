@@ -5,9 +5,9 @@ import 'package:dart_scope/dart_scope.dart';
 import '../../test_gen/combine_test/combine_test_annotation.dart';
 import '../shared/states_tester.dart';
 
-part 'states_combine_test.g.dart';
+part 'states_computed_test.g.dart';
 
-@statesCombineTest
+@statesComputedTest
 void main() {
   _main();
 }

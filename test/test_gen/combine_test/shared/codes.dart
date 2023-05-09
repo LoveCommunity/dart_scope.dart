@@ -5,30 +5,32 @@ String observableCombineTestHeader(int? number) {
   return 'Observable.combine${number == null ? '' : '$number'}';
 }
 
-String statesCombineTestHeader(int? number) {
-  return 'States.combine${number == null ? '' : '$number'}';
+String statesComputedTestHeader(int? number) {
+  return 'States.computed${number == null ? '' : '$number'}';
 }
 String observableCombine(int? number) {
   return _combine(true, number);
 }
 
-String statesCombine(int? number) {
+String statesComputed(int? number) {
   return _combine(false, number);
 }
 
 String _combine(bool isObservable, int? number) {
   final type = isObservable ? 'Observable' : 'States';
   final name = isObservable ? 'observable' : 'states';
+  final combineOrComputed = isObservable ? 'combine' : 'computed';
+  final combinerOrCompute = isObservable ? 'combiner' : 'compute';
   final sources = isObservable ? 'sources' : 'states';
   final source = isObservable ? 'source' : 'states';
   if (number == null) {
     return '''
-      final combine = $type.combine<String, String>(
+      final $combineOrComputed = $type.$combineOrComputed<String, String>(
         $sources: [
           ${name}1,
           ${name}2,
         ],
-        combiner: (items) => '\${items[0]}|\${items[1]}',
+        $combinerOrCompute: (items) => '\${items[0]}|\${items[1]}',
       );
     ''';
   } else {
@@ -45,9 +47,9 @@ String _combine(bool isObservable, int? number) {
       return join(number, (n) => '\$it$n', '|');
     }
     return '''
-      final combine = $type.combine$number<${types()}>(
+      final $combineOrComputed = $type.$combineOrComputed$number<${types()}>(
         ${sources()}
-        combiner: (${combinerParameters()}) => '${combinerBody()}',
+        $combinerOrCompute: (${combinerParameters()}) => '${combinerBody()}',
       );
     ''';
   }
@@ -58,5 +60,5 @@ String observableTester() {
 }
 
 String statesTester() {
-  return assignStatesTester('combine');
+  return assignStatesTester('computed');
 }
