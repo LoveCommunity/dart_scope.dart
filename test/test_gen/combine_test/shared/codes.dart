@@ -12,17 +12,20 @@ String observableCombine(int? number) {
   return _combine(true, number);
 }
 
-String statesComputed(int? number) {
-  return _combine(false, number);
+String statesComputed(int? number, [bool useCustomEquals = false]) {
+  return _combine(false, number, useCustomEquals);
 }
 
-String _combine(bool isObservable, int? number) {
+String _combine(bool isObservable, int? number, [bool useCustomEquals = false]) {
   final type = isObservable ? 'Observable' : 'States';
   final name = isObservable ? 'observable' : 'states';
   final combineOrComputed = isObservable ? 'combine' : 'computed';
   final combinerOrCompute = isObservable ? 'combiner' : 'compute';
   final sources = isObservable ? 'sources' : 'states';
   final source = isObservable ? 'source' : 'states';
+  final maybeCustomEquals = useCustomEquals 
+    ? 'equals: (it1, it2) => it1.length == it2.length,' 
+    : '';
   if (number == null) {
     return '''
       final $combineOrComputed = $type.$combineOrComputed<String, String>(
@@ -31,6 +34,7 @@ String _combine(bool isObservable, int? number) {
           ${name}2,
         ],
         $combinerOrCompute: (items) => '\${items[0]}|\${items[1]}',
+        $maybeCustomEquals
       );
     ''';
   } else {
@@ -50,6 +54,7 @@ String _combine(bool isObservable, int? number) {
       final $combineOrComputed = $type.$combineOrComputed$number<${types()}>(
         ${sources()}
         $combinerOrCompute: (${combinerParameters()}) => '${combinerBody()}',
+        $maybeCustomEquals
       );
     ''';
   }

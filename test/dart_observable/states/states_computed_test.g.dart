@@ -426,4 +426,233 @@ void _main() {
 
     expect(tester.recorded, <String>['1a|2a|3a']);
   });
+
+  test('States.computed default equals', () async {
+    final states1 = States<String>((setState) {
+      setState('1a');
+      return Disposable.empty;
+    });
+
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2a'));
+      Future(() => setState('2b'));
+      Future(() => setState('2b'));
+      return Disposable.empty;
+    });
+
+    final computed = States.computed<String, String>(
+      states: [
+        states1,
+        states2,
+      ],
+      compute: (items) => '${items[0]}|${items[1]}',
+    );
+
+    final tester = StatesTester(
+      computed,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, <String>['1a|2a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, <String>['1a|2a', '1a|2b']);
+
+    tester.stopObserve();
+  });
+
+  test('States.computed2 default equals', () async {
+    final states1 = States<String>((setState) {
+      setState('1a');
+      return Disposable.empty;
+    });
+
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2a'));
+      Future(() => setState('2b'));
+      Future(() => setState('2b'));
+      return Disposable.empty;
+    });
+
+    final computed = States.computed2<String, String, String>(
+      states1: states1,
+      states2: states2,
+      compute: (it1, it2) => '$it1|$it2',
+    );
+
+    final tester = StatesTester(
+      computed,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, <String>['1a|2a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, <String>['1a|2a', '1a|2b']);
+
+    tester.stopObserve();
+  });
+
+  test('States.computed3 default equals', () async {
+    final states1 = States<String>((setState) {
+      setState('1a');
+      return Disposable.empty;
+    });
+
+    final states2 = States<String>((setState) {
+      setState('2a');
+      return Disposable.empty;
+    });
+
+    final states3 = States<String>((setState) {
+      setState('3a');
+      Future(() => setState('3a'));
+      Future(() => setState('3b'));
+      Future(() => setState('3b'));
+      return Disposable.empty;
+    });
+
+    final computed = States.computed3<String, String, String, String>(
+      states1: states1,
+      states2: states2,
+      states3: states3,
+      compute: (it1, it2, it3) => '$it1|$it2|$it3',
+    );
+
+    final tester = StatesTester(
+      computed,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, <String>['1a|2a|3a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, <String>['1a|2a|3a', '1a|2a|3b']);
+
+    tester.stopObserve();
+  });
+
+  test('States.computed custom equals', () async {
+    final states1 = States<String>((setState) {
+      setState('1a');
+      return Disposable.empty;
+    });
+
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2b'));
+      Future(() => setState('2aa'));
+      Future(() => setState('2bb'));
+      return Disposable.empty;
+    });
+
+    final computed = States.computed<String, String>(
+      states: [
+        states1,
+        states2,
+      ],
+      compute: (items) => '${items[0]}|${items[1]}',
+      equals: (it1, it2) => it1.length == it2.length,
+    );
+
+    final tester = StatesTester(
+      computed,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, <String>['1a|2a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, <String>['1a|2a', '1a|2aa']);
+
+    tester.stopObserve();
+  });
+
+  test('States.computed2 custom equals', () async {
+    final states1 = States<String>((setState) {
+      setState('1a');
+      return Disposable.empty;
+    });
+
+    final states2 = States<String>((setState) {
+      setState('2a');
+      Future(() => setState('2b'));
+      Future(() => setState('2aa'));
+      Future(() => setState('2bb'));
+      return Disposable.empty;
+    });
+
+    final computed = States.computed2<String, String, String>(
+      states1: states1,
+      states2: states2,
+      compute: (it1, it2) => '$it1|$it2',
+      equals: (it1, it2) => it1.length == it2.length,
+    );
+
+    final tester = StatesTester(
+      computed,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, <String>['1a|2a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, <String>['1a|2a', '1a|2aa']);
+
+    tester.stopObserve();
+  });
+
+  test('States.computed3 custom equals', () async {
+    final states1 = States<String>((setState) {
+      setState('1a');
+      return Disposable.empty;
+    });
+
+    final states2 = States<String>((setState) {
+      setState('2a');
+      return Disposable.empty;
+    });
+
+    final states3 = States<String>((setState) {
+      setState('3a');
+      Future(() => setState('3b'));
+      Future(() => setState('3aa'));
+      Future(() => setState('3bb'));
+      return Disposable.empty;
+    });
+
+    final computed = States.computed3<String, String, String, String>(
+      states1: states1,
+      states2: states2,
+      states3: states3,
+      compute: (it1, it2, it3) => '$it1|$it2|$it3',
+      equals: (it1, it2) => it1.length == it2.length,
+    );
+
+    final tester = StatesTester(
+      computed,
+    );
+
+    tester.startObserve();
+
+    expect(tester.recorded, <String>['1a|2a|3a']);
+
+    await Future(() {});
+
+    expect(tester.recorded, <String>['1a|2a|3a', '1a|2a|3aa']);
+
+    tester.stopObserve();
+  });
 }
