@@ -8,6 +8,8 @@ import 'test_cases/test_dispose_observation.dart';
 import 'test_cases/test_emit_if_all_sources_emitted.dart';
 import 'test_cases/test_emit_latest_combined_value.dart';
 import 'test_cases/test_not_emit_after_observation_disposed.dart';
+import 'test_cases/test_states_computed_default_equals.dart';
+import 'test_cases/test_states_computed_custom_equals.dart';
 
 class ObservableCombineTestGenerator extends GeneratorForAnnotation<ObservableCombineTest> {
 
@@ -25,16 +27,18 @@ class ObservableCombineTestGenerator extends GeneratorForAnnotation<ObservableCo
   }
 }
 
-class StatesCombineTestGenerator extends GeneratorForAnnotation<StatesCombineTest> {
+class StatesComputedTestGenerator extends GeneratorForAnnotation<StatesComputedTest> {
 
   @override
   String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     return testAll(
       tests: [
-        testStatesCombineInitialEmit,
-        testStatesCombineEmitLatestCombinedValue,
-        testStatesCombineDisposeObservation,
-        testStatesCombineNotEmitAfterObservationDispose,
+        testStatesComputedInitialEmit,
+        testStatesComputedEmitLatestCombinedValue,
+        testStatesComputedDisposeObservation,
+        testStatesComputedNotEmitAfterObservationDispose,
+        testStatesComputedDefaultEquals,
+        testStatesComputedCustomEquals,
       ],
       numbers: [null, 2, 3],
     );

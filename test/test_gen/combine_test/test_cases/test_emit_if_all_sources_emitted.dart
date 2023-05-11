@@ -33,13 +33,13 @@ String _observable(bool isLast, int n) {
   ''';
 }
 
-String testStatesCombineInitialEmit(int? number) {
+String testStatesComputedInitialEmit(int? number) {
   final count = number ?? 2;
   return '''
-    test('${statesCombineTestHeader(number)} initial emit', () {
+    test('${statesComputedTestHeader(number)} initial emit', () {
       ${code([
         ...statesIterable(count, _states),
-        statesCombine(number),
+        statesComputed(number),
         statesTester(),
         expectTesterRecorded<String>([]),
         testerStartObserve(),

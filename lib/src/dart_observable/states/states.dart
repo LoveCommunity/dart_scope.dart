@@ -58,54 +58,60 @@ class States<T> {
   /// 
   /// When an item is emitted by one of multiple States, 
   /// combine the latest item emitted by each States 
-  /// via a specified function and emit combined item.
+  /// via a specified function and emit combined item that changed.
   /// 
   /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
-  static States<R> combine<T, R>({
+  static States<R> computed<T, R>({
     required List<States<T>> states,
-    required R Function(List<T> items) combiner,
+    required R Function(List<T> items) compute,
+    Equals<R>? equals,
   }) => Observable.combine<T, R>(
     sources: states
       .map((states) => states.observable)
       .toList(),
-    combiner: combiner,
-  ).asStates();
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
 
   /// Combine two `States` into one `States`.
   /// 
   /// When an item is emitted by one of two States, 
   /// combine the latest item emitted by each States 
-  /// via a specified function and emit combined item.
+  /// via a specified function and emit combined item that changed.
   /// 
   /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
-  static States<R> combine2<T1, T2, R>({
+  static States<R> computed2<T1, T2, R>({
     required States<T1> states1,
     required States<T2> states2,
-    required R Function(T1, T2) combiner,
+    required R Function(T1, T2) compute,
+    Equals<R>? equals,
   }) => Observable.combine2<T1, T2, R>(
     source1: states1.observable,
     source2: states2.observable,
-    combiner: combiner,
-  ).asStates();
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
 
   /// Combine three `States` into one `States`.
   /// 
   /// When an item is emitted by one of three States, 
   /// combine the latest item emitted by each States 
-  /// via a specified function and emit combined item.
+  /// via a specified function and emit combined item that changed.
   /// 
   /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
-  static States<R> combine3<T1, T2, T3, R>({
+  static States<R> computed3<T1, T2, T3, R>({
     required States<T1> states1,
     required States<T2> states2,
     required States<T3> states3,
-    required R Function(T1, T2, T3) combiner,
+    required R Function(T1, T2, T3) compute,
+    Equals<R>? equals,
   }) => Observable.combine3<T1, T2, T3, R>(
     source1: states1.observable,
     source2: states2.observable,
     source3: states3.observable,
-    combiner: combiner,
-  ).asStates();
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
 
   /// Create `States` from raw `Observable`.
   const States.from(this.observable);

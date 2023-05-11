@@ -20,13 +20,13 @@ String testObservableCombineEmitLatestCombinedValue(int? number) {
   ''';
 }
 
-String testStatesCombineEmitLatestCombinedValue(int? number) {
+String testStatesComputedEmitLatestCombinedValue(int? number) {
   final count = number ?? 2;
   return '''
-    test('${statesCombineTestHeader(number)} emit latest combined value when a source emit', () async {
+    test('${statesComputedTestHeader(number)} emit latest combined value when a source emit', () async {
       ${code([
         ...statesIterable(count, sampleStates),
-        statesCombine(number),
+        statesComputed(number),
         statesTester(),
         testerStartObserve(),
         expectTesterRecorded<String>(expectsAllA(count)),
