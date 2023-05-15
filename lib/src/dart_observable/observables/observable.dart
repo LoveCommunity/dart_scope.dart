@@ -156,6 +156,162 @@ abstract class Observable<T> {
     source3: source3,
     combiner: combiner,
   );
+
+  /// Combine four `Observable` into one `Observable`.
+  /// 
+  /// When an item is emitted by one of four Observables, 
+  /// combine the latest item emitted by each Observable 
+  /// via a specified function and emit combined item.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static Observable<R> combine4<T1, T2, T3, T4, R>({
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
+    required Observable<T4> source4,
+    required R Function(T1, T2, T3, T4) combiner,
+  }) => CombineObservable4(
+    source1: source1,
+    source2: source2,
+    source3: source3,
+    source4: source4,
+    combiner: combiner,
+  );
+
+  /// Combine five `Observable` into one `Observable`.
+  /// 
+  /// When an item is emitted by one of five Observables, 
+  /// combine the latest item emitted by each Observable 
+  /// via a specified function and emit combined item.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static Observable<R> combine5<T1, T2, T3, T4, T5, R>({
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
+    required Observable<T4> source4,
+    required Observable<T5> source5,
+    required R Function(T1, T2, T3, T4, T5) combiner,
+  }) => CombineObservable5(
+    source1: source1,
+    source2: source2,
+    source3: source3,
+    source4: source4,
+    source5: source5,
+    combiner: combiner,
+  );
+
+  /// Combine six `Observable` into one `Observable`.
+  /// 
+  /// When an item is emitted by one of six Observables, 
+  /// combine the latest item emitted by each Observable 
+  /// via a specified function and emit combined item.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static Observable<R> combine6<T1, T2, T3, T4, T5, T6, R>({
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
+    required Observable<T4> source4,
+    required Observable<T5> source5,
+    required Observable<T6> source6,
+    required R Function(T1, T2, T3, T4, T5, T6) combiner,
+  }) => CombineObservable6(
+    source1: source1,
+    source2: source2,
+    source3: source3,
+    source4: source4,
+    source5: source5,
+    source6: source6,
+    combiner: combiner,
+  );
+
+  /// Combine seven `Observable` into one `Observable`.
+  /// 
+  /// When an item is emitted by one of seven Observables, 
+  /// combine the latest item emitted by each Observable 
+  /// via a specified function and emit combined item.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static Observable<R> combine7<T1, T2, T3, T4, T5, T6, T7, R>({
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
+    required Observable<T4> source4,
+    required Observable<T5> source5,
+    required Observable<T6> source6,
+    required Observable<T7> source7,
+    required R Function(T1, T2, T3, T4, T5, T6, T7) combiner,
+  }) => CombineObservable7(
+    source1: source1,
+    source2: source2,
+    source3: source3,
+    source4: source4,
+    source5: source5,
+    source6: source6,
+    source7: source7,
+    combiner: combiner,
+  );
+
+  /// Combine eight `Observable` into one `Observable`.
+  /// 
+  /// When an item is emitted by one of eight Observables, 
+  /// combine the latest item emitted by each Observable 
+  /// via a specified function and emit combined item.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static Observable<R> combine8<T1, T2, T3, T4, T5, T6, T7, T8, R>({
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
+    required Observable<T4> source4,
+    required Observable<T5> source5,
+    required Observable<T6> source6,
+    required Observable<T7> source7,
+    required Observable<T8> source8,
+    required R Function(T1, T2, T3, T4, T5, T6, T7, T8) combiner,
+  }) => CombineObservable8(
+    source1: source1,
+    source2: source2,
+    source3: source3,
+    source4: source4,
+    source5: source5,
+    source6: source6,
+    source7: source7,
+    source8: source8,
+    combiner: combiner,
+  );
+
+  /// Combine nine `Observable` into one `Observable`.
+  /// 
+  /// When an item is emitted by one of nine Observables, 
+  /// combine the latest item emitted by each Observable 
+  /// via a specified function and emit combined item.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static Observable<R> combine9<T1, T2, T3, T4, T5, T6, T7, T8, T9, R>({
+    required Observable<T1> source1,
+    required Observable<T2> source2,
+    required Observable<T3> source3,
+    required Observable<T4> source4,
+    required Observable<T5> source5,
+    required Observable<T6> source6,
+    required Observable<T7> source7,
+    required Observable<T8> source8,
+    required Observable<T9> source9,
+    required R Function(T1, T2, T3, T4, T5, T6, T7, T8, T9) combiner,
+  }) => CombineObservable9(
+    source1: source1,
+    source2: source2,
+    source3: source3,
+    source4: source4,
+    source5: source5,
+    source6: source6,
+    source7: source7,
+    source8: source8,
+    source9: source9,
+    combiner: combiner,
+  );
 }
 
 /// `ObservableX` is an extension on `Observable` that
