@@ -22,7 +22,7 @@ class ObservableCombineTestGenerator extends GeneratorForAnnotation<ObservableCo
         testObservableCombineDisposeObservation,
         testObservableCombineNotEmitAfterObservationDispose,
       ],
-      numbers: [null, 2, 3],
+      numbers: [null, 2, 3, 4, 5, 6, 7, 8, 9],
     );
   }
 }
