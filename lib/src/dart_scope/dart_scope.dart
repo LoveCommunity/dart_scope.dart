@@ -16,7 +16,13 @@ export 'configurables/computed.dart'
   show
     Computed,
     Computed2,
-    Computed3;
+    Computed3,
+    Computed4,
+    Computed5,
+    Computed6,
+    Computed7,
+    Computed8,
+    Computed9;
 export 'configurables/configurable.dart'
   show
     ConfigureScope,
