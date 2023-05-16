@@ -40,7 +40,7 @@ class StatesComputedTestGenerator extends GeneratorForAnnotation<StatesComputedT
         testStatesComputedDefaultEquals,
         testStatesComputedCustomEquals,
       ],
-      numbers: [null, 2, 3],
+      numbers: [null, 2, 3, 4, 5, 6, 7, 8, 9],
     );
   }
 }

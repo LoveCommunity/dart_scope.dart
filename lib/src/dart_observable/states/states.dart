@@ -113,6 +113,175 @@ class States<T> {
   ).distinct(equals)
   .asStates();
 
+  /// Combine four `States` into one `States`.
+  /// 
+  /// When an item is emitted by one of four States, 
+  /// combine the latest item emitted by each States 
+  /// via a specified function and emit combined item that changed.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static States<R> computed4<T1, T2, T3, T4, R>({
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
+    required States<T4> states4,
+    required R Function(T1, T2, T3, T4) compute,
+    Equals<R>? equals,
+  }) => Observable.combine4<T1, T2, T3, T4, R>(
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
+    source4: states4.observable,
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
+
+  /// Combine five `States` into one `States`.
+  /// 
+  /// When an item is emitted by one of five States, 
+  /// combine the latest item emitted by each States 
+  /// via a specified function and emit combined item that changed.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static States<R> computed5<T1, T2, T3, T4, T5, R>({
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
+    required States<T4> states4,
+    required States<T5> states5,
+    required R Function(T1, T2, T3, T4, T5) compute,
+    Equals<R>? equals,
+  }) => Observable.combine5<T1, T2, T3, T4, T5, R>(
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
+    source4: states4.observable,
+    source5: states5.observable,
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
+
+  /// Combine six `States` into one `States`.
+  /// 
+  /// When an item is emitted by one of six States, 
+  /// combine the latest item emitted by each States 
+  /// via a specified function and emit combined item that changed.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static States<R> computed6<T1, T2, T3, T4, T5, T6, R>({
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
+    required States<T4> states4,
+    required States<T5> states5,
+    required States<T6> states6,
+    required R Function(T1, T2, T3, T4, T5, T6) compute,
+    Equals<R>? equals,
+  }) => Observable.combine6<T1, T2, T3, T4, T5, T6, R>(
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
+    source4: states4.observable,
+    source5: states5.observable,
+    source6: states6.observable,
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
+
+  /// Combine seven `States` into one `States`.
+  /// 
+  /// When an item is emitted by one of seven States, 
+  /// combine the latest item emitted by each States 
+  /// via a specified function and emit combined item that changed.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static States<R> computed7<T1, T2, T3, T4, T5, T6, T7, R>({
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
+    required States<T4> states4,
+    required States<T5> states5,
+    required States<T6> states6,
+    required States<T7> states7,
+    required R Function(T1, T2, T3, T4, T5, T6, T7) compute,
+    Equals<R>? equals,
+  }) => Observable.combine7<T1, T2, T3, T4, T5, T6, T7, R>(
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
+    source4: states4.observable,
+    source5: states5.observable,
+    source6: states6.observable,
+    source7: states7.observable,
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
+
+  /// Combine eight `States` into one `States`.
+  /// 
+  /// When an item is emitted by one of eight States, 
+  /// combine the latest item emitted by each States 
+  /// via a specified function and emit combined item that changed.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static States<R> computed8<T1, T2, T3, T4, T5, T6, T7, T8, R>({
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
+    required States<T4> states4,
+    required States<T5> states5,
+    required States<T6> states6,
+    required States<T7> states7,
+    required States<T8> states8,
+    required R Function(T1, T2, T3, T4, T5, T6, T7, T8) compute,
+    Equals<R>? equals,
+  }) => Observable.combine8<T1, T2, T3, T4, T5, T6, T7, T8, R>(
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
+    source4: states4.observable,
+    source5: states5.observable,
+    source6: states6.observable,
+    source7: states7.observable,
+    source8: states8.observable,
+    combiner: compute,
+  ).distinct(equals)
+  .asStates();
+
+  /// Combine nine `States` into one `States`.
+  /// 
+  /// When an item is emitted by one of nine States, 
+  /// combine the latest item emitted by each States 
+  /// via a specified function and emit combined item that changed.
+  /// 
+  /// Modified from: https://reactivex.io/documentation/operators/combinelatest.html
+  static States<R> computed9<T1, T2, T3, T4, T5, T6, T7, T8, T9, R>({
+    required States<T1> states1,
+    required States<T2> states2,
+    required States<T3> states3,
+    required States<T4> states4,
+    required States<T5> states5,
+    required States<T6> states6,
+    required States<T7> states7,
+    required States<T8> states8,
+    required States<T9> states9,
+    required R Function(T1, T2, T3, T4, T5, T6, T7, T8, T9) compute,
+    Equals<R>? equals,
+  }) => Observable.combine9<T1, T2, T3, T4, T5, T6, T7, T8, T9, R>(
+    source1: states1.observable,
+    source2: states2.observable,
+    source3: states3.observable,
+    source4: states4.observable,
+    source5: states5.observable,
+    source6: states6.observable,
+    source7: states7.observable,
+    source8: states8.observable,
+    source9: states9.observable,
+    combiner: compute,
+  )
+  .distinct(equals)
+  .asStates();
+
   /// Create `States` from raw `Observable`.
   const States.from(this.observable);
 
