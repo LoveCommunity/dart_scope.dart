@@ -1,3 +1,17 @@
+## 0.1.0-beta.3
+
+- feature
+  - add configurables `Computed{4~9}` [\#192](https://github.com/LoveCommunity/dart_scope.dart/pull/192)
+  - add operators `States.computed{4~9}` [\#191](https://github.com/LoveCommunity/dart_scope.dart/pull/191)
+  - add operators `Observable.combine{4~9}` [\#190](https://github.com/LoveCommunity/dart_scope.dart/pull/190)
+- refactor
+  - replace `States.combine` with `States.computed` [\#188](https://github.com/LoveCommunity/dart_scope.dart/pull/188)
+- CI 
+  - simplify test coverage command [\#186](https://github.com/LoveCommunity/dart_scope.dart/pull/186)
+- test 
+  - simplify test description [\#185](https://github.com/LoveCommunity/dart_scope.dart/pull/185)
+
+
 ## 0.1.0-beta.2
 
 - feature
