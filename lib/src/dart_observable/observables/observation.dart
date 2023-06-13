@@ -16,7 +16,7 @@ import '../observers/observer.dart';
 /// 
 /// ```dart
 /// void main() {
-///   final observable = ObservableFromIterable<T>([1, 2, 3]);
+///   final observable = ObservableFromIterable<int>([1, 2, 3]);
 ///   final observer = Observer<int>((data) {
 ///     print('onData: $data');
 ///   });
