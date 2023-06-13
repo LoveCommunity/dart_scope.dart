@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 import 'observable.dart';
 import '../observers/observer.dart';
 
-@internal
 abstract class Observation<O extends Observable<T>, T> implements Disposable {
 
   Observation({
@@ -14,14 +13,10 @@ abstract class Observation<O extends Observable<T>, T> implements Disposable {
   }) {
     init();
   }
-
-  @internal
+  
   final O configuration;
-
-  @internal
   final OnData<T> emit;
 
-  @internal
   @mustCallSuper
   void init();
 }

@@ -34,6 +34,9 @@ export 'observables/observable.dart'
     Observe,
     Observable,
     ObservableX;
+export 'observables/observation.dart'
+  show
+    Observation;
 export 'observers/observer.dart'
   show
     OnData,
