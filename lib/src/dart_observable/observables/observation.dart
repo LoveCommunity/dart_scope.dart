@@ -34,9 +34,9 @@ import '../observers/observer.dart';
 /// ```
 /// 
 /// - `Observable` is the logical configuration describe what items to be produced.
-/// - `Observer` handles those items.
 /// - `Observation` apply `Observable`'s logical configuration and produces
 ///   those items then delivery to `Observer`.
+/// - `Observer` handles those items.
 /// 
 /// Part 2/2:
 /// 
