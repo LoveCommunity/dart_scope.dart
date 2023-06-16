@@ -1,3 +1,10 @@
+## 0.1.0-beta.4
+
+- feature 
+  - export class `Observation` [\#195](https://github.com/LoveCommunity/dart_scope.dart/pull/195)
+- refactor 
+  - update sdk constrain to "\>=2.18.0 \<4.0.0" [\#196](https://github.com/LoveCommunity/dart_scope.dart/pull/196)
+
 ## 0.1.0-beta.3
 
 - feature
