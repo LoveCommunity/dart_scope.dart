@@ -19,6 +19,7 @@ export 'src/dart_observable/dart_observable.dart'
     Observe,
     Observable,
     ObservableX,
+    Observation,
     OnData,
     Observer,
     Publisher,
