@@ -25,7 +25,7 @@ class BasicSubject<T> implements Subject<T> {
     if (_map.isEmpty) {
       return;
     }
-    for (final onData in _map.values) {
+    for (final onData in _map.values.toList()) {
       onData(data);
     }
   }
