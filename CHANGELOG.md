@@ -1,3 +1,8 @@
+## 0.1.0-beta.5
+
+- fix 
+  - handle self disposal while process data [\#199](https://github.com/LoveCommunity/dart_scope.dart/pull/199)
+
 ## 0.1.0-beta.4
 
 - feature 
